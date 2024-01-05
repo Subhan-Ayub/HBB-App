@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -38,7 +39,7 @@ class CustomTextField extends StatelessWidget {
             prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
             suffixIcon: suffixIcon != null ? Icon(suffixIcon) : null,
             hintText: hintText,
-            contentPadding: const EdgeInsets.symmetric(vertical: 20.0),
+            contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.015),
             fillColor: Colors.white,
             filled: true,
             hintStyle:
@@ -67,7 +68,7 @@ class FillButton extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       width: width,
-      height: 60,
+      height: Get.height * 0.06,
       decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(50),
@@ -101,7 +102,7 @@ class OutlineButton extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       width: width,
-      height: 60,
+      height: Get.height * 0.06,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(50),

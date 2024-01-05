@@ -72,8 +72,8 @@ class CommonScaffold extends StatelessWidget {
               },
               child: Obx(
                 () => BottomNavContainer(
-                    height: 70,
-                    width: 70,
+                    height: Get.height * 0.08,
+                    width: Get.width * 0.18,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -82,12 +82,14 @@ class CommonScaffold extends StatelessWidget {
                           color: homeCheck.value
                               ? UIDataColors.commonColor
                               : Colors.grey,
-                          size: 40,
+                          size: Get.width * 0.1,
                         ),
-                        Text('Home',
-                            style: homeCheck.value
-                                ? UIDataTextStyles.BottomNavHoverStyle
-                                : UIDataTextStyles.BottomNavStyle)
+                        Text(
+                          'Home',
+                          style: homeCheck.value
+                              ? UIDataTextStyles.BottomNavHoverStyle
+                              : UIDataTextStyles.BottomNavStyle,
+                        )
                       ],
                     )).marginOnly(left: 20),
               ),
@@ -102,8 +104,8 @@ class CommonScaffold extends StatelessWidget {
               },
               child: Obx(
                 () => BottomNavContainer(
-                    height: 70,
-                    width: 70,
+                    height: Get.height * 0.08,
+                    width: Get.width * 0.18,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -112,7 +114,7 @@ class CommonScaffold extends StatelessWidget {
                           color: activityCheck.value
                               ? UIDataColors.commonColor
                               : Colors.grey,
-                          size: 40,
+                          size: Get.width * 0.1,
                         ),
                         Text('Activity',
                             style: activityCheck.value
@@ -131,8 +133,8 @@ class CommonScaffold extends StatelessWidget {
               },
               child: Obx(
                 () => BottomNavContainer(
-                    height: 70,
-                    width: 70,
+                    height: Get.height * 0.08,
+                    width: Get.width * 0.18,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -141,7 +143,7 @@ class CommonScaffold extends StatelessWidget {
                           color: settingsCheck.value
                               ? UIDataColors.commonColor
                               : Colors.grey,
-                          size: 40,
+                          size: Get.width * 0.1,
                         ),
                         Text('Settings',
                             style: settingsCheck.value
@@ -160,8 +162,8 @@ class CommonScaffold extends StatelessWidget {
               },
               child: Obx(
                 () => BottomNavContainer(
-                    height: 70,
-                    width: 70,
+                    height: Get.height * 0.08,
+                    width: Get.width * 0.18,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -170,7 +172,7 @@ class CommonScaffold extends StatelessWidget {
                           color: profileCheck.value
                               ? UIDataColors.commonColor
                               : Colors.grey,
-                          size: 40,
+                          size: Get.width * 0.1,
                         ),
                         Text('Profile',
                             style: profileCheck.value

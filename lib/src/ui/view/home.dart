@@ -6,7 +6,7 @@ import 'package:hbb/src/ui/widgets/commonClasses.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
 
 class HomeScreen extends StatelessWidget {
-   HomeScreen({super.key});
+  HomeScreen({super.key});
   final HomeController _ = Get.put(HomeController());
 
   @override
@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
       children: [
         Container(
           alignment: Alignment.center,
-          height: 200,
+          height: Get.height * 0.22,
           child: Stack(
             children: [
               Container(
@@ -38,25 +38,29 @@ class HomeScreen extends StatelessWidget {
                 width: Get.width / 2.1,
                 child: Column(
                   children: [
-                    const Text(
+                    Text(
                       'TRACK YOUR BUSINESS, GROW YOUR BUSINESS',
                       style: TextStyle(
-                          fontSize: 20,
+                          fontSize: Get.width * 0.038,
                           fontWeight: FontWeight.w400,
-                          height: 1.9),
+                          height: Get.height * 0.0019),
                     ),
                     HeightFillButton(
                       height: 30,
                       width: Get.width / 4.3,
                       color: const Color.fromARGB(255, 246, 118, 150),
-                      child: const Text('Start Tracking'),
-                    ).paddingOnly(top: 10)
+                      child: Text(
+                        'Start Tracking',
+                        style: TextStyle(fontSize: Get.width * 0.027),
+                      ),
+                    ).paddingOnly(top: Get.height * 0.01)
                   ],
                 ),
               ).paddingOnly(left: 130, top: 50)
             ],
           ),
-        ).marginSymmetric(vertical: 70),
+        ).marginSymmetric(vertical: Get.height * 0.055),
+
         // Todays Activity
         Container(
           width: Get.width / 1.1,
@@ -65,67 +69,70 @@ class HomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     "Today's Activity",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                    style: TextStyle(
+                        fontSize: Get.width * 0.045,
+                        fontWeight: FontWeight.w700),
                   ),
                   InkWell(
                     onTap: () {},
-                    child: const Row(
+                    child: Row(
                       children: [
                         Text(
                           'Details',
                           style: TextStyle(
-                              fontSize: 24,
+                              fontSize: Get.width * 0.045,
                               fontWeight: FontWeight.w400,
                               color: UIDataColors.commonColor),
                         ),
-                        SizedBox(width: 10),
+                        SizedBox(width: Get.width * 0.02),
                         Icon(
                           Icons.trending_flat,
-                          size: 30,
+                          size: Get.width * 0.07,
                         )
                       ],
                     ),
                   )
                 ],
               ),
-             
-            //  ListView Builder
+
+              //  ListView Builder
               SizedBox(
-                height: 90,
+                height: Get.height * 0.1,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: _.todayActivity.length,
                     itemBuilder: (context, index) {
                       return BottomNavContainer(
                         width: 0,
-                        height: 150,
+                        height: Get.width * 0.36,
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                               Text(
+                              Text(
                                 '${_.todayActivity[index]['name']}',
-                                style: const TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.w400),
+                                style: TextStyle(
+                                    fontSize: Get.width * 0.034,
+                                    fontWeight: FontWeight.w400),
                               ).paddingOnly(bottom: 5),
-                               Text(
+                              Text(
                                 '${_.todayActivity[index]['amount']}',
-                                style: const TextStyle(
-                                    fontSize: 32,
+                                style: TextStyle(
+                                    fontSize: Get.width * 0.06,
                                     color: UIDataColors.commonColor,
                                     fontWeight: FontWeight.w700),
                               )
                             ]),
                       ).paddingOnly(right: 15);
                     }),
-              ).paddingOnly(top: 10)
+              ).paddingOnly(top: Get.height * 0.01)
             ],
           ),
         ),
-       
-      //  Daily Activity
-     
+
+        //  Daily Activity
+
         Container(
           width: Get.width / 1.1,
           child: Column(
@@ -133,65 +140,67 @@ class HomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     "Daily Activity",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                    style: TextStyle(
+                        fontSize: Get.width * 0.045,
+                        fontWeight: FontWeight.w700),
                   ),
                   InkWell(
                     onTap: () {},
-                    child: const Row(
+                    child: Row(
                       children: [
                         Text(
                           'Details',
                           style: TextStyle(
-                              fontSize: 24,
+                              fontSize: Get.width * 0.045,
                               fontWeight: FontWeight.w400,
                               color: UIDataColors.commonColor),
                         ),
-                        SizedBox(width: 10),
+                        SizedBox(width: Get.width * 0.02),
                         Icon(
                           Icons.trending_flat,
-                          size: 30,
+                          size: Get.width * 0.07,
                         )
                       ],
                     ),
                   )
                 ],
               ),
-             
-            //  ListView Builder
+
+              //  ListView Builder
               SizedBox(
-                height: 100,
+                height: Get.height * 0.14,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: _.dailyActivity.length,
                     itemBuilder: (context, index) {
                       return BottomNavContainer(
                         width: 0,
-                        height: 90,
+                        height: Get.width * 0.22,
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                               Text(
+                              Text(
                                 '${_.dailyActivity[index]['day']}',
-                                style: const TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.w400),
+                                style: TextStyle(
+                                    fontSize: Get.width * 0.034,
+                                    fontWeight: FontWeight.w400),
                               ).paddingOnly(bottom: 5),
-                               Text(
+                              Text(
                                 '${_.dailyActivity[index]['points']}',
-                                style: const TextStyle(
-                                    fontSize: 32,
+                                style: TextStyle(
+                                    fontSize: Get.width * 0.06,
                                     color: UIDataColors.commonColor,
                                     fontWeight: FontWeight.w700),
                               )
                             ]),
                       ).paddingOnly(right: 15);
                     }),
-              ).paddingOnly(top: 10)
+              ).paddingOnly(top: Get.height * 0.01)
             ],
           ),
-        ).paddingOnly(top: 50)
-     
+        ).paddingOnly(top: Get.height * 0.055)
       ],
     );
   }

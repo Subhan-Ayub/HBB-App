@@ -3,6 +3,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
 
 class UIDataTextStyles {
@@ -21,8 +22,10 @@ class UIDataTextStyles {
     fontSize: 45,
   );
 
-  static const BottomNavHoverStyle =
-      TextStyle(color: UIDataColors.commonColor, fontWeight: FontWeight.w600);
+  static const BottomNavHoverStyle = TextStyle(
+      color: UIDataColors.commonColor,
+      fontWeight: FontWeight.w600,
+      fontSize: 12);
   static const BottomNavStyle =
-      TextStyle(color: Colors.grey, fontWeight: FontWeight.w600, fontSize: 14);
+      TextStyle(color: Colors.grey, fontWeight: FontWeight.w600, fontSize: 12);
 }
