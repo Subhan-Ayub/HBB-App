@@ -34,7 +34,7 @@ class SignInScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-        
+
               // BackgroundContainer
               Container(
                 width: Get.width / 1.1,
@@ -46,72 +46,121 @@ class SignInScreen extends StatelessWidget {
                       'Sign In',
                       style: UIDataTextStyles.HeadingStyle,
                     ).paddingOnly(top: 30, bottom: 20),
-        
+
                     // Email/Username TextField
-                  CustomTextField(
-                      width: Get.width/1.5,
-                      controller: _.emailUsername,
-                    hintText: 'EMAIL ID/ USERNAME'),
+                    CustomTextField(
+                        width: Get.width / 1.5,
+                        controller: _.emailUsername,
+                        hintText: 'EMAIL ID/ USERNAME'),
                     // PhoneNumber TextField
                     CustomTextField(
-                      width: Get.width/1.5,
-                      controller: _.password,
-                      suffixIcon: Icons.remove_red_eye_outlined,
-                    hintText: 'PASSWORD').paddingSymmetric(vertical: 30),
-        
-                   
-                  // SignIn Button
-                  FillButton(
-                    color: UIDataColors.commonColor,
-                    width: Get.width /1.5,
-                    child: const Text('SIGN IN', style: TextStyle(fontSize: 20),),
+                            width: Get.width / 1.5,
+                            controller: _.password,
+                            suffixIcon: Icons.remove_red_eye_outlined,
+                            hintText: 'PASSWORD')
+                        .paddingSymmetric(vertical: 30),
+
+                    // SignIn Button
+                    Obx(
+                      () => _.loaderCheck.value
+                          ? CircularProgressIndicator()
+                          : InkWell(
+                              onTap: () async {
+                                await _.login();
+                              
+
+                                    Get.toNamed(Routes.home);
+                              },
+                              child: FillButton(
+                                color: UIDataColors.commonColor,
+                                width: Get.width / 1.5,
+                                child: const Text(
+                                  'SIGN IN',
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                              ),
+                            ),
                     ),
-                   
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                         InkWell( onTap: (){}, child: const Text('Forgot Password', style: TextStyle(fontSize: 16),)),
-                         Container(width: 1.5,
-                         height: 14,
-                         color: Colors.black,
-                         ).paddingSymmetric(horizontal: 10),
-                         InkWell( onTap: (){}, child: const Text('OTP LOGIN', style: TextStyle(fontSize: 16),)),
-        
-                         
+                        InkWell(
+                            onTap: () {},
+                            child: const Text(
+                              'Forgot Password',
+                              style: TextStyle(fontSize: 16),
+                            )),
+                        Container(
+                          width: 1.5,
+                          height: 14,
+                          color: Colors.black,
+                        ).paddingSymmetric(horizontal: 10),
+                        InkWell(
+                            onTap: () {},
+                            child: const Text(
+                              'OTP LOGIN',
+                              style: TextStyle(fontSize: 16),
+                            )),
                       ],
                     ).paddingOnly(top: 30),
-                    const Text('Or Sign In with', style: TextStyle(fontSize: 20, color: Colors.grey, fontWeight: FontWeight.w500),).paddingOnly(top:20, bottom: 10),
-        
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FillButton(
-                        width: Get.width/5,
-                        color: Colors.black,
-                        child: Image.asset('assets/images/fb.png', fit: BoxFit.contain,),
-                         ).paddingOnly(right: 20),
-        
-                         FillButton(
-                        width: Get.width/5,
-                        color: Colors.black,
-                        child: Image.asset('assets/images/gmail.png', fit: BoxFit.contain,),
-                         )
-                    ],
-                  ).paddingOnly(bottom: 30)
-        
+                    const Text(
+                      'Or Sign In with',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w500),
+                    ).paddingOnly(top: 20, bottom: 10),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FillButton(
+                          width: Get.width / 5,
+                          color: Colors.black,
+                          child: Image.asset(
+                            'assets/images/fb.png',
+                            fit: BoxFit.contain,
+                          ),
+                        ).paddingOnly(right: 20),
+                        FillButton(
+                          width: Get.width / 5,
+                          color: Colors.black,
+                          child: Image.asset(
+                            'assets/images/gmail.png',
+                            fit: BoxFit.contain,
+                          ),
+                        )
+                      ],
+                    ).paddingOnly(bottom: 30)
                   ],
                 ),
               ).paddingOnly(top: 20),
-            
-            // Sign In Button
-            OutlineButton(
-              width: Get.width/1.5,
-              color: null, border: Border.all(width: 2, color: UIDataColors.commonColor,),
-             child: InkWell( onTap: () {
-               Get.toNamed(Routes.signup);
-             }, child: const Text('SIGN UP', style: TextStyle(fontSize: 20, color: UIDataColors.commonColor,),))).paddingOnly(top: 30),
-        
-            const Text('login as a guest user', style: TextStyle(color: UIDataColors.commonColor, fontSize: 20),).paddingOnly(top: 15) 
+
+              // Sign In Button
+              OutlineButton(
+                  width: Get.width / 1.5,
+                  color: null,
+                  border: Border.all(
+                    width: 2,
+                    color: UIDataColors.commonColor,
+                  ),
+                  child: InkWell(
+                      onTap: () {
+                        Get.toNamed(Routes.signup);
+                      },
+                      child: const Text(
+                        'SIGN UP',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: UIDataColors.commonColor,
+                        ),
+                      ))).paddingOnly(top: 30),
+
+              const Text(
+                'login as a guest user',
+                style: TextStyle(color: UIDataColors.commonColor, fontSize: 20),
+              ).paddingOnly(top: 15)
             ],
           ),
         ),

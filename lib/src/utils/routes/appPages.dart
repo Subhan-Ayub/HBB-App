@@ -3,6 +3,7 @@ import 'package:hbb/src/bindings/homeBinding.dart';
 import 'package:hbb/src/bindings/loginBinding.dart';
 import 'package:hbb/src/bindings/signinBinding.dart';
 import 'package:hbb/src/bindings/signupBinding.dart';
+import 'package:hbb/src/middlewares/auth.dart';
 import 'package:hbb/src/ui/view/activity.dart';
 import 'package:hbb/src/ui/view/home.dart';
 import 'package:hbb/src/ui/view/login.dart';
@@ -40,6 +41,7 @@ class AppPages {
     GetPage(
       name: Routes.home,
       binding: HomeBinding(),
+      middlewares: [AuthMiddleware()],
       page: () => HomeScreen(),
     ),
      GetPage(
