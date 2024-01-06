@@ -12,6 +12,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
+      appbar: true,
+      color: Colors.white,
       bodyData: body(),
       showDrawer: true,
     );
