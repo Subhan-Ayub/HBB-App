@@ -11,6 +11,10 @@ class ActivityScreen extends StatelessWidget {
   ActivityController _ = Get.find<ActivityController>();
 
   ActivityScreen({super.key});
+
+  RxBool isFormatlist = false.obs;
+  RxBool isCalendar = false.obs;
+
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
@@ -46,13 +50,77 @@ class ActivityScreen extends StatelessWidget {
                 Container(
                   width: Get.width / 1.1,
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    'My Activity Calendar',
-                    style: TextStyle(
-                      fontSize: Get.width * 0.07,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    // textAlign: TextAlign.left,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'My Activity Calendar',
+                        style: TextStyle(
+                          fontSize: Get.width * 0.063,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        // textAlign: TextAlign.left,
+                      ),
+                      Row(
+                        children: [
+                          Obx(
+                            () => Ink(
+                              height: Get.height * 0.05,
+                              width: Get.width * 0.15,
+                              decoration: isCalendar.value
+                                  ? const ShapeDecoration(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.horizontal(
+                                              left: Radius.circular(100),
+                                              right: Radius.circular(100))),
+                                      color: UIDataColors.commonColor,
+                                    )
+                                  : null,
+                              child: IconButton(
+                                  onPressed: () {
+                                    isCalendar.value = true;
+                                    isFormatlist.value = false;
+                                  },
+                                  icon: Icon(
+                                    Icons.date_range_outlined,
+                                    size: Get.width * 0.07,
+                                    color: isCalendar.value
+                                        ? Colors.white
+                                        : Colors.grey,
+                                  )),
+                            ),
+                          ),
+                          Obx(
+                            () => Ink(
+                              height: Get.height * 0.05,
+                              width: Get.width * 0.15,
+                              decoration: isFormatlist.value
+                                  ? const ShapeDecoration(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.horizontal(
+                                              left: Radius.circular(100),
+                                              right: Radius.circular(100))),
+                                      color: UIDataColors.commonColor,
+                                    )
+                                  : null,
+                              child: IconButton(
+                                  onPressed: () {
+                                    isFormatlist.value = true;
+                                    isCalendar.value = false;
+                                  },
+                                  icon: Icon(
+                                    Icons.format_list_bulleted,
+                                    size: Get.width * 0.07,
+                                    color: isFormatlist.value
+                                        ? Colors.white
+                                        : Colors.grey,
+                                  )),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(

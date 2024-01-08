@@ -15,7 +15,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 
 class AppPages {
   // ignore: constant_identifier_names
-  static const String INITIAL = Routes.home;
+  static const String INITIAL = Routes.splashScreen;
   static final List<GetPage<dynamic>> routes = [
     GetPage(
       name: Routes.splashScreen,

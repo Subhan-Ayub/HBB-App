@@ -9,7 +9,7 @@ class SplashScreen extends StatelessWidget {
     Timer(
       const Duration(seconds: 1),
       () {
-        Get.offAndToNamed(Routes.login);
+        Get.offAndToNamed(Routes.home);
       },
     );
 
