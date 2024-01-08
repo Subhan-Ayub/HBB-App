@@ -1,12 +1,16 @@
 import 'package:hbb/src/bindings/activityBinding.dart';
+import 'package:hbb/src/bindings/contactUsBinding.dart';
 import 'package:hbb/src/bindings/homeBinding.dart';
 import 'package:hbb/src/bindings/loginBinding.dart';
+import 'package:hbb/src/bindings/profileBinding.dart';
 import 'package:hbb/src/bindings/signinBinding.dart';
 import 'package:hbb/src/bindings/signupBinding.dart';
 import 'package:hbb/src/middlewares/auth.dart';
 import 'package:hbb/src/ui/view/activity.dart';
+import 'package:hbb/src/ui/view/contactUs.dart';
 import 'package:hbb/src/ui/view/home.dart';
 import 'package:hbb/src/ui/view/login.dart';
+import 'package:hbb/src/ui/view/profile.dart';
 import 'package:hbb/src/ui/view/signIn.dart';
 import 'package:hbb/src/ui/view/signUp.dart';
 import 'package:hbb/src/ui/view/splashScreen.dart';
@@ -48,6 +52,16 @@ class AppPages {
       name: Routes.activity,
       binding: ActivityBinding(),
       page: () => ActivityScreen(),
+    ),
+      GetPage(
+      name: Routes.profile,
+      binding: ProfileBinding(),
+      page: () => ProfileScreen(),
+    ),
+    GetPage(
+      name: Routes.contactUs,
+      binding: ContactUsBinding(),
+      page: () => ContactUsScreen(),
     ),
   ];
 }

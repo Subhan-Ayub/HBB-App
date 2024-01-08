@@ -6,5 +6,7 @@ static const signin = '/signin';
 static const splashScreen = '/splashScreen';
 static const home = '/home';
 static const activity = '/activity';
+static const profile = '/profile';
+static const contactUs = '/contactUs';
 
 }

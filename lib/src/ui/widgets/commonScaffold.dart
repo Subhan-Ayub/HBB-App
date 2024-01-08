@@ -147,24 +147,37 @@ class CommonScaffold extends StatelessWidget {
                         ],
                       ),
                     )),
-                BottomNavContainer(
-                    height: Get.height * 0.08,
-                    width: Get.width * 0.18,
-                    child: InkWell(
-                      onTap: () {},
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.person_outline,
-                            color: Colors.grey,
-                            size: Get.width * 0.1,
-                          ),
-                          const Text('Profile',
-                              style: UIDataTextStyles.BottomNavStyle)
-                        ],
-                      ),
-                    )).paddingOnly(right: 20),
+                Obx(
+                  () => BottomNavContainer(
+                      height: Get.height * 0.08,
+                      width: Get.width * 0.18,
+                      child: InkWell(
+                        onTap: () {
+                          if (iconController.currentRoute != Routes.profile) {
+                            Get.offAllNamed(Routes.profile);
+                          }
+                          iconController.setCurrentRoute(Routes.profile);
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.person_outline,
+                              color:
+                                  iconController.currentRoute == Routes.profile
+                                      ? UIDataColors.commonColor
+                                      : Colors.grey,
+                              size: Get.width * 0.1,
+                            ),
+                            Text('Profile',
+                                style: iconController.currentRoute ==
+                                        Routes.profile
+                                    ? UIDataTextStyles.BottomNavHoverStyle
+                                    : UIDataTextStyles.BottomNavStyle)
+                          ],
+                        ),
+                      )).paddingOnly(right: 20),
+                ),
               ],
             ),
           ).marginOnly(bottom: 0),
