@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:hbb/src/bindings/activityBinding.dart';
 import 'package:hbb/src/bindings/contactUsBinding.dart';
 import 'package:hbb/src/bindings/homeBinding.dart';
@@ -16,6 +17,9 @@ import 'package:hbb/src/ui/view/signUp.dart';
 import 'package:hbb/src/ui/view/splashScreen.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+
+import '../../bindings/statistics&reportsBindings.dart';
+import '../../ui/view/statistics&report.dart';
 
 class AppPages {
   // ignore: constant_identifier_names
@@ -62,6 +66,12 @@ class AppPages {
       name: Routes.contactUs,
       binding: ContactUsBinding(),
       page: () => ContactUsScreen(),
+    ),
+      GetPage(
+      name: Routes.reports,
+      binding: StatisticsAndReportsBindings(),
+      page: () => StatisticsAndReports(),
+      transition: Transition.noTransition
     ),
   ];
 }

@@ -133,7 +133,9 @@ class CommonScaffold extends StatelessWidget {
                     height: Get.height * 0.08,
                     width: Get.width * 0.18,
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(Routes.reports);
+                      },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -154,7 +156,7 @@ class CommonScaffold extends StatelessWidget {
                       child: InkWell(
                         onTap: () {
                           if (iconController.currentRoute != Routes.profile) {
-                            Get.offAllNamed(Routes.profile);
+                            Get.toNamed(Routes.profile);
                           }
                           iconController.setCurrentRoute(Routes.profile);
                         },

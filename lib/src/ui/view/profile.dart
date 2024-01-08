@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:hbb/src/controllers/profileController.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
 
+// ignore: must_be_immutable
 class ProfileScreen extends StatelessWidget {
-  final ProfileController _ = Get.put(ProfileController());
+   final ProfileController _ = Get.find<ProfileController>();
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +74,31 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     Spacer(),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                         Get.defaultDialog(
+                    title: 'Log Out',
+                    content: Text('Are you sure u want to log out?'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Get.back();
+
+                       
+                        },
+                        child: Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          _.box.remove('success');
+                          // box.write("${box.read('userdata')}:R", mc.recen);
+                          // box.write("${box.read('userdata')}:L", mc.library);
+                          Get.offAllNamed(Routes.login);
+                        },
+                        child: Text('Log out'),
+                      ),
+                    ],
+                  );
+                      },
                       icon: Icon(
                         Icons.logout_outlined,
                         color: Colors.grey,
