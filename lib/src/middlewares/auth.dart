@@ -10,11 +10,11 @@ class AuthMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(route) {
     GetStorage box = GetStorage();
-    print(box.read('success'));
 
+    print('${box.read('success')}, success OK');
     // box.remove('success');
     return box.read('success') != null
         ? null
-        : const RouteSettings(name: Routes.login);
+        :  RouteSettings(name: Routes.splashScreen);
   }
 }

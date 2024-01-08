@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                     Text(
                       'TRACK YOUR BUSINESS, GROW YOUR BUSINESS',
                       style: TextStyle(
-                          fontSize: Get.width * 0.038,
+                          fontSize: Get.width * 0.039,
                           fontWeight: FontWeight.w400,
                           height: Get.height * 0.0019),
                     ),
@@ -64,74 +64,74 @@ class HomeScreen extends StatelessWidget {
         ).marginSymmetric(vertical: Get.height * 0.055),
 
         // Todays Activity
-        // Container(
-        //   width: Get.width / 1.1,
-        //   child: Column(
-        //     children: [
-        //       Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //         children: [
-        //           Text(
-        //             "Today's Activity",
-        //             style: TextStyle(
-        //                 fontSize: Get.width * 0.045,
-        //                 fontWeight: FontWeight.w700),
-        //           ),
-        //           InkWell(
-        //             onTap: () {},
-        //             child: Row(
-        //               children: [
-        //                 Text(
-        //                   'Details',
-        //                   style: TextStyle(
-        //                       fontSize: Get.width * 0.045,
-        //                       fontWeight: FontWeight.w400,
-        //                       color: UIDataColors.commonColor),
-        //                 ),
-        //                 SizedBox(width: Get.width * 0.02),
-        //                 Icon(
-        //                   Icons.trending_flat,
-        //                   size: Get.width * 0.07,
-        //                 )
-        //               ],
-        //             ),
-        //           )
-        //         ],
-        //       ),
+        Container(
+          width: Get.width / 1.1,
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Today's Activity",
+                    style: TextStyle(
+                        fontSize: Get.width * 0.045,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Row(
+                      children: [
+                        Text(
+                          'Details',
+                          style: TextStyle(
+                              fontSize: Get.width * 0.045,
+                              fontWeight: FontWeight.w400,
+                              color: UIDataColors.commonColor),
+                        ),
+                        SizedBox(width: Get.width * 0.02),
+                        Icon(
+                          Icons.trending_flat,
+                          size: Get.width * 0.07,
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
 
-        //       //  ListView Builder
-        //       SizedBox(
-        //         height: Get.height * 0.1,
-        //         child: ListView.builder(
-        //             scrollDirection: Axis.horizontal,
-        //             itemCount: _.todayActivity.length,
-        //             itemBuilder: (context, index) {
-        //               return BottomNavContainer(
-        //                 width: 0,
-        //                 height: Get.width * 0.36,
-        //                 child: Column(
-        //                     mainAxisAlignment: MainAxisAlignment.center,
-        //                     children: [
-        //                       Text(
-        //                         '${_.todayActivity[index]['name']}',
-        //                         style: TextStyle(
-        //                             fontSize: Get.width * 0.034,
-        //                             fontWeight: FontWeight.w400),
-        //                       ).paddingOnly(bottom: 5),
-        //                       Text(
-        //                         '${_.todayActivity[index]['amount']}',
-        //                         style: TextStyle(
-        //                             fontSize: Get.width * 0.06,
-        //                             color: UIDataColors.commonColor,
-        //                             fontWeight: FontWeight.w700),
-        //                       )
-        //                     ]),
-        //               ).paddingOnly(right: 15);
-        //             }),
-        //       ).paddingOnly(top: Get.height * 0.01)
-        //     ],
-        //   ),
-        // ),
+              //  ListView Builder
+              SizedBox(
+                height: Get.height * 0.1,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: _.todayActivity.length,
+                    itemBuilder: (context, index) {
+                      return BottomNavContainer(
+                        width: 0,
+                        height: Get.width * 0.36,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '${_.todayActivity[index]['name']}',
+                                style: TextStyle(
+                                    fontSize: Get.width * 0.034,
+                                    fontWeight: FontWeight.w400),
+                              ).paddingOnly(bottom: 5),
+                              Text(
+                                '${_.todayActivity[index]['amount']}',
+                                style: TextStyle(
+                                    fontSize: Get.width * 0.06,
+                                    color: UIDataColors.commonColor,
+                                    fontWeight: FontWeight.w700),
+                              )
+                            ]),
+                      ).paddingOnly(right: 15);
+                    }),
+              ).paddingOnly(top: Get.height * 0.01)
+            ],
+          ),
+        ),
 
         //  Daily Activity
 

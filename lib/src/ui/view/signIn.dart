@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hbb/src/bindings/signinBinding.dart';
+import 'package:hbb/src/controllers/iconController.dart';
 import 'package:hbb/src/controllers/signinController.dart';
 import 'package:hbb/src/ui/widgets/commonClasses.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
@@ -10,6 +12,9 @@ import 'package:get/get.dart';
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
   final SignInController _ = Get.put(SignInController());
+  final IconController iconController = Get.find();
+  // final SignInService _ = Get.put(SignInService());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,9 +72,11 @@ class SignInScreen extends StatelessWidget {
                           : InkWell(
                               onTap: () async {
                                 await _.login();
-                              
-
-                                    Get.toNamed(Routes.home);
+                                if (iconController.currentRoute !=
+                                    Routes.home) {
+                                  Get.offAllNamed(Routes.home);
+                                }
+                                iconController.currentRoute == Routes.home;
                               },
                               child: FillButton(
                                 color: UIDataColors.commonColor,

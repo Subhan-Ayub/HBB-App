@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hbb/src/utils/routes/routes.dart';
 import 'package:http/http.dart' as http;
 
 class SignInController extends GetxController {
   TextEditingController emailUsername = TextEditingController();
   TextEditingController password = TextEditingController();
   GetStorage box = GetStorage();
+
   RxBool loaderCheck = false.obs;
-  // ignore: prefer_typing_uninitialized_variables
   var responseData;
 
   login() async {

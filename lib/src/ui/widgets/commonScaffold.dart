@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hbb/src/controllers/iconController.dart';
 import 'package:hbb/src/ui/widgets/drawer.dart';
 import 'package:hbb/src/ui/widgets/commonClasses.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
@@ -19,179 +20,155 @@ class CommonScaffold extends StatelessWidget {
       required this.bodyData,
       this.showDrawer = false});
 
+  final IconController iconController = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    RxBool homeCheck = false.obs;
-    RxBool activityCheck = false.obs;
-    RxBool settingsCheck = false.obs;
-    RxBool profileCheck = false.obs;
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: color,
+        appBar: appbar
+            ? AppBar(
+                // Logo Container
+                flexibleSpace: SizedBox(
+                  height: Get.width * 0.12,
+                  child: Image.asset('assets/images/logo.png'),
+                ).paddingOnly(top: 5, right: Get.width / 1.5),
 
-    return Scaffold(
-      backgroundColor: color,
-      appBar: appbar
-          ? AppBar(
-              // Logo Container
-              flexibleSpace: SizedBox(
-                height: 55,
-                child: Image.asset('assets/images/logo.png'),
-              ).paddingOnly(top: 25, right: Get.width / 1.5),
-              
+                iconTheme: const IconThemeData(
+                    color: UIDataColors.commonColor, size: 30),
+                backgroundColor: Colors.transparent,
+                elevation: 0,
 
-              iconTheme: const IconThemeData(
-                  color: UIDataColors.commonColor, size: 30),
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-
-              // Bottom Border
-              bottom: PreferredSize(
-                preferredSize:
-                    const Size.fromHeight(8), // Adjust the height of the border
-                child: Container(
-                  color: UIDataColors.commonColor, // Color of the border
-                  height: 8,
-                  width: Get.width / 1.07,
+                // Bottom Border
+                bottom: PreferredSize(
+                  preferredSize: const Size.fromHeight(
+                      10), // Adjust the height of the border
+                  child: Container(
+                    color: UIDataColors.commonColor, // Color of the border
+                    height: 8,
+                    width: Get.width / 1.07,
+                  ),
                 ),
-              ),
 
-              // title: const Text('Test'),
-            )
-          : null,
+                // title: const Text('Test'),
+              )
+            : null,
 
-      // Drawer
-      endDrawer: showDrawer ? MyDrawer() : null,
-      body: bodyData,
+        // Drawer
+        endDrawer: showDrawer ? MyDrawer() : null,
+        body: bodyData,
 
-      // Bottom Bar
-      bottomNavigationBar: SafeArea(
-        child: Container(
-          color: Colors.white,
-          height: 160,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Obx(
-                () => BottomNavContainer(
-                    height: Get.height * 0.08,
-                    width: Get.width * 0.18,
-                    child: InkWell(
-                      onTap: () {
-                        Get.toNamed(Routes.home);
-                        homeCheck.value = true;
-                        activityCheck.value = false;
-                        settingsCheck.value = false;
-                        profileCheck.value = false;
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.home,
-                            color: homeCheck.value
-                                ? UIDataColors.commonColor
-                                : Colors.grey,
-                            size: Get.width * 0.1,
-                          ),
-                          Text(
-                            'Home',
-                            style: homeCheck.value
-                                ? UIDataTextStyles.BottomNavHoverStyle
-                                : UIDataTextStyles.BottomNavStyle,
-                          )
-                        ],
-                      ),
-                    )).marginOnly(left: 20),
-              ),
-              Obx(
-                () => BottomNavContainer(
-                    height: Get.height * 0.08,
-                    width: Get.width * 0.18,
-                    child: InkWell(
-                      onTap: () {
-                        Get.toNamed(Routes.activity);
-                        homeCheck.value = false;
-                        activityCheck.value = true;
-                        settingsCheck.value = false;
-                        profileCheck.value = false;
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.graphic_eq,
-                            color: activityCheck.value
-                                ? UIDataColors.commonColor
-                                : Colors.grey,
-                            size: Get.width * 0.1,
-                          ),
-                          Text('Activity',
-                              style: activityCheck.value
+        // Bottom Bar
+        bottomNavigationBar: SafeArea(
+          child: Container(
+            color: Colors.white,
+            height: Get.height * 0.17,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Obx(
+                  () => BottomNavContainer(
+                      height: Get.height * 0.08,
+                      width: Get.width * 0.18,
+                      child: InkWell(
+                        onTap: () {
+                          if (iconController.currentRoute != Routes.home) {
+                            Get.offAllNamed(Routes.home);
+                          }
+                          iconController.setCurrentRoute(Routes.home);
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.home,
+                              color: iconController.currentRoute == Routes.home
+                                  ? UIDataColors.commonColor
+                                  : Colors.grey,
+                              size: Get.width * 0.1,
+                            ),
+                            Text(
+                              'Home',
+                              style: iconController.currentRoute == Routes.home
                                   ? UIDataTextStyles.BottomNavHoverStyle
-                                  : UIDataTextStyles.BottomNavStyle)
-                        ],
-                      ),
-                    )),
-              ),
-              Obx(
-                () => BottomNavContainer(
+                                  : UIDataTextStyles.BottomNavStyle,
+                            )
+                          ],
+                        ),
+                      )).marginOnly(left: 20),
+                ),
+                Obx(
+                  () => BottomNavContainer(
+                      height: Get.height * 0.08,
+                      width: Get.width * 0.18,
+                      child: InkWell(
+                        onTap: () {
+                          if (iconController.currentRoute != Routes.activity) {
+                            Get.offAllNamed(Routes.activity);
+                          }
+                          iconController.setCurrentRoute(Routes.activity);
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.graphic_eq,
+                              color:
+                                  iconController.currentRoute == Routes.activity
+                                      ? UIDataColors.commonColor
+                                      : Colors.grey,
+                              size: Get.width * 0.1,
+                            ),
+                            Text('Activity',
+                                style: iconController.currentRoute ==
+                                        Routes.activity
+                                    ? UIDataTextStyles.BottomNavHoverStyle
+                                    : UIDataTextStyles.BottomNavStyle)
+                          ],
+                        ),
+                      )),
+                ),
+                BottomNavContainer(
                     height: Get.height * 0.08,
                     width: Get.width * 0.18,
                     child: InkWell(
-                      onTap: () {
-                        homeCheck.value = false;
-                        activityCheck.value = false;
-                        settingsCheck.value = true;
-                        profileCheck.value = false;
-                      },
+                      onTap: () {},
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
                             Icons.settings,
-                            color: settingsCheck.value
-                                ? UIDataColors.commonColor
-                                : Colors.grey,
+                            color: Colors.grey,
                             size: Get.width * 0.1,
                           ),
-                          Text('Settings',
-                              style: settingsCheck.value
-                                  ? UIDataTextStyles.BottomNavHoverStyle
-                                  : UIDataTextStyles.BottomNavStyle)
+                          const Text('Settings',
+                              style: UIDataTextStyles.BottomNavStyle)
                         ],
                       ),
                     )),
-              ),
-              Obx(
-                () => BottomNavContainer(
+                BottomNavContainer(
                     height: Get.height * 0.08,
                     width: Get.width * 0.18,
                     child: InkWell(
-                      onTap: () {
-                        homeCheck.value = false;
-                        activityCheck.value = false;
-                        settingsCheck.value = false;
-                        profileCheck.value = true;
-                      },
+                      onTap: () {},
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
                             Icons.person_outline,
-                            color: profileCheck.value
-                                ? UIDataColors.commonColor
-                                : Colors.grey,
+                            color: Colors.grey,
                             size: Get.width * 0.1,
                           ),
-                          Text('Profile',
-                              style: profileCheck.value
-                                  ? UIDataTextStyles.BottomNavHoverStyle
-                                  : UIDataTextStyles.BottomNavStyle)
+                          const Text('Profile',
+                              style: UIDataTextStyles.BottomNavStyle)
                         ],
                       ),
                     )).paddingOnly(right: 20),
-              ),
-            ],
-          ),
-        ).marginOnly(bottom: 0),
+              ],
+            ),
+          ).marginOnly(bottom: 0),
+        ),
       ),
     );
   }
