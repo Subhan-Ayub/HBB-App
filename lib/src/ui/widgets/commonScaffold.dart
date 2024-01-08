@@ -129,26 +129,37 @@ class CommonScaffold extends StatelessWidget {
                         ),
                       )),
                 ),
-                BottomNavContainer(
-                    height: Get.height * 0.08,
-                    width: Get.width * 0.18,
-                    child: InkWell(
-                      onTap: () {
-                        Get.toNamed(Routes.reports);
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.settings,
-                            color: Colors.grey,
-                            size: Get.width * 0.1,
-                          ),
-                          const Text('Settings',
-                              style: UIDataTextStyles.BottomNavStyle)
-                        ],
-                      ),
-                    )),
+                Obx(
+                  () => BottomNavContainer(
+                      height: Get.height * 0.08,
+                      width: Get.width * 0.18,
+                      child: InkWell(
+                        onTap: () {
+                          if (iconController.currentRoute != Routes.reports) {
+                            Get.toNamed(Routes.reports);
+                          }
+                          iconController.setCurrentRoute(Routes.reports);
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.settings,
+                              color:
+                                  iconController.currentRoute == Routes.reports
+                                      ? UIDataColors.commonColor
+                                      : Colors.grey,
+                              size: Get.width * 0.1,
+                            ),
+                            Text('Settings',
+                                style: iconController.currentRoute ==
+                                        Routes.reports
+                                    ? UIDataTextStyles.BottomNavHoverStyle
+                                    : UIDataTextStyles.BottomNavStyle)
+                          ],
+                        ),
+                      )),
+                ),
                 Obx(
                   () => BottomNavContainer(
                       height: Get.height * 0.08,

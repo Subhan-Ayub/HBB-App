@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:hbb/src/controllers/activityController.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
@@ -8,12 +10,9 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 // ignore: must_be_immutable
 class ActivityScreen extends StatelessWidget {
-  ActivityController _ = Get.find<ActivityController>();
+  final ActivityController _ = Get.find<ActivityController>();
 
   ActivityScreen({super.key});
-
-  RxBool isFormatlist = false.obs;
-  RxBool isCalendar = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +38,93 @@ class ActivityScreen extends StatelessWidget {
                 color: const Color.fromARGB(255, 222, 222, 222),
                 borderRadius: BorderRadius.circular(100)),
           ).paddingOnly(top: 10),
+          SizedBox(
+            height: Get.height / 1.1,
+            width: Get.width / 1.1,
+            child: ListView.builder(
+                itemCount: _.data.length,
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: [
+                      Container(
+                        width: Get.width / 1.1,
+                        decoration: const BoxDecoration(
+                            // color: Color.fromARGB(255, 117, 88, 183),
+                            border: Border(
+                                bottom: BorderSide(
+                                    color: UIDataColors.greyColor, width: 2))),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Icon Container
+                            Container(
+                              width: Get.width * 0.1,
+                              height: Get.height * 0.05,
+                              decoration: BoxDecoration(
+                                  color: Color(_.data[index]['color']),
+                                  borderRadius: BorderRadius.circular(100)),
+                              child: const Icon(
+                                Icons.temple_hindu_sharp,
+                                color: Colors.white,
+                              ),
+                            ),
+
+                            Container(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    // mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      // Heading Container
+                                      Container(
+                                        child: Text(
+                                          '${_.data[index]['heading']}',
+                                          style: TextStyle(
+                                              fontSize: Get.width * 0.04),
+                                        ),
+                                      ).paddingSymmetric(
+                                          vertical: Get.height * 0.01),
+                                      // Date Container
+                                      Container(
+                                        child: Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.calendar_month_outlined,
+                                              color: Colors.grey,
+                                            ).paddingOnly(
+                                                right: Get.width * 0.015),
+                                            Text(
+                                              '${_.data[index]['date']}',
+                                              style: const TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 16),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ).paddingOnly(left: Get.width * 0.02),
+                                  // Time Container
+                                  // Container(
+                                  //   width: 20,
+                                  //   height: 20,
+                                  //   color: Color.fromARGB(255, 120, 19, 65),
+                                  // ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ).paddingSymmetric(vertical: Get.height * 0.012),
+                      )
+                    ],
+                  );
+                }),
+          ).paddingOnly(top: 20)
         ],
       ),
 
@@ -57,7 +143,7 @@ class ActivityScreen extends StatelessWidget {
                       Text(
                         'My Activity Calendar',
                         style: TextStyle(
-                          fontSize: Get.width * 0.063,
+                          fontSize: Get.width * 0.055,
                           fontWeight: FontWeight.bold,
                         ),
                         // textAlign: TextAlign.left,
@@ -66,9 +152,9 @@ class ActivityScreen extends StatelessWidget {
                         children: [
                           Obx(
                             () => Ink(
-                              height: Get.height * 0.05,
-                              width: Get.width * 0.15,
-                              decoration: isCalendar.value
+                              height: Get.height * 0.04,
+                              width: Get.width * 0.13,
+                              decoration: _.isCalendar.value
                                   ? const ShapeDecoration(
                                       shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.horizontal(
@@ -79,13 +165,13 @@ class ActivityScreen extends StatelessWidget {
                                   : null,
                               child: IconButton(
                                   onPressed: () {
-                                    isCalendar.value = true;
-                                    isFormatlist.value = false;
+                                    _.isCalendar.value = true;
+                                    _.isFormatlist.value = false;
                                   },
                                   icon: Icon(
                                     Icons.date_range_outlined,
-                                    size: Get.width * 0.07,
-                                    color: isCalendar.value
+                                    size: Get.width * 0.055,
+                                    color: _.isCalendar.value
                                         ? Colors.white
                                         : Colors.grey,
                                   )),
@@ -93,9 +179,9 @@ class ActivityScreen extends StatelessWidget {
                           ),
                           Obx(
                             () => Ink(
-                              height: Get.height * 0.05,
-                              width: Get.width * 0.15,
-                              decoration: isFormatlist.value
+                              height: Get.height * 0.04,
+                              width: Get.width * 0.13,
+                              decoration: _.isFormatlist.value
                                   ? const ShapeDecoration(
                                       shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.horizontal(
@@ -106,13 +192,13 @@ class ActivityScreen extends StatelessWidget {
                                   : null,
                               child: IconButton(
                                   onPressed: () {
-                                    isFormatlist.value = true;
-                                    isCalendar.value = false;
+                                    _.isFormatlist.value = true;
+                                    _.isCalendar.value = false;
                                   },
                                   icon: Icon(
                                     Icons.format_list_bulleted,
-                                    size: Get.width * 0.07,
-                                    color: isFormatlist.value
+                                    size: Get.width * 0.055,
+                                    color: _.isFormatlist.value
                                         ? Colors.white
                                         : Colors.grey,
                                   )),
