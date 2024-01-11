@@ -22,6 +22,13 @@ class UIDataTextStyles {
     fontSize: 45,
   );
 
+  static TextStyle commontext = TextStyle(
+    // fontWeight: FontWeight.w300,
+    fontFamily: 'Roboto',
+    color: Colors.black,
+    fontSize: Get.width * .027,
+  );
+
   static const BottomNavHoverStyle = TextStyle(
       color: UIDataColors.commonColor,
       fontWeight: FontWeight.w600,

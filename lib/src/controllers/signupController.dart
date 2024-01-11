@@ -100,6 +100,18 @@ class SignUpController extends GetxController {
           backgroundColor: Colors.green[700],
           colorText: Colors.white);
           signUpCheck.value=false;
+   
+    usernameController.text = '';
+    firstnameController.text = '';
+    lastnameController.text = '';
+    emailController.text = '';
+    companynameController.text = '';
+    acodeController.text = '';
+    firstphonenumberController.text = '';
+    secondphonenumberController.text = '';
+    passwordController.text = '';
+
+    Get.offAndToNamed(Routes.signin);
 
 
       } else {
@@ -114,18 +126,6 @@ class SignUpController extends GetxController {
 
     }
 
-   
-    usernameController.text = '';
-    firstnameController.text = '';
-    lastnameController.text = '';
-    emailController.text = '';
-    companynameController.text = '';
-    acodeController.text = '';
-    firstphonenumberController.text = '';
-    secondphonenumberController.text = '';
-    passwordController.text = '';
-
-    Get.offAndToNamed(Routes.signin);
   }
 
 

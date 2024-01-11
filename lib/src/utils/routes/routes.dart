@@ -9,5 +9,8 @@ static const home = '/home';
 static const activity = '/activity';
 static const profile = '/profile';
 static const contactUs = '/contactUs';
+static const menu = '/menu';
+static const editprofile = '/editprofile';
+static const programdetail = '/programdetail';
 
 }
