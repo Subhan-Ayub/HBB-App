@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hbb/src/bindings/signinBinding.dart';
 import 'package:hbb/src/controllers/iconController.dart';
 import 'package:hbb/src/controllers/signinController.dart';
 import 'package:hbb/src/ui/widgets/commonClasses.dart';
@@ -57,20 +56,64 @@ class SignInScreen extends StatelessWidget {
                         width: Get.width / 1.5,
                         controller: _.emailUsername,
                         hintText: 'EMAIL ID/ USERNAME'),
+
                     // PhoneNumber TextField
-                    CustomTextField(
-                            width: Get.width / 1.5,
-                            controller: _.password,
-                            suffixIcon: Icons.remove_red_eye_outlined,
-                            hintText: 'PASSWORD')
-                        .paddingSymmetric(vertical: 30),
+                    Container(
+                      width: Get.width / 1.5,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color.fromARGB(18, 18, 18, 18)
+                                  .withOpacity(0.1),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(3, 3),
+                            ),
+                          ]),
+                      child: Obx(
+                        () => TextFormField(
+                          textAlign: TextAlign.center,
+                          controller: _.password,
+                          obscureText: !_.passwordVisibility.value,
+                          decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  _.passwordVisibility.toggle();
+                                },
+                                icon: Icon(
+                                  _.passwordVisibility.value
+                                      ? Icons.remove_red_eye_outlined
+                                      : Icons.remove_red_eye,
+                                )),
+                            hintText: 'Enter password',
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: Get.height * 0.015),
+                            fillColor: Colors.white,
+                            filled: true,
+                            hintStyle: const TextStyle(
+                                fontSize: 16.0, fontWeight: FontWeight.w400),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50),
+                              borderSide: const BorderSide(
+                                  color: Colors.white, width: 1.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50),
+                              borderSide: const BorderSide(
+                                  color: Colors.white, width: 1.0),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ).paddingSymmetric(vertical: Get.height * 0.04),
 
                     // SignIn Button
                     Obx(
                       () => _.loaderCheck.value
                           ? CircularProgressIndicator()
-                          : InkWell(
-                              onTap: () async {
+                          : FillButton(
+                              ontap: () async {
                                 await _.login();
                                 if (iconController.currentRoute !=
                                     Routes.home) {
@@ -78,13 +121,11 @@ class SignInScreen extends StatelessWidget {
                                 }
                                 iconController.currentRoute == Routes.home;
                               },
-                              child: FillButton(
-                                color: UIDataColors.commonColor,
-                                width: Get.width / 1.5,
-                                child: const Text(
-                                  'SIGN IN',
-                                  style: TextStyle(fontSize: 20),
-                                ),
+                              color: UIDataColors.commonColor,
+                              width: Get.width / 1.5,
+                              child: const Text(
+                                'SIGN IN',
+                                style: TextStyle(fontSize: 20),
                               ),
                             ),
                     ),

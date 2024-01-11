@@ -1,16 +1,19 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:hbb/src/controllers/loginController.dart';
-import 'package:hbb/src/ui/view/signIn.dart';
 import 'package:hbb/src/ui/widgets/commonClasses.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
 import 'package:hbb/src/utils/uidata/container_decor.dart';
 import 'package:hbb/src/utils/uidata/text_styles.dart';
 import 'package:get/get.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class LogInScreen extends StatelessWidget {
   LogInScreen({super.key});
 
+  RxBool istrue = true.obs;
   final LogInController _ = Get.put(LogInController());
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,6 @@ class LogInScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Container(
             width: Get.width,
-            height: Get.height,
             decoration: const BoxDecoration(
               color: Colors.white,
               image: DecorationImage(
@@ -58,27 +60,29 @@ class LogInScreen extends StatelessWidget {
                       // prefixIcon: Icons.person
                       // ),
 
-                      // CountryCode Container
-                      FillButton(
-                        width: Get.width / 1.5,
-                        color: Colors.white,
-                        child: Row(children: [
-                          SizedBox(
-                            child: Image.asset('assets/images/flag.png'),
-                          ).paddingOnly(left: 20),
-                          const Text(
-                            'US (+1)',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w400),
-                          ).paddingOnly(left: 50)
-                        ]),
+                      // CountryCode and PhoneTextField
+                      Obx(
+                        () => CustomPhoneField(
+                          width: Get.width / 1.5,
+                          initialValue: _.phoneNumber.value,
+                          controller: _.phonenumber,
+                          hintText: 'Enter phone number',
+                          ontap: (PhoneNumber number) {
+                            if (_.phonenumber.text.length >= 10) {
+                              _.phoneNumber.value = number;
+                              istrue.value = true;
+                            } else {
+                              istrue.value = false;
+                            }
+                          },
+                        ).paddingOnly(top: 20),
                       ),
-                      // PhoneNumber TextField
-                      CustomTextField(
-                              width: Get.width / 1.5,
-                              controller: _.phoneNumber,
-                              hintText: 'Enter Phone Number')
-                          .paddingSymmetric(vertical: 30),
+                      Obx(() => istrue.value
+                          ? const SizedBox()
+                          : const Text(
+                              'Enter a valid phone number',
+                              style: TextStyle(color: Colors.red),
+                            ).paddingOnly(top: 10)),
 
                       // NEXT Button
                       FillButton(
@@ -88,7 +92,7 @@ class LogInScreen extends StatelessWidget {
                           'NEXT',
                           style: TextStyle(fontSize: 20),
                         ),
-                      ),
+                      ).paddingOnly(top: Get.height * 0.04),
                       InkWell(
                           onTap: () {
                             Get.toNamed(Routes.signin);
@@ -131,8 +135,11 @@ class LogInScreen extends StatelessWidget {
                   ),
                 ).paddingOnly(top: 20),
 
-                // Sign In Button
+                // Sign UP Button
                 OutlineButton(
+                    ontap: () {
+                      Get.toNamed(Routes.signup);
+                    },
                     width: Get.width / 1.5,
                     color: null,
                     border: Border.all(
@@ -154,7 +161,7 @@ class LogInScreen extends StatelessWidget {
                 ).paddingOnly(top: 15)
               ],
             ),
-          ),
+          ).paddingSymmetric(vertical: 20),
         ),
       ),
     );

@@ -1,4 +1,7 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hbb/src/controllers/signupController.dart';
 import 'package:hbb/src/ui/widgets/commonClasses.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
@@ -10,14 +13,13 @@ import 'package:get/get.dart';
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
   final SignUpController _ = Get.put(SignUpController());
-  RxBool chk = false.obs;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
           width: Get.width,
-          height: Get.height,
+          // height: Get.height,
           decoration: const BoxDecoration(
             color: Colors.white,
             image: DecorationImage(
@@ -34,7 +36,7 @@ class SignUpScreen extends StatelessWidget {
                   'assets/images/logo.png',
                   fit: BoxFit.cover,
                 ),
-              ),
+              ).paddingOnly(top: 10),
 
               // BackgroundContainer
               Container(
@@ -48,37 +50,122 @@ class SignUpScreen extends StatelessWidget {
                       style: UIDataTextStyles.HeadingStyle,
                     ).paddingOnly(top: 30, bottom: 20),
 
-                    // Name TextField
-                    CustomTextField(
-                        width: Get.width / 1.5,
-                        controller: _.fullnameController,
-                        hintText: 'Enter full name'),
+                    Container(
+                      height: Get.height / 2.5,
+                      width: Get.width,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            // Username TextField
+                            CustomTextField(
+                                width: Get.width / 1.5,
+                                controller: _.usernameController,
+                                hintText: 'Enter Username'),
 
-                    // Username TextField
-                    CustomTextField(
-                            width: Get.width / 1.5,
-                            controller: _.usernameController,
-                            hintText: 'Enter Username')
-                        .paddingSymmetric(vertical: 30),
+                            // FirstName TextField
+                            CustomTextField(
+                                    width: Get.width / 1.5,
+                                    controller: _.firstnameController,
+                                    hintText: 'Enter first name')
+                                .paddingSymmetric(vertical: Get.height * 0.04),
 
-                    // Email TextField
-                    CustomTextField(
-                        width: Get.width / 1.5,
-                        controller: _.emailController,
-                        hintText: 'Enter email address'),
+                            // LastName TextField
+                            CustomTextField(
+                                width: Get.width / 1.5,
+                                controller: _.lastnameController,
+                                hintText: 'Enter Last name'),
 
-                    // Password TextField
-                    CustomTextField(
-                            width: Get.width / 1.5,
-                            controller: _.passwordController,
-                            hintText: 'Enter Password')
-                        .paddingSymmetric(vertical: 30),
+                            // Email TextField
+                            CustomTextField(
+                                    width: Get.width / 1.5,
+                                    controller: _.emailController,
+                                    hintText: 'Enter email address')
+                                .paddingSymmetric(vertical: Get.height * 0.04),
 
-                    // Re-Password TextField
-                    CustomTextField(
-                        width: Get.width / 1.5,
-                        controller: _.reEnterPasswordController,
-                        hintText: 'Enter Re-Password'),
+                            // Compnay Name TextField
+                            CustomTextField(
+                                width: Get.width / 1.5,
+                                controller: _.companynameController,
+                                hintText: 'Company name'),
+
+                            // ACode TextField
+                            CustomTextField(
+                                    width: Get.width / 1.5,
+                                    controller: _.acodeController,
+                                    hintText: 'Enter a-code')
+                                .paddingSymmetric(vertical: Get.height * 0.04),
+
+                            // First phone mumbe TextField
+                            CustomTextField(
+                                keyboard: [
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
+                                width: Get.width / 1.5,
+                                controller: _.firstphonenumberController,
+                                hintText: 'First phone number'),
+                            // Second phone number TextField
+                            CustomTextField(
+                                    width: Get.width / 1.5,
+                                    controller: _.secondphonenumberController,
+                                    hintText: 'Second phone number')
+                                .paddingSymmetric(vertical: Get.height * 0.04),
+
+                            // Password TextField
+                            Container(
+                              width: Get.width / 1.5,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color:
+                                          const Color.fromARGB(18, 18, 18, 18)
+                                              .withOpacity(0.1),
+                                      spreadRadius: 2,
+                                      blurRadius: 5,
+                                      offset: const Offset(3, 3),
+                                    ),
+                                  ]),
+                              child: Obx(
+                                () => TextFormField(
+                                  textAlign: TextAlign.center,
+                                  controller: _.passwordController,
+                                  obscureText: !_.passwordVisibility.value,
+                                  decoration: InputDecoration(
+                                    suffixIcon: IconButton(
+                                        onPressed: () {
+                                          _.passwordVisibility.toggle();
+                                        },
+                                        icon: Icon(
+                                          _.passwordVisibility.value
+                                              ? Icons.remove_red_eye_outlined
+                                              : Icons.remove_red_eye,
+                                        )),
+                                    hintText: 'Enter password',
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: Get.height * 0.015),
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    hintStyle: const TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(
+                                          color: Colors.white, width: 1.0),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(
+                                          color: Colors.white, width: 1.0),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ).paddingOnly(bottom: Get.height * 0.04),
+                          ],
+                        ),
+                      ),
+                    ),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -86,7 +173,7 @@ class SignUpScreen extends StatelessWidget {
                         // Radio Button
                         InkWell(
                           onTap: () {
-                            chk.value = !chk.value;
+                            _.chk.value = !_.chk.value;
                           },
                           child: Container(
                             alignment: Alignment.center,
@@ -101,7 +188,7 @@ class SignUpScreen extends StatelessWidget {
                             child: Obx(
                               () => Container(
                                 decoration: BoxDecoration(
-                                    color: chk.value
+                                    color: _.chk.value
                                         ? UIDataColors.commonColor
                                         : Colors.white,
                                     borderRadius: BorderRadius.circular(50)),
@@ -123,6 +210,9 @@ class SignUpScreen extends StatelessWidget {
                     ).paddingSymmetric(vertical: 15),
                     // Sign UP Button
                     FillButton(
+                      ontap: () {
+                        _.submitForm();
+                      },
                       color: UIDataColors.commonColor,
                       width: Get.width / 1.5,
                       child: const Text(
