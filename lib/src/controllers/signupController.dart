@@ -17,7 +17,7 @@ class SignUpController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   RxBool passwordVisibility = false.obs;
   RxBool chk = false.obs;
-    RxBool signUpCheck=false.obs;
+  RxBool signUpCheck = false.obs;
 
   void submitForm() async {
     final username = usernameController.text.trim();
@@ -29,7 +29,6 @@ class SignUpController extends GetxController {
     final firstphonenumber = firstphonenumberController.text.trim();
     final secondphonenumber = secondphonenumberController.text.trim();
     final password = passwordController.text.trim();
-
 
     // Validation
     if (username.isEmpty ||
@@ -45,17 +44,37 @@ class SignUpController extends GetxController {
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,
           colorText: Colors.white);
-          signUpCheck.value=false;
+      signUpCheck.value = false;
       return;
     }
-    if (username.length<5) {
+    if (username.length < 5) {
       Get.snackbar('Error', 'Username must contain 5-letters',
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,
           colorText: Colors.white);
-          signUpCheck.value=false;
+      signUpCheck.value = false;
 
-          return;
+      return;
+    }
+    if (firstphonenumber.length > 3) {
+      Get.snackbar('Error', 'First Number Length too long Please dial 3-digits',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      signUpCheck.value = false;
+
+      return;
+    }
+
+    if (secondphonenumber.length > 3) {
+      Get.snackbar(
+          'Error', 'Second Number Length too long Please dial 3-digits',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      signUpCheck.value = false;
+
+      return;
     }
 
     if (!RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$').hasMatch(email)) {
@@ -64,20 +83,20 @@ class SignUpController extends GetxController {
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,
           colorText: Colors.white);
-          signUpCheck.value=false;
+      signUpCheck.value = false;
 
       return;
     }
 
-     String apiUrl = "http://18.232.88.126/api/auth/sign-up";
+    String apiUrl = "http://18.232.88.126/api/auth/sign-up";
 
     try {
       var res = await http.post(
         Uri.parse(apiUrl),
-        headers:{
+        headers: {
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode( {
+        body: jsonEncode({
           'hbb_uname': username,
           'hbb_pword': password,
           'hbb_firstname': firstname,
@@ -95,41 +114,33 @@ class SignUpController extends GetxController {
         // Handle a successful response
         print('POST request successful: ${res.body}');
 
-              Get.snackbar('Successfully', 'Your Account Has Been Created',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.green[700],
-          colorText: Colors.white);
-          signUpCheck.value=false;
-   
-    usernameController.text = '';
-    firstnameController.text = '';
-    lastnameController.text = '';
-    emailController.text = '';
-    companynameController.text = '';
-    acodeController.text = '';
-    firstphonenumberController.text = '';
-    secondphonenumberController.text = '';
-    passwordController.text = '';
+        Get.snackbar('Successfully', 'Your Account Has Been Created',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green[700],
+            colorText: Colors.white);
+        signUpCheck.value = false;
 
-    Get.offAndToNamed(Routes.signin);
+        usernameController.text = '';
+        firstnameController.text = '';
+        lastnameController.text = '';
+        emailController.text = '';
+        companynameController.text = '';
+        acodeController.text = '';
+        firstphonenumberController.text = '';
+        secondphonenumberController.text = '';
+        passwordController.text = '';
 
-
+        Get.offAndToNamed(Routes.signin);
       } else {
         // Handle an error response
         print('POST request failed with status: ${res.body}');
-          signUpCheck.value=false;
-
+        signUpCheck.value = false;
       }
     } catch (e) {
       print('Error during POST request: $e');
-          signUpCheck.value=false;
-
+      signUpCheck.value = false;
     }
-
   }
 
-
-see()async{
-  
-}
+  see() async {}
 }

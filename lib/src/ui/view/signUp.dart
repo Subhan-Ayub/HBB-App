@@ -90,6 +90,9 @@ class SignUpScreen extends StatelessWidget {
 
                             // ACode TextField
                             CustomTextField(
+                                    keyboard: [
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
                                     width: Get.width / 1.5,
                                     controller: _.acodeController,
                                     hintText: 'Enter a-code')
@@ -105,6 +108,9 @@ class SignUpScreen extends StatelessWidget {
                                 hintText: 'First phone number'),
                             // Second phone number TextField
                             CustomTextField(
+                                    keyboard: [
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
                                     width: Get.width / 1.5,
                                     controller: _.secondphonenumberController,
                                     hintText: 'Second phone number')
@@ -209,19 +215,21 @@ class SignUpScreen extends StatelessWidget {
                       ],
                     ).paddingSymmetric(vertical: 15),
                     // Sign UP Button
-                    Obx(() => _.signUpCheck.value?CircularProgressIndicator().marginSymmetric(vertical: 10):
-                    FillButton(
-                      ontap: () {
-                        _.signUpCheck.value=true;
-                        _.submitForm();
-                      },
-                      color: UIDataColors.commonColor,
-                      width: Get.width / 1.5,
-                      child: const Text(
-                        'SIGN UP',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ).paddingOnly(bottom: 40))
+                    Obx(() => _.signUpCheck.value
+                        ? CircularProgressIndicator()
+                            .marginSymmetric(vertical: 10)
+                        : FillButton(
+                            ontap: () {
+                              _.signUpCheck.value = true;
+                              _.submitForm();
+                            },
+                            color: UIDataColors.commonColor,
+                            width: Get.width / 1.5,
+                            child: const Text(
+                              'SIGN UP',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ).paddingOnly(bottom: 40))
                   ],
                 ),
               ).paddingOnly(top: 20),

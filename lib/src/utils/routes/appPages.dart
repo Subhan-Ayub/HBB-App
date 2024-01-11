@@ -3,7 +3,6 @@ import 'package:hbb/src/bindings/activityBinding.dart';
 import 'package:hbb/src/bindings/contactUsBinding.dart';
 import 'package:hbb/src/bindings/homeBinding.dart';
 import 'package:hbb/src/bindings/loginBinding.dart';
-import 'package:hbb/src/bindings/menuBinding.dart';
 import 'package:hbb/src/bindings/profileBinding.dart';
 import 'package:hbb/src/bindings/programDetailBinding.dart';
 import 'package:hbb/src/bindings/signinBinding.dart';
@@ -20,11 +19,9 @@ import 'package:hbb/src/ui/view/signIn.dart';
 import 'package:hbb/src/ui/view/signUp.dart';
 import 'package:hbb/src/ui/view/splashScreen.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../../bindings/editProfileBinding.dart';
 import '../../bindings/statistics&reportsBindings.dart';
-import '../../ui/view/menu.dart';
 import '../../ui/view/statistics&report.dart';
 
 class AppPages {
@@ -32,69 +29,59 @@ class AppPages {
   static const String INITIAL = Routes.splashScreen;
   static final List<GetPage<dynamic>> routes = [
     GetPage(
-      name: Routes.splashScreen,
-      page: () => SplashScreen(),
-    ),
+        name: Routes.splashScreen,
+        page: () => SplashScreen(),
+        transition: Transition.noTransition),
     GetPage(
-      name: Routes.signup,
-      binding: SignUpBinding(),
-      page: () => SignUpScreen(),
-      // transition: Transition.downToUp
-    ),
+        name: Routes.signup,
+        binding: SignUpBinding(),
+        page: () => SignUpScreen(),
+        transition: Transition.noTransition),
     GetPage(
-      name: Routes.login,
-      binding: LogInBinding(),
-      page: () => LogInScreen(),
-      // transition: Transition.rightToLeftWithFade
-    ),
+        name: Routes.login,
+        binding: LogInBinding(),
+        page: () => LogInScreen(),
+        transition: Transition.noTransition),
     GetPage(
-      name: Routes.signin,
-      binding: SignInBinding(),
-      page: () => SignInScreen(),
-    ),
+        name: Routes.signin,
+        binding: SignInBinding(),
+        page: () => SignInScreen(),
+        transition: Transition.noTransition),
     GetPage(
-      name: Routes.home,
-      binding: HomeBinding(),
-      middlewares: [AuthMiddleware()],
-      page: () => HomeScreen(),
-    ),
-     GetPage(
-      name: Routes.activity,
-      binding: ActivityBinding(),
-      page: () => ActivityScreen(),
-    ),
-      GetPage(
-      name: Routes.profile,
-      binding: ProfileBinding(),
-      page: () => ProfileScreen(),
-    ),
+        name: Routes.home,
+        binding: HomeBinding(),
+        middlewares: [AuthMiddleware()],
+        page: () => HomeScreen(),
+        transition: Transition.noTransition),
     GetPage(
-      name: Routes.contactUs,
-      binding: ContactUsBinding(),
-      page: () => ContactUsScreen(),
-    ),
-      GetPage(
-      name: Routes.reports,
-      binding: StatisticsAndReportsBindings(),
-      page: () => StatisticsAndReports(),
-      transition: Transition.noTransition
-    ),
+        name: Routes.activity,
+        binding: ActivityBinding(),
+        page: () => ActivityScreen(),
+        transition: Transition.noTransition),
     GetPage(
-      name: Routes.menu,
-      binding: MenuBinding(),
-      page: () => MenuScreen(),
-    ),
-
+        name: Routes.profile,
+        binding: ProfileBinding(),
+        page: () => ProfileScreen(),
+        transition: Transition.noTransition),
     GetPage(
-      name: Routes.editprofile,
-      binding: EditProfileBinding(),
-      page: () => EditProfileScreen(),
-    ),
+        name: Routes.contactUs,
+        binding: ContactUsBinding(),
+        page: () => ContactUsScreen(),
+        transition: Transition.noTransition),
     GetPage(
-      name: Routes.programdetail,
-      binding: ProgramDetailBinding(),
-      page: () => ProgramDetailScreen(),
-    ),
-
+        name: Routes.reports,
+        binding: StatisticsAndReportsBindings(),
+        page: () => StatisticsAndReports(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: Routes.editprofile,
+        binding: EditProfileBinding(),
+        page: () => EditProfileScreen(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: Routes.programdetail,
+        binding: ProgramDetailBinding(),
+        page: () => ProgramDetailScreen(),
+        transition: Transition.noTransition),
   ];
 }
