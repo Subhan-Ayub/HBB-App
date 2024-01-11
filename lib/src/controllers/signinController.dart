@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -23,10 +25,11 @@ class SignInController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        responseData = response.body;
+        responseData = jsonDecode(response.body);
         loaderCheck.value = false;
-        box.write('success', 'true');
-        print("Data posted successfully" + responseData);
+        box.write('success', responseData['token']['accessToken']);
+        box.write('uname', responseData['user']['uname']);
+
       } else {
         loaderCheck.value = false;
 

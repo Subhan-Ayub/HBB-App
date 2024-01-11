@@ -10,8 +10,7 @@ class AuthMiddleware extends GetMiddleware {
 
   @override
   RouteSettings? redirect(route) {
-    print('${box.read('success')}, success OK');
-    // box.remove('success');
+  
     return box.read('success') != null
         ? null
         : RouteSettings(name: Routes.signin);

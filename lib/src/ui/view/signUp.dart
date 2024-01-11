@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
-  final SignUpController _ = Get.put(SignUpController());
+  final SignUpController _ = Get.find<SignUpController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -209,8 +209,10 @@ class SignUpScreen extends StatelessWidget {
                       ],
                     ).paddingSymmetric(vertical: 15),
                     // Sign UP Button
+                    Obx(() => _.signUpCheck.value?CircularProgressIndicator().marginSymmetric(vertical: 10):
                     FillButton(
                       ontap: () {
+                        _.signUpCheck.value=true;
                         _.submitForm();
                       },
                       color: UIDataColors.commonColor,
@@ -219,7 +221,7 @@ class SignUpScreen extends StatelessWidget {
                         'SIGN UP',
                         style: TextStyle(fontSize: 20),
                       ),
-                    ).paddingOnly(bottom: 40)
+                    ).paddingOnly(bottom: 40))
                   ],
                 ),
               ).paddingOnly(top: 20),

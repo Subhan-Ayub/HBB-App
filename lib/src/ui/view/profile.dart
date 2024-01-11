@@ -67,7 +67,7 @@ class ProfileScreen extends StatelessWidget {
                             fontSize: Get.width * .05, color: Colors.grey),
                       ),
                       Text(
-                        'Honey Singh',
+                        '${_.box.read('uname')}',
                         textAlign: TextAlign.start,
                         style: TextStyle(fontSize: Get.width * .03),
                       ),

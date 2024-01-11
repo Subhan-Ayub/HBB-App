@@ -79,31 +79,180 @@ class StatisticsAndReports extends StatelessWidget {
               children: [
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text('data'), Text('data')],
+                  children: [
+                    Text('All Reports'),
+                    Icon(Icons.keyboard_arrow_down_sharp),
+                    Spacer(),
+                    Text('Months')
+                  ],
                 )
                     .marginSymmetric(horizontal: Get.width * 0.03)
-                    .marginOnly(top: 45),
-                SfCartesianChart(
-                    primaryXAxis: CategoryAxis(),
-                    primaryYAxis:
-                        NumericAxis(minimum: 0, maximum: 40, interval: 10),
-                    tooltipBehavior: _.tooltip,
-                    series: <CartesianSeries<ChartData, String>>[
-                      ColumnSeries<ChartData, String>(
-                          dataSource: _.data,
-                          xValueMapper: (ChartData data, _) => data.x,
-                          yValueMapper: (ChartData data, _) => data.y,
-                          name: 'Gold',
-                          // yAxisName: 'lll',
-                          color: Color.fromRGBO(0, 135, 36, 1)),
-                            ColumnSeries<ChartData, String>(
-                          dataSource: _.data,
-                          xValueMapper: (ChartData data, _) => data.x,
-                          yValueMapper: (ChartData data, _) => data.z,
-                          name: 'Gold',
-                          // yAxisName: 'lll',
-                          color: Color.fromRGBO(0, 161, 186, 1)),
-                    ])
+                    .marginOnly(top: 45, bottom: 10),
+                Container(
+                  height: 200,
+                  child: SfCartesianChart(
+                      primaryXAxis: CategoryAxis(),
+                      primaryYAxis:
+                          NumericAxis(minimum: 0, maximum: 40, interval: 10),
+                      tooltipBehavior: _.tooltip,
+                      series: <CartesianSeries<ChartData, String>>[
+                        ColumnSeries<ChartData, String>(
+                            dataSource: _.data,
+                            xValueMapper: (ChartData data, _) => data.x,
+                            yValueMapper: (ChartData data, _) => data.y,
+                            name: 'Gold',
+                            // yAxisName: 'lll',
+                            color: Color.fromRGBO(0, 135, 36, 1)),
+                        ColumnSeries<ChartData, String>(
+                            dataSource: _.data,
+                            xValueMapper: (ChartData data, _) => data.x,
+                            yValueMapper: (ChartData data, _) => data.z,
+                            name: 'Gold',
+                            // yAxisName: 'lll',
+                            color: Color.fromRGBO(0, 161, 186, 1)),
+                      ]),
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2), // Shadow color
+                        offset: Offset(-10, 12,), // Horizontal and vertical offset
+                        blurRadius: 20, // Blur radius
+                        spreadRadius: 2.0, // Spread radius (optional)
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 90,
+                        width: 160,
+                        child: SfCircularChart(
+                            annotations: <CircularChartAnnotation>[
+                              CircularChartAnnotation(
+                                // position: Offset(0, 0), // Position at the center of the chart
+                                widget: Container(
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                    padding: EdgeInsets.all(9),
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 1, color: Colors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
+                                    child: Text(
+                                      '85', // Label to display
+                                      style: TextStyle(fontSize: 15),
+                                    ),
+                                  ), // Center the label within the container
+                                ),
+                              )
+                            ],
+                            series: <CircularSeries>[
+                              // Renders radial bar chart
+                              RadialBarSeries<ExposureData, String>(
+                                  radius: '125%',
+                                  innerRadius: '60%',
+                                  trackBorderWidth: 1,
+                                  gap: '25%',
+                                  maximumValue: 100,
+                                  trackColor: Color.fromARGB(0, 255, 255, 255),
+                                  cornerStyle: CornerStyle.endCurve,
+                                  dataSource: _.exposure,
+                                  pointColorMapper: (ExposureData data, _) =>
+                                      data.y > 5
+                                          ? Color.fromRGBO(0, 161, 186, 1)
+                                          : Color.fromRGBO(0, 135, 36, 1),
+                                  xValueMapper: (ExposureData data, _) =>
+                                      data.x,
+                                  yValueMapper: (ExposureData data, _) =>
+                                      data.y),
+                            ]),
+                      ),
+                      Text(
+                        'Sign-ups',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  // color: Colors.amber,
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2), // Shadow color
+                        offset: Offset(-10, 12,), // Horizontal and vertical offset
+                        blurRadius: 20, // Blur radius
+                        spreadRadius: 2.0, // Spread radius (optional)
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 90,
+                        width: 160,
+                        // color: Colors.amber,
+                        child: SfCircularChart(
+                            annotations: <CircularChartAnnotation>[
+                              CircularChartAnnotation(
+                                // position: Offset(0, 0), // Position at the center of the chart
+                                widget: Container(
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                    padding: EdgeInsets.all(9),
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 1, color: Colors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
+                                    child: Text(
+                                      '20', // Label to display
+                                      style: TextStyle(fontSize: 15),
+                                    ),
+                                  ), // Center the label within the container
+                                ),
+                              )
+                            ],
+                            series: <CircularSeries>[
+                              // Renders radial bar chart
+                              RadialBarSeries<SignUpData, String>(
+                                  radius: '125%',
+                                  innerRadius: '60%',
+                                  trackBorderWidth: 1,
+                                  gap: '25%',
+                                  maximumValue: 100,
+                                  trackColor: Color.fromARGB(0, 255, 255, 255),
+                                  cornerStyle: CornerStyle.endCurve,
+                                  dataSource: _.signUp,
+                                  pointColorMapper: (SignUpData data, _) =>
+                                      data.y > 5
+                                          ? Color.fromRGBO(0, 135, 36, 1)
+                                          : Color.fromRGBO(0, 161, 186, 1),
+                                  xValueMapper: (SignUpData data, _) => data.x,
+                                  yValueMapper: (SignUpData data, _) => data.y),
+                            ]),
+                      ),
+                      Text(
+                        'Exposures',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                )
               ],
             )
           ],
@@ -117,4 +266,21 @@ class ChartData {
   final String x;
   final double y;
   final double z;
+}
+
+class SignUpData {
+  SignUpData(this.x, this.y);
+
+  final String x;
+  final double y;
+}
+
+class ExposureData {
+  ExposureData(
+    this.x,
+    this.y,
+  );
+
+  final String x;
+  final double y;
 }
