@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -9,14 +11,23 @@ class SignInController extends GetxController {
   TextEditingController emailUsername = TextEditingController();
   TextEditingController password = TextEditingController();
   GetStorage box = GetStorage();
- RxBool passwordVisibility = false.obs;
+  RxBool passwordVisibility = false.obs;
   RxBool loaderCheck = false.obs;
   var responseData;
 
-
   login() async {
-
+    final username = emailUsername.text.trim();
+    final pasword = password.text.trim();
     loaderCheck.value = true;
+
+    if (username.isEmpty ||
+        pasword.isEmpty) {
+      Get.snackbar('Error', 'All fields are required',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return;
+    }
     String apiUrl = "http://18.232.88.126/api/auth/login";
     try {
       var response = await http.post(
@@ -29,9 +40,13 @@ class SignInController extends GetxController {
         loaderCheck.value = false;
         box.write('success', responseData['token']['accessToken']);
         box.write('uname', responseData['user']['uname']);
-
       } else {
         loaderCheck.value = false;
+
+        Get.snackbar('Error', 'Invalid username or password',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white);
 
         print("Failed to post data. Status code: ${response.statusCode}");
       }

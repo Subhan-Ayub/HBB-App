@@ -65,7 +65,15 @@ class SignUpController extends GetxController {
 
       return;
     }
+    if (acode.length > 3) {
+      Get.snackbar('Error', 'A-code field required 3-digits',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      signUpCheck.value = false;
 
+      return;
+    }
     if (secondphonenumber.length > 3) {
       Get.snackbar(
           'Error', 'Second Number Length too long Please dial 3-digits',
