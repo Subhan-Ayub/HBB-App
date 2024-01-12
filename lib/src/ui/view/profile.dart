@@ -146,34 +146,39 @@ class ProfileScreen extends StatelessWidget {
                             height: Get.height * .015,
                           ),
                           //
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'My Program Data',
-                                    style: TextStyle(
-                                        fontSize: Get.width * .035,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Check and update your Program Goals',
-                                    style: TextStyle(
-                                      fontSize: Get.width * .025,
-                                      color: Colors.grey,
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.programdata);
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'My Program Data',
+                                      style: TextStyle(
+                                          fontSize: Get.width * .035,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                  )
-                                ],
-                              ),
-                              Spacer(),
-                              Icon(
-                                Icons.arrow_forward_ios_rounded,
-                                size: Get.width * .045,
-                              ),
-                            ],
-                          ).paddingSymmetric(horizontal: Get.width * .05),
+                                    Text(
+                                      'Check and update your Program Goals',
+                                      style: TextStyle(
+                                        fontSize: Get.width * .025,
+                                        color: Colors.grey,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Spacer(),
+                                Icon(
+                                  Icons.arrow_forward_ios_rounded,
+                                  size: Get.width * .045,
+                                ),
+                              ],
+                            ).paddingSymmetric(horizontal: Get.width * .05),
+                          ),
                           SizedBox(
                             height: Get.height * .015,
                           ),

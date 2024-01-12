@@ -12,5 +12,8 @@ static const contactUs = '/contactUs';
 static const menu = '/menu';
 static const editprofile = '/editprofile';
 static const programdetail = '/programdetail';
+static const programdata = '/programdata';
+static const supportteam = '/supportteam';
+static const incomeexpense = '/incomeexpense';
 
 }

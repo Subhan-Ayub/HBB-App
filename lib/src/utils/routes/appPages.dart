@@ -1,9 +1,12 @@
 import 'package:get/get.dart';
+import 'package:hbb/src/bindings/IncomeExpenseBinding.dart';
+import 'package:hbb/src/bindings/SupportTeamBinding.dart';
 import 'package:hbb/src/bindings/activityBinding.dart';
 import 'package:hbb/src/bindings/contactUsBinding.dart';
 import 'package:hbb/src/bindings/homeBinding.dart';
 import 'package:hbb/src/bindings/loginBinding.dart';
 import 'package:hbb/src/bindings/profileBinding.dart';
+import 'package:hbb/src/bindings/programDataBinding.dart';
 import 'package:hbb/src/bindings/programDetailBinding.dart';
 import 'package:hbb/src/bindings/signinBinding.dart';
 import 'package:hbb/src/bindings/signupBinding.dart';
@@ -12,12 +15,15 @@ import 'package:hbb/src/ui/view/activity.dart';
 import 'package:hbb/src/ui/view/contactUs.dart';
 import 'package:hbb/src/ui/view/editProfile.dart';
 import 'package:hbb/src/ui/view/home.dart';
+import 'package:hbb/src/ui/view/incomeExpense.dart';
 import 'package:hbb/src/ui/view/login.dart';
 import 'package:hbb/src/ui/view/profile.dart';
 import 'package:hbb/src/ui/view/progamDetail.dart';
+import 'package:hbb/src/ui/view/programData.dart';
 import 'package:hbb/src/ui/view/signIn.dart';
 import 'package:hbb/src/ui/view/signUp.dart';
 import 'package:hbb/src/ui/view/splashScreen.dart';
+import 'package:hbb/src/ui/view/supportTeam.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
 
 import '../../bindings/editProfileBinding.dart';
@@ -82,6 +88,22 @@ class AppPages {
         name: Routes.programdetail,
         binding: ProgramDetailBinding(),
         page: () => ProgramDetailScreen(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: Routes.programdata,
+        binding: ProgramDataBinding(),
+        page: () => ProgramDataScreen(),
+        transition: Transition.noTransition),
+
+        GetPage(
+        name: Routes.supportteam,
+        binding: SupportTeamBinding(),
+        page: () => SupportTeamScreen(),
+        transition: Transition.noTransition),
+         GetPage(
+        name: Routes.incomeexpense,
+        binding: IncomeExpenseBinding(),
+        page: () => IncomeExpenseScreen(),
         transition: Transition.noTransition),
   ];
 }
