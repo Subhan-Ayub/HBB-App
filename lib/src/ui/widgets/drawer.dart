@@ -11,7 +11,7 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      width: 400,
+      width: Get.width/1.2,
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
