@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, unused_field
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -5,8 +7,6 @@ import 'package:hbb/src/controllers/profileController.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
 import 'package:hbb/src/utils/uidata/container_decor.dart';
-import 'package:hbb/src/utils/uidata/text_styles.dart';
-import 'package:http/http.dart';
 
 class ProfileScreen extends StatelessWidget {
   final ProfileController _ = Get.put(ProfileController());
