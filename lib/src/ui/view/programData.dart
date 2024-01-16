@@ -42,23 +42,33 @@ class ProgramDataScreen extends StatelessWidget {
                 ),
               ),
 
-              Text(
-                "\u2022 My Coaching Network",
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                  fontSize: Get.width * .035,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.red,
-                ),
-              ).marginSymmetric(vertical: Get.height * .01),
+              InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.coachnetwork);
+                },
+                child: Text(
+                  "\u2022 My Coaching Network",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: Get.width * .035,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.red,
+                  ),
+                ).marginSymmetric(vertical: Get.height * .01),
+              ),
 
-              Text(
-                "\u2022 My Goals ",
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                  fontSize: Get.width * .035,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.red,
+              InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.mygoals);
+                },
+                child: Text(
+                  "\u2022 My Goals ",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: Get.width * .035,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.red,
+                  ),
                 ),
               ),
 
@@ -111,58 +121,8 @@ class ProgramDataScreen extends StatelessWidget {
                   ).marginSymmetric(vertical: Get.height * .04),
                 ],
               ),
-
-              // InkWell(
-              //   onTap: () {
-              //     Get.defaultDialog(
-              //       title: 'Log Out',
-              //       content: Text('Are you sure u want to log out?'),
-              //       actions: [
-              //         TextButton(
-              //           onPressed: () {
-              //             Get.back();
-              //           },
-              //           child: Text('Cancel'),
-              //         ),
-              //         TextButton(
-              //           onPressed: () async {
-              //             Get.offAllNamed(Routes.login);
-              //           },
-              //           child: Text('Log out'),
-              //         ),
-              //       ],
-              //     );
-              //   },
-              //   child: SizedBox(
-              //     height: Get.height * .08,
-              //     child: Row(
-              //       children: [
-              //         Container(
-              //           height: Get.height / 9,
-              //           width: Get.width / 9,
-              //           decoration: BoxDecoration(
-              //             color: Colors.red,
-              //             shape: BoxShape.circle,
-              //           ),
-              //           child: Icon(
-              //             Icons.logout,
-              //             color: Colors.white,
-              //             size: Get.width * 0.06,
-              //           ),
-              //         ),
-              //         Text(
-              //           'Logout',
-              //           textAlign: TextAlign.start,
-              //           style: TextStyle(
-              //             fontSize: Get.width * .035,
-              //           ),
-              //         ).marginSymmetric(horizontal: Get.width * .02),
-              //       ],
-              //     ),
-              //   ),
-              // ),
-
-              // \u2022
+                 
+              
             ],
           ),
         ),

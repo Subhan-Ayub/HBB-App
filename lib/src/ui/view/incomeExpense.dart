@@ -2,12 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hbb/src/controllers/incomeExpenseController.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
 
-import '../../controllers/SupportTeamController.dart';
 
 class IncomeExpenseScreen extends StatelessWidget {
-  final SupportTeamController _ = Get.put(SupportTeamController());
+  final IncomeExpenseController _ = Get.put(IncomeExpenseController());
 
   @override
   Widget build(BuildContext context) {
@@ -200,17 +200,24 @@ class IncomeExpenseScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Text(
-                      'You currently have no income or expense items for January 2024,(Remember you can only display income and expenses back to January 1st of the year you joined this program) ',
-                      style: TextStyle(
-                        fontSize: Get.width * .025,
+                    //
+                    Container(
+                      height: Get.height * .09,
+                      alignment: Alignment.center,
+                      // color: Colors.red,
+                      child: Text(
+                        'You currently have no income or expense items for January 2024,(Remember you can only display income and expenses back to January 1st of the year you joined this program) ',
+                        style: TextStyle(
+                          fontSize: Get.width * .025,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
-                    ).marginSymmetric(vertical: Get.height * .03)
+                    ).paddingSymmetric(vertical: Get.height * .01)
+                    // .marginSymmetric(vertical: Get.height * .03)
                   ],
                 ),
               ),
-
+       
               Row(
                 children: [
                   Stack(
