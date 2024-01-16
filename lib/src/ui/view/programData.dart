@@ -31,17 +31,20 @@ class ProgramDataScreen extends StatelessWidget {
                 style: TextStyle(
                     fontSize: Get.width * .032, fontWeight: FontWeight.w500),
               ).marginSymmetric(vertical: Get.height * .02),
-
-              Text(
-                "\u2022 My Contact List ",
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                  fontSize: Get.width * .035,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.red,
+              InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.contactlist);
+                },
+                child: Text(
+                  "\u2022 My Contact List ",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: Get.width * .035,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.red,
+                  ),
                 ),
               ),
-
               InkWell(
                 onTap: () {
                   Get.toNamed(Routes.coachnetwork);
@@ -56,7 +59,6 @@ class ProgramDataScreen extends StatelessWidget {
                   ),
                 ).marginSymmetric(vertical: Get.height * .01),
               ),
-
               InkWell(
                 onTap: () {
                   Get.toNamed(Routes.mygoals);
@@ -71,7 +73,6 @@ class ProgramDataScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
               InkWell(
                 onTap: () {
                   Get.toNamed(Routes.incomeexpense);
@@ -86,7 +87,6 @@ class ProgramDataScreen extends StatelessWidget {
                   ),
                 ).marginSymmetric(vertical: Get.height * .01),
               ),
-
               InkWell(
                 onTap: () {
                   Get.toNamed(Routes.supportteam);
@@ -101,7 +101,6 @@ class ProgramDataScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -121,8 +120,6 @@ class ProgramDataScreen extends StatelessWidget {
                   ).marginSymmetric(vertical: Get.height * .04),
                 ],
               ),
-                 
-              
             ],
           ),
         ),

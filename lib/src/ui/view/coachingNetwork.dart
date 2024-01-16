@@ -32,7 +32,7 @@ class CoachNetworkScreen extends StatelessWidget {
               ).marginSymmetric(vertical: Get.height * .02),
               Container(
                 width: Get.width,
-                height: Get.height * .15,
+                // height: Get.height * .15,
                 decoration: BoxDecoration(
                   // color: Colors.black,
                   border: Border.all(width: 1, color: Colors.grey),
@@ -53,11 +53,11 @@ class CoachNetworkScreen extends StatelessWidget {
                             border: Border(
                               bottom: BorderSide(
                                 color: Colors.grey,
-                                width: 1.0,
+                                width: 0,
                               ),
                               right: BorderSide(
                                 color: Colors.grey,
-                                width: 1.0,
+                                width: 0,
                               ),
                             ),
                           ),
@@ -71,7 +71,7 @@ class CoachNetworkScreen extends StatelessWidget {
                         ),
                         //
                         Container(
-                          width: Get.width / 3.4,
+                          width: Get.width / 4,
                           height: Get.height * .03,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -80,11 +80,11 @@ class CoachNetworkScreen extends StatelessWidget {
                             border: Border(
                               bottom: BorderSide(
                                 color: Colors.grey,
-                                width: 1.0,
+                                width: 0,
                               ),
                               right: BorderSide(
                                 color: Colors.grey,
-                                width: 1.0,
+                                width: 0,
                               ),
                             ),
                           ),
@@ -98,7 +98,7 @@ class CoachNetworkScreen extends StatelessWidget {
                         ),
                         //
                         Container(
-                          width: Get.width / 3.13,
+                          width: Get.width / 2.46,
                           height: Get.height * .03,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -107,7 +107,7 @@ class CoachNetworkScreen extends StatelessWidget {
                             border: Border(
                               bottom: BorderSide(
                                 color: Colors.grey,
-                                width: 1.0,
+                                width: 0,
                               ),
                             ),
                           ),
@@ -125,21 +125,362 @@ class CoachNetworkScreen extends StatelessWidget {
                     ),
                     //
                     Container(
-                      height: Get.height * .09,
-                      alignment: Alignment.center,
-                      // color: Colors.red,
-                      child: Text(
-                        'You currently have no income or expense items for January 2024,(Remember you can only display income and expenses back to January 1st of the year you joined this program) ',
-                        style: TextStyle(
-                          fontSize: Get.width * .025,
-                        ),
-                        textAlign: TextAlign.center,
+                      color: Colors.grey.shade100,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: Get.width / 4,
+                            height: Get.height * .03,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              // color: Colors.amber,
+                              // color: Colors.black,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                                right: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Frantz Brillant',
+                              // textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Get.width * .02),
+                            ).paddingSymmetric(horizontal: Get.width * .01),
+                          ),
+                          //
+                          Container(
+                            width: Get.width / 4,
+                            height: Get.height * .03,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              // color: Colors.amber,
+                              // color: Colors.black,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                                right: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              '(973)698-5970',
+                              // textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Get.width * .02),
+                            ).paddingSymmetric(horizontal: Get.width * .01),
+                          ),
+                          //
+                          Container(
+                            width: Get.width / 2.46,
+                            height: Get.height * .03,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              // color: Colors.amber,
+                              // color: Colors.black,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'rivatrips@gmail.com',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Get.width * .02),
+                            ).paddingSymmetric(horizontal: Get.width * .01),
+                          ),
+
+                          //
+                        ],
                       ),
-                    ).paddingSymmetric(vertical: Get.height * .01)
+                    ),
+                    //
+                    Container(
+                      color: Colors.yellow.shade100,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: Get.width / 4,
+                            height: Get.height * .03,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              // color: Colors.amber,
+                              // color: Colors.black,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                                right: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Larry Christian',
+                              // textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Get.width * .02),
+                            ).paddingSymmetric(horizontal: Get.width * .01),
+                          ),
+                          //
+                          Container(
+                            width: Get.width / 4,
+                            height: Get.height * .03,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              // color: Colors.amber,
+                              // color: Colors.black,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                                right: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              '(732) 336-0291',
+                              // textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Get.width * .02),
+                            ).paddingSymmetric(horizontal: Get.width * .01),
+                          ),
+                          //
+                          Container(
+                            width: Get.width / 2.46,
+                            height: Get.height * .03,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              // color: Colors.amber,
+                              // color: Colors.black,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'sixfigurechristian@gmail.com',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Get.width * .02),
+                            ).paddingSymmetric(horizontal: Get.width * .01),
+                          ),
+
+                          //
+                        ],
+                      ),
+                    ),
+                    //
+                    Container(
+                      color: Colors.grey.shade100,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: Get.width / 4,
+                            height: Get.height * .03,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              // color: Colors.amber,
+                              // color: Colors.black,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                                right: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Jaime Enbry',
+                              // textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Get.width * .02),
+                            ).paddingSymmetric(horizontal: Get.width * .01),
+                          ),
+                          //
+                          Container(
+                            width: Get.width / 4,
+                            height: Get.height * .03,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              // color: Colors.amber,
+                              // color: Colors.black,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                                right: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              '(732) 586-9931',
+                              // textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Get.width * .02),
+                            ).paddingSymmetric(horizontal: Get.width * .01),
+                          ),
+                          //
+                          Container(
+                            width: Get.width / 2.46,
+                            height: Get.height * .03,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              // color: Colors.amber,
+                              // color: Colors.black,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'bailsrusii@gmail.com',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Get.width * .02),
+                            ).paddingSymmetric(horizontal: Get.width * .01),
+                          ),
+
+                          //
+                        ],
+                      ),
+                    ),
+                    //
+                    Container(
+                      color: Colors.yellow.shade100,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: Get.width / 4,
+                            height: Get.height * .03,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              // color: Colors.amber,
+                              // color: Colors.black,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                                right: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Gina Philp',
+                              // textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Get.width * .02),
+                            ).paddingSymmetric(horizontal: Get.width * .01),
+                          ),
+                          //
+                          Container(
+                            width: Get.width / 4,
+                            height: Get.height * .03,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              // color: Colors.amber,
+                              // color: Colors.black,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                                right: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              '(412) 763-2323',
+                              // textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Get.width * .02),
+                            ).paddingSymmetric(horizontal: Get.width * .01),
+                          ),
+                          //
+                          Container(
+                            width: Get.width / 2.46,
+                            height: Get.height * .03,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              // color: Colors.amber,
+                              // color: Colors.black,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'gina.e.philp@gmail.com',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Get.width * .02),
+                            ).paddingSymmetric(horizontal: Get.width * .01),
+                          ),
+
+                          //
+                        ],
+                      ),
+                    ),
+
                     // .marginSymmetric(vertical: Get.height * .03)
                   ],
                 ),
               ),
+             
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -156,7 +497,7 @@ class CoachNetworkScreen extends StatelessWidget {
                             color: Colors.red, fontSize: Get.width * .035),
                       ),
                     ),
-                  ).marginSymmetric(vertical: Get.height * .04),
+                  ).marginSymmetric(vertical: Get.height * .02),
                 ],
               ),
             ],
@@ -164,7 +505,7 @@ class CoachNetworkScreen extends StatelessWidget {
         ),
       )
           .paddingSymmetric(vertical: Get.height * 0.01)
-          .marginSymmetric(horizontal: Get.height * 0.03),
+          .marginSymmetric(horizontal: Get.height * 0.02),
     );
   }
 }

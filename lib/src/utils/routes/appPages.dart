@@ -3,6 +3,7 @@ import 'package:hbb/src/bindings/IncomeExpenseBinding.dart';
 import 'package:hbb/src/bindings/SupportTeamBinding.dart';
 import 'package:hbb/src/bindings/activityBinding.dart';
 import 'package:hbb/src/bindings/coachNetworkBinding.dart';
+import 'package:hbb/src/bindings/contactListBinding.dart';
 import 'package:hbb/src/bindings/contactUsBinding.dart';
 import 'package:hbb/src/bindings/homeBinding.dart';
 import 'package:hbb/src/bindings/loginBinding.dart';
@@ -15,6 +16,7 @@ import 'package:hbb/src/bindings/signupBinding.dart';
 import 'package:hbb/src/middlewares/auth.dart';
 import 'package:hbb/src/ui/view/activity.dart';
 import 'package:hbb/src/ui/view/coachingNetwork.dart';
+import 'package:hbb/src/ui/view/contactList.dart';
 import 'package:hbb/src/ui/view/contactUs.dart';
 import 'package:hbb/src/ui/view/editProfile.dart';
 import 'package:hbb/src/ui/view/home.dart';
@@ -117,6 +119,11 @@ class AppPages {
         name: Routes.coachnetwork,
         binding: CoachNetworkBinding(),
         page: () => CoachNetworkScreen(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: Routes.contactlist,
+        binding: ContactListBinding(),
+        page: () => ContactListScreen(),
         transition: Transition.noTransition),
   ];
 }
