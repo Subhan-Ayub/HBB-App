@@ -17,10 +17,12 @@ class StatisticsAndReports extends StatelessWidget {
     StatisticsAndReportsController _ =
         Get.find<StatisticsAndReportsController>();
     return Scaffold(
-     backgroundColor: Colors.white,
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Container(
                   // width: Get.width / 1.1,
@@ -77,301 +79,1030 @@ class StatisticsAndReports extends StatelessWidget {
                     ],
                   ),
                 ).marginOnly(top: 30),
-                Column(
-                  children: [
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('All Reports'),
-                        Icon(Icons.keyboard_arrow_down_sharp),
-                        Spacer(),
-                        Text('Months')
-                      ],
-                    )
-                        .marginSymmetric(horizontal: Get.width * 0.03)
-                        .marginOnly(top: 45, bottom: 10),
-                    Container(
-                      height: 200,
-                      child: SfCartesianChart(
-                          primaryXAxis: CategoryAxis(),
-                          primaryYAxis:
-                              NumericAxis(minimum: 0, maximum: 100, interval: 10),
-                          tooltipBehavior: _.tooltip,
-                          series: <CartesianSeries<ChartData, String>>[
-                            ColumnSeries<ChartData, String>(
-                                dataSource: _.data,
-                                xValueMapper: (ChartData data, _) => data.x,
-                                yValueMapper: (ChartData data, _) => data.y,
-                                name: 'Exposures',
-                                // yAxisName: 'lll',
-                                color: Color.fromRGBO(0, 135, 36, 1)),
-                            ColumnSeries<ChartData, String>(
-                                dataSource: _.data,
-                                xValueMapper: (ChartData data, _) => data.x,
-                                yValueMapper: (ChartData data, _) => data.z,
-                                name: 'Sign-Ups',
-                                // yAxisName: 'lll',
-                                color: Color.fromRGBO(0, 161, 186, 1)),
-                          ]),
-                    )
-                  ],
-                ),
+                Obx(() => _.loder.value
+                    ? CircularProgressIndicator()
+                    : Container(
+                        child: _.arg != '/api/signup-type-report'
+                            ? Column(
+                                children: [
+                                  const Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('Reports'),
+                                      Icon(Icons.keyboard_arrow_down_sharp),
+                                      Spacer(),
+                                      Text('Months')
+                                    ],
+                                  )
+                                      .marginSymmetric(
+                                          horizontal: Get.width * 0.03)
+                                      .marginOnly(top: 45, bottom: 10),
+                                  Container(
+                                    height: 250,
+                                    child: SfCartesianChart(
+                                        primaryXAxis: CategoryAxis(
+                                          labelStyle: TextStyle(fontSize: 9),
+                                          interval: 1,
+                                        ),
+                                        primaryYAxis: NumericAxis(
+                                            labelStyle: TextStyle(fontSize: 9),
+                                            minimum: 0,
+                                            maximum: _.arg ==
+                                                    '/api/daily-report'
+                                                ? 3
+                                                : _.arg ==
+                                                        '/api/conference-report'
+                                                    ? 25
+                                                    : 50,
+                                            interval:
+                                                _.arg == '/api/daily-report'
+                                                    ? 0.5
+                                                    : 5),
+                                        tooltipBehavior:
+                                            TooltipBehavior(enable: true),
+                                        series: <CartesianSeries<ChartData,
+                                            String>>[
+                                          ColumnSeries<ChartData, String>(
+                                              dataSource: _.data,
+                                              xValueMapper:
+                                                  (ChartData data, _) => data.x,
+                                              yValueMapper:
+                                                  (ChartData data, _) => data.y,
+                                              name: 'Exposures',
+                                              // yAxisName: 'lll',
+                                              color: Color.fromRGBO(
+                                                  0, 135, 36, 1)),
+                                          // ColumnSeries<ChartData, String>(
+                                          //     dataSource: _.data,
+                                          //     xValueMapper: (ChartData data, _) => data.x,
+                                          //     yValueMapper: (ChartData data, _) => data.z,
+                                          //     name: 'Sign-Ups',
+                                          //     // yAxisName: 'lll',
+                                          //     color: Color.fromRGBO(0, 161, 186, 1)),
+                                        ]),
+                                  ),
+                                ],
+                              )
+                            : Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Distributor sign-ups: ${_.fetchData[0]['count']} or ${_.fetchData[0]['exposure']}% of all exposures',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                    ),
+                                  ).marginOnly(top: 20),
+                                  Text(
+                                    'Customer sign-ups: ${_.fetchData[1]['count']} or ${_.fetchData[1]['exposure']}% of all exposures',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Distributers:',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ).marginSymmetric(vertical: 20),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Container(
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 15),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(
+                                                  0.2), // Shadow color
+                                              offset: Offset(
+                                                -10,
+                                                12,
+                                              ), // Horizontal and vertical offset
+                                              blurRadius: 20, // Blur radius
+                                              spreadRadius:
+                                                  2.0, // Spread radius (optional)
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              height: 90,
+                                              width: 160,
+                                              child: SfCircularChart(
+                                                  annotations: <CircularChartAnnotation>[
+                                                    CircularChartAnnotation(
+                                                      // position: Offset(0, 0), // Position at the center of the chart
+                                                      widget: Container(
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: Container(
+                                                          padding:
+                                                              EdgeInsets.all(9),
+                                                          decoration: BoxDecoration(
+                                                              border: Border.all(
+                                                                  width: 1,
+                                                                  color: Colors
+                                                                      .grey),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          50)),
+                                                          child: Text(
+                                                            '${_.fetchData[0]['exposure']}', // Label to display
+                                                            style: TextStyle(
+                                                                fontSize: 15),
+                                                          ),
+                                                        ), // Center the label within the container
+                                                      ),
+                                                    )
+                                                  ],
+                                                  series: <CircularSeries>[
+                                                    // Renders radial bar chart
+                                                    RadialBarSeries<
+                                                            DistributerSignUpData,
+                                                            String>(
+                                                        radius: '125%',
+                                                        innerRadius: '60%',
+                                                        trackBorderWidth: 1,
+                                                        gap: '25%',
+                                                        maximumValue: 100,
+                                                        trackColor: Color.fromARGB(
+                                                            0, 255, 255, 255),
+                                                        cornerStyle: CornerStyle
+                                                            .endCurve,
+                                                        dataSource: _.disSignUp,
+                                                        pointColorMapper:
+                                                            (DistributerSignUpData data, _) => data.y > 5
+                                                                ? Color.fromRGBO(
+                                                                    0, 161, 186, 1)
+                                                                : Color.fromRGBO(
+                                                                    0, 135, 36, 1),
+                                                        xValueMapper:
+                                                            (DistributerSignUpData data, _) =>
+                                                                data.x,
+                                                        yValueMapper:
+                                                            (DistributerSignUpData data,
+                                                                    _) =>
+                                                                data.y),
+                                                  ]),
+                                            ),
+                                            Text(
+                                              'Sign-ups',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        // color: Colors.amber,
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 15),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(
+                                                  0.2), // Shadow color
+                                              offset: Offset(
+                                                -10,
+                                                12,
+                                              ), // Horizontal and vertical offset
+                                              blurRadius: 20, // Blur radius
+                                              spreadRadius:
+                                                  2.0, // Spread radius (optional)
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              height: 90,
+                                              width: 160,
+                                              // color: Colors.amber,
+                                              child: SfCircularChart(
+                                                  annotations: <CircularChartAnnotation>[
+                                                    CircularChartAnnotation(
+                                                      // position: Offset(0, 0), // Position at the center of the chart
+                                                      widget: Container(
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: Container(
+                                                          padding:
+                                                              EdgeInsets.all(9),
+                                                          decoration: BoxDecoration(
+                                                              border: Border.all(
+                                                                  width: 1,
+                                                                  color: Colors
+                                                                      .grey),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          50)),
+                                                          child: Text(
+                                                            '${_.fetchData[0]['signups']}', // Label to display
+                                                            style: TextStyle(
+                                                                fontSize: 15),
+                                                          ),
+                                                        ), // Center the label within the container
+                                                      ),
+                                                    )
+                                                  ],
+                                                  series: <CircularSeries>[
+                                                    // Renders radial bar chart
+                                                    RadialBarSeries<
+                                                            DistributerExposureData,
+                                                            String>(
+                                                        radius: '125%',
+                                                        innerRadius: '60%',
+                                                        trackBorderWidth: 1,
+                                                        gap: '25%',
+                                                        maximumValue: 100,
+                                                        trackColor:
+                                                            Color.fromARGB(
+                                                                0, 255, 255, 255),
+                                                        cornerStyle: CornerStyle
+                                                            .endCurve,
+                                                        dataSource:
+                                                            _.disExposure,
+                                                        pointColorMapper:
+                                                            (DistributerExposureData data, _) => data.y > 5
+                                                                ? Color.fromRGBO(
+                                                                    0, 135, 36, 1)
+                                                                : Color.fromRGBO(
+                                                                    0, 161, 186, 1),
+                                                        xValueMapper:
+                                                            (DistributerExposureData data, _) =>
+                                                                data.x,
+                                                        yValueMapper:
+                                                            (DistributerExposureData data,
+                                                                    _) =>
+                                                                data.y),
+                                                  ]),
+                                            ),
+                                            Text(
+                                              'Exposures',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Text(
+                                    'Cutomers:',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ).marginSymmetric(vertical: 20),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Container(
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 15),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(
+                                                  0.2), // Shadow color
+                                              offset: Offset(
+                                                -10,
+                                                12,
+                                              ), // Horizontal and vertical offset
+                                              blurRadius: 20, // Blur radius
+                                              spreadRadius:
+                                                  2.0, // Spread radius (optional)
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              height: 90,
+                                              width: 160,
+                                              child: SfCircularChart(
+                                                  annotations: <CircularChartAnnotation>[
+                                                    CircularChartAnnotation(
+                                                      // position: Offset(0, 0), // Position at the center of the chart
+                                                      widget: Container(
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: Container(
+                                                          padding:
+                                                              EdgeInsets.all(9),
+                                                          decoration: BoxDecoration(
+                                                              border: Border.all(
+                                                                  width: 1,
+                                                                  color: Colors
+                                                                      .grey),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          50)),
+                                                          child: Text(
+                                                            '${_.fetchData[1]['exposure']}', // Label to display
+                                                            style: TextStyle(
+                                                                fontSize: 15),
+                                                          ),
+                                                        ), // Center the label within the container
+                                                      ),
+                                                    )
+                                                  ],
+                                                  series: <CircularSeries>[
+                                                    // Renders radial bar chart
+                                                    RadialBarSeries<
+                                                            CustomerSignUpData,
+                                                            String>(
+                                                        radius: '125%',
+                                                        innerRadius: '60%',
+                                                        trackBorderWidth: 1,
+                                                        gap: '25%',
+                                                        maximumValue: 100,
+                                                        trackColor: Color.fromARGB(
+                                                            0, 255, 255, 255),
+                                                        cornerStyle: CornerStyle
+                                                            .endCurve,
+                                                        dataSource: _.cusSignUp,
+                                                        pointColorMapper:
+                                                            (CustomerSignUpData data, _) => data.y > 5
+                                                                ? Color.fromRGBO(
+                                                                    0, 161, 186, 1)
+                                                                : Color.fromRGBO(
+                                                                    0, 135, 36, 1),
+                                                        xValueMapper:
+                                                            (CustomerSignUpData data,
+                                                                    _) =>
+                                                                data.x,
+                                                        yValueMapper:
+                                                            (CustomerSignUpData data,
+                                                                    _) =>
+                                                                data.y),
+                                                  ]),
+                                            ),
+                                            Text(
+                                              'Sign-ups',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        // color: Colors.amber,
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 15),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(
+                                                  0.2), // Shadow color
+                                              offset: Offset(
+                                                -10,
+                                                12,
+                                              ), // Horizontal and vertical offset
+                                              blurRadius: 20, // Blur radius
+                                              spreadRadius:
+                                                  2.0, // Spread radius (optional)
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              height: 90,
+                                              width: 160,
+                                              // color: Colors.amber,
+                                              child: SfCircularChart(
+                                                  annotations: <CircularChartAnnotation>[
+                                                    CircularChartAnnotation(
+                                                      // position: Offset(0, 0), // Position at the center of the chart
+                                                      widget: Container(
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: Container(
+                                                          padding:
+                                                              EdgeInsets.all(9),
+                                                          decoration: BoxDecoration(
+                                                              border: Border.all(
+                                                                  width: 1,
+                                                                  color: Colors
+                                                                      .grey),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          50)),
+                                                          child: Text(
+                                                            '${_.fetchData[1]['signups']}', // Label to display
+                                                            style: TextStyle(
+                                                                fontSize: 15),
+                                                          ),
+                                                        ), // Center the label within the container
+                                                      ),
+                                                    )
+                                                  ],
+                                                  series: <CircularSeries>[
+                                                    // Renders radial bar chart
+                                                    RadialBarSeries<
+                                                            CustomerExposureData,
+                                                            String>(
+                                                        radius: '125%',
+                                                        innerRadius: '60%',
+                                                        trackBorderWidth: 1,
+                                                        gap: '25%',
+                                                        maximumValue: 100,
+                                                        trackColor:
+                                                            Color.fromARGB(
+                                                                0, 255, 255, 255),
+                                                        cornerStyle: CornerStyle
+                                                            .endCurve,
+                                                        dataSource:
+                                                            _.cusExposure,
+                                                        pointColorMapper:
+                                                            (CustomerExposureData data, _) => data.y > 5
+                                                                ? Color.fromRGBO(
+                                                                    0, 135, 36, 1)
+                                                                : Color.fromRGBO(
+                                                                    0, 161, 186, 1),
+                                                        xValueMapper:
+                                                            (CustomerExposureData data, _) =>
+                                                                data.x,
+                                                        yValueMapper:
+                                                            (CustomerExposureData data,
+                                                                    _) =>
+                                                                data.y),
+                                                  ]),
+                                            ),
+                                            Text(
+                                              'Exposures',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                      )),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 15),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.2), // Shadow color
-                            offset: Offset(
-                              -10,
-                              12,
-                            ), // Horizontal and vertical offset
-                            blurRadius: 20, // Blur radius
-                            spreadRadius: 2.0, // Spread radius (optional)
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 90,
-                            width: 160,
-                            child: SfCircularChart(
-                                annotations: <CircularChartAnnotation>[
-                                  CircularChartAnnotation(
-                                    // position: Offset(0, 0), // Position at the center of the chart
-                                    widget: Container(
-                                      alignment: Alignment.center,
-                                      child: Container(
-                                        padding: EdgeInsets.all(9),
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                width: 1, color: Colors.grey),
-                                            borderRadius:
-                                                BorderRadius.circular(50)),
-                                        child: Text(
-                                          '20', // Label to display
-                                          style: TextStyle(fontSize: 15),
-                                        ),
-                                      ), // Center the label within the container
-                                    ),
-                                  )
-                                ],
-                                series: <CircularSeries>[
-                                  // Renders radial bar chart
-                                  RadialBarSeries<SignUpData, String>(
-                                      radius: '125%',
-                                      innerRadius: '60%',
-                                      trackBorderWidth: 1,
-                                      gap: '25%',
-                                      maximumValue: 100,
-                                      trackColor: Color.fromARGB(0, 255, 255, 255),
-                                      cornerStyle: CornerStyle.endCurve,
-                                      dataSource: _.signUp,
-                                      pointColorMapper: (SignUpData data, _) =>
-                                          data.y > 5
-                                              ? Color.fromRGBO(0, 161, 186, 1)
-                                              : Color.fromRGBO(0, 135, 36, 1),
-                                      xValueMapper: (SignUpData data, _) => data.x,
-                                      yValueMapper: (SignUpData data, _) => data.y),
-                                ]),
-                          ),
-                          Text(
-                            'Sign-ups',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      ),
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      'All Reports',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                    Container(
-                      // color: Colors.amber,
-                      padding: EdgeInsets.symmetric(vertical: 15),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.2), // Shadow color
-                            offset: Offset(
-                              -10,
-                              12,
-                            ), // Horizontal and vertical offset
-                            blurRadius: 20, // Blur radius
-                            spreadRadius: 2.0, // Spread radius (optional)
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 90,
-                            width: 160,
-                            // color: Colors.amber,
-                            child: SfCircularChart(
-                                annotations: <CircularChartAnnotation>[
-                                  CircularChartAnnotation(
-                                    // position: Offset(0, 0), // Position at the center of the chart
-                                    widget: Container(
-                                      alignment: Alignment.center,
-                                      child: Container(
-                                        padding: EdgeInsets.all(9),
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                width: 1, color: Colors.grey),
-                                            borderRadius:
-                                                BorderRadius.circular(50)),
-                                        child: Text(
-                                          '85', // Label to display
-                                          style: TextStyle(fontSize: 15),
-                                        ),
-                                      ), // Center the label within the container
-                                    ),
-                                  )
-                                ],
-                                series: <CircularSeries>[
-                                  // Renders radial bar chart
-                                  RadialBarSeries<ExposureData, String>(
-                                      radius: '125%',
-                                      innerRadius: '60%',
-                                      trackBorderWidth: 1,
-                                      gap: '25%',
-                                      maximumValue: 100,
-                                      trackColor: Color.fromARGB(0, 255, 255, 255),
-                                      cornerStyle: CornerStyle.endCurve,
-                                      dataSource: _.exposure,
-                                      pointColorMapper: (ExposureData data, _) =>
-                                          data.y > 5
-                                              ? Color.fromRGBO(0, 135, 36, 1)
-                                              : Color.fromRGBO(0, 161, 186, 1),
-                                      xValueMapper: (ExposureData data, _) =>
-                                          data.x,
-                                      yValueMapper: (ExposureData data, _) =>
-                                          data.y),
-                                ]),
-                          ),
-                          Text(
-                            'Exposures',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      ),
-                    )
+                    Spacer(),
+                    Text('Months'),
+                    Icon(Icons.arrow_drop_down_rounded),
                   ],
-                ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          ' Reports',
-                          style:
-                              TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        Spacer(),
-                        Text('Months'),
-                        Icon(Icons.arrow_drop_down_rounded),
-                      ],
-                    ).marginOnly(top: 40),
+                ).marginOnly(top: 40),
                 Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Name',
-                          style:
-                              TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+                          'Daily & Natinal\nInternational Exposure ',
+                          style: TextStyle(
+                              fontSize: 10, fontWeight: FontWeight.bold),
                         ),
-                        Text('Total Number',
-                                style: TextStyle(
-                                    fontSize: 9, fontWeight: FontWeight.bold))
-                            .marginOnly(left: 40),
-                        Text('Total Percentage',
-                                style: TextStyle(
-                                    fontSize: 9, fontWeight: FontWeight.bold))
-                            .marginOnly(right: 80),
-                      ],
-                    ).marginOnly(top: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          'Daily Exposure',
-                          style:
-                              TextStyle(fontSize: 8, fontWeight: FontWeight.bold),
+                        InkWell(
+                          onTap: () {
+                            print('daily');
+                            Get.bottomSheet(Container(
+                                padding: EdgeInsets.only(top: 50, bottom: 50),
+                                height: 300,
+                                width: Get.width,
+                                decoration: BoxDecoration(
+                                    color: const Color.fromARGB(
+                                        255, 213, 213, 213),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Center(
+                                  child: Container(
+                                    height: 200,
+                                    child: ListView.builder(
+                                        itemCount: _.months.length,
+                                        // physics: ,
+                                        itemBuilder: (BuildContext context, i) {
+                                          return InkWell(
+                                            onTap: () {
+                                              _.dailyMonthLenght = i + 1;
+                                              _.dailySelectedMonth.value =
+                                                  _.months[i];
+                                              Get.back();
+                                            },
+                                            child: Container(
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  _.months[i],
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                )).marginOnly(bottom: 7),
+                                          );
+                                        }),
+                                  ),
+                                )));
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(left: 7, right: 3),
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 238, 238, 238),
+                                border:
+                                    Border.all(width: 1, color: Colors.grey),
+                                borderRadius: BorderRadius.circular(2)),
+                            child: Obx(() => Row(
+                                  children: [
+                                    Text(_.dailySelectedMonth.value,
+                                        style: TextStyle(
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.w600)),
+                                    Icon(
+                                      Icons.keyboard_arrow_down_sharp,
+                                      size: 15,
+                                    ),
+                                  ],
+                                )),
+                          ),
                         ),
-                        Text('\$750.000',
-                            style: TextStyle(
-                                fontSize: 9, fontWeight: FontWeight.w500)),
-                        Text('\$750.000',
-                            style: TextStyle(
-                                fontSize: 9, fontWeight: FontWeight.w500)),
-                        Text('Show reports',
-                            style: TextStyle(
-                                fontSize: 8, fontWeight: FontWeight.bold)),
+                        InkWell(
+                          onTap: () {
+                            print('dailyye');
+                            Get.bottomSheet(Container(
+                                padding: EdgeInsets.only(top: 50, bottom: 50),
+                                height: 300,
+                                width: Get.width,
+                                decoration: BoxDecoration(
+                                    color: const Color.fromARGB(
+                                        255, 213, 213, 213),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Center(
+                                  child: Container(
+                                    height: 200,
+                                    child: ListView.builder(
+                                        itemCount: _.years.length,
+                                        itemBuilder: (BuildContext context, i) {
+                                          return InkWell(
+                                            onTap: () {
+                                              print(int.parse(_.years[i])
+                                                  .runtimeType);
+                                              _.dailySelectedYear.value =
+                                                  _.years[i];
+                                              Get.back();
+                                            },
+                                            child: Container(
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  _.years[i],
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                )).marginOnly(bottom: 7),
+                                          );
+                                        }),
+                                  ),
+                                )));
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(left: 7, right: 3),
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 238, 238, 238),
+                                border:
+                                    Border.all(width: 1, color: Colors.grey),
+                                borderRadius: BorderRadius.circular(2)),
+                            child: Obx(() => Row(
+                                  children: [
+                                    Text(_.dailySelectedYear.value,
+                                        style: TextStyle(
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.w600)),
+                                    Icon(
+                                      Icons.keyboard_arrow_down_sharp,
+                                      size: 15,
+                                    ),
+                                  ],
+                                )),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            _.showReport(_.dailyMonthLenght,
+                                int.parse(_.dailySelectedYear.value));
+                          },
+                          child: Text('Show reports',
+                              style: TextStyle(
+                                  fontSize: 8, fontWeight: FontWeight.bold)),
+                        ),
                       ],
                     ).marginOnly(top: 20),
-                     Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
-                          'Conference Calls',
-                          style:
-                              TextStyle(fontSize: 8, fontWeight: FontWeight.bold),
+                          'Weekly Meetings &\nConference Calls Report',
+                          style: TextStyle(
+                              fontSize: 10, fontWeight: FontWeight.bold),
                         ),
-                        Text('\$750.000',
-                            style: TextStyle(
-                                fontSize: 9, fontWeight: FontWeight.w500)),
-                        Text('\$750.000',
-                            style: TextStyle(
-                                fontSize: 9, fontWeight: FontWeight.w500)),
-                        Text('Show reports',
-                            style: TextStyle(
-                                fontSize: 8, fontWeight: FontWeight.bold)),
+                        InkWell(
+                          onTap: () {
+                            print('conmo');
+                            Get.bottomSheet(Container(
+                                padding: EdgeInsets.only(top: 50, bottom: 50),
+                                height: 300,
+                                width: Get.width,
+                                decoration: BoxDecoration(
+                                    color: const Color.fromARGB(
+                                        255, 213, 213, 213),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Center(
+                                  child: Container(
+                                    height: 200,
+                                    child: ListView.builder(
+                                        itemCount: _.months.length,
+                                        // physics: ,
+                                        itemBuilder: (BuildContext context, i) {
+                                          return InkWell(
+                                            onTap: () {
+                                              _.confernceMonthLenght = i + 1;
+                                              _.conferenceSelectedMonth.value =
+                                                  _.months[i];
+                                              Get.back();
+                                            },
+                                            child: Container(
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  _.months[i],
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                )).marginOnly(bottom: 7),
+                                          );
+                                        }),
+                                  ),
+                                )));
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(left: 7, right: 3),
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 238, 238, 238),
+                                border:
+                                    Border.all(width: 1, color: Colors.grey),
+                                borderRadius: BorderRadius.circular(2)),
+                            child: Obx(() => Row(
+                                  children: [
+                                    Text(_.conferenceSelectedMonth.value,
+                                        style: TextStyle(
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.w600)),
+                                    Icon(
+                                      Icons.keyboard_arrow_down_sharp,
+                                      size: 15,
+                                    ),
+                                  ],
+                                )),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            print('confYea');
+                            Get.bottomSheet(Container(
+                                padding: EdgeInsets.only(top: 50, bottom: 50),
+                                height: 300,
+                                width: Get.width,
+                                decoration: BoxDecoration(
+                                    color: const Color.fromARGB(
+                                        255, 213, 213, 213),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Center(
+                                  child: Container(
+                                    height: 200,
+                                    child: ListView.builder(
+                                        itemCount: _.years.length,
+                                        // physics: ,
+                                        itemBuilder: (BuildContext context, i) {
+                                          return InkWell(
+                                            onTap: () {
+                                              _.confernceSelectedYear.value =
+                                                  _.years[i];
+                                              Get.back();
+                                            },
+                                            child: Container(
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  _.years[i],
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                )).marginOnly(bottom: 7),
+                                          );
+                                        }),
+                                  ),
+                                )));
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(left: 7, right: 3),
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 238, 238, 238),
+                                border:
+                                    Border.all(width: 1, color: Colors.grey),
+                                borderRadius: BorderRadius.circular(2)),
+                            child: Obx(() => Row(
+                                  children: [
+                                    Text(_.confernceSelectedYear.value,
+                                        style: TextStyle(
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.w600)),
+                                    Icon(
+                                      Icons.keyboard_arrow_down_sharp,
+                                      size: 15,
+                                    ),
+                                  ],
+                                )),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            _.showReport(_.confernceMonthLenght,
+                                int.parse(_.confernceSelectedYear.value));
+                          },
+                          child: Text('Show reports',
+                              style: TextStyle(
+                                  fontSize: 8, fontWeight: FontWeight.bold)),
+                        ),
                       ],
                     ).marginOnly(top: 30),
-                     Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
-                          'Weekly Meetings',
-                          style:
-                              TextStyle(fontSize: 8, fontWeight: FontWeight.bold),
+                          'Income & Expenses Report',
+                          style: TextStyle(
+                              fontSize: 10, fontWeight: FontWeight.bold),
                         ),
-                        Text('\$750.000',
-                            style: TextStyle(
-                                fontSize: 9, fontWeight: FontWeight.w500)),
-                        Text('\$750.000',
-                            style: TextStyle(
-                                fontSize: 9, fontWeight: FontWeight.w500)),
-                        Text('Show reports',
-                            style: TextStyle(
-                                fontSize: 8, fontWeight: FontWeight.bold)),
+                        InkWell(
+                          onTap: () {
+                            print('weem');
+                            Get.bottomSheet(Container(
+                                padding: EdgeInsets.only(top: 50, bottom: 50),
+                                height: 300,
+                                width: Get.width,
+                                decoration: BoxDecoration(
+                                    color: const Color.fromARGB(
+                                        255, 213, 213, 213),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Center(
+                                  child: Container(
+                                    height: 200,
+                                    child: ListView.builder(
+                                        itemCount: _.months.length,
+                                        // physics: ,
+                                        itemBuilder: (BuildContext context, i) {
+                                          return InkWell(
+                                            onTap: () {
+                                              _.weeklyMonthLenght=i+1;
+                                              _.weeklySelectedMonth.value =
+                                                  _.months[i];
+                                              Get.back();
+                                            },
+                                            child: Container(
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  _.months[i],
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                )).marginOnly(bottom: 7),
+                                          );
+                                        }),
+                                  ),
+                                )));
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(left: 7, right: 3),
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 238, 238, 238),
+                                border:
+                                    Border.all(width: 1, color: Colors.grey),
+                                borderRadius: BorderRadius.circular(2)),
+                            child: Obx(() => Row(
+                                  children: [
+                                    Text(_.weeklySelectedMonth.value,
+                                        style: TextStyle(
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.w600)),
+                                    Icon(
+                                      Icons.keyboard_arrow_down_sharp,
+                                      size: 15,
+                                    ),
+                                  ],
+                                )),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            print('weey');
+                            Get.bottomSheet(Container(
+                                padding: EdgeInsets.only(top: 50, bottom: 50),
+                                height: 300,
+                                width: Get.width,
+                                decoration: BoxDecoration(
+                                    color: const Color.fromARGB(
+                                        255, 213, 213, 213),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Center(
+                                  child: Container(
+                                    height: 200,
+                                    child: ListView.builder(
+                                        itemCount: _.years.length,
+                                        // physics: ,
+                                        itemBuilder: (BuildContext context, i) {
+                                          return InkWell(
+                                            onTap: () {
+                                              _.weeklySelectedYear.value =
+                                                  _.years[i];
+                                              Get.back();
+                                            },
+                                            child: Container(
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  _.years[i],
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                )).marginOnly(bottom: 7),
+                                          );
+                                        }),
+                                  ),
+                                )));
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(left: 7, right: 3),
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 238, 238, 238),
+                                border:
+                                    Border.all(width: 1, color: Colors.grey),
+                                borderRadius: BorderRadius.circular(2)),
+                            child: Obx(() => Row(
+                                  children: [
+                                    Text(_.weeklySelectedYear.value,
+                                        style: TextStyle(
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.w600)),
+                                    Icon(
+                                      Icons.keyboard_arrow_down_sharp,
+                                      size: 15,
+                                    ),
+                                  ],
+                                )),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            _.showReport(_.weeklyMonthLenght, int.parse(_.weeklySelectedYear.value));
+                          },
+                          child: Text('Show reports',
+                              style: TextStyle(
+                                  fontSize: 8, fontWeight: FontWeight.bold)),
+                        ),
                       ],
                     ).marginOnly(top: 30),
-                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          'international Exposure',
-                          style:
-                              TextStyle(fontSize: 8, fontWeight: FontWeight.bold),
-                        ),
-                        Text('\$750.000',
-                            style: TextStyle(
-                                fontSize: 9, fontWeight: FontWeight.w500)),
-                        Text('\$750.000',
-                            style: TextStyle(
-                                fontSize: 9, fontWeight: FontWeight.w500)),
-                        Text('Show reports',
-                            style: TextStyle(
-                                fontSize: 8, fontWeight: FontWeight.bold)),
-                      ],
-                    ).marginOnly(top: 30)
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children:  [
+                    //     Text(
+                    //       'international Exposure',
+                    //       style: TextStyle(
+                    //           fontSize: 10, fontWeight: FontWeight.bold),
+                    //     ),
+                    //      InkWell(
+                    //       onTap: () {
+                    //         print('natm');
+                    //         Get.bottomSheet(Container(
+                    //             padding: EdgeInsets.only(top: 50, bottom: 50),
+                    //             height: 300,
+                    //             width: Get.width,
+                    //             decoration: BoxDecoration(
+                    //                 color: const Color.fromARGB(
+                    //                     255, 213, 213, 213),
+                    //                 borderRadius: BorderRadius.circular(20)),
+                    //             child: Center(
+                    //               child: Container(
+                    //                 height: 200,
+                    //                 child: ListView.builder(
+                    //                     itemCount: _.months.length,
+                    //                     // physics: ,
+                    //                     itemBuilder: (BuildContext context, i) {
+                    //                       return InkWell(
+                    //                         onTap: () {
+                    //                           _.nationalSelectedMonth.value =
+                    //                               _.months[i];
+                    //                           Get.back();
+                    //                         },
+                    //                         child: Container(
+                    //                             alignment: Alignment.center,
+                    //                             child: Text(
+                    //                               _.months[i],
+                    //                               style:
+                    //                                   TextStyle(fontSize: 20),
+                    //                             )).marginOnly(bottom: 7),
+                    //                       );
+                    //                     }),
+                    //               ),
+                    //             )));
+                    //       },
+                    //       child: Container(
+                    //         padding: EdgeInsets.only(left: 7, right: 3),
+                    //         decoration: BoxDecoration(
+                    //             color: Color.fromARGB(255, 238, 238, 238),
+                    //             border:
+                    //                 Border.all(width: 1, color: Colors.grey),
+                    //             borderRadius: BorderRadius.circular(2)),
+                    //         child: Obx(() => Row(
+                    //               children: [
+                    //                 Text(_.nationalSelectedMonth.value,
+                    //                     style: TextStyle(
+                    //                         fontSize: 9,
+                    //                         fontWeight: FontWeight.w600)),
+                    //                 Icon(
+                    //                   Icons.keyboard_arrow_down_sharp,
+                    //                   size: 15,
+                    //                 ),
+                    //               ],
+                    //             )),
+                    //       ),
+                    //     ),
+                    //     InkWell(
+                    //       onTap: () {
+                    //         print('naty');
+                    //         Get.bottomSheet(Container(
+                    //             padding: EdgeInsets.only(top: 50, bottom: 50),
+                    //             height: 300,
+                    //             width: Get.width,
+                    //             decoration: BoxDecoration(
+                    //                 color: const Color.fromARGB(
+                    //                     255, 213, 213, 213),
+                    //                 borderRadius: BorderRadius.circular(20)),
+                    //             child: Center(
+                    //               child: Container(
+                    //                 height: 200,
+                    //                 child: ListView.builder(
+                    //                     itemCount: _.years.length,
+                    //                     // physics: ,
+                    //                     itemBuilder: (BuildContext context, i) {
+                    //                       return InkWell(
+                    //                         onTap: () {
+                    //                           _.nationalSelectedYear.value =
+                    //                               _.years[i];
+                    //                           Get.back();
+                    //                         },
+                    //                         child: Container(
+                    //                             alignment: Alignment.center,
+                    //                             child: Text(
+                    //                               _.years[i],
+                    //                               style:
+                    //                                   TextStyle(fontSize: 20),
+                    //                             )).marginOnly(bottom: 7),
+                    //                       );
+                    //                     }),
+                    //               ),
+                    //             )));
+                    //       },
+                    //       child: Container(
+                    //         padding: EdgeInsets.only(left: 7, right: 3),
+                    //         decoration: BoxDecoration(
+                    //             color: Color.fromARGB(255, 238, 238, 238),
+                    //             border:
+                    //                 Border.all(width: 1, color: Colors.grey),
+                    //             borderRadius: BorderRadius.circular(2)),
+                    //         child: Obx(() => Row(
+                    //               children: [
+                    //                 Text(_.nationalSelectedYear.value,
+                    //                     style: TextStyle(
+                    //                         fontSize: 9,
+                    //                         fontWeight: FontWeight.w600)),
+                    //                 Icon(
+                    //                   Icons.keyboard_arrow_down_sharp,
+                    //                   size: 15,
+                    //                 ),
+                    //               ],
+                    //             )),
+                    //       ),
+                    //     ),
+                    //     Text('Show reports',
+                    //         style: TextStyle(
+                    //             fontSize: 8, fontWeight: FontWeight.bold)),
+                    //   ],
+                    // ).marginOnly(top: 30)
                   ],
                 ).marginSymmetric(horizontal: 13)
               ],
@@ -382,26 +1113,46 @@ class StatisticsAndReports extends StatelessWidget {
 }
 
 class ChartData {
-  ChartData(this.x, this.y, this.z);
-
-  final String x;
-  final double y;
-  final double z;
-}
-
-class SignUpData {
-  SignUpData(this.x, this.y);
-
-  final String x;
-  final double y;
-}
-
-class ExposureData {
-  ExposureData(
+  ChartData(
     this.x,
     this.y,
   );
 
   final String x;
-  final double y;
+  var y;
+  // final double z;
+}
+
+class DistributerSignUpData {
+  DistributerSignUpData(this.x, this.y);
+
+  final String x;
+  final int y;
+}
+
+class DistributerExposureData {
+  DistributerExposureData(
+    this.x,
+    this.y,
+  );
+
+  final String x;
+  final int y;
+}
+
+class CustomerSignUpData {
+  CustomerSignUpData(this.x, this.y);
+
+  final String x;
+  final int y;
+}
+
+class CustomerExposureData {
+  CustomerExposureData(
+    this.x,
+    this.y,
+  );
+
+  final String x;
+  final int y;
 }

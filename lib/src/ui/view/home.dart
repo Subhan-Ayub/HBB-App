@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/homeController.dart';
 import 'package:hbb/src/ui/widgets/commonScaffold.dart';
+import 'package:hbb/src/utils/routes/routes.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -62,98 +63,122 @@ class HomeScreen extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      Column(
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            width: Get.width * 0.27,
-                            height: Get.height * 0.12,
-                            decoration: BoxDecoration(
-                              color: UIDataColors.greyColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Icon(
-                              Icons.assessment_outlined,
-                              size: Get.width * 0.15,
-                              color: Colors.red,
-                            ),
-                          ).marginOnly(right: Get.width * .01),
-                          Text(
-                            'Daily Exposure',
-                            style: TextStyle(fontSize: Get.width * 0.027),
-                          ).marginSymmetric(vertical: Get.height * .01)
-                        ],
-                      ).marginOnly(right: Get.width * .015),
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed(Routes.reports,
+                              arguments: '/api/daily-report');
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              width: Get.width * 0.27,
+                              height: Get.height * 0.12,
+                              decoration: BoxDecoration(
+                                color: UIDataColors.greyColor,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Icon(
+                                Icons.assessment_outlined,
+                                size: Get.width * 0.15,
+                                color: Colors.red,
+                              ),
+                            ).marginOnly(right: Get.width * .01),
+                            Text(
+                              'Daily Exposure',
+                              style: TextStyle(fontSize: Get.width * 0.027),
+                            ).marginSymmetric(vertical: Get.height * .01)
+                          ],
+                        ).marginOnly(right: Get.width * .015),
+                      ),
                       //
-                      Column(
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            width: Get.width * 0.27,
-                            height: Get.height * 0.12,
-                            decoration: BoxDecoration(
-                              color: UIDataColors.greyColor,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Icon(
-                              Icons.group,
-                              size: Get.width * 0.15,
-                              color: Colors.red,
-                            ),
-                          ).marginOnly(right: Get.width * .01),
-                          Text(
-                            'Conference Call',
-                            style: TextStyle(fontSize: Get.width * 0.027),
-                          ).marginSymmetric(vertical: Get.height * .01)
-                        ],
-                      ).marginOnly(right: Get.width * .015),
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed(Routes.reports,
+                              arguments: '/api/conference-report');
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              width: Get.width * 0.27,
+                              height: Get.height * 0.12,
+                              decoration: BoxDecoration(
+                                color: UIDataColors.greyColor,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Icon(
+                                Icons.group,
+                                size: Get.width * 0.15,
+                                color: Colors.red,
+                              ),
+                            ).marginOnly(right: Get.width * .01),
+                            Text(
+                              'Conference Call',
+                              style: TextStyle(fontSize: Get.width * 0.027),
+                            ).marginSymmetric(vertical: Get.height * .01)
+                          ],
+                        ).marginOnly(right: Get.width * .015),
+                      ),
                       //
-                      Column(
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            width: Get.width * 0.27,
-                            height: Get.height * 0.12,
-                            decoration: BoxDecoration(
-                              color: UIDataColors.greyColor,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Icon(
-                              Icons.speaker_group_sharp,
-                              size: Get.width * 0.15,
-                              color: Colors.red,
-                            ),
-                          ).marginOnly(right: Get.width * .01),
-                          Text(
-                            'Weekly Meeting',
-                            style: TextStyle(fontSize: Get.width * 0.027),
-                          ).marginSymmetric(vertical: Get.height * .01)
-                        ],
-                      ).marginOnly(right: Get.width * .015),
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed(Routes.reports,
+                              arguments: '/api/weekly-report');
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              width: Get.width * 0.27,
+                              height: Get.height * 0.12,
+                              decoration: BoxDecoration(
+                                color: UIDataColors.greyColor,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Icon(
+                                Icons.speaker_group_sharp,
+                                size: Get.width * 0.15,
+                                color: Colors.red,
+                              ),
+                            ).marginOnly(right: Get.width * .01),
+                            Text(
+                              'Weekly Meeting',
+                              style: TextStyle(fontSize: Get.width * 0.027),
+                            ).marginSymmetric(vertical: Get.height * .01)
+                          ],
+                        ).marginOnly(right: Get.width * .015),
+                      ),
                       //
 
-                      Column(
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            width: Get.width * 0.27,
-                            height: Get.height * 0.12,
-                            decoration: BoxDecoration(
-                              color: UIDataColors.greyColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Icon(
-                              Icons.cyclone_outlined,
-                              size: Get.width * 0.15,
-                              color: Colors.red,
-                            ),
-                          ).marginOnly(right: Get.width * .01),
-                          Text(
-                            'SignUp Reports',
-                            style: TextStyle(fontSize: Get.width * 0.027),
-                          ).marginSymmetric(vertical: Get.height * .01)
-                        ],
-                      ).marginOnly(right: Get.width * .015),
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed(Routes.reports,
+                              arguments: '/api/signup-type-report');
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              width: Get.width * 0.27,
+                              height: Get.height * 0.12,
+                              decoration: BoxDecoration(
+                                color: UIDataColors.greyColor,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Icon(
+                                Icons.cyclone_outlined,
+                                size: Get.width * 0.15,
+                                color: Colors.red,
+                              ),
+                            ).marginOnly(right: Get.width * .01),
+                            Text(
+                              'SignUp Reports',
+                              style: TextStyle(fontSize: Get.width * 0.027),
+                            ).marginSymmetric(vertical: Get.height * .01)
+                          ],
+                        ).marginOnly(right: Get.width * .015),
+                      ),
                       //
                     ],
                   ),
@@ -161,7 +186,7 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-
+      
           // Service
           Container(
             width: Get.width,
