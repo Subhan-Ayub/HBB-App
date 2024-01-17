@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/homeController.dart';
 import 'package:hbb/src/ui/widgets/commonScaffold.dart';
-import 'package:hbb/src/ui/widgets/commonClasses.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -24,188 +23,362 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            alignment: Alignment.center,
             height: Get.height * 0.22,
-            child: Stack(
-              children: [
-                Container(
-                  width: Get.width / 1.1,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(
-                            'assets/images/header-image.png',
-                          ),
-                          fit: BoxFit.contain)),
-                ),
-                SizedBox(
-                  width: Get.width / 2.1,
-                  child: Column(
-                    children: [
-                      Text(
-                        'TRACK YOUR BUSINESS, GROW YOUR BUSINESS',
-                        style: TextStyle(
-                            fontSize: Get.width * 0.039,
-                            fontWeight: FontWeight.w400,
-                            height: Get.height * 0.0019),
+            child: Container(
+              width: Get.width / 1.1,
+              alignment: Alignment.center,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(
+                        'assets/images/header-image.png',
                       ),
-                      HeightFillButton(
-                        height: 30,
-                        width: Get.width / 4.3,
-                        color: const Color.fromARGB(255, 246, 118, 150),
-                        child: Text(
-                          'Start Tracking',
-                          style: TextStyle(fontSize: Get.width * 0.027),
-                        ),
-                      ).paddingOnly(top: Get.height * 0.01)
+                      fit: BoxFit.contain)),
+              child: SizedBox(
+                width: Get.width / 2,
+                child: Text(
+                  'TRACK YOUR BUSINESS, GROW YOUR BUSINESS',
+                  style: TextStyle(
+                      fontSize: Get.width * 0.039,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white,
+                      height: Get.height * 0.0019),
+                ),
+              ),
+            ),
+          ).marginOnly(top: Get.height * 0.04),
+
+          // Track Activity
+          Container(
+            width: Get.width,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Track Activity",
+                  style: TextStyle(
+                      fontSize: Get.width * 0.07, fontWeight: FontWeight.w700),
+                ).marginSymmetric(vertical: Get.height * 0.02),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            width: Get.width * 0.27,
+                            height: Get.height * 0.12,
+                            decoration: BoxDecoration(
+                              color: UIDataColors.greyColor,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Icon(
+                              Icons.assessment_outlined,
+                              size: Get.width * 0.15,
+                              color: Colors.red,
+                            ),
+                          ).marginOnly(right: Get.width * .01),
+                          Text(
+                            'Daily Exposure',
+                            style: TextStyle(fontSize: Get.width * 0.027),
+                          ).marginSymmetric(vertical: Get.height * .01)
+                        ],
+                      ).marginOnly(right: Get.width * .015),
+                      //
+                      Column(
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            width: Get.width * 0.27,
+                            height: Get.height * 0.12,
+                            decoration: BoxDecoration(
+                              color: UIDataColors.greyColor,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Icon(
+                              Icons.group,
+                              size: Get.width * 0.15,
+                              color: Colors.red,
+                            ),
+                          ).marginOnly(right: Get.width * .01),
+                          Text(
+                            'Conference Call',
+                            style: TextStyle(fontSize: Get.width * 0.027),
+                          ).marginSymmetric(vertical: Get.height * .01)
+                        ],
+                      ).marginOnly(right: Get.width * .015),
+                      //
+                      Column(
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            width: Get.width * 0.27,
+                            height: Get.height * 0.12,
+                            decoration: BoxDecoration(
+                              color: UIDataColors.greyColor,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Icon(
+                              Icons.speaker_group_sharp,
+                              size: Get.width * 0.15,
+                              color: Colors.red,
+                            ),
+                          ).marginOnly(right: Get.width * .01),
+                          Text(
+                            'Weekly Meeting',
+                            style: TextStyle(fontSize: Get.width * 0.027),
+                          ).marginSymmetric(vertical: Get.height * .01)
+                        ],
+                      ).marginOnly(right: Get.width * .015),
+                      //
+
+                      Column(
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            width: Get.width * 0.27,
+                            height: Get.height * 0.12,
+                            decoration: BoxDecoration(
+                              color: UIDataColors.greyColor,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Icon(
+                              Icons.cyclone_outlined,
+                              size: Get.width * 0.15,
+                              color: Colors.red,
+                            ),
+                          ).marginOnly(right: Get.width * .01),
+                          Text(
+                            'SignUp Reports',
+                            style: TextStyle(fontSize: Get.width * 0.027),
+                          ).marginSymmetric(vertical: Get.height * .01)
+                        ],
+                      ).marginOnly(right: Get.width * .015),
+                      //
                     ],
                   ),
-                ).paddingOnly(left: 130, top: 50)
-              ],
-            ),
-          ).marginSymmetric(vertical: Get.height * 0.055),
-      
-          // Todays Activity
-          Container(
-            width: Get.width / 1.1,
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Today's Activity",
-                      style: TextStyle(
-                          fontSize: Get.width * 0.045,
-                          fontWeight: FontWeight.w700),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Row(
-                        children: [
-                          Text(
-                            'Details',
-                            style: TextStyle(
-                                fontSize: Get.width * 0.045,
-                                fontWeight: FontWeight.w400,
-                                color: UIDataColors.commonColor),
-                          ),
-                          SizedBox(width: Get.width * 0.02),
-                          Icon(
-                            Icons.trending_flat,
-                            size: Get.width * 0.07,
-                          )
-                        ],
-                      ),
-                    )
-                  ],
                 ),
-      
-                //  ListView Builder
-                SizedBox(
-                  height: Get.height * 0.1,
-                  child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: _.todayActivity.length,
-                      itemBuilder: (context, index) {
-                        return BottomNavContainer(
-                          width: 0,
-                          height: Get.width * 0.36,
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '${_.todayActivity[index]['name']}',
-                                  style: TextStyle(
-                                      fontSize: Get.width * 0.034,
-                                      fontWeight: FontWeight.w400),
-                                ).paddingOnly(bottom: 5),
-                                Text(
-                                  '${_.todayActivity[index]['amount']}',
-                                  style: TextStyle(
-                                      fontSize: Get.width * 0.06,
-                                      color: UIDataColors.commonColor,
-                                      fontWeight: FontWeight.w700),
-                                )
-                              ]),
-                        ).paddingOnly(right: 15);
-                      }),
-                ).paddingOnly(top: Get.height * 0.01)
               ],
             ),
           ),
-      
-          //  Daily Activity
-      
+
+          // Service
           Container(
-            width: Get.width / 1.1,
+            width: Get.width,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                  "Service",
+                  style: TextStyle(
+                      fontSize: Get.width * 0.07, fontWeight: FontWeight.w700),
+                ).marginSymmetric(vertical: Get.height * .02),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Daily Activity",
-                      style: TextStyle(
-                          fontSize: Get.width * 0.045,
-                          fontWeight: FontWeight.w700),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Row(
-                        children: [
-                          Text(
-                            'Details',
-                            style: TextStyle(
-                                fontSize: Get.width * 0.045,
-                                fontWeight: FontWeight.w400,
-                                color: UIDataColors.commonColor),
+                    Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          width: Get.width * 0.2,
+                          height: Get.height * 0.09,
+                          decoration: BoxDecoration(
+                            color: UIDataColors.greyColor,
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          SizedBox(width: Get.width * 0.02),
-                          Icon(
-                            Icons.trending_flat,
+                          child: Icon(
+                            Icons.local_activity,
                             size: Get.width * 0.07,
-                          )
-                        ],
-                      ),
-                    )
+                            color: Colors.red,
+                          ),
+                        ).marginOnly(right: Get.width * .01),
+                        Text(
+                          'Activity',
+                          style: TextStyle(fontSize: Get.width * 0.027),
+                        ).marginSymmetric(vertical: Get.height * .01)
+                      ],
+                    ),
+                    //
+                    Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          width: Get.width * 0.2,
+                          height: Get.height * 0.09,
+                          decoration: BoxDecoration(
+                            color: UIDataColors.greyColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Icon(
+                            Icons.bar_chart_sharp,
+                            size: Get.width * 0.07,
+                            color: Colors.red,
+                          ),
+                        ).marginOnly(right: Get.width * .01),
+                        Text(
+                          'Statistics',
+                          style: TextStyle(fontSize: Get.width * 0.027),
+                        ).marginSymmetric(vertical: Get.height * .01)
+                      ],
+                    ),
+                    //
+                    Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          width: Get.width * 0.2,
+                          height: Get.height * 0.09,
+                          decoration: BoxDecoration(
+                            color: UIDataColors.greyColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Icon(
+                            Icons.golf_course,
+                            size: Get.width * 0.07,
+                            color: Colors.red,
+                          ),
+                        ).marginOnly(right: Get.width * .01),
+                        Text(
+                          'My Goals',
+                          style: TextStyle(fontSize: Get.width * 0.027),
+                        ).marginSymmetric(vertical: Get.height * .01)
+                      ],
+                    ),
+                    //
+                    Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          width: Get.width * 0.2,
+                          height: Get.height * 0.09,
+                          decoration: BoxDecoration(
+                            color: UIDataColors.greyColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Icon(
+                            Icons.account_circle_outlined,
+                            size: Get.width * 0.07,
+                            color: Colors.red,
+                          ),
+                        ).marginOnly(right: Get.width * .01),
+                        Text(
+                          'Profile',
+                          style: TextStyle(fontSize: Get.width * 0.027),
+                        ).marginSymmetric(vertical: Get.height * .01)
+                      ],
+                    ),
+                    //
                   ],
                 ),
-      
-                //  ListView Builder
-                SizedBox(
-                  height: Get.height * 0.14,
-                  child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: _.dailyActivity.length,
-                      itemBuilder: (context, index) {
-                        return BottomNavContainer(
-                          width: 0,
-                          height: Get.width * 0.22,
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '${_.dailyActivity[index]['day']}',
-                                  style: TextStyle(
-                                      fontSize: Get.width * 0.034,
-                                      fontWeight: FontWeight.w400),
-                                ).paddingOnly(bottom: 5),
-                                Text(
-                                  '${_.dailyActivity[index]['points']}',
-                                  style: TextStyle(
-                                      fontSize: Get.width * 0.06,
-                                      color: UIDataColors.commonColor,
-                                      fontWeight: FontWeight.w700),
-                                )
-                              ]),
-                        ).paddingOnly(right: 15);
-                      }),
-                ).paddingOnly(top: Get.height * 0.01)
+                //
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          width: Get.width * 0.2,
+                          height: Get.height * 0.09,
+                          decoration: BoxDecoration(
+                            color: UIDataColors.greyColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Icon(
+                            Icons.category_rounded,
+                            size: Get.width * 0.07,
+                            color: Colors.red,
+                          ),
+                        ).marginOnly(right: Get.width * .01),
+                        Text(
+                          'My Coaching \nNetwork',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: Get.width * 0.027),
+                        ).marginSymmetric(vertical: Get.height * .01)
+                      ],
+                    ),
+                    //
+                    Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          width: Get.width * 0.2,
+                          height: Get.height * 0.09,
+                          decoration: BoxDecoration(
+                            color: UIDataColors.greyColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Icon(
+                            Icons.wallet_outlined,
+                            size: Get.width * 0.07,
+                            color: Colors.red,
+                          ),
+                        ).marginOnly(right: Get.width * .01),
+                        Text(
+                          'My Income \nAnd Expenses',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: Get.width * 0.027),
+                        ).marginSymmetric(vertical: Get.height * .01)
+                      ],
+                    ),
+                    //
+                    Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          width: Get.width * 0.2,
+                          height: Get.height * 0.09,
+                          decoration: BoxDecoration(
+                            color: UIDataColors.greyColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Icon(
+                            Icons.support_agent,
+                            size: Get.width * 0.07,
+                            color: Colors.red,
+                          ),
+                        ).marginOnly(right: Get.width * .01),
+                        Text(
+                          'My Team \nSupport',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: Get.width * 0.027),
+                        ).marginSymmetric(vertical: Get.height * .01)
+                      ],
+                    ),
+                    //
+                    Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          width: Get.width * 0.2,
+                          height: Get.height * 0.09,
+                          decoration: BoxDecoration(
+                            color: UIDataColors.greyColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Icon(
+                            Icons.menu_book_sharp,
+                            size: Get.width * 0.07,
+                            color: Colors.red,
+                          ),
+                        ).marginOnly(right: Get.width * .01),
+                        Text(
+                          'My Contact \nList',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: Get.width * 0.027),
+                        ).marginSymmetric(vertical: Get.height * .01)
+                      ],
+                    ),
+                    //
+                  ],
+                ),
+                //
               ],
             ),
-          ).paddingOnly(top: Get.height * 0.055)
+          )
         ],
-      ),
+      ).marginSymmetric(horizontal: Get.height * 0.02),
     );
   }
 }
