@@ -1,8 +1,10 @@
 // ignore_for_file: unused_field
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/myGoalsController.dart';
+import 'package:hbb/src/ui/widgets/commonClasses.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
 
 class MyGoalScreen extends StatelessWidget {
@@ -17,6 +19,7 @@ class MyGoalScreen extends StatelessWidget {
           width: Get.width,
           // color: Colors.amber,
           child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -44,22 +47,24 @@ class MyGoalScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ).marginSymmetric(vertical: Get.height * .002),
                 Container(
-                  width: Get.width,
-                  // height: Get.height * .02,
-                  color: Colors.grey.shade300,
-                  child: Text(
-                    'To travel more, QUIT WORKING, pay off debt and spend more time with my Grandkids while earning extra income to help them through college.Play more golf with my kids and Grandkids..Plus HELP MANY OTHER BUSINESS PARTNERS \nDO THE SAME!',
-                    style: TextStyle(
-                        fontSize: Get.width * .033,
-                        // color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  )
-                      .marginSymmetric(vertical: Get.height * .002)
-                      .paddingSymmetric(
-                          horizontal: Get.width * .025,
-                          vertical: Get.height * .01)
-                      .paddingOnly(bottom: Get.height * .02),
-                ),
+                    width: Get.width,
+                    // height: Get.height * .02,
+                    decoration: BoxDecoration(
+                        color: Colors.grey.shade300,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Text(
+                      'To travel more, QUIT WORKING, pay off debt and spend more time with my Grandkids while earning extra income to help them through college.Play more golf with my kids and Grandkids..Plus HELP MANY OTHER BUSINESS PARTNERS \nDO THE SAME!',
+                      style: TextStyle(
+                          fontSize: Get.width * .032,
+                          // color: Colors.black,
+                          fontWeight: FontWeight.w500),
+                    )
+                        .marginSymmetric(vertical: Get.height * .002)
+                        .paddingSymmetric(
+                            horizontal: Get.width * .025,
+                            vertical: Get.height * .01)
+                    // .paddingOnly(bottom: Get.height * .02),
+                    ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -86,132 +91,179 @@ class MyGoalScreen extends StatelessWidget {
                               // color: Colors.red,
                               fontWeight: FontWeight.bold),
                         ),
-                        InkWell(
-                          onTap: () {},
-                          child: Text(
-                            'edit',
-                            style: TextStyle(
-                                fontSize: Get.width * .03,
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ).marginSymmetric(horizontal: Get.width * .02),
+                        Obx(
+                          () => InkWell(
+                            onTap: () {
+                              _.incomeEdit.value = true;
+                            },
+                            child: _.incomeEdit.value
+                                ? SizedBox()
+                                : Text(
+                                    'edit',
+                                    style: TextStyle(
+                                        fontSize: Get.width * .03,
+                                        color: Colors.blue,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                          ).marginOnly(left: Get.width * .02),
+                        ),
+                        Obx(
+                          () => InkWell(
+                            onTap: () {
+                              _.incomeEdit.value = false;
+                              print(_.income30days.text);
+                              print(_.income6months.text);
+                              print(_.income1year.text);
+                            },
+                            child: _.incomeEdit.value
+                                ? Text(
+                                    'save',
+                                    style: TextStyle(
+                                        fontSize: Get.width * .03,
+                                        color: Colors.blue,
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                : SizedBox(),
+                          ).marginOnly(left: Get.width * .00),
+                        ),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Next 30 days:',
-                              style: TextStyle(
-                                  fontSize: Get.width * .025,
-                                  // color: Colors.blue,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Container(
-                              width: Get.width / 4,
-                              height: Get.height * .04,
-                              // alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                border: Border.all(width: 1),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                              ),
-                              // color: Colors.red,
-                              child: TextField(
-                                readOnly: true,
-                                keyboardType: TextInputType.number,
-                                style: TextStyle(
-                                  fontSize: Get.width * .025,
-                                ),
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: TextStyle(color: Colors.black),
-                                  hintText: '1000',
-                                  // text
-                                ),
-                              ).paddingSymmetric(horizontal: Get.width * .01),
-                            )
-                          ],
-                        ),
-                        //
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Next 6 Months:',
-                              style: TextStyle(
-                                  fontSize: Get.width * .025,
-                                  // color: Colors.blue,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Container(
-                              width: Get.width / 4,
-                              height: Get.height * .04,
-                              // alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                border: Border.all(width: 1),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                              ),
-                              // color: Colors.red,
-                              child: TextField(
-                                readOnly: true,
-                                style: TextStyle(
-                                  fontSize: Get.width * .025,
-                                ),
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: TextStyle(color: Colors.black),
-                                  hintText: '12000',
-                                  // text
-                                ),
-                              ).paddingSymmetric(horizontal: Get.width * .01),
-                            )
-                          ],
-                        ),
-                        //
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Next one year:',
-                              style: TextStyle(
-                                  fontSize: Get.width * .025,
-                                  // color: Colors.blue,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Container(
-                              width: Get.width / 4,
-                              height: Get.height * .04,
-                              // alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                border: Border.all(width: 1),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                              ),
-                              // color: Colors.red,
-                              child: TextField(
-                                readOnly: true,
-                                // cursorHeight: Get.height * .001,
-                                style: TextStyle(
-                                  fontSize: Get.width * .025,
-                                ),
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: TextStyle(color: Colors.black),
-                                  hintText: '30000',
-                                  // text
-                                ),
-                              ).paddingSymmetric(horizontal: Get.width * .01),
-                            )
-                          ],
-                        )
-                      ],
-                    ).paddingSymmetric(horizontal: Get.width * .02),
+
+                    Obx(
+                      () => GoalsTextField(
+                        controller: _.income30days,
+                        hintText: '1000',
+                        readonly: _.incomeEdit.value ? false : true,
+                        heading: 'Next 30 days:',
+                        keyboard: [FilteringTextInputFormatter.digitsOnly],
+                        seccontroller: _.income6months,
+                        sechintText: '12000',
+                        secreadonly: _.incomeEdit.value ? false : true,
+                        secheading: 'Next 6 months:',
+                        seckeyboard: [FilteringTextInputFormatter.digitsOnly],
+                        thirdcontroller: _.income1year,
+                        thirdhintText: '30000',
+                        thirdreadonly: _.incomeEdit.value ? false : true,
+                        thirdheading: 'Next one year:',
+                        thirdkeyboard: [FilteringTextInputFormatter.digitsOnly],
+                      ),
+                    ),
+
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       children: [
+                    //         Text(
+                    //           'Next 30 days:',
+                    //           style: TextStyle(
+                    //               fontSize: Get.width * .025,
+                    //               // color: Colors.blue,
+                    //               fontWeight: FontWeight.bold),
+                    //         ),
+                    //         Container(
+                    //           width: Get.width / 4,
+                    //           height: Get.height * .04,
+                    //           // alignment: Alignment.center,
+                    //           decoration: BoxDecoration(
+                    //             border: Border.all(width: 1),
+                    //             borderRadius:
+                    //                 BorderRadius.all(Radius.circular(5)),
+                    //           ),
+                    //           // color: Colors.red,
+                    //           child: TextField(
+                    //             readOnly: true,
+                    //             keyboardType: TextInputType.number,
+                    //             style: TextStyle(
+                    //               fontSize: Get.width * .025,
+                    //             ),
+                    //             decoration: InputDecoration(
+                    //               border: InputBorder.none,
+                    //               hintStyle: TextStyle(color: Colors.black),
+                    //               hintText: '1000',
+                    //               // text
+                    //             ),
+                    //           ).paddingSymmetric(horizontal: Get.width * .01),
+                    //         )
+                    //       ],
+                    //     ),
+                    //     //
+                    //     Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       children: [
+                    //         Text(
+                    //           'Next 6 Months:',
+                    //           style: TextStyle(
+                    //               fontSize: Get.width * .025,
+                    //               // color: Colors.blue,
+                    //               fontWeight: FontWeight.bold),
+                    //         ),
+                    //         Container(
+                    //           width: Get.width / 4,
+                    //           height: Get.height * .04,
+                    //           // alignment: Alignment.center,
+                    //           decoration: BoxDecoration(
+                    //             border: Border.all(width: 1),
+                    //             borderRadius:
+                    //                 BorderRadius.all(Radius.circular(5)),
+                    //           ),
+                    //           // color: Colors.red,
+                    //           child: TextField(
+                    //             readOnly: true,
+                    //             style: TextStyle(
+                    //               fontSize: Get.width * .025,
+                    //             ),
+                    //             decoration: InputDecoration(
+                    //               border: InputBorder.none,
+                    //               hintStyle: TextStyle(color: Colors.black),
+                    //               hintText: '12000',
+                    //               // text
+                    //             ),
+                    //           ).paddingSymmetric(horizontal: Get.width * .01),
+                    //         )
+                    //       ],
+                    //     ),
+                    //     //
+                    //     Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       children: [
+                    //         Text(
+                    //           'Next one year:',
+                    //           style: TextStyle(
+                    //               fontSize: Get.width * .025,
+                    //               // color: Colors.blue,
+                    //               fontWeight: FontWeight.bold),
+                    //         ),
+                    //         Container(
+                    //           width: Get.width / 4,
+                    //           height: Get.height * .04,
+                    //           // alignment: Alignment.center,
+                    //           decoration: BoxDecoration(
+                    //             border: Border.all(width: 1),
+                    //             borderRadius:
+                    //                 BorderRadius.all(Radius.circular(5)),
+                    //           ),
+                    //           // color: Colors.red,
+                    //           child: TextField(
+                    //             readOnly: true,
+                    //             // cursorHeight: Get.height * .001,
+                    //             style: TextStyle(
+                    //               fontSize: Get.width * .025,
+                    //             ),
+                    //             decoration: InputDecoration(
+                    //               border: InputBorder.none,
+                    //               hintStyle: TextStyle(color: Colors.black),
+                    //               hintText: '30000',
+                    //               // text
+                    //             ),
+                    //           ).paddingSymmetric(horizontal: Get.width * .01),
+                    //         )
+                    //       ],
+                    //     )
+                    //   ],
+                    // ).paddingSymmetric(horizontal: Get.width * .02),
+
                     Container(
                       width: Get.width,
                       height: Get.height * .05,

@@ -1,8 +1,12 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:intl/intl.dart';
+import 'package:table_calendar/table_calendar.dart';
+
+import '../ui/view/activity.dart';
 
 class ActivityController extends GetxController {
   final RxString _selectedDate = ''.obs;
@@ -33,7 +37,7 @@ class ActivityController extends GetxController {
       'time': 'Today',
       'color': 0xFF09721D
     },
-   {
+    {
       'icon': '',
       'heading': 'Conference Call',
       'date': '29/12/2023',
@@ -48,5 +52,35 @@ class ActivityController extends GetxController {
       'color': 0xFFF2E719
     },
   ];
- 
+  CalendarFormat calendarFormat = CalendarFormat.month;
+  final pfocusedDay = DateTime.now().obs;
+  DateTime? pselectedDay;
+  Map<DateTime, List<Event>> events = {};
+  TextEditingController eventController = TextEditingController();
+  late final ValueNotifier<List<Event>> selectedEvents;
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    pselectedDay = pfocusedDay.value;
+    selectedEvents = ValueNotifier(getEventsForDay(pselectedDay!));
+  }
+
+  @override
+  void onDaySelected(DateTime selectedDay, DateTime focusedDay) {
+    // if (!isSameDay(selectedDay, selectedDay)) {
+    pselectedDay = selectedDay;
+    pfocusedDay.value = focusedDay;
+    selectedEvents.value = getEventsForDay(selectedDay);
+    print('selectedDay: ${pselectedDay}');
+    print('focusedDay: ${pfocusedDay}');
+    print('selectedEvents: ${selectedEvents}');
+
+    // }
+  }
+
+  List<Event> getEventsForDay(DateTime day) {
+    return events[day] ?? [];
+  }
 }

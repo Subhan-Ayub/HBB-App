@@ -258,3 +258,155 @@ class CustomPhoneField extends StatelessWidget {
     );
   }
 }
+
+class GoalsTextField extends StatelessWidget {
+  final TextEditingController controller;
+  final String hintText;
+  final heading;
+  final readonly;
+  final keyboard;
+
+  final TextEditingController? seccontroller;
+  final sechintText;
+  final secheading;
+  final secreadonly;
+  final seckeyboard;
+
+  final TextEditingController? thirdcontroller;
+  final thirdhintText;
+  final thirdheading;
+  final thirdreadonly;
+  final thirdkeyboard;
+
+  const GoalsTextField({
+    super.key,
+    required this.controller,
+    required this.hintText,
+    this.heading,
+    this.readonly,
+    this.keyboard,
+    this.seccontroller,
+    this.sechintText,
+    this.secheading,
+    this.secreadonly,
+    this.seckeyboard,
+    this.thirdcontroller,
+    this.thirdhintText,
+    this.thirdheading,
+    this.thirdreadonly,
+    this.thirdkeyboard,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        // First
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              heading,
+              style: TextStyle(
+                  fontSize: Get.width * .025, fontWeight: FontWeight.bold),
+            ),
+            Container(
+              width: Get.width / 4,
+              height: Get.height * .04,
+              decoration: BoxDecoration(
+                border: Border.all(width: 1),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+              ),
+              child: TextField(
+                readOnly: readonly,
+                // keyboardType: TextInputType.number,
+                inputFormatters: keyboard,
+                controller: controller,
+                style: TextStyle(
+                  fontSize: Get.width * .025,
+                ),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintStyle: TextStyle(color: Colors.black),
+                  hintText: hintText,
+                ),
+              ).paddingSymmetric(horizontal: Get.width * .01),
+            )
+          ],
+        ),
+        // Second
+        seccontroller != null
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    secheading,
+                    style: TextStyle(
+                        fontSize: Get.width * .025,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Container(
+                    width: Get.width / 4,
+                    height: Get.height * .04,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1),
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                    ),
+                    child: TextField(
+                      controller: seccontroller,
+                      inputFormatters: seckeyboard,
+                      readOnly: secreadonly,
+                      style: TextStyle(
+                        fontSize: Get.width * .025,
+                      ),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintStyle: TextStyle(color: Colors.black),
+                        hintText: sechintText,
+                      ),
+                    ).paddingSymmetric(horizontal: Get.width * .01),
+                  )
+                ],
+              )
+            : SizedBox(),
+        // Third
+        thirdcontroller != null
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    thirdheading,
+                    style: TextStyle(
+                        fontSize: Get.width * .025,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Container(
+                    width: Get.width / 4,
+                    height: Get.height * .04,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1),
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                    ),
+                    child: TextField(
+                      readOnly: thirdreadonly,
+                      controller: thirdcontroller,
+                      inputFormatters: thirdkeyboard,
+                      style: TextStyle(
+                        fontSize: Get.width * .025,
+                      ),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintStyle: TextStyle(color: Colors.black),
+                        hintText: thirdhintText,
+                        // text
+                      ),
+                    ).paddingSymmetric(horizontal: Get.width * .01),
+                  )
+                ],
+              )
+            : SizedBox()
+      ],
+    ).paddingSymmetric(horizontal: Get.width * .02);
+  }
+}
