@@ -11,6 +11,7 @@ import 'package:hbb/src/bindings/myGoalsBinding.dart';
 import 'package:hbb/src/bindings/profileBinding.dart';
 import 'package:hbb/src/bindings/programDataBinding.dart';
 import 'package:hbb/src/bindings/programDetailBinding.dart';
+import 'package:hbb/src/bindings/showReportBindings.dart';
 import 'package:hbb/src/bindings/signinBinding.dart';
 import 'package:hbb/src/bindings/signupBinding.dart';
 import 'package:hbb/src/middlewares/auth.dart';
@@ -128,7 +129,7 @@ class AppPages {
         transition: Transition.noTransition),
         GetPage(
         name: Routes.showReports,
-        // binding: ContactListBinding(),
+        binding: ShowReportBingings(),
         page: () => ShowReports(),
         transition: Transition.noTransition),
   ];

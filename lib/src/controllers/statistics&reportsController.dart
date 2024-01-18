@@ -14,6 +14,7 @@ class StatisticsAndReportsController extends GetxController {
   RxBool loder = true.obs;
   RxString dailySelectedMonth = 'Month'.obs;
   RxString dailySelectedYear = 'Year'.obs;
+  
   int? dailyMonthLenght;
 
   RxString conferenceSelectedMonth = 'Month'.obs;

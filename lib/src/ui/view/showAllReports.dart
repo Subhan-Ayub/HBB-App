@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hbb/src/controllers/showReportController.dart';
+import 'package:hbb/src/utils/uidata/color.dart';
 
 class ShowReports extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var arg = Get.arguments;
-    print(arg);
+    ShowReportController _ = Get.find<ShowReportController>();
     return Scaffold(
       body: SafeArea(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Divider(),
-          Text('Daily Exposure & National/International Exposure Report for January, ${arg['year']}',
+          Text('Daily Exposure & National/International Exposure Report for January, ${_.arg['year']}',
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900))
               .marginSymmetric(horizontal: 10),
           Divider(),
@@ -54,29 +55,70 @@ class ShowReports extends StatelessWidget {
                   ).marginOnly(right: Get.width * .2),
                 ]),
           ).marginOnly(top: 9),
-          Container(
-            height: Get.height - 240,
-            width: Get.width,
-            color: Colors.amber,
-            child: ListView.builder(
-                itemCount: 31,
-                itemBuilder: (BuildContext context, i) {
-                  return Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    color: i % 2 == 0
-                        ? Colors.white
-                        : Color.fromARGB(255, 241, 241, 241),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('${i+1}/${arg['month']}/2024'),
-                        Text('E'),
-                        Text('sub'),
-                        Text('test@gmail.com').marginOnly(right: 20),
-                      ],
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: Get.height - 310,
+                  width: Get.width,
+                  child: ListView.builder(
+                      itemCount: 31,
+                      itemBuilder: (BuildContext context, i) {
+                        _.check(i + 1);
+                        return Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          color: i % 2 == 0
+                              ? Colors.white
+                              : Color.fromARGB(255, 241, 241, 241),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('${i + 1}/${_.arg['month']}/${_.arg['year']}'),
+                              Container(
+                                  width: 110,
+                                  alignment: Alignment.center,
+                                  child: Text('${_.ek}',
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis)),
+                              Container(
+                                  width: 110,
+                                  alignment: Alignment.centerLeft,
+                                  child: Text('${_.name}',
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis)),
+                              Container(
+                                  width: 110,
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    '${_.email}',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ).marginOnly(right: 20)),
+                            ],
+                          ),
+                        );
+                      }),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        color: Colors.grey,
+                        child: Text('Other Reports', style: TextStyle(color: Colors.white, fontSize: Get.width*0.035),).marginSymmetric(horizontal: Get.width*0.03, vertical: Get.height*0.015),
+                      ),
                     ),
-                  );
-                }),
+                    Container(
+                      color: UIDataColors.commonColor,
+                      child: Text('Print', style: TextStyle(color: Colors.white, fontSize: Get.width*0.035),).marginSymmetric(horizontal: Get.width*0.03, vertical: Get.height*0.015),
+                    ).paddingSymmetric(horizontal: 10),
+                  ],
+                )
+              ],
+            ),
           )
         ],
       )),

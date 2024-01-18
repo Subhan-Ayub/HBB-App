@@ -559,6 +559,8 @@ class StatisticsAndReports extends StatelessWidget {
                                 ],
                               ),
                       )),
+
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
@@ -584,7 +586,6 @@ class StatisticsAndReports extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: () {
-                            print('daily');
                             Get.bottomSheet(Container(
                                 padding: EdgeInsets.only(top: 50, bottom: 50),
                                 height: 300,
@@ -911,7 +912,6 @@ class StatisticsAndReports extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: () {
-                            print('weey');
                             Get.bottomSheet(Container(
                                 padding: EdgeInsets.only(top: 50, bottom: 50),
                                 height: 300,
