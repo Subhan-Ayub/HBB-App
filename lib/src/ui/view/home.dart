@@ -23,13 +23,13 @@ class HomeScreen extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: Get.width,
+          // width: Get.width,
           height: Get.height * 0.2,
-          alignment: Alignment.center,
+          alignment: Alignment.centerLeft,
           decoration: const BoxDecoration(
-              // color: Colors.amber,
+              // color: Color.fromARGB(255, 47, 47, 47),
               image: DecorationImage(
-                  opacity: .7,
+                  // opacity: 1,
                   image: AssetImage(
                     'assets/images/banner-img.png',
                   ),
@@ -40,10 +40,10 @@ class HomeScreen extends StatelessWidget {
               'TRACK YOUR BUSINESS, GROW YOUR BUSINESS',
               style: TextStyle(
                   fontSize: Get.width * 0.039,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w900,
                   // color: Colors.white,
                   height: Get.height * 0.0019),
-            ),
+            ).marginOnly(left: 10),
           ),
         ).marginOnly(top: Get.height * 0.03),
 
@@ -61,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyle(
                         fontSize: Get.width * 0.06,
                         fontWeight: FontWeight.w700),
-                  ).marginSymmetric(vertical: Get.height * 0.025),
+                  ).marginSymmetric(vertical: Get.height * 0.02),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -208,7 +208,7 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyle(
                         fontSize: Get.width * 0.06,
                         fontWeight: FontWeight.w700),
-                  ).marginSymmetric(vertical: Get.height * .03),
+                  ).marginSymmetric(vertical: Get.height * .02),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:hbb/src/ui/view/statistics&report.dart';
 import 'package:hbb/src/utils/helpers/api_helper.dart';
+import 'package:hbb/src/utils/routes/routes.dart';
 // import 'package:syncfusion_flutter_charts/charts.dart';
 
 class StatisticsAndReportsController extends GetxController {
@@ -55,8 +56,11 @@ class StatisticsAndReportsController extends GetxController {
     '2016',
   ];
 
-  showReport(month, year) {
-    apiFetcher('Get', '/api/all-reports?month=$month&year=$year');
+  showReport(month, year) async {
+    var data =
+        await apiFetcher('Get', '/api/all-reports?month=$month&year=$year');
+    Get.toNamed(Routes.showReports,
+        arguments: {'data': data, 'month': month, 'year': year});
   }
 
   @override

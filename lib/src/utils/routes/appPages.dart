@@ -26,6 +26,7 @@ import 'package:hbb/src/ui/view/myGoals.dart';
 import 'package:hbb/src/ui/view/profile.dart';
 import 'package:hbb/src/ui/view/progamDetail.dart';
 import 'package:hbb/src/ui/view/programData.dart';
+import 'package:hbb/src/ui/view/showAllReports.dart';
 import 'package:hbb/src/ui/view/signIn.dart';
 import 'package:hbb/src/ui/view/signUp.dart';
 import 'package:hbb/src/ui/view/splashScreen.dart';
@@ -124,6 +125,11 @@ class AppPages {
         name: Routes.contactlist,
         binding: ContactListBinding(),
         page: () => ContactListScreen(),
+        transition: Transition.noTransition),
+        GetPage(
+        name: Routes.showReports,
+        // binding: ContactListBinding(),
+        page: () => ShowReports(),
         transition: Transition.noTransition),
   ];
 }
