@@ -88,6 +88,7 @@ class ContactUsScreen extends StatelessWidget {
                   Text('I would like to recieve the newsletter')
                 ],
               ),
+             
               Container(
                 width: Get.width, // Set your desired width
                 height: Get.height * .06, // Set your desired height

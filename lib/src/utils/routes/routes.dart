@@ -19,6 +19,7 @@ static const mygoals = '/mygoals';
 static const coachnetwork = '/coachnetwork';
 static const contactlist = '/contactlist';
 static const showReports = '/showReport';
+static const adddailyexp = '/adddailyexp';
 
 
 }

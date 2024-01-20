@@ -348,30 +348,35 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                       //
-                      Column(
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            width: Get.width * 0.2,
-                            height: Get.height * 0.09,
-                            decoration: BoxDecoration(
-                              color: UIDataColors.greyColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Icon(
-                              Icons.wallet_outlined,
-                              size: Get.width * 0.07,
-                              color: Colors.red,
-                            ),
-                          ).marginOnly(right: Get.width * .01),
-                          Text(
-                            'My Income \nAnd Expenses',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: Get.width * 0.027,
-                                fontWeight: FontWeight.bold),
-                          ).marginSymmetric(vertical: Get.height * .005)
-                        ],
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed(Routes.adddailyexp);
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              width: Get.width * 0.2,
+                              height: Get.height * 0.09,
+                              decoration: BoxDecoration(
+                                color: UIDataColors.greyColor,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Icon(
+                                Icons.wallet_outlined,
+                                size: Get.width * 0.07,
+                                color: Colors.red,
+                              ),
+                            ).marginOnly(right: Get.width * .01),
+                            Text(
+                              'My Income \nAnd Expenses',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: Get.width * 0.027,
+                                  fontWeight: FontWeight.bold),
+                            ).marginSymmetric(vertical: Get.height * .005)
+                          ],
+                        ),
                       ),
                       //
                       Column(

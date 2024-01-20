@@ -417,3 +417,49 @@ class GoalsTextField extends StatelessWidget {
     ).paddingSymmetric(horizontal: Get.width * .02);
   }
 }
+
+
+// class CheckboxClass extends StatelessWidget {
+//     final value;
+//     final String text;
+  
+
+//   const CheckboxClass({
+//     super.key,
+//     required this.value,
+//     required this.text,
+   
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//                           mainAxisAlignment: MainAxisAlignment.start,
+//                           children: [
+//                             Obx(
+//                               () => Container(
+//                                 height: Get.height * .02,
+//                                 width: Get.width * .03,
+//                                 child: Checkbox(
+//                                   checkColor: Colors.white,
+//                                   side: BorderSide(
+//                                       width: 01, color: Colors.black),
+//                                   activeColor: Colors.red.shade500,
+//                                   value: value,
+//                                   onChanged: (bool? v) {
+//                                     value = v ?? false;
+//                                   },
+//                                 ),
+//                               ),
+//                             ),
+//                             Text(
+//                               text,
+//                               style: TextStyle(
+//                                   fontSize: Get.width * .03,
+//                                   fontWeight: FontWeight.bold),
+//                             ).paddingSymmetric(horizontal: Get.width * .03),
+//                           ],
+//                         ).paddingSymmetric(horizontal: Get.width * .01);
+//                         //
+//   }
+// }

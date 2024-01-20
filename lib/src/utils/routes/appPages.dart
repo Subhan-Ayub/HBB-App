@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:hbb/src/bindings/addDailyExpBinding.dart';
 import 'package:hbb/src/bindings/IncomeExpenseBinding.dart';
 import 'package:hbb/src/bindings/SupportTeamBinding.dart';
 import 'package:hbb/src/bindings/activityBinding.dart';
@@ -16,6 +17,7 @@ import 'package:hbb/src/bindings/signinBinding.dart';
 import 'package:hbb/src/bindings/signupBinding.dart';
 import 'package:hbb/src/middlewares/auth.dart';
 import 'package:hbb/src/ui/view/activity.dart';
+import 'package:hbb/src/ui/view/addDailyExp.dart';
 import 'package:hbb/src/ui/view/coachingNetwork.dart';
 import 'package:hbb/src/ui/view/contactList.dart';
 import 'package:hbb/src/ui/view/contactUs.dart';
@@ -127,10 +129,15 @@ class AppPages {
         binding: ContactListBinding(),
         page: () => ContactListScreen(),
         transition: Transition.noTransition),
-        GetPage(
+    GetPage(
         name: Routes.showReports,
         binding: ShowReportBingings(),
         page: () => ShowReports(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: Routes.adddailyexp,
+        binding: AddDailyExpBinding(),
+        page: () => AddDailyExpScreen(),
         transition: Transition.noTransition),
   ];
 }
