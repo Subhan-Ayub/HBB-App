@@ -2,6 +2,8 @@
 
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
@@ -25,13 +27,19 @@ apiFetcher(String method, url, [body]) async {
           return response;
         } else {
           // Handle an error response
+          Get.snackbar('Error',
+              'POST request failed with status: ${response.statusCode}',
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
           print('POST request failed with status: ${response.body}');
-          return response.body;
+          // return response.body;
         }
 
 // GET
       case 'Get':
-        response = await http.get(Uri.parse('http://18.232.88.126$url'), headers: {
+        response =
+            await http.get(Uri.parse('http://18.232.88.126$url'), headers: {
           'Authorization': 'Bearer ${box.read('success')}',
         });
         if (response.statusCode == 200) {
@@ -40,13 +48,19 @@ apiFetcher(String method, url, [body]) async {
           return jsonDecode(response.body);
         } else {
           // Handle an error response
+          Get.snackbar(
+              'Error', 'GET request failed with status: ${response.statusCode}',
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
           print('GET request failed with status: ${response.body}');
-          return response.body;
         }
     }
-
-   
   } catch (e) {
+    Get.snackbar('Error', '$method request failed with status: $e',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white);
     print('Error during $method request: $e');
     return e;
   }
