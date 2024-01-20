@@ -277,6 +277,9 @@ class GoalsTextField extends StatelessWidget {
   final thirdheading;
   final thirdreadonly;
   final thirdkeyboard;
+  final width;
+  final secondwidth;
+  final thirdwidth;
 
   const GoalsTextField({
     super.key,
@@ -295,6 +298,9 @@ class GoalsTextField extends StatelessWidget {
     this.thirdheading,
     this.thirdreadonly,
     this.thirdkeyboard,
+    this.width,
+    this.secondwidth,
+    this.thirdwidth,
   });
 
   @override
@@ -312,7 +318,8 @@ class GoalsTextField extends StatelessWidget {
                   fontSize: Get.width * .025, fontWeight: FontWeight.bold),
             ),
             Container(
-              width: Get.width / 4,
+              // width: Get.width / 4,
+              width: width,
               height: Get.height * .04,
               decoration: BoxDecoration(
                 border: Border.all(width: 1),
@@ -347,7 +354,7 @@ class GoalsTextField extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Container(
-                    width: Get.width / 4,
+                    width: secondwidth,
                     height: Get.height * .04,
                     decoration: BoxDecoration(
                       border: Border.all(width: 1),
@@ -382,7 +389,7 @@ class GoalsTextField extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Container(
-                    width: Get.width / 4,
+                    width: thirdwidth,
                     height: Get.height * .04,
                     decoration: BoxDecoration(
                       border: Border.all(width: 1),
