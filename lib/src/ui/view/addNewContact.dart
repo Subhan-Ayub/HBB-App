@@ -50,7 +50,7 @@ class AddNewContactScreen extends StatelessWidget {
                     ),
                     GoalsTextField(
                       width: Get.width / 1.09,
-                      controller: _.lastname,
+                      controller: _.lastnam,
                       hintText: '',
                       readonly: false,
                       heading: "Last Name:",
@@ -73,7 +73,17 @@ class AddNewContactScreen extends StatelessWidget {
                     ),
                     GoalsTextField(
                       width: Get.width / 1.09,
-                      controller: _.address,
+                      controller: _.emai,
+                      hintText: '',
+                      readonly: false,
+                      heading: "Email:",
+                    ),
+                    SizedBox(
+                      height: Get.height * .01,
+                    ),
+                    GoalsTextField(
+                      width: Get.width / 1.09,
+                      controller: _.addres,
                       hintText: '',
                       readonly: false,
                       heading: "Address:",
@@ -85,7 +95,7 @@ class AddNewContactScreen extends StatelessWidget {
                       color: UIDataColors.greyColor,
                       child: GoalsTextField(
                         width: Get.width * .4,
-                        controller: _.city,
+                        controller: _.cit,
                         hintText: '',
                         readonly: false,
                         heading: "City:",
@@ -93,11 +103,11 @@ class AddNewContactScreen extends StatelessWidget {
                         secheading: "State:",
                         sechintText: "",
                         secreadonly: false,
-                        seccontroller: _.state,
+                        seccontroller: _.stat,
                         thirdheading: 'Zip:',
                         thirdhintText: '',
                         thirdwidth: Get.width * .25,
-                        thirdcontroller: _.zip,
+                        thirdcontroller: _.zipp,
                         thirdreadonly: false,
                       ).paddingSymmetric(vertical: Get.width * .02),
                     ),
@@ -151,16 +161,44 @@ class AddNewContactScreen extends StatelessWidget {
                               value: _.refValue,
                               items: const [
                                 DropdownMenuItem<String>(
-                                  value: '1 - 3',
-                                  child: Text('1 - 3'),
+                                  value: '1',
+                                  child: Text('1'),
                                 ),
                                 DropdownMenuItem<String>(
-                                  value: '4 - 6',
-                                  child: Text('4 - 6'),
+                                  value: '2',
+                                  child: Text('2'),
                                 ),
                                 DropdownMenuItem<String>(
-                                  value: '7 - 10',
-                                  child: Text('7 - 10'),
+                                  value: '3',
+                                  child: Text('3'),
+                                ),
+                                DropdownMenuItem<String>(
+                                  value: '4',
+                                  child: Text('4'),
+                                ),
+                                DropdownMenuItem<String>(
+                                  value: '5',
+                                  child: Text('5'),
+                                ),
+                                DropdownMenuItem<String>(
+                                  value: '6',
+                                  child: Text('6'),
+                                ),
+                                DropdownMenuItem<String>(
+                                  value: '7',
+                                  child: Text('7'),
+                                ),
+                                DropdownMenuItem<String>(
+                                  value: '8',
+                                  child: Text('8'),
+                                ),
+                                DropdownMenuItem<String>(
+                                  value: '9',
+                                  child: Text('9'),
+                                ),
+                                DropdownMenuItem<String>(
+                                  value: '10',
+                                  child: Text('10'),
                                 ),
                               ],
                               onChanged: (value) {
@@ -259,17 +297,22 @@ class AddNewContactScreen extends StatelessWidget {
                                 vertical: Get.height * 0.01),
                           ),
                         ),
-                        Container(
-                          color: UIDataColors.commonColor,
-                          child: Text(
-                            'Save',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: Get.width * 0.035),
-                          ).marginSymmetric(
-                              horizontal: Get.width * 0.04,
-                              vertical: Get.height * 0.01),
-                        ).paddingSymmetric(horizontal: 10),
+                        InkWell(
+                          onTap: () {
+                            _.addContact();
+                          },
+                          child: Container(
+                            color: UIDataColors.commonColor,
+                            child: Text(
+                              'Save',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: Get.width * 0.035),
+                            ).marginSymmetric(
+                                horizontal: Get.width * 0.04,
+                                vertical: Get.height * 0.01),
+                          ).paddingSymmetric(horizontal: 10),
+                        ),
                       ],
                     )
                   ],

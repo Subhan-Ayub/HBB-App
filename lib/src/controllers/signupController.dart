@@ -150,5 +150,4 @@ class SignUpController extends GetxController {
     }
   }
 
-  see() async {}
 }
