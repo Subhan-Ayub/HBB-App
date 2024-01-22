@@ -20,6 +20,6 @@ static const coachnetwork = '/coachnetwork';
 static const contactlist = '/contactlist';
 static const showReports = '/showReport';
 static const adddailyexp = '/adddailyexp';
-
+static const addnewcontact = '/addnewcontact';
 
 }

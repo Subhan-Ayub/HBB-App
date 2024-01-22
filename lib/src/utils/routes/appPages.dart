@@ -3,6 +3,7 @@ import 'package:hbb/src/bindings/addDailyExpBinding.dart';
 import 'package:hbb/src/bindings/IncomeExpenseBinding.dart';
 import 'package:hbb/src/bindings/SupportTeamBinding.dart';
 import 'package:hbb/src/bindings/activityBinding.dart';
+import 'package:hbb/src/bindings/addNewContactBinding.dart';
 import 'package:hbb/src/bindings/coachNetworkBinding.dart';
 import 'package:hbb/src/bindings/contactListBinding.dart';
 import 'package:hbb/src/bindings/contactUsBinding.dart';
@@ -18,6 +19,7 @@ import 'package:hbb/src/bindings/signupBinding.dart';
 import 'package:hbb/src/middlewares/auth.dart';
 import 'package:hbb/src/ui/view/activity.dart';
 import 'package:hbb/src/ui/view/addDailyExp.dart';
+import 'package:hbb/src/ui/view/addNewContact.dart';
 import 'package:hbb/src/ui/view/coachingNetwork.dart';
 import 'package:hbb/src/ui/view/contactList.dart';
 import 'package:hbb/src/ui/view/contactUs.dart';
@@ -35,7 +37,6 @@ import 'package:hbb/src/ui/view/signUp.dart';
 import 'package:hbb/src/ui/view/splashScreen.dart';
 import 'package:hbb/src/ui/view/supportTeam.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
-
 import '../../bindings/editProfileBinding.dart';
 import '../../bindings/statistics&reportsBindings.dart';
 import '../../ui/view/statistics&report.dart';
@@ -138,6 +139,11 @@ class AppPages {
         name: Routes.adddailyexp,
         binding: AddDailyExpBinding(),
         page: () => AddDailyExpScreen(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: Routes.addnewcontact,
+        binding: AddNewContactBinding(),
+        page: () => AddNewContactScreen(),
         transition: Transition.noTransition),
   ];
 }

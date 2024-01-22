@@ -40,6 +40,7 @@ class ContactListScreen extends StatelessWidget {
                   ),
                 ],
               ).marginOnly(top: Get.height * .04),
+             
               Text(
                 "This is a list of your contacts. \nYou can click on a name to edit the details or initiate a Daily Exposure or a National/International Exposure for today, or click on an email address to email them directly. \nSort by Name or Relation Level by clicking on the column headers.",
                 textAlign: TextAlign.start,
@@ -112,7 +113,7 @@ class ContactListScreen extends StatelessWidget {
                   ),
                 ],
               ),
-
+              //
               Container(
                 width: Get.width,
                 // height: Get.height * .15,

@@ -350,7 +350,7 @@ class HomeScreen extends StatelessWidget {
                       //
                       InkWell(
                         onTap: () {
-                          Get.toNamed(Routes.adddailyexp);
+                          Get.toNamed(Routes.addnewcontact);
                         },
                         child: Column(
                           children: [
