@@ -18,10 +18,11 @@ apiFetcher(String method, url, [body]) async {
           Uri.parse('http://18.232.88.126$url'),
           headers: {
             'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer ${box.read('success')}',
           },
           body: jsonEncode(body),
         );
-        if (response.statusCode == 200) {
+        if (response.statusCode == 200||response.statusCode == 201) {
           // Handle a successful response
           print('POST request successful: ${response.body}');
           return response;
@@ -32,7 +33,7 @@ apiFetcher(String method, url, [body]) async {
               snackPosition: SnackPosition.BOTTOM,
               backgroundColor: Colors.red,
               colorText: Colors.white);
-          print('POST request failed with status: ${response.body}');
+          print('POST request failed with status: ${response.statusCode}');
           // return response.body;
         }
 

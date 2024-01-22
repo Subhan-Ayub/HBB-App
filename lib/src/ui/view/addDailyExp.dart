@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hbb/src/controllers/addDailyExpController.dart';
 import 'package:hbb/src/ui/widgets/commonClasses.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
+import 'package:hbb/src/utils/uidata/color.dart';
 
 class AddDailyExpScreen extends StatelessWidget {
   final AddDailyExpController _ = Get.put(AddDailyExpController());
@@ -26,13 +27,13 @@ class AddDailyExpScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Daily Exposures.    17th, 0',
+                          'Daily Exposures. ${_.formattedDate}',
                           style: TextStyle(
                               color: Colors.grey, fontSize: Get.width * .03),
                         ),
                         InkWell(
                           onTap: () {
-                            Get.offAndToNamed(Routes.home);
+                            Get.back();
                           },
                           child: Text(
                             'Close',
@@ -630,6 +631,43 @@ class AddDailyExpScreen extends StatelessWidget {
                         ),
                       ],
                     ).paddingSymmetric(horizontal: Get.width * .02),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Container(
+                            color: Colors.grey,
+                            child: Text(
+                              'Other Reports',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: Get.width * 0.035),
+                            ).marginSymmetric(
+                                horizontal: Get.width * 0.03,
+                                vertical: Get.height * 0.015),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            _.submit();
+                          },
+                          child: Container(
+                            color: UIDataColors.commonColor,
+                            child: Text(
+                              'Print',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: Get.width * 0.035),
+                            ).marginSymmetric(
+                                horizontal: Get.width * 0.03,
+                                vertical: Get.height * 0.015),
+                          ).paddingSymmetric(horizontal: 10),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),

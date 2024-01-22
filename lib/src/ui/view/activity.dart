@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hbb/src/utils/routes/routes.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:get/get.dart';
@@ -14,7 +15,6 @@ class ActivityScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: UIDataColors.greyColor,
-     
       body: body(context),
     );
   }
@@ -53,8 +53,7 @@ class ActivityScreen extends StatelessWidget {
                     onTap: () {
                       _.expandDailyExposure.value =
                           !_.expandDailyExposure.value;
-                      _.dailyExposureHeight.value =
-                          _.expandDailyExposure.value ? 200.0 : 0.0;
+                          _.dcheck();
                     },
                     child: Text(
                       'Daily Exposures',
@@ -67,39 +66,39 @@ class ActivityScreen extends StatelessWidget {
                   Spacer(),
                   IconButton(
                       onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                scrollable: true,
-                                title: Text('Event Nameee'),
-                                content: Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: TextField(
-                                    controller: _.eventController,
-                                  ),
-                                ),
-                                actions: [
-                                  InkWell(
-                                      onTap: () {
-                               
-                                        String title = _.eventController.text;
+                        Get.toNamed(Routes.adddailyexp,
+                            arguments: {'type': 1, 'date': _.pselectedDay});
 
-                                        DateTime dateTime = DateTime.parse(
-                                            _.pselectedDay.toString());
-   dateTime = dateTime.toLocal();
+                        // showDialog(
+                        //     context: context,
+                        //     builder: (context) {
+                        //       return AlertDialog(
+                        //         scrollable: true,
+                        //         title: Text('Event Nameee'),
+                        //         content: Padding(
+                        //           padding: EdgeInsets.all(8),
+                        //           child: TextField(
+                        //             controller: _.eventController,
+                        //           ),
+                        //         ),
+                        //         actions: [
+                        //           InkWell(
+                        //               onTap: () {
+                        //                 String title = _.eventController.text;
 
-                                        String formattedDate =
-                                            "${dateTime.year}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}";
+                        //                 DateTime dateTime = DateTime.parse(
+                        //                     _.pselectedDay.toString());
+                        //                 dateTime = dateTime.toLocal();
 
-                               
-                                        Navigator.of(context).pop();
-                                  
-                                      },
-                                      child: Text('submit'))
-                                ],
-                              );
-                            });
+                        //                 String formattedDate =
+                        //                     "${dateTime.year}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}";
+
+                        //                 Navigator.of(context).pop();
+                        //               },
+                        //               child: Text('submit'))
+                        //         ],
+                        //       );
+                        //     });
                       },
                       icon: Icon(
                         Icons.add,
@@ -112,12 +111,162 @@ class ActivityScreen extends StatelessWidget {
               ),
             ).paddingOnly(top: Get.height * 0.03),
             Obx(
-              () => AnimatedContainer(
-                duration: Duration(milliseconds: 500),
-                curve: Curves.easeInOut,
-                height: _.dailyExposureHeight.value,
-                color: Colors.green,
-              ),
+              () => _.expandDailyExposure.value
+                  ? AnimatedContainer(
+                      duration: Duration(milliseconds: 500),
+                      curve: Curves.easeInOut,
+                      // height: _.dailyExposureHeight.value,
+                      color: Colors.green,
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            color: Color.fromARGB(255, 241, 241, 241),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Prospect Name'),
+                                Container(
+                                    width: 110,
+                                    alignment: Alignment.center,
+                                    child: Text('{_.ek}',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis)),
+                                Icon(Icons.abc),
+                                Icon(Icons.abc),
+                                Icon(Icons.abc)
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            color: Color.fromARGB(255, 241, 241, 241),
+                            child: Row(
+                              children: [
+                                Container(width: 200, child: Text('Phone:')),
+                                Text('{_.ek}',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            color: Color.fromARGB(255, 241, 241, 241),
+                            child: Row(
+                              children: [
+                                Container(
+                                    width: 200, child: Text('Cellphone:')),
+                                Text('{_.ek}',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            color: Color.fromARGB(255, 241, 241, 241),
+                            child: Row(
+                              children: [
+                                Container(width: 200, child: Text('Email:')),
+                                Text('{_.ek}',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            color: Color.fromARGB(255, 241, 241, 241),
+                            child: Row(
+                              children: [
+                                Container(width: 200, child: Text('Address:')),
+                                Text('{_.ek}',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            color: Color.fromARGB(255, 241, 241, 241),
+                            child: Row(
+                              children: [
+                                Container(
+                                    width: 200, child: Text('State/Zip:')),
+                                Text('{_.ek}',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            color: Color.fromARGB(255, 241, 241, 241),
+                            child: Row(
+                              children: [
+                                Container(width: 200, child: Text('Notes:')),
+                                Text('{_.ek}',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            color: Color.fromARGB(255, 241, 241, 241),
+                            child: Row(
+                              children: [
+                                Container(
+                                    width: 200, child: Text('Follow Up:')),
+                                Text('{_.ek}',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            color: Color.fromARGB(255, 241, 241, 241),
+                            child: Row(
+                              children: [
+                                Container(
+                                    width: 200,
+                                    child: Text('Best Time To Call:')),
+                                Text('{_.ek}',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            color: Color.fromARGB(255, 241, 241, 241),
+                            child: Row(
+                              children: [
+                                Container(
+                                    width: 200,
+                                    child: Text('Methods of Exposures:')),
+                                Text('{_.ek}',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  : SizedBox(),
             ),
 
             // Meetings
@@ -246,7 +395,10 @@ class ActivityScreen extends StatelessWidget {
                   ),
                   Spacer(),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed(Routes.adddailyexp,
+                            arguments: {'type': 4, 'date': _.pselectedDay});
+                      },
                       icon: Icon(
                         Icons.add,
                         color: Colors.white,
@@ -261,12 +413,11 @@ class ActivityScreen extends StatelessWidget {
                 curve: Curves.easeInOut,
                 height: _.nationalExposureHeight.value,
                 color: Colors.green,
+                child: Text('data'),
               ),
             ),
-
           ],
         ).marginSymmetric(horizontal: Get.width * 0.05),
-
         body: SizedBox(
             width: Get.width,
             child: Column(
@@ -396,8 +547,7 @@ class ActivityScreen extends StatelessWidget {
                                         return Text(
                                           '●',
                                           style: TextStyle(
-                                            color: const Color.fromARGB(
-                                                255, 0, 0, 0),
+                                            color: UIDataColors.commonColor,
                                             fontSize: 8.0,
                                           ),
                                         );
