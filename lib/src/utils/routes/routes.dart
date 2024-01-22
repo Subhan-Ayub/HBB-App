@@ -21,5 +21,7 @@ static const contactlist = '/contactlist';
 static const showReports = '/showReport';
 static const adddailyexp = '/adddailyexp';
 static const addnewcontact = '/addnewcontact';
+static const weeklymeeting = '/weeklymeeting';
+static const weeklyexpense = '/weeklyexpense';
 
 }

@@ -1,0 +1,197 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hbb/src/ui/widgets/commonClasses.dart';
+import 'package:hbb/src/utils/uidata/color.dart';
+
+import '../../controllers/weeklyMeetingController.dart';
+
+class WeeklyExpenseScreen extends StatelessWidget {
+  final WeeklyMeetingController _ = Get.put(WeeklyMeetingController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+          color: Colors.white,
+          child: SafeArea(
+            child: Container(
+              height: Get.height,
+              width: Get.width,
+              // color: Colors.red,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Weekly Expense',
+                    style: TextStyle(
+                        color: Colors.grey, fontSize: Get.width * .03),
+                  ).marginSymmetric(
+                      vertical: Get.height * .02, horizontal: Get.width * 0.04),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: Get.width / 2.1,
+                        // color: Colors.red,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            GoalsTextField(
+                              controller: _.amount,
+                              hintText: "",
+                              heading: "Amount",
+                              readonly: false,
+                              width: Get.width * .4,
+                            ),
+                            SizedBox(
+                              height: Get.height * .02,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Relation Level:",
+                                  style: TextStyle(
+                                      fontSize: Get.width * .025,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Container(
+                                  width: Get.width * .4,
+                                  height: Get.height * .04,
+                                  child: DropdownButtonFormField(
+                                      style: TextStyle(
+                                        fontSize: Get.width * .025,
+                                        color: Colors.black,
+                                      ),
+                                      decoration: InputDecoration(
+                                        hintText: "Select",
+                                        hintStyle: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: Get.width * .025,
+                                        ),
+                                        contentPadding: EdgeInsets.symmetric(
+                                            vertical: Get.height * .01,
+                                            horizontal: 10),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          borderSide: BorderSide(
+                                              color: Colors.black, width: 1),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          borderSide: BorderSide(
+                                              color: Colors.black, width: 1),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          gapPadding: 0.0,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          borderSide: BorderSide(
+                                              color: Colors.black, width: 1),
+                                        ),
+                                      ),
+                                      iconEnabledColor: Colors.black,
+                                      iconSize: Get.width * .04,
+                                      value: _.refValue,
+                                      items: const [
+                                        DropdownMenuItem<String>(
+                                          value: '1 - 3',
+                                          child: Text('1 - 3'),
+                                        ),
+                                        DropdownMenuItem<String>(
+                                          value: '4 - 6',
+                                          child: Text('4 - 6'),
+                                        ),
+                                        DropdownMenuItem<String>(
+                                          value: '7 - 10',
+                                          child: Text('7 - 10'),
+                                        ),
+                                      ],
+                                      onChanged: (value) {
+                                        _.refValue = value;
+                                      }),
+                                ),
+                              ],
+                            ).marginSymmetric(horizontal: Get.width * .025),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: Get.width / 2.1,
+                        // height: Get.height * .8,
+                        // color: const Color.fromARGB(255, 54, 244, 149),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Expense Description',
+                              style: TextStyle(
+                                  fontSize: Get.width * .03,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: Get.height * .01,
+                            ),
+                            Text(
+                              'Select an Expense Type from dropdown on the left side of the page',
+                              style: TextStyle(
+                                  fontSize: Get.width * .03,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            SizedBox(
+                              height: Get.height * .01,
+                            ),
+                            Text(
+                              'A brief Description will appear in this area',
+                              style: TextStyle(
+                                  fontSize: Get.width * .03,
+                                  fontWeight: FontWeight.w400),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ).marginSymmetric(vertical: Get.height * 0.02),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Container(
+                          color: Colors.grey,
+                          child: Text(
+                            'Close',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: Get.width * 0.035),
+                          ).marginSymmetric(
+                              horizontal: Get.width * 0.04,
+                              vertical: Get.height * 0.01),
+                        ),
+                      ),
+                      Container(
+                        color: UIDataColors.commonColor,
+                        child: Text(
+                          'Save',
+                          style: TextStyle(
+                              color: Colors.white, fontSize: Get.width * 0.035),
+                        ).marginSymmetric(
+                            horizontal: Get.width * 0.04,
+                            vertical: Get.height * 0.01),
+                      ).paddingSymmetric(horizontal: 10),
+                    ],
+                  ).marginSymmetric(vertical: Get.height * 0.03),
+                ],
+              ),
+            ).marginSymmetric(horizontal: Get.width * 0.02),
+          )),
+    );
+  }
+}
+
+//

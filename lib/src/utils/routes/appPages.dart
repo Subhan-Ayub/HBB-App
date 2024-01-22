@@ -16,6 +16,7 @@ import 'package:hbb/src/bindings/programDetailBinding.dart';
 import 'package:hbb/src/bindings/showReportBindings.dart';
 import 'package:hbb/src/bindings/signinBinding.dart';
 import 'package:hbb/src/bindings/signupBinding.dart';
+import 'package:hbb/src/bindings/weeklyMeetingBinding.dart';
 import 'package:hbb/src/middlewares/auth.dart';
 import 'package:hbb/src/ui/view/activity.dart';
 import 'package:hbb/src/ui/view/addDailyExp.dart';
@@ -36,6 +37,8 @@ import 'package:hbb/src/ui/view/signIn.dart';
 import 'package:hbb/src/ui/view/signUp.dart';
 import 'package:hbb/src/ui/view/splashScreen.dart';
 import 'package:hbb/src/ui/view/supportTeam.dart';
+import 'package:hbb/src/ui/view/weeklyExpense.dart';
+import 'package:hbb/src/ui/view/weeklyMeeting.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
 import '../../bindings/editProfileBinding.dart';
 import '../../bindings/statistics&reportsBindings.dart';
@@ -144,6 +147,16 @@ class AppPages {
         name: Routes.addnewcontact,
         binding: AddNewContactBinding(),
         page: () => AddNewContactScreen(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: Routes.weeklymeeting,
+        binding: WeeklyMeetingBinding(),
+        page: () => WeeklyMeetingScreen(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: Routes.weeklyexpense,
+        binding: WeeklyMeetingBinding(),
+        page: () => WeeklyExpenseScreen(),
         transition: Transition.noTransition),
   ];
 }
