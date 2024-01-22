@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:hbb/src/controllers/incomeExpenseController.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
 
-
 class IncomeExpenseScreen extends StatelessWidget {
   final IncomeExpenseController _ = Get.put(IncomeExpenseController());
 
@@ -217,7 +216,7 @@ class IncomeExpenseScreen extends StatelessWidget {
                   ],
                 ),
               ),
-       
+
               Row(
                 children: [
                   Stack(
@@ -270,6 +269,21 @@ class IncomeExpenseScreen extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                  Spacer(),
+                  SizedBox(
+                    width: Get.width / 1 / 4,
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Text(
+                        'Close',
+                        textAlign: TextAlign.end,
+                        style: TextStyle(
+                            color: Colors.red, fontSize: Get.width * .035),
+                      ),
+                    ),
                   ),
                 ],
               ).marginSymmetric(vertical: Get.height * .02),

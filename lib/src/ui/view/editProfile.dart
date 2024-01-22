@@ -406,7 +406,7 @@ class EditProfileScreen extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Get.offAndToNamed(Routes.profile);
+                              Get.back();
                             },
                             child: Container(
                               decoration: BoxDecoration(

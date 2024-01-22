@@ -28,19 +28,24 @@ class ContactListScreen extends StatelessWidget {
                     style: TextStyle(
                         fontSize: Get.width * .05, fontWeight: FontWeight.bold),
                   ),
-                  Text(
-                    "Click here to add new contact",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        fontSize: Get.width * .025,
-                        color: Colors.red,
-                        decoration: TextDecoration.underline,
-                        decorationColor: Colors.red,
-                        fontWeight: FontWeight.bold),
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.addnewcontact);
+                    },
+                    child: Text(
+                      "Click here to add new contact",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                          fontSize: Get.width * .025,
+                          color: Colors.red,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.red,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               ).marginOnly(top: Get.height * .04),
-             
+
               Text(
                 "This is a list of your contacts. \nYou can click on a name to edit the details or initiate a Daily Exposure or a National/International Exposure for today, or click on an email address to email them directly. \nSort by Name or Relation Level by clicking on the column headers.",
                 textAlign: TextAlign.start,
@@ -767,7 +772,7 @@ class ContactListScreen extends StatelessWidget {
                     width: Get.width / 1 / 4,
                     child: GestureDetector(
                       onTap: () {
-                        Get.offAndToNamed(Routes.programdata);
+                        Get.back();
                       },
                       child: Text(
                         'Close',

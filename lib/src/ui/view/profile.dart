@@ -109,7 +109,6 @@ class ProfileScreen extends StatelessWidget {
                           InkWell(
                             onTap: () {
                               Get.toNamed(Routes.programdetail);
-                              // print("ok");
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

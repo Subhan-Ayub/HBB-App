@@ -426,7 +426,7 @@ class ProgramDetailScreen extends StatelessWidget {
                       width: Get.width / 1 / 4,
                       child: GestureDetector(
                         onTap: () {
-                          Get.offAndToNamed(Routes.profile);
+                          Get.back();
                         },
                         child: Text(
                           'Close',

@@ -60,19 +60,24 @@ class ProgramDataScreen extends StatelessWidget {
                 ).marginSymmetric(vertical: Get.height * .01),
               ),
               InkWell(
-                onTap: () {
-                  Get.toNamed(Routes.mygoals);
-                },
-                child: Text(
-                  "\u2022 My Goals ",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: Get.width * .035,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.red,
+                  onTap: () {
+                    // if (goalsController.loader.value == true) {
+                    // }
+                    Get.toNamed(Routes.mygoals);
+                  },
+                  child:
+                      //  goalsController.loader.value ?
+                      Text(
+                    "\u2022 My Goals ",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: Get.width * .035,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.red,
+                    ),
+                  )
+                  // : CircularProgressIndicator(),
                   ),
-                ),
-              ),
               InkWell(
                 onTap: () {
                   Get.toNamed(Routes.incomeexpense);
@@ -108,7 +113,7 @@ class ProgramDataScreen extends StatelessWidget {
                     width: Get.width / 1 / 4,
                     child: GestureDetector(
                       onTap: () {
-                        Get.offAndToNamed(Routes.profile);
+                        Get.back();
                       },
                       child: Text(
                         'Close',

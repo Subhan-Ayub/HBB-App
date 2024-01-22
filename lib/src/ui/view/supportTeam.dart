@@ -627,7 +627,7 @@ class SupportTeamScreen extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.offAndToNamed(Routes.programdata);
+                      Get.back();
                     },
                     child: Container(
                       decoration: BoxDecoration(
