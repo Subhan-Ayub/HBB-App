@@ -39,7 +39,7 @@ class AddNewContactScreen extends StatelessWidget {
                       color: UIDataColors.greyColor,
                       child: GoalsTextField(
                         width: Get.width / 1.09,
-                        controller: _.prospectsName,
+                        controller: _.name,
                         hintText: '',
                         readonly: false,
                         heading: "Name:",
@@ -50,7 +50,7 @@ class AddNewContactScreen extends StatelessWidget {
                     ),
                     GoalsTextField(
                       width: Get.width / 1.09,
-                      controller: _.phoneNo,
+                      controller: _.lastname,
                       hintText: '',
                       readonly: false,
                       heading: "Last Name:",
@@ -62,7 +62,7 @@ class AddNewContactScreen extends StatelessWidget {
                       color: UIDataColors.greyColor,
                       child: GoalsTextField(
                         width: Get.width / 1.09,
-                        controller: _.cellPhone,
+                        controller: _.phoneNo,
                         hintText: '',
                         readonly: false,
                         heading: "Phone:",
@@ -73,7 +73,7 @@ class AddNewContactScreen extends StatelessWidget {
                     ),
                     GoalsTextField(
                       width: Get.width / 1.09,
-                      controller: _.email,
+                      controller: _.address,
                       hintText: '',
                       readonly: false,
                       heading: "Address:",
