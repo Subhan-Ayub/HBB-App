@@ -63,7 +63,17 @@ class ActivityController extends GetxController {
   var filteredDataOfD = [];
   var filteredidOfD = [];
 
+  var dailyprintt = [].obs;
+  var natinalprint = [].obs;
+
+
   dcheck() async {
+    filteredDataOfD = [];
+    filteredidOfD = [];
+    dailyprintt.value = [];
+    natinalprint.value=[];
+    expandDailyExposure.value = false;
+    expandNationalExposure.value=false;
     print(data);
     DateTime dateTime = DateTime.parse(pselectedDay.toString());
 
@@ -79,13 +89,34 @@ class ActivityController extends GetxController {
       }
     }
 
-    print(filteredDataOfD);
+    // print(filteredDataOfD);
 
     for (var i = 0; i < filteredDataOfD.length; i++) {
       var ids = await apiFetcher(
           'Get', '/api/daily-exposure/${filteredDataOfD[i]['id']}');
       filteredidOfD.add(ids['data']);
     }
-      print(filteredidOfD);
+    // print(filteredidOfD);
+
+    for (var i = 0; i < filteredidOfD.length; i++) {
+      if (filteredidOfD[i]['activitytype'] == 1) {
+        dailyprintt.value.add(filteredidOfD[i]);
+
+        expandDailyExposure.value = true;
+      }
+    }
+     for (var i = 0; i < filteredidOfD.length; i++) {
+      if (filteredidOfD[i]['activitytype'] == 4) {
+        natinalprint.value.add(filteredidOfD[i]);
+
+        expandNationalExposure.value = true;
+      }
+    }
+    print('eeeeee ${natinalprint.length}');
+    // if (dailyprintt != []) {
+    //   print('ddddd');
+    // }
   }
+
+  dailyprint() {}
 }
