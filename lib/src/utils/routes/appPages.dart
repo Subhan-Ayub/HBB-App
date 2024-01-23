@@ -5,6 +5,7 @@ import 'package:hbb/src/bindings/SupportTeamBinding.dart';
 import 'package:hbb/src/bindings/activityBinding.dart';
 import 'package:hbb/src/bindings/addNewContactBinding.dart';
 import 'package:hbb/src/bindings/coachNetworkBinding.dart';
+import 'package:hbb/src/bindings/conferenceCallBinding.dart';
 import 'package:hbb/src/bindings/contactListBinding.dart';
 import 'package:hbb/src/bindings/contactUsBinding.dart';
 import 'package:hbb/src/bindings/homeBinding.dart';
@@ -18,12 +19,15 @@ import 'package:hbb/src/bindings/signinBinding.dart';
 import 'package:hbb/src/bindings/signupBinding.dart';
 import 'package:hbb/src/bindings/weeklyMeetingBinding.dart';
 import 'package:hbb/src/middlewares/auth.dart';
+import 'package:hbb/src/ui/view/ConferenceAddExpense.dart';
 import 'package:hbb/src/ui/view/activity.dart';
 import 'package:hbb/src/ui/view/addDailyExp.dart';
 import 'package:hbb/src/ui/view/addNewContact.dart';
 import 'package:hbb/src/ui/view/coachingNetwork.dart';
+import 'package:hbb/src/ui/view/conferenceCall.dart';
 import 'package:hbb/src/ui/view/contactList.dart';
 import 'package:hbb/src/ui/view/contactUs.dart';
+import 'package:hbb/src/ui/view/dailyAddExpense.dart';
 import 'package:hbb/src/ui/view/editProfile.dart';
 import 'package:hbb/src/ui/view/home.dart';
 import 'package:hbb/src/ui/view/incomeExpense.dart';
@@ -37,7 +41,7 @@ import 'package:hbb/src/ui/view/signIn.dart';
 import 'package:hbb/src/ui/view/signUp.dart';
 import 'package:hbb/src/ui/view/splashScreen.dart';
 import 'package:hbb/src/ui/view/supportTeam.dart';
-import 'package:hbb/src/ui/view/weeklyExpense.dart';
+import 'package:hbb/src/ui/view/weeklyAddExpense.dart';
 import 'package:hbb/src/ui/view/weeklyMeeting.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
 import '../../bindings/editProfileBinding.dart';
@@ -154,9 +158,24 @@ class AppPages {
         page: () => WeeklyMeetingScreen(),
         transition: Transition.noTransition),
     GetPage(
-        name: Routes.weeklyexpense,
+        name: Routes.weeklyaddexpense,
         binding: WeeklyMeetingBinding(),
         page: () => WeeklyExpenseScreen(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: Routes.dailyaddexpense,
+        binding: AddDailyExpBinding(),
+        page: () => DailyAddExpenseScreen(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: Routes.conferencecall,
+        binding: ConferenceCallBinding(),
+        page: () => ConferenceCallScreen(),
+        transition: Transition.noTransition),
+         GetPage(
+        name: Routes.conferenceaddexpense,
+        binding: ConferenceCallBinding(),
+        page: () => ConferenceAddExpenseScreen(),
         transition: Transition.noTransition),
   ];
 }

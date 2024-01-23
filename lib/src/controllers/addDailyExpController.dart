@@ -17,6 +17,8 @@ class AddDailyExpController extends GetxController {
   var checkbox11 = false.obs;
   var checkbox12 = false.obs;
   var checkbox13 = false.obs;
+  dynamic refValue;
+  TextEditingController amount = TextEditingController();
   TextEditingController prospectsName = TextEditingController();
   TextEditingController phoneNo = TextEditingController();
   TextEditingController cellPhone = TextEditingController();

@@ -22,6 +22,9 @@ static const showReports = '/showReport';
 static const adddailyexp = '/adddailyexp';
 static const addnewcontact = '/addnewcontact';
 static const weeklymeeting = '/weeklymeeting';
-static const weeklyexpense = '/weeklyexpense';
+static const weeklyaddexpense = '/weeklyexpense';
+static const dailyaddexpense = '/dailyaddexpense';
+static const conferencecall = '/conferencecall';
+static const conferenceaddexpense = '/conferenceaddexpense';
 
 }

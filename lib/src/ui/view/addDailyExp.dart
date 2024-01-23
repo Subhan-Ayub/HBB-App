@@ -636,37 +636,36 @@ class AddDailyExpScreen extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                            Get.back();
+                            Get.toNamed(Routes.dailyaddexpense);
                           },
                           child: Container(
                             color: Colors.grey,
                             child: Text(
-                              'Other Reports',
+                              'Expense',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: Get.width * 0.035),
                             ).marginSymmetric(
-                                horizontal: Get.width * 0.03,
-                                vertical: Get.height * 0.015),
+                                horizontal: Get.width * 0.04,
+                                vertical: Get.height * 0.01),
                           ),
                         ),
-                        InkWell(
-                          onTap: () {
-                            _.submit();
-                          },
-                          child: Container(
-                            color: UIDataColors.commonColor,
-                            child: Text(
-                              'Print',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: Get.width * 0.035),
-                            ).marginSymmetric(
-                                horizontal: Get.width * 0.03,
-                                vertical: Get.height * 0.015),
-                          ).paddingSymmetric(horizontal: 10),
-                        ),
+                        Container(
+                          color: UIDataColors.commonColor,
+                          child: Text(
+                            'Save',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: Get.width * 0.035),
+                          ).marginSymmetric(
+                              horizontal: Get.width * 0.04,
+                              vertical: Get.height * 0.01),
+                        ).paddingSymmetric(horizontal: 10),
                       ],
+                    ),
+                   
+                    SizedBox(
+                      height: Get.height * .02,
                     )
                   ],
                 ),

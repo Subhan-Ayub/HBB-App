@@ -98,7 +98,7 @@ class WeeklyMeetingScreen extends StatelessWidget {
                     SizedBox(
                       height: Get.height * .01,
                     ),
-                   
+
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -332,12 +332,13 @@ class WeeklyMeetingScreen extends StatelessWidget {
                         SizedBox(
                           height: Get.height * .04,
                         ),
+                        
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             InkWell(
                               onTap: () {
-                                Get.toNamed(Routes.weeklyexpense);
+                                Get.toNamed(Routes.weeklyaddexpense);
                               },
                               child: Container(
                                 color: Colors.grey,
@@ -364,6 +365,7 @@ class WeeklyMeetingScreen extends StatelessWidget {
                             ).paddingSymmetric(horizontal: 10),
                           ],
                         )
+                     
                       ],
                     ).paddingSymmetric(horizontal: Get.width * .02),
                   ],

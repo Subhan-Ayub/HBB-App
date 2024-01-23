@@ -27,11 +27,11 @@ class WeeklyExpenseScreen extends StatelessWidget {
                         color: Colors.grey, fontSize: Get.width * .03),
                   ).marginSymmetric(
                       vertical: Get.height * .02, horizontal: Get.width * 0.04),
-                  Row(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: Get.width / 2.1,
+                        width: Get.width,
                         // color: Colors.red,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -42,7 +42,7 @@ class WeeklyExpenseScreen extends StatelessWidget {
                               hintText: "",
                               heading: "Amount",
                               readonly: false,
-                              width: Get.width * .4,
+                              width: Get.width / 1.09,
                             ),
                             SizedBox(
                               height: Get.height * .02,
@@ -57,7 +57,7 @@ class WeeklyExpenseScreen extends StatelessWidget {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Container(
-                                  width: Get.width * .4,
+                                  width: Get.width / 1.09,
                                   height: Get.height * .04,
                                   child: DropdownButtonFormField(
                                       style: TextStyle(
@@ -98,16 +98,41 @@ class WeeklyExpenseScreen extends StatelessWidget {
                                       value: _.refValue,
                                       items: const [
                                         DropdownMenuItem<String>(
-                                          value: '1 - 3',
-                                          child: Text('1 - 3'),
+                                          value: 'Bus And Taxes Fare',
+                                          child: Text('Bus And Taxes Fare'),
                                         ),
                                         DropdownMenuItem<String>(
-                                          value: '4 - 6',
-                                          child: Text('4 - 6'),
+                                          value: 'Busniess Oppurtunity Meeting',
+                                          child: Text(
+                                              'Busniess Oppurtunity Meeting'),
                                         ),
                                         DropdownMenuItem<String>(
-                                          value: '7 - 10',
-                                          child: Text('7 - 10'),
+                                          value: 'Entertainment',
+                                          child: Text('Entertainment'),
+                                        ),
+                                        DropdownMenuItem<String>(
+                                          value: 'Lodging',
+                                          child: Text('Lodging'),
+                                        ),
+                                        DropdownMenuItem<String>(
+                                          value: 'Meals',
+                                          child: Text('Meals'),
+                                        ),
+                                        DropdownMenuItem<String>(
+                                          value: 'Mileage',
+                                          child: Text('Mileage'),
+                                        ),
+                                        DropdownMenuItem<String>(
+                                          value: 'Parking',
+                                          child: Text('Parking'),
+                                        ),
+                                        DropdownMenuItem<String>(
+                                          value: 'Toll',
+                                          child: Text('Toll'),
+                                        ),
+                                        DropdownMenuItem<String>(
+                                          value: 'Other',
+                                          child: Text('Other'),
                                         ),
                                       ],
                                       onChanged: (value) {
@@ -120,7 +145,7 @@ class WeeklyExpenseScreen extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        width: Get.width / 2.1,
+                        width: Get.width,
                         // height: Get.height * .8,
                         // color: const Color.fromARGB(255, 54, 244, 149),
                         child: Column(
@@ -136,7 +161,7 @@ class WeeklyExpenseScreen extends StatelessWidget {
                               height: Get.height * .01,
                             ),
                             Text(
-                              'Select an Expense Type from dropdown on the left side of the page',
+                              'Select an Expense Type from dropdown on the top side of the page',
                               style: TextStyle(
                                   fontSize: Get.width * .03,
                                   fontWeight: FontWeight.w400),
@@ -152,9 +177,11 @@ class WeeklyExpenseScreen extends StatelessWidget {
                             )
                           ],
                         ),
-                      )
+                      ).marginSymmetric(
+                          horizontal: Get.width * .025,
+                          vertical: Get.height * 0.025)
                     ],
-                  ).marginSymmetric(vertical: Get.height * 0.02),
+                  ).marginSymmetric(vertical: Get.height * 0.01),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
