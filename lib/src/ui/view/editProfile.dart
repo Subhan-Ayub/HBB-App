@@ -51,7 +51,7 @@ class EditProfileScreen extends StatelessWidget {
                       fontSize: Get.width * .04, fontWeight: FontWeight.bold),
                 ).marginOnly(top: Get.height * .02),
                 Text(
-                  "Itunuoluwa@petra.africa",
+                  "${box.read('uEmail')}",
                   style: TextStyle(
                     fontSize: Get.width * .035,
                     color: Colors.grey,
@@ -85,7 +85,7 @@ class EditProfileScreen extends StatelessWidget {
                           ),
                           SizedBox(
                             width: Get.width / 1 / 3,
-                            child: Text("Joseph Silich",
+                            child: Text("${box.read('ufullName')}",
                                 textAlign: TextAlign.start,
                                 style: UIDataTextStyles.commontext),
                           ),
@@ -93,7 +93,7 @@ class EditProfileScreen extends StatelessWidget {
                             width: Get.width / 1 / 4,
                             child: GestureDetector(
                               onTap: () {
-                                print("ok");
+                                // print("ok");
                               },
                               child: Text(
                                 'edit',
@@ -128,7 +128,7 @@ class EditProfileScreen extends StatelessWidget {
                           SizedBox(
                             width: Get.width / 1 / 3,
                             child: Text(
-                              "JS635",
+                              "${box.read('uId')}",
                               textAlign: TextAlign.start,
                               style: UIDataTextStyles.commontext,
                             ),
@@ -152,8 +152,7 @@ class EditProfileScreen extends StatelessWidget {
                           ),
                           SizedBox(
                             width: Get.width / 1 / 3,
-                            child: Text(
-                                "109 saddlebrook drive Harrison City, PA 15636",
+                            child: Text("${box.read('uAddress')}",
                                 textAlign: TextAlign.start,
                                 style: UIDataTextStyles.commontext),
                           ),
@@ -161,7 +160,7 @@ class EditProfileScreen extends StatelessWidget {
                             width: Get.width / 1 / 4,
                             child: GestureDetector(
                               onTap: () {
-                                print("ok");
+                                // print("ok");
                               },
                               child: Text(
                                 'edit',
@@ -196,7 +195,7 @@ class EditProfileScreen extends StatelessWidget {
                           SizedBox(
                             width: Get.width / 1 / 3,
                             child: Text(
-                              "jmsprestations@gmail.com",
+                              "${box.read('uEmail')}",
                               textAlign: TextAlign.start,
                               style: UIDataTextStyles.commontext,
                             ),
@@ -205,7 +204,7 @@ class EditProfileScreen extends StatelessWidget {
                             width: Get.width / 1 / 4,
                             child: GestureDetector(
                               onTap: () {
-                                print("ok");
+                                // print("ok");
                               },
                               child: Text(
                                 'edit',
@@ -232,7 +231,8 @@ class EditProfileScreen extends StatelessWidget {
                           ),
                           SizedBox(
                             width: Get.width / 1 / 3,
-                            child: Text("(724) 396-8847",
+                            child: Text(
+                                "(${box.read('uAcode')}) ${box.read('uPhone1')}-${box.read('uPhone2')}",
                                 textAlign: TextAlign.start,
                                 style: UIDataTextStyles.commontext),
                           ),
@@ -275,7 +275,7 @@ class EditProfileScreen extends StatelessWidget {
                           SizedBox(
                             width: Get.width / 1 / 3,
                             child: Text(
-                              "(724) 396-8847",
+                              "(${box.read('uAcode')}) ${box.read('uPhone1')}-${box.read('uPhone2')}",
                               textAlign: TextAlign.start,
                               style: UIDataTextStyles.commontext,
                             ),
@@ -311,7 +311,7 @@ class EditProfileScreen extends StatelessWidget {
                           ),
                           SizedBox(
                             width: Get.width / 1 / 3,
-                            child: Text("Joeflow",
+                            child: Text("${box.read('uname')}",
                                 textAlign: TextAlign.start,
                                 style: UIDataTextStyles.commontext),
                           ),
@@ -335,49 +335,49 @@ class EditProfileScreen extends StatelessWidget {
                             horizontal: Get.width * .01),
                       ),
                       //
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.symmetric(
-                              horizontal: BorderSide(
-                            color: Color.fromARGB(102, 158, 158, 158),
-                            width: 1.0,
-                          )),
-                        ),
-                        child: Row(children: [
-                          Container(
-                            width: Get.width / 1 / 4,
-                            child: Text(
-                              "Site Password:",
-                              style: UIDataTextStyles.commontext,
-                            ),
-                          ),
-                          SizedBox(
-                            width: Get.width / 1 / 3,
-                            child: Text(
-                              "(Don't Shown)",
-                              textAlign: TextAlign.start,
-                              style: UIDataTextStyles.commontext,
-                            ),
-                          ),
-                          SizedBox(
-                            width: Get.width / 1 / 4,
-                            child: GestureDetector(
-                              onTap: () {
-                                print("ok");
-                              },
-                              child: Text(
-                                'Change',
-                                textAlign: TextAlign.end,
-                                style: TextStyle(
-                                    color: Colors.red,
-                                    fontSize: Get.width * .027),
-                              ),
-                            ),
-                          ),
-                        ]).paddingSymmetric(
-                            horizontal: Get.width * .01,
-                            vertical: Get.height * .015),
-                      ),
+                      // Container(
+                      //   decoration: BoxDecoration(
+                      //     border: Border.symmetric(
+                      //         horizontal: BorderSide(
+                      //       color: Color.fromARGB(102, 158, 158, 158),
+                      //       width: 1.0,
+                      //     )),
+                      //   ),
+                      //   child: Row(children: [
+                      //     Container(
+                      //       width: Get.width / 1 / 4,
+                      //       child: Text(
+                      //         "Site Password:",
+                      //         style: UIDataTextStyles.commontext,
+                      //       ),
+                      //     ),
+                      //     SizedBox(
+                      //       width: Get.width / 1 / 3,
+                      //       child: Text(
+                      //         "(Don't Shown)",
+                      //         textAlign: TextAlign.start,
+                      //         style: UIDataTextStyles.commontext,
+                      //       ),
+                      //     ),
+                      //     SizedBox(
+                      //       width: Get.width / 1 / 4,
+                      //       child: GestureDetector(
+                      //         onTap: () {
+                      //           print("ok");
+                      //         },
+                      //         child: Text(
+                      //           'Change',
+                      //           textAlign: TextAlign.end,
+                      //           style: TextStyle(
+                      //               color: Colors.red,
+                      //               fontSize: Get.width * .027),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ]).paddingSymmetric(
+                      //       horizontal: Get.width * .01,
+                      //       vertical: Get.height * .015),
+                      // ),
                       //
                       Container(
                         color: UIDataColors.greyColor,

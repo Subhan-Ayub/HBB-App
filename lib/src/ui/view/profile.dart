@@ -78,11 +78,11 @@ class ProfileScreen extends StatelessWidget {
                                 fontSize: Get.width * .03,
                                 fontWeight: FontWeight.bold),
                           ),
-                          Text('@Itunuoluwa',
-                              style: TextStyle(
-                                fontSize: Get.width * .03,
-                                color: UIDataColors.greyColor,
-                              )),
+                          // Text('@Itunuoluwa',
+                          //     style: TextStyle(
+                          //       fontSize: Get.width * .03,
+                          //       color: UIDataColors.greyColor,
+                          //     )),
                         ],
                       ),
                       Spacer(),

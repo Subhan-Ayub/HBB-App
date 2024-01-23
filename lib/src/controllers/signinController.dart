@@ -40,6 +40,13 @@ class SignInController extends GetxController {
         loaderCheck.value = false;
         box.write('success', responseData['token']['accessToken']);
         box.write('uname', responseData['user']['uname']);
+        box.write('ufullName', responseData['user']['fullName']);
+        box.write('uId', responseData['user']['id']);
+        box.write('uAddress', responseData['user']['address']);
+        box.write('uEmail', responseData['user']['email']);
+        box.write('uAcode', responseData['user']['phone1']);
+        box.write('uPhone1', responseData['user']['phone2']);
+        box.write('uPhone2', responseData['user']['phone3']);
       } else {
         loaderCheck.value = false;
 

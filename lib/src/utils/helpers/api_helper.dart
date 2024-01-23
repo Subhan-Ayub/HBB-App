@@ -105,7 +105,7 @@ apiFetcher(String method, url, [body]) async {
         }
     }
   } catch (e) {
-    Get.snackbar('Error', '$method request failed with status: $e',
+    Get.snackbar('Error', 'Check Your Internet Connection and try again',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
         colorText: Colors.white);
