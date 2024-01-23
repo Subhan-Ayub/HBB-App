@@ -59,9 +59,8 @@ class ActivityScreen extends StatelessWidget {
                           InkWell(
                             onTap: () {
                               if (_.dailyprintt.isNotEmpty) {
-                                
-                              _.expandDailyExposure.value =
-                                  !_.expandDailyExposure.value;
+                                _.expandDailyExposure.value =
+                                    !_.expandDailyExposure.value;
                               }
                               // _.dcheck();
                             },
@@ -296,7 +295,8 @@ class ActivityScreen extends StatelessWidget {
                                                     width: 200,
                                                     child: Text(
                                                         'Best Time To Call:')),
-                                                Text('{_.ek}',
+                                                Text(
+                                                    '${_.dailyprintt[i]['calltime']}',
                                                     maxLines: 1,
                                                     overflow:
                                                         TextOverflow.ellipsis),
@@ -314,18 +314,23 @@ class ActivityScreen extends StatelessWidget {
                                                     width: 200,
                                                     child: Text(
                                                         'Methods of Exposures:')),
-                                                Text('{_.ek}',
-                                                    maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis),
+                                                Container(
+                                                  width: 100,
+                                                  child: Text(
+                                                      '${_.dailyprintt[i]['exposuretypestring']}',
+                                                      maxLines: 1,
+                                                      overflow:
+                                                          TextOverflow.ellipsis),
+                                                ),
                                               ],
                                             ),
                                           ),
                                           Container(
-                                            padding: EdgeInsets.symmetric(horizontal: 10),
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 10),
                                               color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Divider())
+                                                  255, 241, 241, 241),
+                                              child: Divider())
                                         ],
                                       ),
                                     );
@@ -366,7 +371,9 @@ class ActivityScreen extends StatelessWidget {
                           ),
                           Spacer(),
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.toNamed(Routes.weeklymeeting);
+                              },
                               icon: Icon(
                                 Icons.add,
                                 color: Colors.white,
@@ -456,10 +463,8 @@ class ActivityScreen extends StatelessWidget {
                           InkWell(
                             onTap: () {
                               if (_.natinalprint.isNotEmpty) {
-                                
-                              _.expandNationalExposure.value =
-                                  !_.expandNationalExposure.value;
-                            
+                                _.expandNationalExposure.value =
+                                    !_.expandNationalExposure.value;
                               }
                             },
                             child: Text(
@@ -659,7 +664,8 @@ class ActivityScreen extends StatelessWidget {
                                                   width: 200,
                                                   child: Text(
                                                       'Best Time To Call:')),
-                                              Text('{_.ek}',
+                                              Text(
+                                                  '${_.natinalprint[i]['calltime']}',
                                                   maxLines: 1,
                                                   overflow:
                                                       TextOverflow.ellipsis),
@@ -677,15 +683,17 @@ class ActivityScreen extends StatelessWidget {
                                                   width: 200,
                                                   child: Text(
                                                       'Methods of Exposures:')),
-                                              Text('{_.ek}',
+                                              Text(
+                                                  '${_.natinalprint[i]['exposuretypestring']}',
                                                   maxLines: 1,
                                                   overflow:
                                                       TextOverflow.ellipsis),
-                                                       Container(
-                                            padding: EdgeInsets.symmetric(horizontal: 10),
-                                              color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Divider())
+                                              Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10),
+                                                  color: Color.fromARGB(
+                                                      255, 241, 241, 241),
+                                                  child: Divider())
                                             ],
                                           ),
                                         ),

@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:hbb/src/controllers/activityController.dart';
 import 'package:hbb/src/utils/helpers/api_helper.dart';
 
 class AddDailyExpController extends GetxController {
+  ActivityController ac = Get.find<ActivityController>();
   var arg = Get.arguments;
   var checkbox1 = false.obs;
   var checkbox2 = false.obs;
@@ -38,33 +40,44 @@ class AddDailyExpController extends GetxController {
 
     dateTime = dateTime.toLocal();
 
-     formattedDate =
+    formattedDate =
         "${dateTime.year}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}";
-
-    print(formattedDate);
   }
 
-  submit()async {
+  submit() async {
     print(arg['date'].runtimeType);
 
-
     var dat = {
-      "prospectname": "ooo",
+      "prospectname": prospectsName.text,
       "activitytype": arg['type'],
       "origdate": formattedDate.toString(),
-      "phone": "0123456789",
-      "cellphone": "9876543210",
-      "email": "test@test.com",
-      "address": "Test Address",
-      "city": "Test City",
-      "state": "PA",
-      "zip": "12345",
-      "formnotes": "Test Notes",
-      "calltime": "12:00pm",
+      "phone": phoneNo.text,
+      "cellphone": cellPhone.text,
+      "email": email.text,
+      "address": address.text,
+      "city": city.text,
+      "state": state.text,
+      "zip": zip.text,
+      "formnotes": notes.text,
+      "calltime": timeCall.text,
       "hiddendate": "2023-11-28",
-      "exposuretypestring": "none"
+      // ignore: prefer_interpolation_to_compose_strings
+      "exposuretypestring": "${checkbox1.value ? 'threeway,' : ''}" +
+          "${checkbox2.value ? 'bizbrief,' : ''}" +
+          "${checkbox3.value ? 'bcard,' : ''}" +
+          "${checkbox4.value ? 'ccall,' : ''}" +
+          "${checkbox5.value ? 'dvd,' : ''}" +
+          "${checkbox6.value ? 'pbr,' : ''}" +
+          "${checkbox7.value ? 'packet,' : ''}" +
+          "${checkbox8.value ? 'online,' : ''}" +
+          "${checkbox9.value ? 'sizzle,' : ''}" +
+          "${checkbox10.value ? 'flipchart,' : ''}" +
+          "${checkbox11.value ? 'social,' : ''}" +
+          "${checkbox12.value ? 'website,' : ''}" +
+          "${checkbox13.value ? 'Other,' : ''}"
     };
-    var res=await apiFetcher('Post', '/api/daily-exposure', dat);
+    await apiFetcher('Post', '/api/daily-exposure', dat);
     Get.back();
+    ac.getData();
   }
 }

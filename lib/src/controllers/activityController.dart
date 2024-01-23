@@ -33,14 +33,21 @@ class ActivityController extends GetxController {
   TextEditingController eventController = TextEditingController();
 
   @override
-  void onInit() async {
+  void onInit()  {
     super.onInit();
-    data = await apiFetcher('Get', '/api/activity');
+  getData();
+  }
+
+  getData()async{
+    loder.value = true;
+
+  data = await apiFetcher('Get', '/api/activity');
     checkkk = data['data'];
     data = checkkk;
 
     pselectedDay = pfocusedDay.value;
     loder.value = false;
+    dcheck();
   }
 
   void onDaySelected(DateTime selectedDay, DateTime focusedDay) {
