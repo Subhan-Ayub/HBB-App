@@ -30,7 +30,7 @@ class MyGoalScreen extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: Get.width * .06,
                                   fontWeight: FontWeight.bold),
-                            ).marginOnly(top: Get.height * .04),
+                            ),
                             Text(
                               "Use this area to view the goals you set for yourself with your business. You may update these any time by clicking 'edit'. These goals are unique to you .This infromation is not send to anyone else and it is not possible for your coach or any of your Accountability Partners to view them. Entering yous goals here provides you with a easy way to measure how well you're doing, as they work with the rest of your HBB system to create reports that help to track the actual impact of your business activities verses the goals you have set",
                               style: TextStyle(
@@ -43,13 +43,16 @@ class MyGoalScreen extends StatelessWidget {
                                   fontSize: Get.width * .033,
                                   fontWeight: FontWeight.bold),
                             ).marginSymmetric(vertical: Get.height * .002),
-                            Text(
-                              'Click Here to See Graph of your Perfomance',
-                              style: TextStyle(
-                                  fontSize: Get.width * .033,
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold),
-                            ).marginSymmetric(vertical: Get.height * .002),
+                            // Text(
+                            //   'Click Here to See Graph of your Perfomance',
+                            //   style: TextStyle(
+                            //       fontSize: Get.width * .033,
+                            //       color: Colors.red,
+                            //       fontWeight: FontWeight.bold),
+                            // ).marginSymmetric(vertical: Get.height * .002),
+                            SizedBox(
+                              height: Get.height * 0.01,
+                            ),
                             Container(
                                 width: Get.width,
                                 // height: Get.height * .02,
