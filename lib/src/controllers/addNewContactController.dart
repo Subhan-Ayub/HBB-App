@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hbb/src/controllers/contactlistController.dart';
 import 'package:hbb/src/utils/helpers/api_helper.dart';
 
 class AddNewContactController extends GetxController {
+  // ContactListController contactListController = Get.put();
+  var id = Get.arguments;
   dynamic refValue;
   TextEditingController name = TextEditingController();
   TextEditingController lastnam = TextEditingController();
@@ -12,6 +15,75 @@ class AddNewContactController extends GetxController {
   TextEditingController cit = TextEditingController();
   TextEditingController stat = TextEditingController();
   TextEditingController zipp = TextEditingController();
+
+  void upDate() async {
+    final difficulty = refValue;
+    final firstname = name.text.trim();
+    final lastname = lastnam.text.trim();
+    final phone = phoneNo.text.trim();
+    final email = emai.text.trim();
+    final address = addres.text.trim();
+    final city = cit.text.trim();
+    final state = stat.text.trim();
+    final zip = zipp.text.trim();
+
+    // Validation
+    if (firstname.isEmpty ||
+        difficulty.isEmpty ||
+        lastname.isEmpty ||
+        phone.isEmpty ||
+        email.isEmpty ||
+        address.isEmpty ||
+        city.isEmpty ||
+        state.isEmpty ||
+        zip.isEmpty) {
+      Get.snackbar('Error', 'All fields are required',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return;
+    }
+
+    if (state.length >= 3) {
+      Get.snackbar('Error', 'State field required 2-letters',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return;
+    }
+    if (!RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$').hasMatch(email)) {
+      Get.snackbar('Error', 'Enter a valid email',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return;
+    }
+
+    var obj = {
+      "firstname": firstname,
+      "lastname": lastname,
+      "phone": phone,
+      "email": email,
+      "difficulty": difficulty,
+      "address": address,
+      "city": city,
+      "state": state,
+      "zip": zip,
+    };
+
+    var res = await apiFetcher('Put', '/api/contact/$id', obj);
+
+    refValue = '';
+    name.text = '';
+    lastnam.text = '';
+    phoneNo.text = '';
+    emai.text = '';
+    addres.text = '';
+    cit.text = '';
+    stat.text = '';
+    zipp.text = '';
+    Get.back();
+  }
 
   void addContact() async {
     final difficulty = refValue;

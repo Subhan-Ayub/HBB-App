@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/addNewContactController.dart';
+import 'package:hbb/src/controllers/contactlistController.dart';
 import 'package:hbb/src/ui/widgets/commonClasses.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
 
 class AddNewContactScreen extends StatelessWidget {
   final AddNewContactController _ = Get.put(AddNewContactController());
+  final ContactListController contactListController =
+      Get.put(ContactListController());
 
   @override
   Widget build(BuildContext context) {
@@ -278,42 +281,62 @@ class AddNewContactScreen extends StatelessWidget {
                             horizontal: Get.width * .025,
                             vertical: Get.height * .03)
                         .marginOnly(top: Get.height * .02),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Container(
-                            color: Colors.grey,
-                            child: Text(
-                              'Close',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: Get.width * 0.035),
-                            ).marginSymmetric(
-                                horizontal: Get.width * 0.04,
-                                vertical: Get.height * 0.01),
+                    Obx(
+                      () => Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Container(
+                              color: Colors.grey,
+                              child: Text(
+                                'Close',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: Get.width * 0.035),
+                              ).marginSymmetric(
+                                  horizontal: Get.width * 0.04,
+                                  vertical: Get.height * 0.01),
+                            ),
                           ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            _.addContact();
-                          },
-                          child: Container(
-                            color: UIDataColors.commonColor,
-                            child: Text(
-                              'Save',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: Get.width * 0.035),
-                            ).marginSymmetric(
-                                horizontal: Get.width * 0.04,
-                                vertical: Get.height * 0.01),
-                          ).paddingSymmetric(horizontal: 10),
-                        ),
-                      ],
+                          contactListController.isEdit.value
+                              ? InkWell(
+                                  onTap: () {
+                                    _.upDate();
+                                    // print('update');
+                                  },
+                                  child: Container(
+                                    color: UIDataColors.commonColor,
+                                    child: Text(
+                                      'Update',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: Get.width * 0.035),
+                                    ).marginSymmetric(
+                                        horizontal: Get.width * 0.04,
+                                        vertical: Get.height * 0.01),
+                                  ).paddingSymmetric(horizontal: 10),
+                                )
+                              : InkWell(
+                                  onTap: () {
+                                    _.addContact();
+                                  },
+                                  child: Container(
+                                    color: UIDataColors.commonColor,
+                                    child: Text(
+                                      'Save',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: Get.width * 0.035),
+                                    ).marginSymmetric(
+                                        horizontal: Get.width * 0.04,
+                                        vertical: Get.height * 0.01),
+                                  ).paddingSymmetric(horizontal: 10),
+                                ),
+                        ],
+                      ),
                     )
                   ],
                 ),

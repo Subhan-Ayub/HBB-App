@@ -33,6 +33,7 @@ class ContactListScreen extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
+                              _.isEdit.value = false;
                               Get.toNamed(Routes.addnewcontact);
                             },
                             child: Text(
@@ -56,6 +57,9 @@ class ContactListScreen extends StatelessWidget {
                             fontSize: Get.width * .032,
                             fontWeight: FontWeight.w400),
                       ).marginOnly(top: Get.height * .02),
+                      SizedBox(
+                        height: Get.height * 0.02,
+                      ),
                       Text(
                         "Key:",
                         textAlign: TextAlign.start,
@@ -123,6 +127,11 @@ class ContactListScreen extends StatelessWidget {
                           ),
                         ],
                       ),
+
+                      SizedBox(
+                        height: Get.height * 0.04,
+                      ),
+                      //
                       //
                       Container(
                         width: Get.width,
@@ -277,7 +286,7 @@ class ContactListScreen extends StatelessWidget {
                                 //
                               ],
                             ),
-                            //
+
                             Container(
                               width: Get.width,
                               height: Get.height / 3,
@@ -425,7 +434,15 @@ class ContactListScreen extends StatelessWidget {
                                                       .spaceBetween,
                                               children: [
                                                 InkWell(
-                                                  onTap: () {},
+                                                  onTap: () {
+                                                    _.updateId =
+                                                        _.data[index]['id'];
+                                                    print(_.updateId);
+                                                    _.isEdit.value = true;
+                                                    Get.toNamed(
+                                                        Routes.addnewcontact,
+                                                        arguments: _.updateId);
+                                                  },
                                                   child: Text(
                                                     'Edit',
                                                     textAlign: TextAlign.end,
@@ -436,7 +453,41 @@ class ContactListScreen extends StatelessWidget {
                                                   ),
                                                 ),
                                                 InkWell(
-                                                  onTap: () {},
+                                                  onTap: () {
+                                                    Get.dialog(AlertDialog(
+                                                      title: Text(
+                                                        'Are you sure you want to Delete this contact ?',
+                                                        style: TextStyle(
+                                                            fontSize: 16,
+                                                            color: Colors
+                                                                .red.shade500),
+                                                      ),
+                                                      actions: [
+                                                        InkWell(
+                                                          onTap: () {
+                                                            Get.back();
+                                                          },
+                                                          child: Text('Cancel'),
+                                                        ),
+                                                        InkWell(
+                                                          onTap: () {
+                                                            _.updateId =
+                                                                _.data[index]
+                                                                    ['id'];
+                                                            _.delete();
+                                                            Get.back();
+                                                          },
+                                                          child: Text(
+                                                            'Delete',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .red
+                                                                    .shade500),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ));
+                                                  },
                                                   child: Text(
                                                     'Delete',
                                                     textAlign: TextAlign.end,

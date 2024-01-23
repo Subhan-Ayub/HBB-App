@@ -37,7 +37,34 @@ apiFetcher(String method, url, [body]) async {
           // return response.body;
         }
 
-// GET
+        // PUT
+
+        case 'Put':
+        response = await http.put(
+          Uri.parse('http://18.232.88.126$url'),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer ${box.read('success')}',
+          },
+          body: jsonEncode(body),
+        );
+        if (response.statusCode == 200||response.statusCode == 201) {
+          // Handle a successful response
+          print('PUT request successful: ${response.body}');
+          return response;
+        } else {
+          // Handle an error response
+          Get.snackbar('Error',
+              'PUT request failed with status: ${response.statusCode}',
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
+          print('PUT request failed with status: ${response.statusCode}');
+          // return response.body;
+        }
+
+
+      // GET
       case 'Get':
         response =
             await http.get(Uri.parse('http://18.232.88.126$url'), headers: {
@@ -55,6 +82,26 @@ apiFetcher(String method, url, [body]) async {
               backgroundColor: Colors.red,
               colorText: Colors.white);
           print('GET request failed with status: ${response.body}');
+        }
+
+        // DELETE
+      case 'Delete':
+        response =
+            await http.delete(Uri.parse('http://18.232.88.126$url'), headers: {
+          'Authorization': 'Bearer ${box.read('success')}',
+        });
+        if (response.statusCode == 200||response.statusCode == 204) {
+          // Handle a successful response
+          print('Delete request successful: ${response.statusCode}');
+          // return jsonDecode(response.statusCode);
+        } else {
+          // Handle an error response
+          Get.snackbar(
+              'Error', 'Delete request failed with status: ${response.statusCode}',
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
+          // print('Delete request failed with status: ${response.body}');
         }
     }
   } catch (e) {
