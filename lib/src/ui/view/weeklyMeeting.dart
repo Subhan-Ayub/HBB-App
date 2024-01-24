@@ -28,7 +28,7 @@ class WeeklyMeetingScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Weekly Meeting.    17th, 0',
+                          'Weekly Meeting. ${_.formattedDate}',
                           style: TextStyle(
                               color: Colors.grey, fontSize: Get.width * .03),
                         ),
@@ -352,17 +352,22 @@ class WeeklyMeetingScreen extends StatelessWidget {
                                     vertical: Get.height * 0.01),
                               ),
                             ),
-                            Container(
-                              color: UIDataColors.commonColor,
-                              child: Text(
-                                'Save',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: Get.width * 0.035),
-                              ).marginSymmetric(
-                                  horizontal: Get.width * 0.04,
-                                  vertical: Get.height * 0.01),
-                            ).paddingSymmetric(horizontal: 10),
+                            InkWell(
+                              onTap: () {
+                                _.submit();
+                              },
+                              child: Container(
+                                color: UIDataColors.commonColor,
+                                child: Text(
+                                  'Save',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: Get.width * 0.035),
+                                ).marginSymmetric(
+                                    horizontal: Get.width * 0.04,
+                                    vertical: Get.height * 0.01),
+                              ).paddingSymmetric(horizontal: 10),
+                            ),
                           ],
                         )
                      

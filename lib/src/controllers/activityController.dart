@@ -33,15 +33,15 @@ class ActivityController extends GetxController {
   TextEditingController eventController = TextEditingController();
 
   @override
-  void onInit()  {
+  void onInit() {
     super.onInit();
-  getData();
+    getData();
   }
 
-  getData()async{
+  getData() async {
     loder.value = true;
 
-  data = await apiFetcher('Get', '/api/activity');
+    data = await apiFetcher('Get', '/api/activity');
     checkkk = data['data'];
     data = checkkk;
 
@@ -69,19 +69,27 @@ class ActivityController extends GetxController {
 
   var filteredDataOfD = [];
   var filteredidOfD = [];
+  var filteredidOfW = [];
 
   var dailyprintt = [].obs;
   var natinalprint = [].obs;
-
+  var weeklyprint = [].obs;
+  var conferrencedprint = [].obs;
 
   dcheck() async {
     filteredDataOfD = [];
     filteredidOfD = [];
+   filteredidOfW = [];
+
     dailyprintt.value = [];
-    natinalprint.value=[];
+    natinalprint.value = [];
+    weeklyprint.value = [];
+    conferrencedprint.value = [];
     expandDailyExposure.value = false;
-    expandNationalExposure.value=false;
-    print(data);
+    expandNationalExposure.value = false;
+    expandMeetings.value = false;
+    expandConference.value = false;
+    // print(data);
     DateTime dateTime = DateTime.parse(pselectedDay.toString());
 
     dateTime = dateTime.toLocal();
@@ -97,29 +105,54 @@ class ActivityController extends GetxController {
     }
 
     // print(filteredDataOfD);
-
-    for (var i = 0; i < filteredDataOfD.length; i++) {
-      var ids = await apiFetcher(
-          'Get', '/api/daily-exposure/${filteredDataOfD[i]['id']}');
-      filteredidOfD.add(ids['data']);
-    }
-    // print(filteredidOfD);
-
-    for (var i = 0; i < filteredidOfD.length; i++) {
-      if (filteredidOfD[i]['activitytype'] == 1) {
-        dailyprintt.value.add(filteredidOfD[i]);
-
-        expandDailyExposure.value = true;
+    if (filteredDataOfD.isNotEmpty) {
+      print('object');
+      for (var i = 0; i < filteredDataOfD.length; i++) {
+        var dailyIds = await apiFetcher(
+            'Get', '/api/daily-exposure/${filteredDataOfD[i]['id']}');
+        filteredidOfD.add(dailyIds['data']);
+        print('ssssssss$dailyIds');
+        var weeklyIds = await apiFetcher(
+            'Get', '/api/weekly-training/${filteredDataOfD[i]['id']}');
+        filteredidOfW.add(weeklyIds['data']);
+        print('etttttttttt $weeklyIds');
+        print(filteredDataOfD[i]['id']);
       }
-    }
-     for (var i = 0; i < filteredidOfD.length; i++) {
-      if (filteredidOfD[i]['activitytype'] == 4) {
-        natinalprint.value.add(filteredidOfD[i]);
+      // print(filteredidOfD);
+      weeklyprint.value = filteredidOfW;
 
-        expandNationalExposure.value = true;
+      for (var i = 0; i < filteredidOfD.length; i++) {
+        if (filteredidOfD[i]['activitytype'] == 1) {
+          dailyprintt.value.add(filteredidOfD[i]);
+
+          expandDailyExposure.value = true;
+        }
       }
+      for (var i = 0; i < filteredidOfD.length; i++) {
+        if (filteredidOfD[i]['activitytype'] == 4) {
+          natinalprint.value.add(filteredidOfD[i]);
+
+          expandNationalExposure.value = true;
+        }
+      }
+    print('eeeeee ${filteredidOfW}');
     }
-    print('eeeeee ${natinalprint.length}');
+    //  for (var i = 0; i < filteredidOfW.length; i++) {
+    //   if (filteredidOfD[i]['activitytype'] == 2) {
+    //     // print(filteredidOfD[i]);
+    //     weeklyprint.value.add(filteredidOfD[i]);
+    //     print('ddddn cnd cndcnjdnckjdnckjndkjenckjednjkcnencenrefreeeeeeeeee');
+
+    //     expandMeetings.value = true;
+    //   }
+    // }
+    //  for (var i = 0; i < filteredidOfD.length; i++) {
+    //   if (filteredidOfD[i]['activitytype'] == 3) {
+    //     conferrencedprint.value.add(filteredidOfD[i]);
+
+    //     expandConference.value = true;
+    //   }
+    // }
     // if (dailyprintt != []) {
     //   print('ddddd');
     // }

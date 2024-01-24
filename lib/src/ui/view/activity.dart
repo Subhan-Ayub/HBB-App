@@ -153,9 +153,9 @@ class ActivityScreen extends StatelessWidget {
                                                         maxLines: 1,
                                                         overflow: TextOverflow
                                                             .ellipsis)),
-                                                Icon(Icons.abc),
-                                                Icon(Icons.abc),
-                                                Icon(Icons.abc)
+                                                Icon(Icons.monetization_on,size: 18,),
+                                                Icon(Icons.edit,size: 15,),
+                                                Icon(Icons.delete,size: 15,)
                                               ],
                                             ),
                                           ),
@@ -205,11 +205,14 @@ class ActivityScreen extends StatelessWidget {
                                                 Container(
                                                     width: 200,
                                                     child: Text('Email:')),
-                                                Text(
-                                                    '${_.dailyprintt[i]['email']}',
-                                                    maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis),
+                                                Container(
+                                                  width: 150,
+                                                  child: Text(
+                                                      '${_.dailyprintt[i]['email']}',
+                                                      maxLines: 1,
+                                                      overflow:
+                                                          TextOverflow.ellipsis),
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -358,8 +361,7 @@ class ActivityScreen extends StatelessWidget {
                           InkWell(
                             onTap: () {
                               _.expandMeetings.value = !_.expandMeetings.value;
-                              _.meetingsHeight.value =
-                                  _.expandMeetings.value ? 200.0 : 0.0;
+                            
                             },
                             child: Text(
                               'Weekly Meetings',
@@ -372,7 +374,12 @@ class ActivityScreen extends StatelessWidget {
                           Spacer(),
                           IconButton(
                               onPressed: () {
-                                Get.toNamed(Routes.weeklymeeting);
+                                // Get.toNamed(Routes.weeklymeeting);
+                                     Get.toNamed(Routes.weeklymeeting, arguments: {
+                                  'type': 1,
+                                  'date': _.pselectedDay
+                                });
+
                               },
                               icon: Icon(
                                 Icons.add,
@@ -385,12 +392,227 @@ class ActivityScreen extends StatelessWidget {
                       ),
                     ).paddingOnly(top: Get.height * 0.03),
                     Obx(
-                      () => AnimatedContainer(
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.easeInOut,
-                        height: _.meetingsHeight.value,
-                        color: Colors.green,
-                      ),
+                      () => _.expandMeetings.value
+                          ? Container(
+                              height: _.expandMeetings.value ? 450 : 0,
+                              // color: Colors.green,
+                              child: ListView.builder(
+                                  itemCount: _.weeklyprint.length,
+                                  itemBuilder: (BuildContext context, i) {
+                                    return Container(
+                                      // height: 410,
+                                      // color: Colors.amberAccent,
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 10, vertical: 10),
+                                            color: Color.fromARGB(
+                                                255, 241, 241, 241),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text('Meeting location:'),
+                                                Container(
+                                                    width: 110,
+                                                    alignment: Alignment.center,
+                                                    child: Text(
+                                                        '${_.weeklyprint[i]['meetingLocation']}',
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis)),
+                                                Icon(Icons.monetization_on,size: 18,),
+                                                Icon(Icons.edit,size: 15,),
+                                                Icon(Icons.delete,size: 15,)
+                                              ],
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 10, vertical: 10),
+                                            color: Color.fromARGB(
+                                                255, 241, 241, 241),
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                    width: 200,
+                                                    child: Text('Type of Meetings:')),
+                                                Container(
+                                                  width: 140,
+                                                  child: Text(
+                                                      '${_.weeklyprint[i]['meetingType']}',
+                                                      maxLines: 1,
+                                                      overflow:
+                                                          TextOverflow.ellipsis),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 10, vertical: 10),
+                                            color: Color.fromARGB(
+                                                255, 241, 241, 241),
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                    width: 200,
+                                                    child: Text('Parties Present/Notes:')),
+                                                Container(
+                                                  width: 140,
+                                                  child: Text(
+                                                      '${_.weeklyprint[i]['wmNotes']}',
+                                                      maxLines: 1,
+                                                      overflow:
+                                                          TextOverflow.ellipsis),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          // Container(
+                                          //   padding: EdgeInsets.symmetric(
+                                          //       horizontal: 10, vertical: 10),
+                                          //   color: Color.fromARGB(
+                                          //       255, 241, 241, 241),
+                                          //   child: Row(
+                                          //     children: [
+                                          //       Container(
+                                          //           width: 200,
+                                          //           child: Text('Email:')),
+                                          //       Text(
+                                          //           '${_.dailyprintt[i]['email']}',
+                                          //           maxLines: 1,
+                                          //           overflow:
+                                          //               TextOverflow.ellipsis),
+                                          //     ],
+                                          //   ),
+                                          // ),
+                                          // Container(
+                                          //   padding: EdgeInsets.symmetric(
+                                          //       horizontal: 10, vertical: 10),
+                                          //   color: Color.fromARGB(
+                                          //       255, 241, 241, 241),
+                                          //   child: Row(
+                                          //     children: [
+                                          //       Container(
+                                          //           width: 200,
+                                          //           child: Text('Address:')),
+                                          //       Text(
+                                          //           '${_.dailyprintt[i]['address']}',
+                                          //           maxLines: 1,
+                                          //           overflow:
+                                          //               TextOverflow.ellipsis),
+                                          //     ],
+                                          //   ),
+                                          // ),
+                                          // Container(
+                                          //   padding: EdgeInsets.symmetric(
+                                          //       horizontal: 10, vertical: 10),
+                                          //   color: Color.fromARGB(
+                                          //       255, 241, 241, 241),
+                                          //   child: Row(
+                                          //     children: [
+                                          //       Container(
+                                          //           width: 200,
+                                          //           child: Text('State/Zip:')),
+                                          //       Text(
+                                          //           '${_.dailyprintt[i]['state']},${_.dailyprintt[i]['zip']}',
+                                          //           maxLines: 1,
+                                          //           overflow:
+                                          //               TextOverflow.ellipsis),
+                                          //     ],
+                                          //   ),
+                                          // ),
+                                          // Container(
+                                          //   padding: EdgeInsets.symmetric(
+                                          //       horizontal: 10, vertical: 10),
+                                          //   color: Color.fromARGB(
+                                          //       255, 241, 241, 241),
+                                          //   child: Row(
+                                          //     children: [
+                                          //       Container(
+                                          //           width: 200,
+                                          //           child: Text('Notes:')),
+                                          //       Text(
+                                          //           '${_.dailyprintt[i]['formnotes']}',
+                                          //           maxLines: 1,
+                                          //           overflow:
+                                          //               TextOverflow.ellipsis),
+                                          //     ],
+                                          //   ),
+                                          // ),
+                                          // Container(
+                                          //   padding: EdgeInsets.symmetric(
+                                          //       horizontal: 10, vertical: 10),
+                                          //   color: Color.fromARGB(
+                                          //       255, 241, 241, 241),
+                                          //   child: Row(
+                                          //     children: [
+                                          //       Container(
+                                          //           width: 200,
+                                          //           child: Text('Follow Up:')),
+                                          //       Text('{_.ek}',
+                                          //           maxLines: 1,
+                                          //           overflow:
+                                          //               TextOverflow.ellipsis),
+                                          //     ],
+                                          //   ),
+                                          // ),
+                                          // Container(
+                                          //   padding: EdgeInsets.symmetric(
+                                          //       horizontal: 10, vertical: 10),
+                                          //   color: Color.fromARGB(
+                                          //       255, 241, 241, 241),
+                                          //   child: Row(
+                                          //     children: [
+                                          //       Container(
+                                          //           width: 200,
+                                          //           child: Text(
+                                          //               'Best Time To Call:')),
+                                          //       Text(
+                                          //           '${_.dailyprintt[i]['calltime']}',
+                                          //           maxLines: 1,
+                                          //           overflow:
+                                          //               TextOverflow.ellipsis),
+                                          //     ],
+                                          //   ),
+                                          // ),
+                                          // Container(
+                                          //   padding: EdgeInsets.symmetric(
+                                          //       horizontal: 10, vertical: 10),
+                                          //   color: Color.fromARGB(
+                                          //       255, 241, 241, 241),
+                                          //   child: Row(
+                                          //     children: [
+                                          //       Container(
+                                          //           width: 200,
+                                          //           child: Text(
+                                          //               'Methods of Exposures:')),
+                                          //       Container(
+                                          //         width: 100,
+                                          //         child: Text(
+                                          //             '${_.dailyprintt[i]['exposuretypestring']}',
+                                          //             maxLines: 1,
+                                          //             overflow:
+                                          //                 TextOverflow.ellipsis),
+                                          //       ),
+                                          //     ],
+                                          //   ),
+                                          // ),
+                                          Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 10),
+                                              color: Color.fromARGB(
+                                                  255, 241, 241, 241),
+                                              child: Divider())
+                                        ],
+                                      ),
+                                    );
+                                  }),
+                            )
+                          : SizedBox(),
                     ),
 
                     // Conference Calls
@@ -497,7 +719,7 @@ class ActivityScreen extends StatelessWidget {
                             // color: Colors.green,
                             child: ListView.builder(
                                 shrinkWrap: true,
-                                itemCount: 1,
+                                itemCount: _.natinalprint.length,
                                 itemBuilder: (BuildContext context, i) {
                                   return Container(
                                     // height: 410,
@@ -688,15 +910,16 @@ class ActivityScreen extends StatelessWidget {
                                                   maxLines: 1,
                                                   overflow:
                                                       TextOverflow.ellipsis),
-                                              Container(
+                                            
+                                            ],
+                                          ),
+                                        ),
+                                          Container(
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: 10),
                                                   color: Color.fromARGB(
                                                       255, 241, 241, 241),
                                                   child: Divider())
-                                            ],
-                                          ),
-                                        ),
                                       ],
                                     ),
                                   );
