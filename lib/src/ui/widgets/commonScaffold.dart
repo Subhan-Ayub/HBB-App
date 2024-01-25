@@ -29,9 +29,9 @@ class CommonScaffold extends StatelessWidget {
           ? AppBar(
               // Logo Container
               flexibleSpace: SizedBox(
-                height: Get.width * 0.12,
+                height: Get.width * 0.11,
                 child: Image.asset('assets/images/logo.png'),
-              ).paddingOnly(top: Get.height * 0.06, right: Get.width / 1.5),
+              ).paddingOnly(top: Get.height * 0.04, right: Get.width / 1.5),
 
               iconTheme: const IconThemeData(
                   color: UIDataColors.commonColor, size: 30),

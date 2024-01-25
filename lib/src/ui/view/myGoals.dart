@@ -53,40 +53,70 @@ class MyGoalScreen extends StatelessWidget {
                             SizedBox(
                               height: Get.height * 0.01,
                             ),
-                            Container(
-                                width: Get.width,
-                                // height: Get.height * .02,
-                                decoration: BoxDecoration(
-                                    color: Colors.grey.shade300,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Text(
-                                  '${_.why}',
-                                  style: TextStyle(
-                                      fontSize: Get.width * .032,
-                                      // color: Colors.black,
-                                      fontWeight: FontWeight.w500),
-                                )
-                                    .marginSymmetric(
-                                        vertical: Get.height * .002)
-                                    .paddingSymmetric(
-                                        horizontal: Get.width * .025,
-                                        vertical: Get.height * .01)
-                                // .paddingOnly(bottom: Get.height * .02),
-                                ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                InkWell(
-                                  onTap: () {},
-                                  child: Text(
-                                    'edit',
-                                    style: TextStyle(
-                                        fontSize: Get.width * .03,
-                                        color: Colors.red,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                )
-                              ],
+                            _.goalsText.value
+                                ? TextField(
+                                    controller: _.notesController,
+                                    maxLines:
+                                        null, // Allow multiple lines for notes
+                                    decoration: InputDecoration(
+                                      hintText: 'Enter your notes here...',
+                                      border: OutlineInputBorder(),
+                                    ),
+                                  )
+                                : Container(
+                                    width: Get.width,
+                                    // height: Get.height * .02,
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey.shade300,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Text(
+                                      '${_.why}',
+                                      style: TextStyle(
+                                          fontSize: Get.width * .032,
+                                          // color: Colors.black,
+                                          fontWeight: FontWeight.w500),
+                                    )
+                                        .marginSymmetric(
+                                            vertical: Get.height * .002)
+                                        .paddingSymmetric(
+                                            horizontal: Get.width * .025,
+                                            vertical: Get.height * .01)
+                                    // .paddingOnly(bottom: Get.height * .02),
+                                    ),
+                            Obx(
+                              () => Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  _.goalsText.value
+                                      ? InkWell(
+                                          onTap: () {
+                                            _.addGoalText();
+                                            _.goalsText.value = false;
+                                          },
+                                          child: Text(
+                                            'save',
+                                            style: TextStyle(
+                                                fontSize: Get.width * .03,
+                                                color: Colors.red,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )
+                                      : InkWell(
+                                          onTap: () {
+                                            _.goalsText.value = true;
+                                            _.notesController.text = _.why;
+                                          },
+                                          child: Text(
+                                            'edit',
+                                            style: TextStyle(
+                                                fontSize: Get.width * .03,
+                                                color: Colors.red,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )
+                                ],
+                              ),
                             ),
 
                             // Income
@@ -121,7 +151,8 @@ class MyGoalScreen extends StatelessWidget {
                                     Obx(
                                       () => InkWell(
                                         onTap: () {
-                                          _.incomeEdit.value = false;
+                                          _.addGoalIncome();
+                                          // _.incomeEdit.value = false;
                                         },
                                         child: _.incomeEdit.value
                                             ? Text(
@@ -141,7 +172,8 @@ class MyGoalScreen extends StatelessWidget {
                                   () => GoalsTextField(
                                     width: Get.width / 4,
                                     controller: _.income30days,
-                                    hintText: '${_.income1m}',
+                                    hintText: '',
+                                    // hintText: '${_.income1m}',
                                     readonly: _.incomeEdit.value ? false : true,
                                     heading: 'Next 30 days:',
                                     keyboard: [
@@ -149,7 +181,8 @@ class MyGoalScreen extends StatelessWidget {
                                     ],
                                     secondwidth: Get.width / 4,
                                     seccontroller: _.income6months,
-                                    sechintText: '${_.income6m}',
+                                    sechintText: '',
+                                    // sechintText: '${_.income6m}',
                                     secreadonly:
                                         _.incomeEdit.value ? false : true,
                                     secheading: 'Next 6 months:',
@@ -158,7 +191,8 @@ class MyGoalScreen extends StatelessWidget {
                                     ],
                                     thirdwidth: Get.width / 4,
                                     thirdcontroller: _.income1year,
-                                    thirdhintText: '${_.income1y}',
+                                    thirdhintText: '',
+                                    // thirdhintText: '${_.income1y}',
                                     thirdreadonly:
                                         _.incomeEdit.value ? false : true,
                                     thirdheading: 'Next one year:',
@@ -222,7 +256,7 @@ class MyGoalScreen extends StatelessWidget {
                               ],
                             ),
 
-// Hours
+                            // Hours
                             Column(
                               children: [
                                 Row(
@@ -253,7 +287,8 @@ class MyGoalScreen extends StatelessWidget {
                                     Obx(
                                       () => InkWell(
                                         onTap: () {
-                                          _.hoursEdit.value = false;
+                                          _.addGoalHours();
+                                          // _.hoursEdit.value = false;
                                         },
                                         child: _.hoursEdit.value
                                             ? Text(
@@ -273,7 +308,7 @@ class MyGoalScreen extends StatelessWidget {
                                   () => GoalsTextField(
                                     width: Get.width / 4,
                                     controller: _.hourdays,
-                                    hintText: '${_.timeday}',
+                                    hintText: '',
                                     readonly: _.hoursEdit.value ? false : true,
                                     heading: 'Each Days:',
                                     keyboard: [
@@ -281,7 +316,7 @@ class MyGoalScreen extends StatelessWidget {
                                     ],
                                     secondwidth: Get.width / 4,
                                     seccontroller: _.hourweek,
-                                    sechintText: '${_.timeweek}',
+                                    sechintText: '',
                                     secreadonly:
                                         _.hoursEdit.value ? false : true,
                                     secheading: 'Each Week:',
@@ -290,7 +325,7 @@ class MyGoalScreen extends StatelessWidget {
                                     ],
                                     thirdwidth: Get.width / 4,
                                     thirdcontroller: _.hourmonth,
-                                    thirdhintText: '${_.timemonth}',
+                                    thirdhintText: '',
                                     thirdreadonly:
                                         _.hoursEdit.value ? false : true,
                                     thirdheading: 'Each Month:',
@@ -354,7 +389,7 @@ class MyGoalScreen extends StatelessWidget {
                               ],
                             ),
 
-// Exposures
+                            // Exposures
                             Column(
                               children: [
                                 Row(
@@ -385,7 +420,8 @@ class MyGoalScreen extends StatelessWidget {
                                     Obx(
                                       () => InkWell(
                                         onTap: () {
-                                          _.esposureEdit.value = false;
+                                          _.addGoalExposures();
+                                          // _.esposureEdit.value = false;
                                         },
                                         child: _.esposureEdit.value
                                             ? Text(
@@ -405,7 +441,7 @@ class MyGoalScreen extends StatelessWidget {
                                   () => GoalsTextField(
                                     width: Get.width / 4,
                                     controller: _.exposureday,
-                                    hintText: '${_.exposuresday}',
+                                    hintText: '',
                                     readonly:
                                         _.esposureEdit.value ? false : true,
                                     heading: 'Each Days:',
@@ -414,7 +450,7 @@ class MyGoalScreen extends StatelessWidget {
                                     ],
                                     secondwidth: Get.width / 4,
                                     seccontroller: _.exposureweek,
-                                    sechintText: '${_.exposuresweek}',
+                                    sechintText: '',
                                     secreadonly:
                                         _.esposureEdit.value ? false : true,
                                     secheading: 'Each Week:',
@@ -423,7 +459,7 @@ class MyGoalScreen extends StatelessWidget {
                                     ],
                                     thirdwidth: Get.width / 4,
                                     thirdcontroller: _.exposuremonth,
-                                    thirdhintText: '${_.exposuresmonth}',
+                                    thirdhintText: '',
                                     thirdreadonly:
                                         _.esposureEdit.value ? false : true,
                                     thirdheading: 'Each Month:',
@@ -487,7 +523,7 @@ class MyGoalScreen extends StatelessWidget {
                               ],
                             ),
 
-// Customers
+                            // Customers
                             Column(
                               children: [
                                 Row(
@@ -518,7 +554,8 @@ class MyGoalScreen extends StatelessWidget {
                                     Obx(
                                       () => InkWell(
                                         onTap: () {
-                                          _.customersEdit.value = false;
+                                          _.addGoalCustomers();
+                                          // _.customersEdit.value = false;
                                         },
                                         child: _.customersEdit.value
                                             ? Text(
@@ -538,7 +575,7 @@ class MyGoalScreen extends StatelessWidget {
                                   () => GoalsTextField(
                                     width: Get.width / 4,
                                     controller: _.customerweek,
-                                    hintText: '${_.membershipsweek}',
+                                    hintText: '',
                                     readonly:
                                         _.customersEdit.value ? false : true,
                                     heading: 'Each Days:',
@@ -547,7 +584,7 @@ class MyGoalScreen extends StatelessWidget {
                                     ],
                                     secondwidth: Get.width / 4,
                                     seccontroller: _.customermonth,
-                                    sechintText: '${_.membershipsmonth}',
+                                    sechintText: '',
                                     secreadonly:
                                         _.customersEdit.value ? false : true,
                                     secheading: 'Each Week:',
@@ -601,7 +638,7 @@ class MyGoalScreen extends StatelessWidget {
                               ],
                             ),
 
-// Sponsor
+                            // Sponsor
                             Column(
                               children: [
                                 Row(
@@ -632,7 +669,8 @@ class MyGoalScreen extends StatelessWidget {
                                     Obx(
                                       () => InkWell(
                                         onTap: () {
-                                          _.sponsorEdit.value = false;
+                                          _.addGoalSponsors();
+                                          // _.sponsorEdit.value = false;
                                         },
                                         child: _.sponsorEdit.value
                                             ? Text(
@@ -652,7 +690,7 @@ class MyGoalScreen extends StatelessWidget {
                                   () => GoalsTextField(
                                     width: Get.width / 4,
                                     controller: _.sponsorsweek,
-                                    hintText: '${_.sponsorweek}',
+                                    hintText: '',
                                     readonly:
                                         _.sponsorEdit.value ? false : true,
                                     heading: 'Each Week:',
@@ -661,7 +699,7 @@ class MyGoalScreen extends StatelessWidget {
                                     ],
                                     secondwidth: Get.width / 4,
                                     seccontroller: _.sponsorsmonth,
-                                    sechintText: '${_.sponsormonth}',
+                                    sechintText: '',
                                     secreadonly:
                                         _.sponsorEdit.value ? false : true,
                                     secheading: 'Each Month:',
@@ -715,7 +753,7 @@ class MyGoalScreen extends StatelessWidget {
                               ],
                             ),
 
-// Position 1
+                            // Position 1
                             Column(
                               children: [
                                 Row(
@@ -778,7 +816,7 @@ class MyGoalScreen extends StatelessWidget {
                               ],
                             ),
 
-// Position 2
+                            // Position 2
                             Column(
                               children: [
                                 Obx(
@@ -831,7 +869,7 @@ class MyGoalScreen extends StatelessWidget {
                               ],
                             ),
 
-// Position 3
+                            // Position 3
                             Column(
                               children: [
                                 Obx(
