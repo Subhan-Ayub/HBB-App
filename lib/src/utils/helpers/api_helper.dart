@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
+import '../routes/routes.dart';
+
 apiFetcher(String method, url, [body]) async {
   var response;
   GetStorage box = GetStorage();
@@ -22,7 +24,7 @@ apiFetcher(String method, url, [body]) async {
           },
           body: jsonEncode(body),
         );
-        if (response.statusCode == 200||response.statusCode == 201) {
+        if (response.statusCode == 200 || response.statusCode == 201) {
           // Handle a successful response
           print('POST request successful: ${response.body}');
           return response;
@@ -37,9 +39,9 @@ apiFetcher(String method, url, [body]) async {
           // return response.body;
         }
 
-        // PUT
+      // PUT
 
-        case 'Put':
+      case 'Put':
         response = await http.put(
           Uri.parse('http://18.232.88.126$url'),
           headers: {
@@ -48,21 +50,22 @@ apiFetcher(String method, url, [body]) async {
           },
           body: jsonEncode(body),
         );
-        if (response.statusCode == 200||response.statusCode == 201) {
+        if (response.statusCode == 200 || response.statusCode == 201) {
           // Handle a successful response
           print('PUT request successful: ${response.body}');
+          Get.back();
           return response;
         } else {
           // Handle an error response
-          Get.snackbar('Error',
-              'PUT request failed with status: ${response.statusCode}',
-              snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: Colors.red,
-              colorText: Colors.white);
+          // Get.snackbar('Error',
+          //     'PUT request failed with status: ${response.statusCode}',
+          //     snackPosition: SnackPosition.BOTTOM,
+          //     backgroundColor: Colors.red,
+          //     colorText: Colors.white);
+          Get.offAndToNamed(Routes.error);
           print('PUT request failed with status: ${response.statusCode}');
           // return response.body;
         }
-
 
       // GET
       case 'Get':
@@ -84,20 +87,20 @@ apiFetcher(String method, url, [body]) async {
           print('GET request failed with status: ${response.body}');
         }
 
-        // DELETE
+      // DELETE
       case 'Delete':
         response =
             await http.delete(Uri.parse('http://18.232.88.126$url'), headers: {
           'Authorization': 'Bearer ${box.read('success')}',
         });
-        if (response.statusCode == 200||response.statusCode == 204) {
+        if (response.statusCode == 200 || response.statusCode == 204) {
           // Handle a successful response
           print('Delete request successful: ${response.statusCode}');
           // return jsonDecode(response.statusCode);
         } else {
           // Handle an error response
-          Get.snackbar(
-              'Error', 'Delete request failed with status: ${response.statusCode}',
+          Get.snackbar('Error',
+              'Delete request failed with status: ${response.statusCode}',
               snackPosition: SnackPosition.BOTTOM,
               backgroundColor: Colors.red,
               colorText: Colors.white);
@@ -105,10 +108,11 @@ apiFetcher(String method, url, [body]) async {
         }
     }
   } catch (e) {
-    Get.snackbar('Error', 'Check Your Internet Connection and try again',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white);
+    Get.offAndToNamed(Routes.error);
+    // Get.snackbar('Error', 'Check Your Internet Connection and try again',
+    //     snackPosition: SnackPosition.BOTTOM,
+    //     backgroundColor: Colors.red,
+    //     colorText: Colors.white);
     print('Error during $method request: $e');
     return e;
   }

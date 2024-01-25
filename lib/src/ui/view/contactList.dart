@@ -1,11 +1,14 @@
 // ignore_for_file: unused_field
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hbb/src/controllers/addNewContactController.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
 import '../../controllers/contactlistController.dart';
 
 class ContactListScreen extends StatelessWidget {
   final ContactListController _ = Get.put(ContactListController());
+  final AddNewContactController addNewContactController =
+      Get.put(AddNewContactController());
 
   @override
   Widget build(BuildContext context) {
@@ -437,11 +440,13 @@ class ContactListScreen extends StatelessWidget {
                                                   onTap: () {
                                                     _.updateId =
                                                         _.data[index]['id'];
-                                                    print(_.updateId);
+                                                    // print(_.updateId);
                                                     _.isEdit.value = true;
                                                     Get.toNamed(
                                                         Routes.addnewcontact,
                                                         arguments: _.updateId);
+                                                    addNewContactController
+                                                        .edit(index);
                                                   },
                                                   child: Text(
                                                     'Edit',

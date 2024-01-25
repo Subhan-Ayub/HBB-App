@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       onUnknownRoute: (RouteSettings rs) => MaterialPageRoute(
         builder: (context) {
           return ErrorView(
-            message: 'Coming Soon!',
+            // message: 'Coming Soon!',
           );
         },
       ),

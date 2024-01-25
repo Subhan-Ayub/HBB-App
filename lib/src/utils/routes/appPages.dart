@@ -29,6 +29,7 @@ import 'package:hbb/src/ui/view/contactList.dart';
 import 'package:hbb/src/ui/view/contactUs.dart';
 import 'package:hbb/src/ui/view/dailyAddExpense.dart';
 import 'package:hbb/src/ui/view/editProfile.dart';
+import 'package:hbb/src/ui/view/error.dart';
 import 'package:hbb/src/ui/view/home.dart';
 import 'package:hbb/src/ui/view/incomeExpense.dart';
 import 'package:hbb/src/ui/view/login.dart';
@@ -176,6 +177,10 @@ class AppPages {
         name: Routes.conferenceaddexpense,
         binding: ConferenceCallBinding(),
         page: () => ConferenceAddExpenseScreen(),
+        transition: Transition.noTransition),
+        GetPage(
+        name: Routes.error,
+        page: () => ErrorView(),
         transition: Transition.noTransition),
   ];
 }

@@ -4,7 +4,8 @@ import 'package:hbb/src/controllers/contactlistController.dart';
 import 'package:hbb/src/utils/helpers/api_helper.dart';
 
 class AddNewContactController extends GetxController {
-  // ContactListController contactListController = Get.put();
+  ContactListController contactListController =
+      Get.put(ContactListController());
   var id = Get.arguments;
   dynamic refValue;
   TextEditingController name = TextEditingController();
@@ -15,6 +16,18 @@ class AddNewContactController extends GetxController {
   TextEditingController cit = TextEditingController();
   TextEditingController stat = TextEditingController();
   TextEditingController zipp = TextEditingController();
+
+  void edit(int index) {
+    name.text = contactListController.data[index]['firstname'];
+    lastnam.text = contactListController.data[index]['lastname'];
+    phoneNo.text = contactListController.data[index]['phone'];
+    emai.text = contactListController.data[index]['email'];
+    addres.text = contactListController.data[index]['address'];
+    cit.text = contactListController.data[index]['city'];
+    stat.text = contactListController.data[index]['state'];
+    zipp.text = contactListController.data[index]['zip'];
+    //  refValue = contactListController.data[index]['difficulty'];
+  }
 
   void upDate() async {
     final difficulty = refValue;
@@ -29,7 +42,6 @@ class AddNewContactController extends GetxController {
 
     // Validation
     if (firstname.isEmpty ||
-        difficulty.isEmpty ||
         lastname.isEmpty ||
         phone.isEmpty ||
         email.isEmpty ||
@@ -43,7 +55,13 @@ class AddNewContactController extends GetxController {
           colorText: Colors.white);
       return;
     }
-
+if (difficulty==null) {
+      Get.snackbar('Error', 'Select Relation Level',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return;
+    }
     if (state.length >= 3) {
       Get.snackbar('Error', 'State field required 2-letters',
           snackPosition: SnackPosition.BOTTOM,
@@ -70,10 +88,12 @@ class AddNewContactController extends GetxController {
       "state": state,
       "zip": zip,
     };
+    print('hbjbqjwbkqwblq $refValue');
+
 
     var res = await apiFetcher('Put', '/api/contact/$id', obj);
 
-    refValue = '';
+    refValue = null;
     name.text = '';
     lastnam.text = '';
     phoneNo.text = '';
@@ -82,7 +102,8 @@ class AddNewContactController extends GetxController {
     cit.text = '';
     stat.text = '';
     zipp.text = '';
-    Get.back();
+    // Get.back();
+    contactListController.getData();
   }
 
   void addContact() async {
@@ -98,7 +119,6 @@ class AddNewContactController extends GetxController {
 
     // Validation
     if (firstname.isEmpty ||
-        difficulty.isEmpty ||
         lastname.isEmpty ||
         phone.isEmpty ||
         email.isEmpty ||
@@ -127,7 +147,13 @@ class AddNewContactController extends GetxController {
           colorText: Colors.white);
       return;
     }
-
+    if (difficulty==null) {
+      Get.snackbar('Error', 'Select Relation Level',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return;
+    }
     var obj = {
       "firstname": firstname,
       "lastname": lastname,
@@ -139,10 +165,9 @@ class AddNewContactController extends GetxController {
       "state": state,
       "zip": zip,
     };
-
     var res = await apiFetcher('Post', '/api/contact', obj);
 
-    refValue = '';
+    refValue = null;
     name.text = '';
     lastnam.text = '';
     phoneNo.text = '';
@@ -152,5 +177,6 @@ class AddNewContactController extends GetxController {
     stat.text = '';
     zipp.text = '';
     Get.back();
+    contactListController.getData();
   }
 }
