@@ -702,7 +702,7 @@ class StatisticsAndReports extends StatelessWidget {
                         InkWell(
                           onTap: () {
                             _.showReport(_.dailyMonthLenght,
-                                int.parse(_.dailySelectedYear.value));
+                                int.parse(_.dailySelectedYear.value),1);
                           },
                           child: Text('Show reports',
                               style: TextStyle(
@@ -836,7 +836,7 @@ class StatisticsAndReports extends StatelessWidget {
                         InkWell(
                           onTap: () {
                             _.showReport(_.confernceMonthLenght,
-                                int.parse(_.confernceSelectedYear.value));
+                                int.parse(_.confernceSelectedYear.value),2);
                           },
                           child: Text('Show reports',
                               style: TextStyle(
@@ -968,7 +968,7 @@ class StatisticsAndReports extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: () {
-                            _.showReport(_.weeklyMonthLenght, int.parse(_.weeklySelectedYear.value));
+                            _.showReport(_.weeklyMonthLenght, int.parse(_.weeklySelectedYear.value),3);
                           },
                           child: Text('Show reports',
                               style: TextStyle(
@@ -976,133 +976,7 @@ class StatisticsAndReports extends StatelessWidget {
                         ),
                       ],
                     ).marginOnly(top: 30),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children:  [
-                    //     Text(
-                    //       'international Exposure',
-                    //       style: TextStyle(
-                    //           fontSize: 10, fontWeight: FontWeight.bold),
-                    //     ),
-                    //      InkWell(
-                    //       onTap: () {
-                    //         print('natm');
-                    //         Get.bottomSheet(Container(
-                    //             padding: EdgeInsets.only(top: 50, bottom: 50),
-                    //             height: 300,
-                    //             width: Get.width,
-                    //             decoration: BoxDecoration(
-                    //                 color: const Color.fromARGB(
-                    //                     255, 213, 213, 213),
-                    //                 borderRadius: BorderRadius.circular(20)),
-                    //             child: Center(
-                    //               child: Container(
-                    //                 height: 200,
-                    //                 child: ListView.builder(
-                    //                     itemCount: _.months.length,
-                    //                     // physics: ,
-                    //                     itemBuilder: (BuildContext context, i) {
-                    //                       return InkWell(
-                    //                         onTap: () {
-                    //                           _.nationalSelectedMonth.value =
-                    //                               _.months[i];
-                    //                           Get.back();
-                    //                         },
-                    //                         child: Container(
-                    //                             alignment: Alignment.center,
-                    //                             child: Text(
-                    //                               _.months[i],
-                    //                               style:
-                    //                                   TextStyle(fontSize: 20),
-                    //                             )).marginOnly(bottom: 7),
-                    //                       );
-                    //                     }),
-                    //               ),
-                    //             )));
-                    //       },
-                    //       child: Container(
-                    //         padding: EdgeInsets.only(left: 7, right: 3),
-                    //         decoration: BoxDecoration(
-                    //             color: Color.fromARGB(255, 238, 238, 238),
-                    //             border:
-                    //                 Border.all(width: 1, color: Colors.grey),
-                    //             borderRadius: BorderRadius.circular(2)),
-                    //         child: Obx(() => Row(
-                    //               children: [
-                    //                 Text(_.nationalSelectedMonth.value,
-                    //                     style: TextStyle(
-                    //                         fontSize: 9,
-                    //                         fontWeight: FontWeight.w600)),
-                    //                 Icon(
-                    //                   Icons.keyboard_arrow_down_sharp,
-                    //                   size: 15,
-                    //                 ),
-                    //               ],
-                    //             )),
-                    //       ),
-                    //     ),
-                    //     InkWell(
-                    //       onTap: () {
-                    //         print('naty');
-                    //         Get.bottomSheet(Container(
-                    //             padding: EdgeInsets.only(top: 50, bottom: 50),
-                    //             height: 300,
-                    //             width: Get.width,
-                    //             decoration: BoxDecoration(
-                    //                 color: const Color.fromARGB(
-                    //                     255, 213, 213, 213),
-                    //                 borderRadius: BorderRadius.circular(20)),
-                    //             child: Center(
-                    //               child: Container(
-                    //                 height: 200,
-                    //                 child: ListView.builder(
-                    //                     itemCount: _.years.length,
-                    //                     // physics: ,
-                    //                     itemBuilder: (BuildContext context, i) {
-                    //                       return InkWell(
-                    //                         onTap: () {
-                    //                           _.nationalSelectedYear.value =
-                    //                               _.years[i];
-                    //                           Get.back();
-                    //                         },
-                    //                         child: Container(
-                    //                             alignment: Alignment.center,
-                    //                             child: Text(
-                    //                               _.years[i],
-                    //                               style:
-                    //                                   TextStyle(fontSize: 20),
-                    //                             )).marginOnly(bottom: 7),
-                    //                       );
-                    //                     }),
-                    //               ),
-                    //             )));
-                    //       },
-                    //       child: Container(
-                    //         padding: EdgeInsets.only(left: 7, right: 3),
-                    //         decoration: BoxDecoration(
-                    //             color: Color.fromARGB(255, 238, 238, 238),
-                    //             border:
-                    //                 Border.all(width: 1, color: Colors.grey),
-                    //             borderRadius: BorderRadius.circular(2)),
-                    //         child: Obx(() => Row(
-                    //               children: [
-                    //                 Text(_.nationalSelectedYear.value,
-                    //                     style: TextStyle(
-                    //                         fontSize: 9,
-                    //                         fontWeight: FontWeight.w600)),
-                    //                 Icon(
-                    //                   Icons.keyboard_arrow_down_sharp,
-                    //                   size: 15,
-                    //                 ),
-                    //               ],
-                    //             )),
-                    //       ),
-                    //     ),
-                    //     Text('Show reports',
-                    //         style: TextStyle(
-                    //             fontSize: 8, fontWeight: FontWeight.bold)),
-                    //   ],
-                    // ).marginOnly(top: 30)
+               
                   ],
                 ).marginSymmetric(horizontal: 13)
               ],

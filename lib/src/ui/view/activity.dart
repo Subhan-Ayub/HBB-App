@@ -79,37 +79,6 @@ class ActivityScreen extends StatelessWidget {
                                   'type': 1,
                                   'date': _.pselectedDay
                                 });
-
-                                // showDialog(
-                                //     context: context,
-                                //     builder: (context) {
-                                //       return AlertDialog(
-                                //         scrollable: true,
-                                //         title: Text('Event Nameee'),
-                                //         content: Padding(
-                                //           padding: EdgeInsets.all(8),
-                                //           child: TextField(
-                                //             controller: _.eventController,
-                                //           ),
-                                //         ),
-                                //         actions: [
-                                //           InkWell(
-                                //               onTap: () {
-                                //                 String title = _.eventController.text;
-
-                                //                 DateTime dateTime = DateTime.parse(
-                                //                     _.pselectedDay.toString());
-                                //                 dateTime = dateTime.toLocal();
-
-                                //                 String formattedDate =
-                                //                     "${dateTime.year}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}";
-
-                                //                 Navigator.of(context).pop();
-                                //               },
-                                //               child: Text('submit'))
-                                //         ],
-                                //       );
-                                //     });
                               },
                               icon: Icon(
                                 Icons.add,
@@ -153,9 +122,33 @@ class ActivityScreen extends StatelessWidget {
                                                         maxLines: 1,
                                                         overflow: TextOverflow
                                                             .ellipsis)),
-                                                Icon(Icons.monetization_on,size: 18,),
-                                                Icon(Icons.edit,size: 15,),
-                                                Icon(Icons.delete,size: 15,)
+                                                Icon(
+                                                  Icons.monetization_on,
+                                                  size: 18,
+                                                ),
+                                                InkWell(
+                                                    onTap: () {
+                                                  
+                                                      Get.toNamed(
+                                                          Routes.adddailyexp,
+                                                          arguments: {
+                                                            'check':'update',
+                                                            'type': 1,
+                                                            'date':
+                                                                _.pselectedDay,
+                                                            'id':
+                                                                _.dailyprintt[i]
+                                                                    ['id']
+                                                          });
+                                                    },
+                                                    child: Icon(
+                                                      Icons.edit,
+                                                      size: 15,
+                                                    )),
+                                                Icon(
+                                                  Icons.delete,
+                                                  size: 15,
+                                                )
                                               ],
                                             ),
                                           ),
@@ -210,8 +203,8 @@ class ActivityScreen extends StatelessWidget {
                                                   child: Text(
                                                       '${_.dailyprintt[i]['email']}',
                                                       maxLines: 1,
-                                                      overflow:
-                                                          TextOverflow.ellipsis),
+                                                      overflow: TextOverflow
+                                                          .ellipsis),
                                                 ),
                                               ],
                                             ),
@@ -322,8 +315,8 @@ class ActivityScreen extends StatelessWidget {
                                                   child: Text(
                                                       '${_.dailyprintt[i]['exposuretypestring']}',
                                                       maxLines: 1,
-                                                      overflow:
-                                                          TextOverflow.ellipsis),
+                                                      overflow: TextOverflow
+                                                          .ellipsis),
                                                 ),
                                               ],
                                             ),
@@ -360,8 +353,10 @@ class ActivityScreen extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: () {
-                              _.expandMeetings.value = !_.expandMeetings.value;
-                            
+                              if (_.weeklyprint.isNotEmpty) {
+                                _.expandMeetings.value =
+                                    !_.expandMeetings.value;
+                              }
                             },
                             child: Text(
                               'Weekly Meetings',
@@ -375,11 +370,10 @@ class ActivityScreen extends StatelessWidget {
                           IconButton(
                               onPressed: () {
                                 // Get.toNamed(Routes.weeklymeeting);
-                                     Get.toNamed(Routes.weeklymeeting, arguments: {
-                                  'type': 1,
+                                Get.toNamed(Routes.weeklymeeting, arguments: {
+                                  'type': 2,
                                   'date': _.pselectedDay
                                 });
-
                               },
                               icon: Icon(
                                 Icons.add,
@@ -394,7 +388,7 @@ class ActivityScreen extends StatelessWidget {
                     Obx(
                       () => _.expandMeetings.value
                           ? Container(
-                              height: _.expandMeetings.value ? 450 : 0,
+                              height: _.expandMeetings.value ? 150 : 0,
                               // color: Colors.green,
                               child: ListView.builder(
                                   itemCount: _.weeklyprint.length,
@@ -423,9 +417,35 @@ class ActivityScreen extends StatelessWidget {
                                                         maxLines: 1,
                                                         overflow: TextOverflow
                                                             .ellipsis)),
-                                                Icon(Icons.monetization_on,size: 18,),
-                                                Icon(Icons.edit,size: 15,),
-                                                Icon(Icons.delete,size: 15,)
+                                                Icon(
+                                                  Icons.monetization_on,
+                                                  size: 18,
+                                                ),
+                                                InkWell(
+                                                  onTap: () {
+                                                    print( _.weeklyprint[i]
+                                                                    ['id']);
+                                                       Get.toNamed(
+                                                          Routes.weeklymeeting,
+                                                          arguments: {
+                                                            'check':'update',
+                                                            'type': 2,
+                                                            'date':
+                                                                _.pselectedDay,
+                                                            'id':
+                                                                _.weeklyprint[i]
+                                                                    ['id']
+                                                          });
+                                                  },
+                                                  child: Icon(
+                                                    Icons.edit,
+                                                    size: 15,
+                                                  ),
+                                                ),
+                                                Icon(
+                                                  Icons.delete,
+                                                  size: 15,
+                                                )
                                               ],
                                             ),
                                           ),
@@ -438,14 +458,15 @@ class ActivityScreen extends StatelessWidget {
                                               children: [
                                                 Container(
                                                     width: 200,
-                                                    child: Text('Type of Meetings:')),
+                                                    child: Text(
+                                                        'Type of Meetings:')),
                                                 Container(
                                                   width: 140,
                                                   child: Text(
                                                       '${_.weeklyprint[i]['meetingType']}',
                                                       maxLines: 1,
-                                                      overflow:
-                                                          TextOverflow.ellipsis),
+                                                      overflow: TextOverflow
+                                                          .ellipsis),
                                                 ),
                                               ],
                                             ),
@@ -459,148 +480,19 @@ class ActivityScreen extends StatelessWidget {
                                               children: [
                                                 Container(
                                                     width: 200,
-                                                    child: Text('Parties Present/Notes:')),
+                                                    child: Text(
+                                                        'Parties Present/Notes:')),
                                                 Container(
                                                   width: 140,
                                                   child: Text(
                                                       '${_.weeklyprint[i]['wmNotes']}',
                                                       maxLines: 1,
-                                                      overflow:
-                                                          TextOverflow.ellipsis),
+                                                      overflow: TextOverflow
+                                                          .ellipsis),
                                                 ),
                                               ],
                                             ),
                                           ),
-                                          // Container(
-                                          //   padding: EdgeInsets.symmetric(
-                                          //       horizontal: 10, vertical: 10),
-                                          //   color: Color.fromARGB(
-                                          //       255, 241, 241, 241),
-                                          //   child: Row(
-                                          //     children: [
-                                          //       Container(
-                                          //           width: 200,
-                                          //           child: Text('Email:')),
-                                          //       Text(
-                                          //           '${_.dailyprintt[i]['email']}',
-                                          //           maxLines: 1,
-                                          //           overflow:
-                                          //               TextOverflow.ellipsis),
-                                          //     ],
-                                          //   ),
-                                          // ),
-                                          // Container(
-                                          //   padding: EdgeInsets.symmetric(
-                                          //       horizontal: 10, vertical: 10),
-                                          //   color: Color.fromARGB(
-                                          //       255, 241, 241, 241),
-                                          //   child: Row(
-                                          //     children: [
-                                          //       Container(
-                                          //           width: 200,
-                                          //           child: Text('Address:')),
-                                          //       Text(
-                                          //           '${_.dailyprintt[i]['address']}',
-                                          //           maxLines: 1,
-                                          //           overflow:
-                                          //               TextOverflow.ellipsis),
-                                          //     ],
-                                          //   ),
-                                          // ),
-                                          // Container(
-                                          //   padding: EdgeInsets.symmetric(
-                                          //       horizontal: 10, vertical: 10),
-                                          //   color: Color.fromARGB(
-                                          //       255, 241, 241, 241),
-                                          //   child: Row(
-                                          //     children: [
-                                          //       Container(
-                                          //           width: 200,
-                                          //           child: Text('State/Zip:')),
-                                          //       Text(
-                                          //           '${_.dailyprintt[i]['state']},${_.dailyprintt[i]['zip']}',
-                                          //           maxLines: 1,
-                                          //           overflow:
-                                          //               TextOverflow.ellipsis),
-                                          //     ],
-                                          //   ),
-                                          // ),
-                                          // Container(
-                                          //   padding: EdgeInsets.symmetric(
-                                          //       horizontal: 10, vertical: 10),
-                                          //   color: Color.fromARGB(
-                                          //       255, 241, 241, 241),
-                                          //   child: Row(
-                                          //     children: [
-                                          //       Container(
-                                          //           width: 200,
-                                          //           child: Text('Notes:')),
-                                          //       Text(
-                                          //           '${_.dailyprintt[i]['formnotes']}',
-                                          //           maxLines: 1,
-                                          //           overflow:
-                                          //               TextOverflow.ellipsis),
-                                          //     ],
-                                          //   ),
-                                          // ),
-                                          // Container(
-                                          //   padding: EdgeInsets.symmetric(
-                                          //       horizontal: 10, vertical: 10),
-                                          //   color: Color.fromARGB(
-                                          //       255, 241, 241, 241),
-                                          //   child: Row(
-                                          //     children: [
-                                          //       Container(
-                                          //           width: 200,
-                                          //           child: Text('Follow Up:')),
-                                          //       Text('{_.ek}',
-                                          //           maxLines: 1,
-                                          //           overflow:
-                                          //               TextOverflow.ellipsis),
-                                          //     ],
-                                          //   ),
-                                          // ),
-                                          // Container(
-                                          //   padding: EdgeInsets.symmetric(
-                                          //       horizontal: 10, vertical: 10),
-                                          //   color: Color.fromARGB(
-                                          //       255, 241, 241, 241),
-                                          //   child: Row(
-                                          //     children: [
-                                          //       Container(
-                                          //           width: 200,
-                                          //           child: Text(
-                                          //               'Best Time To Call:')),
-                                          //       Text(
-                                          //           '${_.dailyprintt[i]['calltime']}',
-                                          //           maxLines: 1,
-                                          //           overflow:
-                                          //               TextOverflow.ellipsis),
-                                          //     ],
-                                          //   ),
-                                          // ),
-                                          // Container(
-                                          //   padding: EdgeInsets.symmetric(
-                                          //       horizontal: 10, vertical: 10),
-                                          //   color: Color.fromARGB(
-                                          //       255, 241, 241, 241),
-                                          //   child: Row(
-                                          //     children: [
-                                          //       Container(
-                                          //           width: 200,
-                                          //           child: Text(
-                                          //               'Methods of Exposures:')),
-                                          //       Container(
-                                          //         width: 100,
-                                          //         child: Text(
-                                          //             '${_.dailyprintt[i]['exposuretypestring']}',
-                                          //             maxLines: 1,
-                                          //             overflow:
-                                          //                 TextOverflow.ellipsis),
-                                          //       ),
-                                          //     ],
-                                          //   ),
-                                          // ),
                                           Container(
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: 10),
@@ -633,10 +525,10 @@ class ActivityScreen extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: () {
-                              _.expandConference.value =
-                                  !_.expandConference.value;
-                              _.conferenceHeight.value =
-                                  _.expandConference.value ? 200.0 : 0.0;
+                              if (_.conferrencedprint.isNotEmpty) {
+                                _.expandConference.value =
+                                    !_.expandConference.value;
+                              }
                             },
                             child: Text(
                               'Conference Calls',
@@ -648,7 +540,12 @@ class ActivityScreen extends StatelessWidget {
                           ),
                           Spacer(),
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.toNamed(Routes.conferencecall, arguments: {
+                                  'type': 3,
+                                  'date': _.pselectedDay
+                                });
+                              },
                               icon: Icon(
                                 Icons.add,
                                 color: Colors.white,
@@ -658,12 +555,101 @@ class ActivityScreen extends StatelessWidget {
                       ).marginSymmetric(horizontal: Get.width * 0.04),
                     ).paddingOnly(top: Get.height * 0.03),
                     Obx(
-                      () => AnimatedContainer(
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.easeInOut,
-                        height: _.conferenceHeight.value,
-                        color: Colors.green,
-                      ),
+                      () => _.expandConference.value
+                          ? Container(
+                              height: _.expandConference.value ? 100 : 0,
+                              // color: Colors.green,
+                              child: ListView.builder(
+                                  itemCount: _.conferrencedprint.length,
+                                  itemBuilder: (BuildContext context, i) {
+                                    return Container(
+                                      // height: 410,
+                                      // color: Colors.amberAccent,
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 10, vertical: 10),
+                                            color: Color.fromARGB(
+                                                255, 241, 241, 241),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text('Time of Calls:'),
+                                                Container(
+                                                    width: 110,
+                                                    alignment: Alignment.center,
+                                                    child: Text(
+                                                        '${_.conferrencedprint[i]['timeofcall']}',
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis)),
+                                                Icon(
+                                                  Icons.monetization_on,
+                                                  size: 18,
+                                                ),
+                                                InkWell(
+                                                  onTap: () {
+                                                    
+                                                       Get.toNamed(
+                                                          Routes.conferencecall,
+                                                          arguments: {
+                                                            'check':'update',
+                                                            'type': 3,
+                                                            'date':
+                                                                _.pselectedDay,
+                                                            'id':
+                                                                _.conferrencedprint[i]
+                                                                    ['id']
+                                                          });
+                                                  },
+                                                  child: Icon(
+                                                    Icons.edit,
+                                                    size: 15,
+                                                  ),
+                                                ),
+                                                Icon(
+                                                  Icons.delete,
+                                                  size: 15,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 10, vertical: 10),
+                                            color: Color.fromARGB(
+                                                255, 241, 241, 241),
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                    width: 100,
+                                                    child: Text('Notes:')),
+                                                Container(
+                                                  width: 200,
+                                                  child: Text(
+                                                      '${_.conferrencedprint[i]['ccallnotes']}',
+                                                      maxLines: 1,
+                                                      overflow: TextOverflow
+                                                          .ellipsis),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 10),
+                                              color: Color.fromARGB(
+                                                  255, 241, 241, 241),
+                                              child: Divider())
+                                        ],
+                                      ),
+                                    );
+                                  }),
+                            )
+                          : SizedBox(),
                     ),
 
                     // National/International Exposures
@@ -744,9 +730,34 @@ class ActivityScreen extends StatelessWidget {
                                                       maxLines: 1,
                                                       overflow: TextOverflow
                                                           .ellipsis)),
-                                              Icon(Icons.abc),
-                                              Icon(Icons.abc),
-                                              Icon(Icons.abc)
+                                                 Icon(
+                                                  Icons.monetization_on,
+                                                  size: 18,
+                                                ),
+                                                InkWell(
+                                                  onTap: () {
+                                                    
+                                                       Get.toNamed(
+                                                          Routes.adddailyexp,
+                                                          arguments: {
+                                                            'check':'update',
+                                                            'type': 4,
+                                                            'date':
+                                                                _.pselectedDay,
+                                                            'id':
+                                                                _.natinalprint[i]
+                                                                    ['id']
+                                                          });
+                                                  },
+                                                  child: Icon(
+                                                    Icons.edit,
+                                                    size: 15,
+                                                  ),
+                                                ),
+                                                Icon(
+                                                  Icons.delete,
+                                                  size: 15,
+                                                )
                                             ],
                                           ),
                                         ),
@@ -910,16 +921,15 @@ class ActivityScreen extends StatelessWidget {
                                                   maxLines: 1,
                                                   overflow:
                                                       TextOverflow.ellipsis),
-                                            
                                             ],
                                           ),
                                         ),
-                                          Container(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 10),
-                                                  color: Color.fromARGB(
-                                                      255, 241, 241, 241),
-                                                  child: Divider())
+                                        Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 10),
+                                            color: Color.fromARGB(
+                                                255, 241, 241, 241),
+                                            child: Divider())
                                       ],
                                     ),
                                   );
@@ -1035,7 +1045,7 @@ class ActivityScreen extends StatelessWidget {
                                   ),
                                 ),
                                 firstDay: DateTime.utc(2010, 10, 16),
-                                lastDay: DateTime.utc(2030, 3, 14),
+                                lastDay: DateTime.now(),
                                 focusedDay: _.pfocusedDay.value,
                                 selectedDayPredicate: (day) =>
                                     isSameDay(_.pselectedDay, day),

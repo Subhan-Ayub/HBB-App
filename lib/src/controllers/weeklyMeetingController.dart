@@ -5,7 +5,7 @@ import 'package:hbb/src/utils/helpers/api_helper.dart';
 
 class WeeklyMeetingController extends GetxController {
   ActivityController ac = Get.find<ActivityController>();
-
+  var check;
   dynamic refValue;
   TextEditingController amount = TextEditingController();
   TextEditingController meetingLocation = TextEditingController();
@@ -14,6 +14,8 @@ class WeeklyMeetingController extends GetxController {
   var arg = Get.arguments;
   @override
   void onInit() async {
+    check = arg['check'] ?? 'Save';
+
     super.onInit();
     DateTime dateTime = DateTime.parse(arg['date'].toString());
 
@@ -30,16 +32,28 @@ class WeeklyMeetingController extends GetxController {
     update();
   }
 
-  submit() async{
-    var obj = {
-      "activitytype": "2",
-      "origdate": formattedDate,
-      "meetinglocation": meetingLocation.text,
-      "wmnotes": notes.text,
-      "meetingtype": selectedOption.value
-    };
-       await apiFetcher('Post', '/api/weekly-training', obj);
-    Get.back();
+  submit() async {
+    var obj = check == 'Save'
+        ? {
+            "activitytype": 2,
+            "origdate": formattedDate,
+            "meetinglocation": meetingLocation.text,
+            "wmnotes": notes.text,
+            "meetingtype": selectedOption.value
+          }
+        : {
+            "meetinglocation": meetingLocation.text,
+            "wmnotes": notes.text,
+            "meetingtype":selectedOption.value
+          };
+    if (check == 'Save') {
+      await apiFetcher('Post', '/api/weekly-training', obj);
+    }
+    print(obj);
+    if (check == 'update') {
+      await apiFetcher('Put', '/api/weekly-training/${arg['id']}', obj);
+    }
+      Get.back();
     ac.getData();
   }
 }

@@ -53,7 +53,6 @@ apiFetcher(String method, url, [body]) async {
         if (response.statusCode == 200 || response.statusCode == 201) {
           // Handle a successful response
           print('PUT request successful: ${response.body}');
-          Get.back();
           return response;
         } else {
           // Handle an error response

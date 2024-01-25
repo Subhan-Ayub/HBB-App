@@ -28,6 +28,10 @@ static const conferencecall = '/conferencecall';
 static const conferenceaddexpense = '/conferenceaddexpense';
 static const error = '/error';
 static const addincomeexpense = '/addincomeexpense';
+static const weeklyconfrepots = '/weeklyconfreport';
+static const incomeexpencereport = '/incomeexpencereport';
+
+
 
 
 }

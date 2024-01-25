@@ -359,7 +359,7 @@ class WeeklyMeetingScreen extends StatelessWidget {
                               child: Container(
                                 color: UIDataColors.commonColor,
                                 child: Text(
-                                  'Save',
+                                  '${_.check}',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: Get.width * 0.035),

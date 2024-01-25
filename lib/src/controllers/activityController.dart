@@ -70,6 +70,7 @@ class ActivityController extends GetxController {
   var filteredDataOfD = [];
   var filteredidOfD = [];
   var filteredidOfW = [];
+  var filteredidOfC = [];
 
   var dailyprintt = [].obs;
   var natinalprint = [].obs;
@@ -79,7 +80,8 @@ class ActivityController extends GetxController {
   dcheck() async {
     filteredDataOfD = [];
     filteredidOfD = [];
-   filteredidOfW = [];
+    filteredidOfW = [];
+    filteredidOfC = [];
 
     dailyprintt.value = [];
     natinalprint.value = [];
@@ -111,7 +113,10 @@ class ActivityController extends GetxController {
         var dailyIds = await apiFetcher(
             'Get', '/api/daily-exposure/${filteredDataOfD[i]['id']}');
         filteredidOfD.add(dailyIds['data']);
-        print('ssssssss$dailyIds');
+        var conferIds = await apiFetcher(
+            'Get', '/api/conference-call/${filteredDataOfD[i]['id']}');
+        filteredidOfC.add(conferIds['data']);
+        // print('ssssssss$dailyIds');
         var weeklyIds = await apiFetcher(
             'Get', '/api/weekly-training/${filteredDataOfD[i]['id']}');
         filteredidOfW.add(weeklyIds['data']);
@@ -119,7 +124,14 @@ class ActivityController extends GetxController {
         print(filteredDataOfD[i]['id']);
       }
       // print(filteredidOfD);
+      if (filteredidOfW.isNotEmpty) {
       weeklyprint.value = filteredidOfW;
+        expandMeetings.value=true;
+      }
+      // if (filteredidOfC.isNotEmpty) {
+      // conferrencedprint.value=filteredidOfC;
+      //   expandConference.value=true;
+      // }
 
       for (var i = 0; i < filteredidOfD.length; i++) {
         if (filteredidOfD[i]['activitytype'] == 1) {
@@ -135,7 +147,6 @@ class ActivityController extends GetxController {
           expandNationalExposure.value = true;
         }
       }
-    print('eeeeee ${filteredidOfW}');
     }
     //  for (var i = 0; i < filteredidOfW.length; i++) {
     //   if (filteredidOfD[i]['activitytype'] == 2) {
@@ -146,13 +157,14 @@ class ActivityController extends GetxController {
     //     expandMeetings.value = true;
     //   }
     // }
-    //  for (var i = 0; i < filteredidOfD.length; i++) {
-    //   if (filteredidOfD[i]['activitytype'] == 3) {
-    //     conferrencedprint.value.add(filteredidOfD[i]);
+     for (var i = 0; i < filteredidOfC.length; i++) {
+      if (filteredidOfD[i]['activitytype'] == 3) {
+        conferrencedprint.value.add(filteredidOfC[i]);
 
-    //     expandConference.value = true;
-    //   }
-    // }
+        expandConference.value = true;
+      }
+    }
+      print('eeeeee ${conferrencedprint}');
     // if (dailyprintt != []) {
     //   print('ddddd');
     // }

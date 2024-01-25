@@ -10,6 +10,7 @@ import 'package:hbb/src/bindings/conferenceCallBinding.dart';
 import 'package:hbb/src/bindings/contactListBinding.dart';
 import 'package:hbb/src/bindings/contactUsBinding.dart';
 import 'package:hbb/src/bindings/homeBinding.dart';
+import 'package:hbb/src/bindings/income&expenceBindings.dart';
 import 'package:hbb/src/bindings/loginBinding.dart';
 import 'package:hbb/src/bindings/myGoalsBinding.dart';
 import 'package:hbb/src/bindings/profileBinding.dart';
@@ -18,6 +19,7 @@ import 'package:hbb/src/bindings/programDetailBinding.dart';
 import 'package:hbb/src/bindings/showReportBindings.dart';
 import 'package:hbb/src/bindings/signinBinding.dart';
 import 'package:hbb/src/bindings/signupBinding.dart';
+import 'package:hbb/src/bindings/weekly&confBindings.dart';
 import 'package:hbb/src/bindings/weeklyMeetingBinding.dart';
 import 'package:hbb/src/middlewares/auth.dart';
 import 'package:hbb/src/ui/view/ConferenceAddExpense.dart';
@@ -33,6 +35,7 @@ import 'package:hbb/src/ui/view/dailyAddExpense.dart';
 import 'package:hbb/src/ui/view/editProfile.dart';
 import 'package:hbb/src/ui/view/error.dart';
 import 'package:hbb/src/ui/view/home.dart';
+import 'package:hbb/src/ui/view/income&expenceReport.dart';
 import 'package:hbb/src/ui/view/incomeExpense.dart';
 import 'package:hbb/src/ui/view/login.dart';
 import 'package:hbb/src/ui/view/myGoals.dart';
@@ -44,6 +47,7 @@ import 'package:hbb/src/ui/view/signIn.dart';
 import 'package:hbb/src/ui/view/signUp.dart';
 import 'package:hbb/src/ui/view/splashScreen.dart';
 import 'package:hbb/src/ui/view/supportTeam.dart';
+import 'package:hbb/src/ui/view/weekly&conferReport.dart';
 import 'package:hbb/src/ui/view/weeklyAddExpense.dart';
 import 'package:hbb/src/ui/view/weeklyMeeting.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
@@ -188,6 +192,16 @@ class AppPages {
         name: Routes.addincomeexpense,
         binding: AddIncomeExpenseBinding(),
         page: () => AddIncomeexpense(),
+        transition: Transition.noTransition),
+          GetPage(
+        name: Routes.weeklyconfrepots,
+        binding: WeeklyConfBindings(),
+        page: () => WeeklyConferencedReport(),
+        transition: Transition.noTransition),
+           GetPage(
+        name: Routes.incomeexpencereport,
+        binding: IncomeExpenceRepBindings(),
+        page: () => IncomeExpenceReport(),
         transition: Transition.noTransition),
   ];
 }

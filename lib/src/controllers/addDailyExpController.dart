@@ -5,7 +5,10 @@ import 'package:hbb/src/utils/helpers/api_helper.dart';
 
 class AddDailyExpController extends GetxController {
   ActivityController ac = Get.find<ActivityController>();
+
   var arg = Get.arguments;
+
+  var check;
   var checkbox1 = false.obs;
   var checkbox2 = false.obs;
   var checkbox3 = false.obs;
@@ -35,6 +38,7 @@ class AddDailyExpController extends GetxController {
 
   @override
   void onInit() async {
+    check=arg['check']??'Save';
     super.onInit();
     DateTime dateTime = DateTime.parse(arg['date'].toString());
 
@@ -76,7 +80,22 @@ class AddDailyExpController extends GetxController {
           "${checkbox12.value ? 'website,' : ''}" +
           "${checkbox13.value ? 'Other,' : ''}"
     };
+    if (check=='Save'&& arg['type']==1) {
     await apiFetcher('Post', '/api/daily-exposure', dat);
+      
+    }
+    if (check=='update'&& arg['type']==1) {
+    await apiFetcher('Put', '/api/daily-exposure/${arg['id']}', dat);
+      
+    }
+     if (check=='Save'&& arg['type']==4) {
+    await apiFetcher('Post', '/api/natint-exposure', dat);
+      
+    }
+    if (check=='update'&& arg['type']==4) {
+    await apiFetcher('Put', '/api/natint-exposure/${arg['id']}', dat);
+      
+    }
     Get.back();
     ac.getData();
   }

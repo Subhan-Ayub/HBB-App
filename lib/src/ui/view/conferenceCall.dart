@@ -28,7 +28,7 @@ class ConferenceCallScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Conference Call.    17th, 0',
+                          'Conference Call. ${_.formattedDate}',
                           style: TextStyle(
                               color: Colors.grey, fontSize: Get.width * .03),
                         ),
@@ -118,17 +118,22 @@ class ConferenceCallScreen extends StatelessWidget {
                                 vertical: Get.height * 0.01),
                           ),
                         ),
-                        Container(
-                          color: UIDataColors.commonColor,
-                          child: Text(
-                            'Save',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: Get.width * 0.035),
-                          ).marginSymmetric(
-                              horizontal: Get.width * 0.04,
-                              vertical: Get.height * 0.01),
-                        ).paddingSymmetric(horizontal: 10),
+                        InkWell(
+                          onTap: () {
+                            _.submit();
+                          },
+                          child: Container(
+                            color: UIDataColors.commonColor,
+                            child: Text(
+                              '${_.check}',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: Get.width * 0.035),
+                            ).marginSymmetric(
+                                horizontal: Get.width * 0.04,
+                                vertical: Get.height * 0.01),
+                          ).paddingSymmetric(horizontal: 10),
+                        ),
                       ],
                     ),
                   ],

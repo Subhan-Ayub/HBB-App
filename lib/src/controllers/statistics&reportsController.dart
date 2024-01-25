@@ -14,7 +14,7 @@ class StatisticsAndReportsController extends GetxController {
   RxBool loder = true.obs;
   RxString dailySelectedMonth = 'Month'.obs;
   RxString dailySelectedYear = 'Year'.obs;
-  
+
   int? dailyMonthLenght;
 
   RxString conferenceSelectedMonth = 'Month'.obs;
@@ -57,11 +57,21 @@ class StatisticsAndReportsController extends GetxController {
     '2016',
   ];
 
-  showReport(month, year) async {
-    var data =
-        await apiFetcher('Get', '/api/all-reports?month=$month&year=$year');
-    Get.toNamed(Routes.showReports,
-        arguments: {'data': data, 'month': month, 'year': year});
+  showReport(month, year, type) async {
+    var data = await apiFetcher(
+        'Get', '/api/all-reports?month=$month&year=$year&type=$type');
+    if (type == 1) {
+      Get.toNamed(Routes.showReports,
+          arguments: {'data': data, 'month': month, 'year': year});
+    }
+      if (type == 2) {
+      Get.toNamed(Routes.weeklyconfrepots,
+          arguments: {'data': data, 'month': month, 'year': year});
+    }
+     if (type == 3) {
+      Get.toNamed(Routes.incomeexpencereport,
+          arguments: {'data': data, 'month': month, 'year': year});
+    }
   }
 
   @override

@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hbb/src/controllers/showReportController.dart';
+import 'package:hbb/src/controllers/incomeExpenceRepController.dart';
+// import 'package:hbb/src/controllers/showReportController.dart';
+import 'package:hbb/src/controllers/weekly&confController.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
 
-class ShowReports extends StatelessWidget {
+class IncomeExpenceReport extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ShowReportController _ = Get.find<ShowReportController>();
+    IncomeExpenceRepController _ = Get.find<IncomeExpenceRepController>();
     return Scaffold(
       body: SafeArea(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Divider(),
-          Text('Daily Exposure & National/International Exposure Report for January, ${_.arg['year']}',
+          // Divider(),
+          Text('Income & Expence Exposure Report for January, ${_.arg['year']}',
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900))
               .marginSymmetric(horizontal: 10),
-          Divider(),
-          Text(
-            'Note E = Daily Exposure K = National/International Exposure',
-            style: TextStyle(color: Colors.red, fontSize: 12),
-          ).marginSymmetric(horizontal: 10),
+              SizedBox(height: 10,),
+          // Divider(),
+          // Text(
+          //   'Note E = Daily Exposure K = National/International Exposure',
+          //   style: TextStyle(color: Colors.red, fontSize: 12),
+          // ).marginSymmetric(horizontal: 10),
           Container(
-            height: 25,
-            width: Get.width,
+            height: 35,
+            // width: Get.width,
             decoration: BoxDecoration(
                 border: Border(
                   top: BorderSide(
@@ -42,17 +45,18 @@ class ShowReports extends StatelessWidget {
                     style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
                   ).marginOnly(left: 10),
                   Text(
-                    'E/K',
+                    'Purpose',
                     style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
                   ).marginOnly(left: 30),
                   Text(
-                    'Name',
+                    'Income',
                     style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
-                  ).marginOnly(right: 20),
-                  Text(
-                    'Email',
+                  ),
+                   Text(
+                    'Expenditures',
                     style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
-                  ).marginOnly(right: Get.width * .2),
+                  ).marginOnly(right: Get.width * .04),
+               
                 ]),
           ).marginOnly(top: 9),
           SingleChildScrollView(
@@ -60,7 +64,7 @@ class ShowReports extends StatelessWidget {
               children: [
                 Container(
                   height: Get.height - 310,
-                  // width: Get.width,
+                  width: Get.width,
                   child: ListView.builder(
                       itemCount: 31,
                       itemBuilder: (BuildContext context, i) {
@@ -75,19 +79,19 @@ class ShowReports extends StatelessWidget {
                             children: [
                               Text('${i + 1}/${_.arg['month']}/${_.arg['year']}'),
                               Container(
-                                  width: 110,
+                                  width: 130,
                                   alignment: Alignment.center,
                                   child: Text('${_.ek}',
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis)),
                               Container(
-                                  width: 110,
+                                  width: 50,
                                   alignment: Alignment.centerLeft,
                                   child: Text('${_.name}',
                                       maxLines: 1,
-                                      overflow: TextOverflow.ellipsis)),
+                                      overflow: TextOverflow.ellipsis)).marginOnly(right: 40),
                               Container(
-                                  width: 110,
+                                  width: 50,
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     '${_.email}',
