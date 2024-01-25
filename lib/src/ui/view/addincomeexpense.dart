@@ -17,7 +17,8 @@ class AddIncomeexpense extends StatelessWidget {
       children: [
         Text(
           'Add Income Expense',
-          style: UIDataTextStyles.HeadingStyle,
+          style: TextStyle(
+              fontSize: Get.width * 0.065, fontWeight: FontWeight.bold),
         ),
         // DateField
         SizedBox(

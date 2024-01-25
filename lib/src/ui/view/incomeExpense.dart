@@ -201,19 +201,125 @@ class IncomeExpenseScreen extends StatelessWidget {
                       ],
                     ),
                     //
-                    Container(
-                      height: Get.height * .09,
-                      alignment: Alignment.center,
-                      // color: Colors.red,
-                      child: Text(
-                        'You currently have no income or expense items for January 2024,(Remember you can only display income and expenses back to January 1st of the year you joined this program) ',
-                        style: TextStyle(
-                          fontSize: Get.width * .025,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ).paddingSymmetric(vertical: Get.height * .01)
+                    Obx(
+                      () => _.loader.value
+                          ? Container(
+                              height: Get.height * .09,
+                              alignment: Alignment.center,
+                              child: ListView.builder(
+                                  itemCount: 1,
+                                  itemBuilder: ((context, index) {
+                                    return Row(
+                                      children: [
+                                        Container(
+                                          width: Get.width / 6.342,
+                                          height: Get.height * .03,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              bottom: BorderSide(
+                                                color: Colors.grey,
+                                                width: 1.0,
+                                              ),
+                                              right: BorderSide(
+                                                color: Colors.grey,
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                          ),
+                                          child: Text(
+                                            '${_.incomeExpenseData['expensedate']}',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: Get.width * .025),
+                                            overflow: TextOverflow.ellipsis,
+                                          ).paddingSymmetric(horizontal: 10),
+                                        ),
+                                        Container(
+                                          width: Get.width / 4,
+                                          height: Get.height * .03,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              bottom: BorderSide(
+                                                color: Colors.grey,
+                                                width: 1.0,
+                                              ),
+                                              right: BorderSide(
+                                                color: Colors.grey,
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                          ),
+                                          child: Text(
+                                            '${_.incomeExpenseData['expensereason']}',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: Get.width * .025),
+                                            overflow: TextOverflow.ellipsis,
+                                          ).paddingSymmetric(horizontal: 10),
+                                        ),
+                                        Container(
+                                          width: Get.width / 4,
+                                          height: Get.height * .03,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              bottom: BorderSide(
+                                                color: Colors.grey,
+                                                width: 1.0,
+                                              ),
+                                              right: BorderSide(
+                                                color: Colors.grey,
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                          ),
+                                          child: Text(
+                                            '',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: Get.width * .025),
+                                          ),
+                                        ),
+                                        Container(
+                                          width: Get.width / 4,
+                                          height: Get.height * .03,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              bottom: BorderSide(
+                                                color: Colors.grey,
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                          ),
+                                          child: Text(
+                                            '${_.incomeExpenseData['expenseamount']}',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: Get.width * .025),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  })))
+                          : Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                    )
                     // .marginSymmetric(vertical: Get.height * .03)
+                    // Text(
+                    //     'You currently have no income or expense items for January 2024,(Remember you can only display income and expenses back to January 1st of the year you joined this program) ',
+                    //     style: TextStyle(
+                    //       fontSize: Get.width * .025,
+                    //     ),
+                    //     textAlign: TextAlign.center,
+                    //   ),
                   ],
                 ),
               ),
