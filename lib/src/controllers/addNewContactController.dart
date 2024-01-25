@@ -6,7 +6,7 @@ import 'package:hbb/src/utils/helpers/api_helper.dart';
 class AddNewContactController extends GetxController {
   ContactListController contactListController =
       Get.put(ContactListController());
-  var id = Get.arguments;
+  // var id = Get.arguments;
   dynamic refValue;
   TextEditingController name = TextEditingController();
   TextEditingController lastnam = TextEditingController();
@@ -30,6 +30,7 @@ class AddNewContactController extends GetxController {
   }
 
   void upDate() async {
+  var id = contactListController.updateId;
     final difficulty = refValue;
     final firstname = name.text.trim();
     final lastname = lastnam.text.trim();
@@ -55,7 +56,7 @@ class AddNewContactController extends GetxController {
           colorText: Colors.white);
       return;
     }
-if (difficulty==null) {
+    if (difficulty == null) {
       Get.snackbar('Error', 'Select Relation Level',
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,
@@ -88,8 +89,6 @@ if (difficulty==null) {
       "state": state,
       "zip": zip,
     };
-    print('hbjbqjwbkqwblq $refValue');
-
 
     var res = await apiFetcher('Put', '/api/contact/$id', obj);
 
@@ -147,7 +146,7 @@ if (difficulty==null) {
           colorText: Colors.white);
       return;
     }
-    if (difficulty==null) {
+    if (difficulty == null) {
       Get.snackbar('Error', 'Select Relation Level',
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,

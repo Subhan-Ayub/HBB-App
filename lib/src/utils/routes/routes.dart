@@ -27,6 +27,7 @@ static const dailyaddexpense = '/dailyaddexpense';
 static const conferencecall = '/conferencecall';
 static const conferenceaddexpense = '/conferenceaddexpense';
 static const error = '/error';
+static const addincomeexpense = '/addincomeexpense';
 
 
 }

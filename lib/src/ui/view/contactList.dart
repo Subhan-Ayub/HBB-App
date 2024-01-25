@@ -440,11 +440,12 @@ class ContactListScreen extends StatelessWidget {
                                                   onTap: () {
                                                     _.updateId =
                                                         _.data[index]['id'];
-                                                    // print(_.updateId);
+                                                    print(_.updateId);
                                                     _.isEdit.value = true;
                                                     Get.toNamed(
                                                         Routes.addnewcontact,
-                                                        arguments: _.updateId);
+                                                        // arguments: _.updateId
+                                                        );
                                                     addNewContactController
                                                         .edit(index);
                                                   },

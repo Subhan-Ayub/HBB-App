@@ -208,6 +208,8 @@ class AddNewContactScreen extends StatelessWidget {
                                 _.refValue = value;
                               }),
                         ),
+                    
+                    
                       ],
                     ).marginSymmetric(horizontal: Get.width * .025),
 

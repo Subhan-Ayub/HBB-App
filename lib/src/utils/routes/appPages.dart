@@ -4,6 +4,7 @@ import 'package:hbb/src/bindings/IncomeExpenseBinding.dart';
 import 'package:hbb/src/bindings/SupportTeamBinding.dart';
 import 'package:hbb/src/bindings/activityBinding.dart';
 import 'package:hbb/src/bindings/addNewContactBinding.dart';
+import 'package:hbb/src/bindings/addincomeexpenseBinding.dart';
 import 'package:hbb/src/bindings/coachNetworkBinding.dart';
 import 'package:hbb/src/bindings/conferenceCallBinding.dart';
 import 'package:hbb/src/bindings/contactListBinding.dart';
@@ -23,6 +24,7 @@ import 'package:hbb/src/ui/view/ConferenceAddExpense.dart';
 import 'package:hbb/src/ui/view/activity.dart';
 import 'package:hbb/src/ui/view/addDailyExp.dart';
 import 'package:hbb/src/ui/view/addNewContact.dart';
+import 'package:hbb/src/ui/view/addincomeexpense.dart';
 import 'package:hbb/src/ui/view/coachingNetwork.dart';
 import 'package:hbb/src/ui/view/conferenceCall.dart';
 import 'package:hbb/src/ui/view/contactList.dart';
@@ -182,5 +184,11 @@ class AppPages {
         name: Routes.error,
         page: () => ErrorView(),
         transition: Transition.noTransition),
+         GetPage(
+        name: Routes.addincomeexpense,
+        binding: AddIncomeExpenseBinding(),
+        page: () => AddIncomeexpense(),
+        transition: Transition.noTransition),
   ];
 }
+

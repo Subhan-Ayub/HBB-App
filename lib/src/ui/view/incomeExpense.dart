@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/incomeExpenseController.dart';
+import 'package:hbb/src/utils/routes/routes.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
 
 class IncomeExpenseScreen extends StatelessWidget {
@@ -222,31 +223,37 @@ class IncomeExpenseScreen extends StatelessWidget {
                   Stack(
                     children: [
                       // Container with content
-                      Container(
-                        width: Get.width / 2.25,
-                        height: Get.height * .03,
-                        decoration: BoxDecoration(
-                            color: UIDataColors.greyColor,
-                            border: Border.all(
-                              width: 1,
-                              color: Colors.grey,
-                            )),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.add_comment_rounded,
-                              size: Get.width * .04,
-                            ),
-                            Text(
-                              'Add Inome and Expense',
-                              style: TextStyle(
-                                fontSize: Get.width * .025,
-                                color: Colors.black,
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed(Routes.addincomeexpense);
+                          print('object');
+                        },
+                        child: Container(
+                          width: Get.width / 2.25,
+                          height: Get.height * .03,
+                          decoration: BoxDecoration(
+                              color: UIDataColors.greyColor,
+                              border: Border.all(
+                                width: 1,
+                                color: Colors.grey,
+                              )),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.add_comment_rounded,
+                                size: Get.width * .04,
                               ),
-                            ).marginSymmetric(horizontal: Get.width * .02),
-                          ],
-                        ).paddingSymmetric(horizontal: Get.width * .01),
+                              Text(
+                                'Add Inome and Expense',
+                                style: TextStyle(
+                                  fontSize: Get.width * .025,
+                                  color: Colors.black,
+                                ),
+                              ).marginSymmetric(horizontal: Get.width * .02),
+                            ],
+                          ).paddingSymmetric(horizontal: Get.width * .01),
+                        ),
                       ),
                       // Inner shadow
                       Positioned(
