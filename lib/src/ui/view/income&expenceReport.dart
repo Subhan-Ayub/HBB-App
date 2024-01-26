@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/incomeExpenceRepController.dart';
-// import 'package:hbb/src/controllers/showReportController.dart';
-import 'package:hbb/src/controllers/weekly&confController.dart';
+
+
 import 'package:hbb/src/utils/uidata/color.dart';
 
 class IncomeExpenceReport extends StatelessWidget {
@@ -14,19 +14,13 @@ class IncomeExpenceReport extends StatelessWidget {
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Divider(),
-          Text('Income & Expence Exposure Report for January, ${_.arg['year']}',
+          Text('Income & Expenses Report for ${_.arg['month']}, ${_.arg['year']}',
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900))
               .marginSymmetric(horizontal: 10),
               SizedBox(height: 10,),
-          // Divider(),
-          // Text(
-          //   'Note E = Daily Exposure K = National/International Exposure',
-          //   style: TextStyle(color: Colors.red, fontSize: 12),
-          // ).marginSymmetric(horizontal: 10),
+      
           Container(
             height: 35,
-            // width: Get.width,
             decoration: BoxDecoration(
                 border: Border(
                   top: BorderSide(
@@ -66,35 +60,36 @@ class IncomeExpenceReport extends StatelessWidget {
                   height: Get.height - 310,
                   width: Get.width,
                   child: ListView.builder(
-                      itemCount: 31,
+                      itemCount: _.data.length,
                       itemBuilder: (BuildContext context, i) {
-                        _.check(i + 1);
+                        // _.check(i + 1);
                         return Container(
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           color: i % 2 == 0
                               ? Colors.white
                               : Color.fromARGB(255, 241, 241, 241),
-                          child: Row(
+               
+                             child: Row( 
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('${i + 1}/${_.arg['month']}/${_.arg['year']}'),
+                              Text('${_.data[i]['expensedate']}'),
                               Container(
                                   width: 130,
                                   alignment: Alignment.center,
-                                  child: Text('${_.ek}',
+                                  child: Text('${_.data[i]['expensereason']}',
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis)),
                               Container(
                                   width: 50,
                                   alignment: Alignment.centerLeft,
-                                  child: Text('${_.name}',
+                                  child: Text('${_.data[i]['income']}',
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis)).marginOnly(right: 40),
                               Container(
                                   width: 50,
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    '${_.email}',
+                                    '${_.data[i]['expenseamount']}',
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                   ).marginOnly(right: 20)),

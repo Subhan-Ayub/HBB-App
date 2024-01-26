@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/ui/view/statistics&report.dart';
 import 'package:hbb/src/utils/helpers/api_helper.dart';
@@ -15,15 +16,15 @@ class StatisticsAndReportsController extends GetxController {
   RxString dailySelectedMonth = 'Month'.obs;
   RxString dailySelectedYear = 'Year'.obs;
 
-  int? dailyMonthLenght;
+  int dailyMonthLenght = 0;
 
   RxString conferenceSelectedMonth = 'Month'.obs;
   RxString confernceSelectedYear = 'Year'.obs;
-  int? confernceMonthLenght;
+  int confernceMonthLenght = 0;
 
   RxString weeklySelectedMonth = 'Month'.obs;
   RxString weeklySelectedYear = 'Year'.obs;
-  int? weeklyMonthLenght;
+  int weeklyMonthLenght = 0;
 
   // RxString nationalSelectedMonth = 'Month'.obs;
   // RxString nationalSelectedYear = 'Year'.obs;
@@ -58,19 +59,30 @@ class StatisticsAndReportsController extends GetxController {
   ];
 
   showReport(month, year, type) async {
-    var data = await apiFetcher(
-        'Get', '/api/all-reports?month=$month&year=$year&type=$type');
-    if (type == 1) {
-      Get.toNamed(Routes.showReports,
-          arguments: {'data': data, 'month': month, 'year': year});
-    }
+    print(year);
+    if (month == 0 || year == 'Year') {
+      Get.snackbar('Error', 'Month or Year Is Required',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+    } else {
+      loder.value = true;
+      var data = await apiFetcher('Get',
+          '/api/all-reports?month=$month&year=${int.parse(year)}&type=$type');
+
+      if (type == 1) {
+        Get.toNamed(Routes.showReports,
+            arguments: {'data': data, 'month': month, 'year': int.parse(year)});
+      }
       if (type == 2) {
-      Get.toNamed(Routes.weeklyconfrepots,
-          arguments: {'data': data, 'month': month, 'year': year});
-    }
-     if (type == 3) {
-      Get.toNamed(Routes.incomeexpencereport,
-          arguments: {'data': data, 'month': month, 'year': year});
+        Get.toNamed(Routes.weeklyconfrepots,
+            arguments: {'data': data, 'month': month, 'year': int.parse(year)});
+      }
+      if (type == 3) {
+        Get.toNamed(Routes.incomeexpencereport,
+            arguments: {'data': data, 'month': month, 'year': int.parse(year)});
+      }
+      loder.value=false;
     }
   }
 

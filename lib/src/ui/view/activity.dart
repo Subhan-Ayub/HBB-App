@@ -36,909 +36,1011 @@ class ActivityScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100)),
             ).paddingOnly(top: 10),
 
-            Container(
-              height: Get.height / 1.1,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: const [
-                            UIDataColors.commonColor,
-                            Colors.black
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          stops: const [0.2, 2.9],
-                          tileMode: TileMode.clamp,
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              if (_.dailyprintt.isNotEmpty) {
-                                _.expandDailyExposure.value =
-                                    !_.expandDailyExposure.value;
-                              }
-                              // _.dcheck();
-                            },
-                            child: Text(
-                              'Daily Exposures',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: Get.width * 0.035,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Spacer(),
-                          IconButton(
-                              onPressed: () {
-                                Get.toNamed(Routes.adddailyexp, arguments: {
-                                  'type': 1,
-                                  'date': _.pselectedDay
-                                });
-                              },
-                              icon: Icon(
-                                Icons.add,
-                                color: Colors.white,
-                                size: 30,
-                              ))
-                        ],
-                      ).marginSymmetric(
-                        horizontal: Get.width * 0.04,
-                      ),
-                    ).paddingOnly(top: Get.height * 0.03),
-                    Obx(
-                      () => _.expandDailyExposure.value
-                          ? Container(
-                              height: _.expandDailyExposure.value ? 450 : 0,
-                              // color: Colors.green,
-                              child: ListView.builder(
-                                  itemCount: _.dailyprintt.length,
-                                  itemBuilder: (BuildContext context, i) {
-                                    return Container(
-                                      // height: 410,
-                                      // color: Colors.amberAccent,
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 10),
-                                            color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text('Prospect Name:'),
-                                                Container(
-                                                    width: 110,
-                                                    alignment: Alignment.center,
-                                                    child: Text(
-                                                        '${_.dailyprintt[i]['prospectname']}',
-                                                        maxLines: 1,
-                                                        overflow: TextOverflow
-                                                            .ellipsis)),
-                                                Icon(
-                                                  Icons.monetization_on,
-                                                  size: 18,
-                                                ),
-                                                InkWell(
-                                                    onTap: () {
-                                                  
-                                                      Get.toNamed(
-                                                          Routes.adddailyexp,
-                                                          arguments: {
-                                                            'check':'update',
-                                                            'type': 1,
-                                                            'date':
-                                                                _.pselectedDay,
-                                                            'id':
-                                                                _.dailyprintt[i]
-                                                                    ['id']
-                                                          });
-                                                    },
-                                                    child: Icon(
-                                                      Icons.edit,
-                                                      size: 15,
-                                                    )),
-                                                Icon(
-                                                  Icons.delete,
-                                                  size: 15,
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 10),
-                                            color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                    width: 200,
-                                                    child: Text('Phone:')),
-                                                Text(
-                                                    '${_.dailyprintt[i]['phone']}',
-                                                    maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 10),
-                                            color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                    width: 200,
-                                                    child: Text('Cellphone:')),
-                                                Text(
-                                                    '${_.dailyprintt[i]['cellphone']}',
-                                                    maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 10),
-                                            color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                    width: 200,
-                                                    child: Text('Email:')),
-                                                Container(
-                                                  width: 150,
-                                                  child: Text(
-                                                      '${_.dailyprintt[i]['email']}',
-                                                      maxLines: 1,
-                                                      overflow: TextOverflow
-                                                          .ellipsis),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 10),
-                                            color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                    width: 200,
-                                                    child: Text('Address:')),
-                                                Text(
-                                                    '${_.dailyprintt[i]['address']}',
-                                                    maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 10),
-                                            color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                    width: 200,
-                                                    child: Text('State/Zip:')),
-                                                Text(
-                                                    '${_.dailyprintt[i]['state']},${_.dailyprintt[i]['zip']}',
-                                                    maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 10),
-                                            color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                    width: 200,
-                                                    child: Text('Notes:')),
-                                                Text(
-                                                    '${_.dailyprintt[i]['formnotes']}',
-                                                    maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 10),
-                                            color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                    width: 200,
-                                                    child: Text('Follow Up:')),
-                                                Text('{_.ek}',
-                                                    maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 10),
-                                            color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                    width: 200,
-                                                    child: Text(
-                                                        'Best Time To Call:')),
-                                                Text(
-                                                    '${_.dailyprintt[i]['calltime']}',
-                                                    maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 10),
-                                            color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                    width: 200,
-                                                    child: Text(
-                                                        'Methods of Exposures:')),
-                                                Container(
-                                                  width: 100,
-                                                  child: Text(
-                                                      '${_.dailyprintt[i]['exposuretypestring']}',
-                                                      maxLines: 1,
-                                                      overflow: TextOverflow
-                                                          .ellipsis),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 10),
-                                              color: Color.fromARGB(
-                                                  255, 241, 241, 241),
-                                              child: Divider())
-                                        ],
-                                      ),
-                                    );
-                                  }),
-                            )
-                          : SizedBox(),
-                    ),
-
-                    // Meetings
-                    Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: const [
-                            UIDataColors.commonColor,
-                            Colors.black
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          stops: const [0.2, 2.9],
-                          tileMode: TileMode.clamp,
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              if (_.weeklyprint.isNotEmpty) {
-                                _.expandMeetings.value =
-                                    !_.expandMeetings.value;
-                              }
-                            },
-                            child: Text(
-                              'Weekly Meetings',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: Get.width * 0.035,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Spacer(),
-                          IconButton(
-                              onPressed: () {
-                                // Get.toNamed(Routes.weeklymeeting);
-                                Get.toNamed(Routes.weeklymeeting, arguments: {
-                                  'type': 2,
-                                  'date': _.pselectedDay
-                                });
-                              },
-                              icon: Icon(
-                                Icons.add,
-                                color: Colors.white,
-                                size: 30,
-                              ))
-                        ],
-                      ).marginSymmetric(
-                        horizontal: Get.width * 0.04,
-                      ),
-                    ).paddingOnly(top: Get.height * 0.03),
-                    Obx(
-                      () => _.expandMeetings.value
-                          ? Container(
-                              height: _.expandMeetings.value ? 150 : 0,
-                              // color: Colors.green,
-                              child: ListView.builder(
-                                  itemCount: _.weeklyprint.length,
-                                  itemBuilder: (BuildContext context, i) {
-                                    return Container(
-                                      // height: 410,
-                                      // color: Colors.amberAccent,
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 10),
-                                            color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text('Meeting location:'),
-                                                Container(
-                                                    width: 110,
-                                                    alignment: Alignment.center,
-                                                    child: Text(
-                                                        '${_.weeklyprint[i]['meetingLocation']}',
-                                                        maxLines: 1,
-                                                        overflow: TextOverflow
-                                                            .ellipsis)),
-                                                Icon(
-                                                  Icons.monetization_on,
-                                                  size: 18,
-                                                ),
-                                                InkWell(
-                                                  onTap: () {
-                                                    print( _.weeklyprint[i]
-                                                                    ['id']);
-                                                       Get.toNamed(
-                                                          Routes.weeklymeeting,
-                                                          arguments: {
-                                                            'check':'update',
-                                                            'type': 2,
-                                                            'date':
-                                                                _.pselectedDay,
-                                                            'id':
-                                                                _.weeklyprint[i]
-                                                                    ['id']
-                                                          });
-                                                  },
-                                                  child: Icon(
-                                                    Icons.edit,
-                                                    size: 15,
-                                                  ),
-                                                ),
-                                                Icon(
-                                                  Icons.delete,
-                                                  size: 15,
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 10),
-                                            color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                    width: 200,
-                                                    child: Text(
-                                                        'Type of Meetings:')),
-                                                Container(
-                                                  width: 140,
-                                                  child: Text(
-                                                      '${_.weeklyprint[i]['meetingType']}',
-                                                      maxLines: 1,
-                                                      overflow: TextOverflow
-                                                          .ellipsis),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 10),
-                                            color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                    width: 200,
-                                                    child: Text(
-                                                        'Parties Present/Notes:')),
-                                                Container(
-                                                  width: 140,
-                                                  child: Text(
-                                                      '${_.weeklyprint[i]['wmNotes']}',
-                                                      maxLines: 1,
-                                                      overflow: TextOverflow
-                                                          .ellipsis),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 10),
-                                              color: Color.fromARGB(
-                                                  255, 241, 241, 241),
-                                              child: Divider())
-                                        ],
-                                      ),
-                                    );
-                                  }),
-                            )
-                          : SizedBox(),
-                    ),
-
-                    // Conference Calls
-                    Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: const [
-                            UIDataColors.commonColor,
-                            Colors.black
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          stops: const [0.2, 2.9],
-                          tileMode: TileMode.clamp,
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              if (_.conferrencedprint.isNotEmpty) {
-                                _.expandConference.value =
-                                    !_.expandConference.value;
-                              }
-                            },
-                            child: Text(
-                              'Conference Calls',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: Get.width * 0.035,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Spacer(),
-                          IconButton(
-                              onPressed: () {
-                                Get.toNamed(Routes.conferencecall, arguments: {
-                                  'type': 3,
-                                  'date': _.pselectedDay
-                                });
-                              },
-                              icon: Icon(
-                                Icons.add,
-                                color: Colors.white,
-                                size: 30,
-                              ))
-                        ],
-                      ).marginSymmetric(horizontal: Get.width * 0.04),
-                    ).paddingOnly(top: Get.height * 0.03),
-                    Obx(
-                      () => _.expandConference.value
-                          ? Container(
-                              height: _.expandConference.value ? 100 : 0,
-                              // color: Colors.green,
-                              child: ListView.builder(
-                                  itemCount: _.conferrencedprint.length,
-                                  itemBuilder: (BuildContext context, i) {
-                                    return Container(
-                                      // height: 410,
-                                      // color: Colors.amberAccent,
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 10),
-                                            color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text('Time of Calls:'),
-                                                Container(
-                                                    width: 110,
-                                                    alignment: Alignment.center,
-                                                    child: Text(
-                                                        '${_.conferrencedprint[i]['timeofcall']}',
-                                                        maxLines: 1,
-                                                        overflow: TextOverflow
-                                                            .ellipsis)),
-                                                Icon(
-                                                  Icons.monetization_on,
-                                                  size: 18,
-                                                ),
-                                                InkWell(
-                                                  onTap: () {
-                                                    
-                                                       Get.toNamed(
-                                                          Routes.conferencecall,
-                                                          arguments: {
-                                                            'check':'update',
-                                                            'type': 3,
-                                                            'date':
-                                                                _.pselectedDay,
-                                                            'id':
-                                                                _.conferrencedprint[i]
-                                                                    ['id']
-                                                          });
-                                                  },
-                                                  child: Icon(
-                                                    Icons.edit,
-                                                    size: 15,
-                                                  ),
-                                                ),
-                                                Icon(
-                                                  Icons.delete,
-                                                  size: 15,
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 10),
-                                            color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                    width: 100,
-                                                    child: Text('Notes:')),
-                                                Container(
-                                                  width: 200,
-                                                  child: Text(
-                                                      '${_.conferrencedprint[i]['ccallnotes']}',
-                                                      maxLines: 1,
-                                                      overflow: TextOverflow
-                                                          .ellipsis),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 10),
-                                              color: Color.fromARGB(
-                                                  255, 241, 241, 241),
-                                              child: Divider())
-                                        ],
-                                      ),
-                                    );
-                                  }),
-                            )
-                          : SizedBox(),
-                    ),
-
-                    // National/International Exposures
-                    Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: const [
-                            UIDataColors.commonColor,
-                            Colors.black
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          stops: const [0.2, 2.9],
-                          tileMode: TileMode.clamp,
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              if (_.natinalprint.isNotEmpty) {
-                                _.expandNationalExposure.value =
-                                    !_.expandNationalExposure.value;
-                              }
-                            },
-                            child: Text(
-                              'National/International',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: Get.width * 0.035,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Spacer(),
-                          IconButton(
-                              onPressed: () {
-                                Get.toNamed(Routes.adddailyexp, arguments: {
-                                  'type': 4,
-                                  'date': _.pselectedDay
-                                });
-                              },
-                              icon: Icon(
-                                Icons.add,
-                                color: Colors.white,
-                                size: 30,
-                              ))
-                        ],
-                      ).marginSymmetric(horizontal: Get.width * 0.04),
-                    ).paddingOnly(top: Get.height * 0.03),
-                    Obx(() => _.expandNationalExposure.value
-                        ? Container(
-                            height: 450,
-                            // color: Colors.green,
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: _.natinalprint.length,
-                                itemBuilder: (BuildContext context, i) {
-                                  return Container(
-                                    // height: 410,
-                                    // color: Colors.amberAccent,
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10, vertical: 10),
-                                          color: Color.fromARGB(
-                                              255, 241, 241, 241),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text('Prospect Name:'),
-                                              Container(
-                                                  width: 110,
-                                                  alignment: Alignment.center,
-                                                  child: Text(
-                                                      '${_.natinalprint[i]['prospectname']}',
-                                                      maxLines: 1,
-                                                      overflow: TextOverflow
-                                                          .ellipsis)),
-                                                 Icon(
-                                                  Icons.monetization_on,
-                                                  size: 18,
-                                                ),
-                                                InkWell(
-                                                  onTap: () {
-                                                    
-                                                       Get.toNamed(
-                                                          Routes.adddailyexp,
-                                                          arguments: {
-                                                            'check':'update',
-                                                            'type': 4,
-                                                            'date':
-                                                                _.pselectedDay,
-                                                            'id':
-                                                                _.natinalprint[i]
-                                                                    ['id']
-                                                          });
-                                                  },
-                                                  child: Icon(
-                                                    Icons.edit,
-                                                    size: 15,
-                                                  ),
-                                                ),
-                                                Icon(
-                                                  Icons.delete,
-                                                  size: 15,
-                                                )
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10, vertical: 10),
-                                          color: Color.fromARGB(
-                                              255, 241, 241, 241),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                  width: 200,
-                                                  child: Text('Phone:')),
-                                              Text(
-                                                  '${_.natinalprint[i]['phone']}',
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10, vertical: 10),
-                                          color: Color.fromARGB(
-                                              255, 241, 241, 241),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                  width: 200,
-                                                  child: Text('Cellphone:')),
-                                              Text(
-                                                  '${_.natinalprint[i]['cellphone']}',
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10, vertical: 10),
-                                          color: Color.fromARGB(
-                                              255, 241, 241, 241),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                  width: 200,
-                                                  child: Text('Email:')),
-                                              Text(
-                                                  '${_.natinalprint[i]['email']}',
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10, vertical: 10),
-                                          color: Color.fromARGB(
-                                              255, 241, 241, 241),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                  width: 200,
-                                                  child: Text('Address:')),
-                                              Text(
-                                                  '${_.natinalprint[i]['address']}',
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10, vertical: 10),
-                                          color: Color.fromARGB(
-                                              255, 241, 241, 241),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                  width: 200,
-                                                  child: Text('State/Zip:')),
-                                              Text(
-                                                  '${_.natinalprint[i]['state']},${_.natinalprint[i]['zip']}',
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10, vertical: 10),
-                                          color: Color.fromARGB(
-                                              255, 241, 241, 241),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                  width: 200,
-                                                  child: Text('Notes:')),
-                                              Text(
-                                                  '${_.natinalprint[i]['formnotes']}',
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10, vertical: 10),
-                                          color: Color.fromARGB(
-                                              255, 241, 241, 241),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                  width: 200,
-                                                  child: Text('Follow Up:')),
-                                              Text('{_.ek}',
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10, vertical: 10),
-                                          color: Color.fromARGB(
-                                              255, 241, 241, 241),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                  width: 200,
-                                                  child: Text(
-                                                      'Best Time To Call:')),
-                                              Text(
-                                                  '${_.natinalprint[i]['calltime']}',
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10, vertical: 10),
-                                          color: Color.fromARGB(
-                                              255, 241, 241, 241),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                  width: 200,
-                                                  child: Text(
-                                                      'Methods of Exposures:')),
-                                              Text(
-                                                  '${_.natinalprint[i]['exposuretypestring']}',
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10),
-                                            color: Color.fromARGB(
-                                                255, 241, 241, 241),
-                                            child: Divider())
-                                      ],
+            Obx(
+              () => _.specDateCheck.value
+                  ? Center(child: CircularProgressIndicator()).marginOnly(top: 160)
+                  : Container(
+                      height: Get.height / 1.1,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: const [
+                                    UIDataColors.commonColor,
+                                    Colors.black
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  stops: const [0.2, 2.9],
+                                  tileMode: TileMode.clamp,
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      if (_.dailyprintt.isNotEmpty) {
+                                        _.expandDailyExposure.value =
+                                            !_.expandDailyExposure.value;
+                                      }
+                                      // _.dcheck();
+                                    },
+                                    child: Text(
+                                      'Daily Exposures',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: Get.width * 0.035,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                  );
-                                }),
-                          )
-                        : SizedBox()),
-                  ],
-                ),
-              ),
+                                  ),
+                                  Spacer(),
+                                  IconButton(
+                                      onPressed: () {
+                                        Get.toNamed(Routes.adddailyexp,
+                                            arguments: {
+                                              'type': 1,
+                                              'date': _.pselectedDay
+                                            });
+                                      },
+                                      icon: Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                        size: 30,
+                                      ))
+                                ],
+                              ).marginSymmetric(
+                                horizontal: Get.width * 0.04,
+                              ),
+                            ).paddingOnly(top: Get.height * 0.03),
+                            Obx(
+                              () => _.expandDailyExposure.value
+                                  ? Container(
+                                      height:
+                                          _.expandDailyExposure.value ? 450 : 0,
+                                      // color: Colors.green,
+                                      child: ListView.builder(
+                                          itemCount: _.dailyprintt.length,
+                                          itemBuilder:
+                                              (BuildContext context, i) {
+                                            return Container(
+                                              // height: 410,
+                                              // color: Colors.amberAccent,
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10,
+                                                            vertical: 10),
+                                                    color: Color.fromARGB(
+                                                        255, 241, 241, 241),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text('Prospect Name:'),
+                                                        Container(
+                                                            width: Get.width/4,
+                                                            alignment: Alignment
+                                                                .center,
+                                                            child: Text(
+                                                                '${_.dailyprintt[i]['prospectname']}',
+                                                                maxLines: 1,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis)),
+                                                        Icon(
+                                                          Icons.monetization_on,
+                                                          size: 18,
+                                                        ),
+                                                        InkWell(
+                                                            onTap: () {
+                                                              Get.toNamed(
+                                                                  Routes
+                                                                      .adddailyexp,
+                                                                  arguments: {
+                                                                    'check':
+                                                                        'update',
+                                                                    'type': 1,
+                                                                    'date': _
+                                                                        .pselectedDay,
+                                                                    'id': _.dailyprintt[
+                                                                        i]['id']
+                                                                  });
+                                                            },
+                                                            child: Icon(
+                                                              Icons.edit,
+                                                              size: 15,
+                                                            )),
+                                                        Icon(
+                                                          Icons.delete,
+                                                          size: 15,
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10,
+                                                            vertical: 10),
+                                                    color: Color.fromARGB(
+                                                        255, 241, 241, 241),
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                            width: 200,
+                                                            child:
+                                                                Text('Phone:')),
+                                                        Text(
+                                                            '${_.dailyprintt[i]['phone']}',
+                                                            maxLines: 1,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10,
+                                                            vertical: 10),
+                                                    color: Color.fromARGB(
+                                                        255, 241, 241, 241),
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                            width: 200,
+                                                            child: Text(
+                                                                'Cellphone:')),
+                                                        Text(
+                                                            '${_.dailyprintt[i]['cellphone']}',
+                                                            maxLines: 1,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10,
+                                                            vertical: 10),
+                                                    color: Color.fromARGB(
+                                                        255, 241, 241, 241),
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                            width: 200,
+                                                            child:
+                                                                Text('Email:')),
+                                                        Container(
+                                                          width: Get.width/3,
+                                                          child: Text(
+                                                              '${_.dailyprintt[i]['email']}',
+                                                              maxLines: 1,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10,
+                                                            vertical: 10),
+                                                    color: Color.fromARGB(
+                                                        255, 241, 241, 241),
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                            width: 200,
+                                                            child: Text(
+                                                                'Address:')),
+                                                        Text(
+                                                            '${_.dailyprintt[i]['address']}',
+                                                            maxLines: 1,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10,
+                                                            vertical: 10),
+                                                    color: Color.fromARGB(
+                                                        255, 241, 241, 241),
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                            width: 200,
+                                                            child: Text(
+                                                                'State/Zip:')),
+                                                        Text(
+                                                            '${_.dailyprintt[i]['state']},${_.dailyprintt[i]['zip']}',
+                                                            maxLines: 1,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10,
+                                                            vertical: 10),
+                                                    color: Color.fromARGB(
+                                                        255, 241, 241, 241),
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                            width: 200,
+                                                            child:
+                                                                Text('Notes:')),
+                                                        Text(
+                                                            '${_.dailyprintt[i]['formnotes']}',
+                                                            maxLines: 1,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10,
+                                                            vertical: 10),
+                                                    color: Color.fromARGB(
+                                                        255, 241, 241, 241),
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                            width: 200,
+                                                            child: Text(
+                                                                'Follow Up:')),
+                                                        Text('{_.ek}',
+                                                            maxLines: 1,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10,
+                                                            vertical: 10),
+                                                    color: Color.fromARGB(
+                                                        255, 241, 241, 241),
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                            width: 200,
+                                                            child: Text(
+                                                                'Best Time To Call:')),
+                                                        Text(
+                                                            '${_.dailyprintt[i]['calltime']}',
+                                                            maxLines: 1,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10,
+                                                            vertical: 10),
+                                                    color: Color.fromARGB(
+                                                        255, 241, 241, 241),
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                            width: 200,
+                                                            child: Text(
+                                                                'Methods of Exposures:')),
+                                                        Container(
+                                                          width: 100,
+                                                          child: Text(
+                                                              '${_.dailyprintt[i]['exposuretypestring']}',
+                                                              maxLines: 1,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 10),
+                                                      color: Color.fromARGB(
+                                                          255, 241, 241, 241),
+                                                      child: Divider())
+                                                ],
+                                              ),
+                                            );
+                                          }),
+                                    )
+                                  : SizedBox(),
+                            ),
+
+                            // Meetings
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: const [
+                                    UIDataColors.commonColor,
+                                    Colors.black
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  stops: const [0.2, 2.9],
+                                  tileMode: TileMode.clamp,
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      if (_.weeklyprint.isNotEmpty) {
+                                        _.expandMeetings.value =
+                                            !_.expandMeetings.value;
+                                      }
+                                    },
+                                    child: Text(
+                                      'Weekly Meetings',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: Get.width * 0.035,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  IconButton(
+                                      onPressed: () {
+                                        // Get.toNamed(Routes.weeklymeeting);
+                                        Get.toNamed(Routes.weeklymeeting,
+                                            arguments: {
+                                              'type': 2,
+                                              'date': _.pselectedDay
+                                            });
+                                      },
+                                      icon: Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                        size: 30,
+                                      ))
+                                ],
+                              ).marginSymmetric(
+                                horizontal: Get.width * 0.04,
+                              ),
+                            ).paddingOnly(top: Get.height * 0.03),
+                            Obx(
+                              () => _.expandMeetings.value
+                                  ? Container(
+                                      height: _.expandMeetings.value ? 150 : 0,
+                                      // color: Colors.green,
+                                      child: ListView.builder(
+                                          itemCount: _.weeklyprint.length,
+                                          itemBuilder:
+                                              (BuildContext context, i) {
+                                            return Container(
+                                              // height: 410,
+                                              // color: Colors.amberAccent,
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10,
+                                                            vertical: 10),
+                                                    color: Color.fromARGB(
+                                                        255, 241, 241, 241),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                            'Meeting location:'),
+                                                        Container(
+                                                            width: Get.width/4,
+                                                            alignment: Alignment
+                                                                .center,
+                                                            child: Text(
+                                                                '${_.weeklyprint[i]['meetingLocation']}',
+                                                                maxLines: 1,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis)),
+                                                        Icon(
+                                                          Icons.monetization_on,
+                                                          size: 18,
+                                                        ),
+                                                        InkWell(
+                                                          onTap: () {
+                                                         
+                                                            Get.toNamed(
+                                                                Routes
+                                                                    .weeklymeeting,
+                                                                arguments: {
+                                                                  'check':
+                                                                      'update',
+                                                                  'type': 2,
+                                                                  'date': _
+                                                                      .pselectedDay,
+                                                                  'id':
+                                                                      _.weeklyprint[
+                                                                              i]
+                                                                          ['id']
+                                                                });
+                                                          },
+                                                          child: Icon(
+                                                            Icons.edit,
+                                                            size: 15,
+                                                          ),
+                                                        ),
+                                                        Icon(
+                                                          Icons.delete,
+                                                          size: 15,
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10,
+                                                            vertical: 10),
+                                                    color: Color.fromARGB(
+                                                        255, 241, 241, 241),
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                            width: 200,
+                                                            child: Text(
+                                                                'Type of Meetings:')),
+                                                        Container(
+                                                          width:  Get.width/4,
+                                                          child: Text(
+                                                              '${_.weeklyprint[i]['meetingType']}',
+                                                              maxLines: 1,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10,
+                                                            vertical: 10),
+                                                    color: Color.fromARGB(
+                                                        255, 241, 241, 241),
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                            width: 200,
+                                                            child: Text(
+                                                                'Parties Present/Notes:')),
+                                                        Container(
+                                                          width:  Get.width/4,
+                                                          child: Text(
+                                                              '${_.weeklyprint[i]['wmNotes']}',
+                                                              maxLines: 1,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 10),
+                                                      color: Color.fromARGB(
+                                                          255, 241, 241, 241),
+                                                      child: Divider())
+                                                ],
+                                              ),
+                                            );
+                                          }),
+                                    )
+                                  : SizedBox(),
+                            ),
+
+                            // Conference Calls
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: const [
+                                    UIDataColors.commonColor,
+                                    Colors.black
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  stops: const [0.2, 2.9],
+                                  tileMode: TileMode.clamp,
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      if (_.conferrencedprint.isNotEmpty) {
+                                        _.expandConference.value =
+                                            !_.expandConference.value;
+                                      }
+                                    },
+                                    child: Text(
+                                      'Conference Calls',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: Get.width * 0.035,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  IconButton(
+                                      onPressed: () {
+                                        Get.toNamed(Routes.conferencecall,
+                                            arguments: {
+                                              'type': 3,
+                                              'date': _.pselectedDay
+                                            });
+                                      },
+                                      icon: Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                        size: 30,
+                                      ))
+                                ],
+                              ).marginSymmetric(horizontal: Get.width * 0.04),
+                            ).paddingOnly(top: Get.height * 0.03),
+                            Obx(
+                              () => _.expandConference.value
+                                  ? Container(
+                                      height:
+                                          _.expandConference.value ? 100 : 0,
+                                      // color: Colors.green,
+                                      child: ListView.builder(
+                                          itemCount: _.conferrencedprint.length,
+                                          itemBuilder:
+                                              (BuildContext context, i) {
+                                            return Container(
+                                              // height: 410,
+                                              // color: Colors.amberAccent,
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10,
+                                                            vertical: 10),
+                                                    color: Color.fromARGB(
+                                                        255, 241, 241, 241),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text('Time of Calls:'),
+                                                        Container(
+                                                            width: 110,
+                                                            alignment: Alignment
+                                                                .center,
+                                                            child: Text(
+                                                                '${_.conferrencedprint[i]['timeofcall']}',
+                                                                maxLines: 1,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis)),
+                                                        Icon(
+                                                          Icons.monetization_on,
+                                                          size: 18,
+                                                        ),
+                                                        InkWell(
+                                                          onTap: () {
+                                                            Get.toNamed(
+                                                                Routes
+                                                                    .conferencecall,
+                                                                arguments: {
+                                                                  'check':
+                                                                      'update',
+                                                                  'type': 3,
+                                                                  'date': _
+                                                                      .pselectedDay,
+                                                                  'id':
+                                                                      _.conferrencedprint[
+                                                                              i]
+                                                                          ['id']
+                                                                });
+                                                          },
+                                                          child: Icon(
+                                                            Icons.edit,
+                                                            size: 15,
+                                                          ),
+                                                        ),
+                                                        Icon(
+                                                          Icons.delete,
+                                                          size: 15,
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10,
+                                                            vertical: 10),
+                                                    color: Color.fromARGB(
+                                                        255, 241, 241, 241),
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                            width:  Get.width/4,
+                                                            child:
+                                                                Text('Notes:')),
+                                                        Container(
+                                                          width:  Get.width/2,
+                                                          child: Text(
+                                                              '${_.conferrencedprint[i]['ccallnotes']}',
+                                                              maxLines: 1,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 10),
+                                                      color: Color.fromARGB(
+                                                          255, 241, 241, 241),
+                                                      child: Divider())
+                                                ],
+                                              ),
+                                            );
+                                          }),
+                                    )
+                                  : SizedBox(),
+                            ),
+
+                            // National/International Exposures
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: const [
+                                    UIDataColors.commonColor,
+                                    Colors.black
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  stops: const [0.2, 2.9],
+                                  tileMode: TileMode.clamp,
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      if (_.natinalprint.isNotEmpty) {
+                                        _.expandNationalExposure.value =
+                                            !_.expandNationalExposure.value;
+                                      }
+                                    },
+                                    child: Text(
+                                      'National/International',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: Get.width * 0.035,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  IconButton(
+                                      onPressed: () {
+                                        Get.toNamed(Routes.adddailyexp,
+                                            arguments: {
+                                              'type': 4,
+                                              'date': _.pselectedDay
+                                            });
+                                      },
+                                      icon: Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                        size: 30,
+                                      ))
+                                ],
+                              ).marginSymmetric(horizontal: Get.width * 0.04),
+                            ).paddingOnly(top: Get.height * 0.03),
+                            Obx(() => _.expandNationalExposure.value
+                                ? Container(
+                                    height: 450,
+                                    // color: Colors.green,
+                                    child: ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: _.natinalprint.length,
+                                        itemBuilder: (BuildContext context, i) {
+                                          return Container(
+                                            // height: 410,
+                                            // color: Colors.amberAccent,
+                                            child: Column(
+                                              children: [
+                                                Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10,
+                                                      vertical: 10),
+                                                  color: Color.fromARGB(
+                                                      255, 241, 241, 241),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text('Prospect Name:'),
+                                                      Container(
+                                                          width:  Get.width/4,
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Text(
+                                                              '${_.natinalprint[i]['prospectname']}',
+                                                              maxLines: 1,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis)),
+                                                      Icon(
+                                                        Icons.monetization_on,
+                                                        size: 18,
+                                                      ),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Get.toNamed(
+                                                              Routes
+                                                                  .adddailyexp,
+                                                              arguments: {
+                                                                'check':
+                                                                    'update',
+                                                                'type': 4,
+                                                                'date': _
+                                                                    .pselectedDay,
+                                                                'id':
+                                                                    _.natinalprint[
+                                                                        i]['id']
+                                                              });
+                                                        },
+                                                        child: Icon(
+                                                          Icons.edit,
+                                                          size: 15,
+                                                        ),
+                                                      ),
+                                                      Icon(
+                                                        Icons.delete,
+                                                        size: 15,
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10,
+                                                      vertical: 10),
+                                                  color: Color.fromARGB(
+                                                      255, 241, 241, 241),
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                          width: 200,
+                                                          child:
+                                                              Text('Phone:')),
+                                                      Text(
+                                                          '${_.natinalprint[i]['phone']}',
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10,
+                                                      vertical: 10),
+                                                  color: Color.fromARGB(
+                                                      255, 241, 241, 241),
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                          width: 200,
+                                                          child: Text(
+                                                              'Cellphone:')),
+                                                      Text(
+                                                          '${_.natinalprint[i]['cellphone']}',
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10,
+                                                      vertical: 10),
+                                                  color: Color.fromARGB(
+                                                      255, 241, 241, 241),
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                          width: 200,
+                                                          child:
+                                                              Text('Email:')),
+                                                      Container(
+                                                        width:  Get.width/4,
+                                                        child: Text(
+                                                            '${_.natinalprint[i]['email']}',
+                                                            maxLines: 1,
+                                                            overflow: TextOverflow
+                                                                .ellipsis),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10,
+                                                      vertical: 10),
+                                                  color: Color.fromARGB(
+                                                      255, 241, 241, 241),
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                          width: 200,
+                                                          child:
+                                                              Text('Address:')),
+                                                      Text(
+                                                          '${_.natinalprint[i]['address']}',
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10,
+                                                      vertical: 10),
+                                                  color: Color.fromARGB(
+                                                      255, 241, 241, 241),
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                          width: 200,
+                                                          child: Text(
+                                                              'State/Zip:')),
+                                                      Text(
+                                                          '${_.natinalprint[i]['state']},${_.natinalprint[i]['zip']}',
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10,
+                                                      vertical: 10),
+                                                  color: Color.fromARGB(
+                                                      255, 241, 241, 241),
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                          width: 200,
+                                                          child:
+                                                              Text('Notes:')),
+                                                      Text(
+                                                          '${_.natinalprint[i]['formnotes']}',
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10,
+                                                      vertical: 10),
+                                                  color: Color.fromARGB(
+                                                      255, 241, 241, 241),
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                          width: 200,
+                                                          child: Text(
+                                                              'Follow Up:')),
+                                                      Text('{_.ek}',
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10,
+                                                      vertical: 10),
+                                                  color: Color.fromARGB(
+                                                      255, 241, 241, 241),
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                          width: 200,
+                                                          child: Text(
+                                                              'Best Time To Call:')),
+                                                      Text(
+                                                          '${_.natinalprint[i]['calltime']}',
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10,
+                                                      vertical: 10),
+                                                  color: Color.fromARGB(
+                                                      255, 241, 241, 241),
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                          width: 200,
+                                                          child: Text(
+                                                              'Methods of Exposures:')),
+                                                      Text(
+                                                          '${_.natinalprint[i]['exposuretypestring']}',
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10),
+                                                    color: Color.fromARGB(
+                                                        255, 241, 241, 241),
+                                                    child: Divider())
+                                              ],
+                                            ),
+                                          );
+                                        }),
+                                  )
+                                : SizedBox()),
+                          ],
+                        ),
+                      ),
+                    ),
             ),
             // Daily Exposures
           ],
@@ -1057,6 +1159,7 @@ class ActivityScreen extends StatelessWidget {
                                     context,
                                     date,
                                     events,
+                                  // ignore: body_might_complete_normally_nullable
                                   ) {
                                     DateTime dateTime =
                                         DateTime.parse(date.toString());

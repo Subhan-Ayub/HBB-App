@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/homeController.dart';
@@ -152,6 +154,37 @@ class HomeScreen extends StatelessWidget {
                                 ).marginOnly(right: Get.width * .01),
                                 Text(
                                   'Weekly Meeting',
+                                  style: TextStyle(
+                                      fontSize: Get.width * 0.027,
+                                      fontWeight: FontWeight.bold),
+                                ).marginSymmetric(vertical: Get.height * .005)
+                              ],
+                            ).marginOnly(right: Get.width * .015),
+                          ),
+                          //
+                           InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.reports,
+                                  arguments: '/api/national-international-report');
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.center,
+                                  width: Get.width * 0.27,
+                                  height: Get.height * 0.12,
+                                  decoration: BoxDecoration(
+                                    color: UIDataColors.greyColor,
+                                    borderRadius: BorderRadius.circular(15),
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        'assets/images/weeklymeeting.png',
+                                      ),
+                                    ),
+                                  ),
+                                ).marginOnly(right: Get.width * .01),
+                                Text(
+                                  'National/International ',
                                   style: TextStyle(
                                       fontSize: Get.width * 0.027,
                                       fontWeight: FontWeight.bold),

@@ -5,9 +5,17 @@ class IncomeExpenceRepController extends GetxController{
   var ek = '';
   var name ;
   var email;
+var data=[];
+
+ @override
+  void onInit() {
+
+    data=arg['data']['activities'];
+    super.onInit();
+  }
+
   check(date) {
     var datee='${arg['year']}-${arg['month']<10?0:''}${arg['month'].toString()}-${date<10?0:''}$date';
-    print(arg['data']['activities'][0] );
     for (var i = 0; i < arg['data']['activities'].length; i++) {
       ek = '';
       name = '';

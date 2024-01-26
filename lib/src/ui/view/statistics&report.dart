@@ -20,68 +20,76 @@ class StatisticsAndReports extends StatelessWidget {
         backgroundColor: Colors.white,
         body: SafeArea(
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              // crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Container(
-                  // width: Get.width / 1.1,
-                  // alignment: Alignment.centerLeft,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+              child: Obx(
+            () => _.loder.value
+                ? Center(child: CircularProgressIndicator()).marginOnly(top: Get.height/2.3)
+                : Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        'Statistics and Reports',
-                        style: TextStyle(
-                          fontSize: Get.width * 0.06,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        // textAlign: TextAlign.left,
-                      ),
-                      Row(
-                        children: [
-                          Obx(
-                            () => Ink(
-                              height: Get.height * 0.045,
-                              width: Get.width * 0.13,
-                              decoration: isFormatlist.value
-                                  ? const ShapeDecoration(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.horizontal(
-                                              left: Radius.circular(100),
-                                              right: Radius.circular(100))),
-                                      color: UIDataColors.commonColor,
-                                    )
-                                  : const ShapeDecoration(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.horizontal(
-                                              left: Radius.circular(90),
-                                              right: Radius.circular(90))),
-                                      color: Color.fromARGB(255, 237, 237, 237),
-                                    ),
-                              child: IconButton(
-                                  onPressed: () {
-                                    isFormatlist.value = true;
-                                    isCalendar.value = false;
-                                  },
-                                  icon: Icon(
-                                    Icons.format_list_bulleted,
-                                    size: Get.width * 0.06,
-                                    color: isFormatlist.value
-                                        ? Colors.white
-                                        : Colors.grey,
-                                  )),
+                      Container(
+                        // width: Get.width / 1.1,
+                        // alignment: Alignment.centerLeft,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Statistics and Reports',
+                              style: TextStyle(
+                                fontSize: Get.width * 0.06,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              // textAlign: TextAlign.left,
                             ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ).marginOnly(top: 30),
-                Obx(() => _.loder.value
-                    ? CircularProgressIndicator()
-                    : Container(
+                            Row(
+                              children: [
+                                Obx(
+                                  () => Ink(
+                                    height: Get.height * 0.045,
+                                    width: Get.width * 0.13,
+                                    decoration: isFormatlist.value
+                                        ? const ShapeDecoration(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.horizontal(
+                                                        left: Radius.circular(
+                                                            100),
+                                                        right: Radius.circular(
+                                                            100))),
+                                            color: UIDataColors.commonColor,
+                                          )
+                                        : const ShapeDecoration(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.horizontal(
+                                                        left:
+                                                            Radius.circular(90),
+                                                        right: Radius.circular(
+                                                            90))),
+                                            color: Color.fromARGB(
+                                                255, 237, 237, 237),
+                                          ),
+                                    child: IconButton(
+                                        onPressed: () {
+                                          isFormatlist.value = true;
+                                          isCalendar.value = false;
+                                        },
+                                        icon: Icon(
+                                          Icons.format_list_bulleted,
+                                          size: Get.width * 0.06,
+                                          color: isFormatlist.value
+                                              ? Colors.white
+                                              : Colors.grey,
+                                        )),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ).marginOnly(top: 30),
+                      Container(
                         child: _.arg != '/api/signup-type-report'
                             ? Column(
                                 children: [
@@ -558,430 +566,456 @@ class StatisticsAndReports extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                      )),
-
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
-                      'All Reports',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    Spacer(),
-                    Text('Months'),
-                    Icon(Icons.arrow_drop_down_rounded),
-                  ],
-                ).marginOnly(top: 40),
-                Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Daily & Natinal\nInternational Exposure ',
-                          style: TextStyle(
-                              fontSize: 10, fontWeight: FontWeight.bold),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Get.bottomSheet(Container(
-                                padding: EdgeInsets.only(top: 50, bottom: 50),
-                                height: 300,
-                                width: Get.width,
-                                decoration: BoxDecoration(
-                                    color: const Color.fromARGB(
-                                        255, 213, 213, 213),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Center(
-                                  child: Container(
-                                    height: 200,
-                                    child: ListView.builder(
-                                        itemCount: _.months.length,
-                                        // physics: ,
-                                        itemBuilder: (BuildContext context, i) {
-                                          return InkWell(
-                                            onTap: () {
-                                              _.dailyMonthLenght = i + 1;
-                                              _.dailySelectedMonth.value =
-                                                  _.months[i];
-                                              Get.back();
-                                            },
-                                            child: Container(
-                                                alignment: Alignment.center,
-                                                child: Text(
-                                                  _.months[i],
-                                                  style:
-                                                      TextStyle(fontSize: 20),
-                                                )).marginOnly(bottom: 7),
-                                          );
-                                        }),
-                                  ),
-                                )));
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(left: 7, right: 3),
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 238, 238, 238),
-                                border:
-                                    Border.all(width: 1, color: Colors.grey),
-                                borderRadius: BorderRadius.circular(2)),
-                            child: Obx(() => Row(
-                                  children: [
-                                    Text(_.dailySelectedMonth.value,
-                                        style: TextStyle(
-                                            fontSize: 9,
-                                            fontWeight: FontWeight.w600)),
-                                    Icon(
-                                      Icons.keyboard_arrow_down_sharp,
-                                      size: 15,
-                                    ),
-                                  ],
-                                )),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            'All Reports',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            print('dailyye');
-                            Get.bottomSheet(Container(
-                                padding: EdgeInsets.only(top: 50, bottom: 50),
-                                height: 300,
-                                width: Get.width,
-                                decoration: BoxDecoration(
-                                    color: const Color.fromARGB(
-                                        255, 213, 213, 213),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Center(
-                                  child: Container(
-                                    height: 200,
-                                    child: ListView.builder(
-                                        itemCount: _.years.length,
-                                        itemBuilder: (BuildContext context, i) {
-                                          return InkWell(
-                                            onTap: () {
-                                              print(int.parse(_.years[i])
-                                                  .runtimeType);
-                                              _.dailySelectedYear.value =
-                                                  _.years[i];
-                                              Get.back();
-                                            },
-                                            child: Container(
-                                                alignment: Alignment.center,
-                                                child: Text(
-                                                  _.years[i],
-                                                  style:
-                                                      TextStyle(fontSize: 20),
-                                                )).marginOnly(bottom: 7),
-                                          );
-                                        }),
-                                  ),
-                                )));
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(left: 7, right: 3),
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 238, 238, 238),
-                                border:
-                                    Border.all(width: 1, color: Colors.grey),
-                                borderRadius: BorderRadius.circular(2)),
-                            child: Obx(() => Row(
-                                  children: [
-                                    Text(_.dailySelectedYear.value,
-                                        style: TextStyle(
-                                            fontSize: 9,
-                                            fontWeight: FontWeight.w600)),
-                                    Icon(
-                                      Icons.keyboard_arrow_down_sharp,
-                                      size: 15,
-                                    ),
-                                  ],
-                                )),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            _.showReport(_.dailyMonthLenght,
-                                int.parse(_.dailySelectedYear.value),1);
-                          },
-                          child: Text('Show reports',
-                              style: TextStyle(
-                                  fontSize: 8, fontWeight: FontWeight.bold)),
-                        ),
-                      ],
-                    ).marginOnly(top: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Weekly Meetings &\nConference Calls Report',
-                          style: TextStyle(
-                              fontSize: 10, fontWeight: FontWeight.bold),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            print('conmo');
-                            Get.bottomSheet(Container(
-                                padding: EdgeInsets.only(top: 50, bottom: 50),
-                                height: 300,
-                                width: Get.width,
-                                decoration: BoxDecoration(
-                                    color: const Color.fromARGB(
-                                        255, 213, 213, 213),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Center(
-                                  child: Container(
-                                    height: 200,
-                                    child: ListView.builder(
-                                        itemCount: _.months.length,
-                                        // physics: ,
-                                        itemBuilder: (BuildContext context, i) {
-                                          return InkWell(
-                                            onTap: () {
-                                              _.confernceMonthLenght = i + 1;
-                                              _.conferenceSelectedMonth.value =
-                                                  _.months[i];
-                                              Get.back();
-                                            },
-                                            child: Container(
-                                                alignment: Alignment.center,
-                                                child: Text(
-                                                  _.months[i],
-                                                  style:
-                                                      TextStyle(fontSize: 20),
-                                                )).marginOnly(bottom: 7),
-                                          );
-                                        }),
-                                  ),
-                                )));
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(left: 7, right: 3),
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 238, 238, 238),
-                                border:
-                                    Border.all(width: 1, color: Colors.grey),
-                                borderRadius: BorderRadius.circular(2)),
-                            child: Obx(() => Row(
-                                  children: [
-                                    Text(_.conferenceSelectedMonth.value,
-                                        style: TextStyle(
-                                            fontSize: 9,
-                                            fontWeight: FontWeight.w600)),
-                                    Icon(
-                                      Icons.keyboard_arrow_down_sharp,
-                                      size: 15,
-                                    ),
-                                  ],
-                                )),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            print('confYea');
-                            Get.bottomSheet(Container(
-                                padding: EdgeInsets.only(top: 50, bottom: 50),
-                                height: 300,
-                                width: Get.width,
-                                decoration: BoxDecoration(
-                                    color: const Color.fromARGB(
-                                        255, 213, 213, 213),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Center(
-                                  child: Container(
-                                    height: 200,
-                                    child: ListView.builder(
-                                        itemCount: _.years.length,
-                                        // physics: ,
-                                        itemBuilder: (BuildContext context, i) {
-                                          return InkWell(
-                                            onTap: () {
-                                              _.confernceSelectedYear.value =
-                                                  _.years[i];
-                                              Get.back();
-                                            },
-                                            child: Container(
-                                                alignment: Alignment.center,
-                                                child: Text(
-                                                  _.years[i],
-                                                  style:
-                                                      TextStyle(fontSize: 20),
-                                                )).marginOnly(bottom: 7),
-                                          );
-                                        }),
-                                  ),
-                                )));
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(left: 7, right: 3),
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 238, 238, 238),
-                                border:
-                                    Border.all(width: 1, color: Colors.grey),
-                                borderRadius: BorderRadius.circular(2)),
-                            child: Obx(() => Row(
-                                  children: [
-                                    Text(_.confernceSelectedYear.value,
-                                        style: TextStyle(
-                                            fontSize: 9,
-                                            fontWeight: FontWeight.w600)),
-                                    Icon(
-                                      Icons.keyboard_arrow_down_sharp,
-                                      size: 15,
-                                    ),
-                                  ],
-                                )),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            _.showReport(_.confernceMonthLenght,
-                                int.parse(_.confernceSelectedYear.value),2);
-                          },
-                          child: Text('Show reports',
-                              style: TextStyle(
-                                  fontSize: 8, fontWeight: FontWeight.bold)),
-                        ),
-                      ],
-                    ).marginOnly(top: 30),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Income & Expenses Report',
-                          style: TextStyle(
-                              fontSize: 10, fontWeight: FontWeight.bold),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            print('weem');
-                            Get.bottomSheet(Container(
-                                padding: EdgeInsets.only(top: 50, bottom: 50),
-                                height: 300,
-                                width: Get.width,
-                                decoration: BoxDecoration(
-                                    color: const Color.fromARGB(
-                                        255, 213, 213, 213),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Center(
-                                  child: Container(
-                                    height: 200,
-                                    child: ListView.builder(
-                                        itemCount: _.months.length,
-                                        // physics: ,
-                                        itemBuilder: (BuildContext context, i) {
-                                          return InkWell(
-                                            onTap: () {
-                                              _.weeklyMonthLenght=i+1;
-                                              _.weeklySelectedMonth.value =
-                                                  _.months[i];
-                                              Get.back();
-                                            },
-                                            child: Container(
-                                                alignment: Alignment.center,
-                                                child: Text(
-                                                  _.months[i],
-                                                  style:
-                                                      TextStyle(fontSize: 20),
-                                                )).marginOnly(bottom: 7),
-                                          );
-                                        }),
-                                  ),
-                                )));
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(left: 7, right: 3),
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 238, 238, 238),
-                                border:
-                                    Border.all(width: 1, color: Colors.grey),
-                                borderRadius: BorderRadius.circular(2)),
-                            child: Obx(() => Row(
-                                  children: [
-                                    Text(_.weeklySelectedMonth.value,
-                                        style: TextStyle(
-                                            fontSize: 9,
-                                            fontWeight: FontWeight.w600)),
-                                    Icon(
-                                      Icons.keyboard_arrow_down_sharp,
-                                      size: 15,
-                                    ),
-                                  ],
-                                )),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Get.bottomSheet(Container(
-                                padding: EdgeInsets.only(top: 50, bottom: 50),
-                                height: 300,
-                                width: Get.width,
-                                decoration: BoxDecoration(
-                                    color: const Color.fromARGB(
-                                        255, 213, 213, 213),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Center(
-                                  child: Container(
-                                    height: 200,
-                                    child: ListView.builder(
-                                        itemCount: _.years.length,
-                                        // physics: ,
-                                        itemBuilder: (BuildContext context, i) {
-                                          return InkWell(
-                                            onTap: () {
-                                              _.weeklySelectedYear.value =
-                                                  _.years[i];
-                                              Get.back();
-                                            },
-                                            child: Container(
-                                                alignment: Alignment.center,
-                                                child: Text(
-                                                  _.years[i],
-                                                  style:
-                                                      TextStyle(fontSize: 20),
-                                                )).marginOnly(bottom: 7),
-                                          );
-                                        }),
-                                  ),
-                                )));
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(left: 7, right: 3),
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 238, 238, 238),
-                                border:
-                                    Border.all(width: 1, color: Colors.grey),
-                                borderRadius: BorderRadius.circular(2)),
-                            child: Obx(() => Row(
-                                  children: [
-                                    Text(_.weeklySelectedYear.value,
-                                        style: TextStyle(
-                                            fontSize: 9,
-                                            fontWeight: FontWeight.w600)),
-                                    Icon(
-                                      Icons.keyboard_arrow_down_sharp,
-                                      size: 15,
-                                    ),
-                                  ],
-                                )),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            _.showReport(_.weeklyMonthLenght, int.parse(_.weeklySelectedYear.value),3);
-                          },
-                          child: Text('Show reports',
-                              style: TextStyle(
-                                  fontSize: 8, fontWeight: FontWeight.bold)),
-                        ),
-                      ],
-                    ).marginOnly(top: 30),
-               
-                  ],
-                ).marginSymmetric(horizontal: 13)
-              ],
-            ).paddingSymmetric(horizontal: Get.width * 0.03),
-          ),
+                          Spacer(),
+                          Text('Months'),
+                          Icon(Icons.arrow_drop_down_rounded),
+                        ],
+                      ).marginOnly(top: 40),
+                      Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Daily & Natinal\nInternational Exposure ',
+                                style: TextStyle(
+                                    fontSize: 10, fontWeight: FontWeight.bold),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.bottomSheet(Container(
+                                      padding:
+                                          EdgeInsets.only(top: 50, bottom: 50),
+                                      height: 300,
+                                      width: Get.width,
+                                      decoration: BoxDecoration(
+                                          color: const Color.fromARGB(
+                                              255, 213, 213, 213),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: Center(
+                                        child: Container(
+                                          height: 200,
+                                          child: ListView.builder(
+                                              itemCount: _.months.length,
+                                              // physics: ,
+                                              itemBuilder:
+                                                  (BuildContext context, i) {
+                                                return InkWell(
+                                                  onTap: () {
+                                                    _.dailyMonthLenght = i + 1;
+                                                    _.dailySelectedMonth.value =
+                                                        _.months[i];
+                                                    Get.back();
+                                                  },
+                                                  child: Container(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: Text(
+                                                        _.months[i],
+                                                        style: TextStyle(
+                                                            fontSize: 20),
+                                                      )).marginOnly(bottom: 7),
+                                                );
+                                              }),
+                                        ),
+                                      )));
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.only(left: 7, right: 3),
+                                  decoration: BoxDecoration(
+                                      color: Color.fromARGB(255, 238, 238, 238),
+                                      border: Border.all(
+                                          width: 1, color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(2)),
+                                  child: Obx(() => Row(
+                                        children: [
+                                          Text(_.dailySelectedMonth.value,
+                                              style: TextStyle(
+                                                  fontSize: 9,
+                                                  fontWeight: FontWeight.w600)),
+                                          Icon(
+                                            Icons.keyboard_arrow_down_sharp,
+                                            size: 15,
+                                          ),
+                                        ],
+                                      )),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  print('dailyye');
+                                  Get.bottomSheet(Container(
+                                      padding:
+                                          EdgeInsets.only(top: 50, bottom: 50),
+                                      height: 300,
+                                      width: Get.width,
+                                      decoration: BoxDecoration(
+                                          color: const Color.fromARGB(
+                                              255, 213, 213, 213),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: Center(
+                                        child: Container(
+                                          height: 200,
+                                          child: ListView.builder(
+                                              itemCount: _.years.length,
+                                              itemBuilder:
+                                                  (BuildContext context, i) {
+                                                return InkWell(
+                                                  onTap: () {
+                                                    print(int.parse(_.years[i])
+                                                        .runtimeType);
+                                                    _.dailySelectedYear.value =
+                                                        _.years[i];
+                                                    Get.back();
+                                                  },
+                                                  child: Container(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: Text(
+                                                        _.years[i],
+                                                        style: TextStyle(
+                                                            fontSize: 20),
+                                                      )).marginOnly(bottom: 7),
+                                                );
+                                              }),
+                                        ),
+                                      )));
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.only(left: 7, right: 3),
+                                  decoration: BoxDecoration(
+                                      color: Color.fromARGB(255, 238, 238, 238),
+                                      border: Border.all(
+                                          width: 1, color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(2)),
+                                  child: Obx(() => Row(
+                                        children: [
+                                          Text(_.dailySelectedYear.value,
+                                              style: TextStyle(
+                                                  fontSize: 9,
+                                                  fontWeight: FontWeight.w600)),
+                                          Icon(
+                                            Icons.keyboard_arrow_down_sharp,
+                                            size: 15,
+                                          ),
+                                        ],
+                                      )),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  _.showReport(_.dailyMonthLenght,
+                                      _.dailySelectedYear.value, 1);
+                                },
+                                child: Text('Show reports',
+                                    style: TextStyle(
+                                        fontSize: 8,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ],
+                          ).marginOnly(top: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Weekly Meetings &\nConference Calls Report',
+                                style: TextStyle(
+                                    fontSize: 10, fontWeight: FontWeight.bold),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  print('conmo');
+                                  Get.bottomSheet(Container(
+                                      padding:
+                                          EdgeInsets.only(top: 50, bottom: 50),
+                                      height: 300,
+                                      width: Get.width,
+                                      decoration: BoxDecoration(
+                                          color: const Color.fromARGB(
+                                              255, 213, 213, 213),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: Center(
+                                        child: Container(
+                                          height: 200,
+                                          child: ListView.builder(
+                                              itemCount: _.months.length,
+                                              // physics: ,
+                                              itemBuilder:
+                                                  (BuildContext context, i) {
+                                                return InkWell(
+                                                  onTap: () {
+                                                    _.confernceMonthLenght =
+                                                        i + 1;
+                                                    _.conferenceSelectedMonth
+                                                        .value = _.months[i];
+                                                    Get.back();
+                                                  },
+                                                  child: Container(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: Text(
+                                                        _.months[i],
+                                                        style: TextStyle(
+                                                            fontSize: 20),
+                                                      )).marginOnly(bottom: 7),
+                                                );
+                                              }),
+                                        ),
+                                      )));
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.only(left: 7, right: 3),
+                                  decoration: BoxDecoration(
+                                      color: Color.fromARGB(255, 238, 238, 238),
+                                      border: Border.all(
+                                          width: 1, color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(2)),
+                                  child: Obx(() => Row(
+                                        children: [
+                                          Text(_.conferenceSelectedMonth.value,
+                                              style: TextStyle(
+                                                  fontSize: 9,
+                                                  fontWeight: FontWeight.w600)),
+                                          Icon(
+                                            Icons.keyboard_arrow_down_sharp,
+                                            size: 15,
+                                          ),
+                                        ],
+                                      )),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  print('confYea');
+                                  Get.bottomSheet(Container(
+                                      padding:
+                                          EdgeInsets.only(top: 50, bottom: 50),
+                                      height: 300,
+                                      width: Get.width,
+                                      decoration: BoxDecoration(
+                                          color: const Color.fromARGB(
+                                              255, 213, 213, 213),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: Center(
+                                        child: Container(
+                                          height: 200,
+                                          child: ListView.builder(
+                                              itemCount: _.years.length,
+                                              // physics: ,
+                                              itemBuilder:
+                                                  (BuildContext context, i) {
+                                                return InkWell(
+                                                  onTap: () {
+                                                    _.confernceSelectedYear
+                                                        .value = _.years[i];
+                                                    Get.back();
+                                                  },
+                                                  child: Container(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: Text(
+                                                        _.years[i],
+                                                        style: TextStyle(
+                                                            fontSize: 20),
+                                                      )).marginOnly(bottom: 7),
+                                                );
+                                              }),
+                                        ),
+                                      )));
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.only(left: 7, right: 3),
+                                  decoration: BoxDecoration(
+                                      color: Color.fromARGB(255, 238, 238, 238),
+                                      border: Border.all(
+                                          width: 1, color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(2)),
+                                  child: Obx(() => Row(
+                                        children: [
+                                          Text(_.confernceSelectedYear.value,
+                                              style: TextStyle(
+                                                  fontSize: 9,
+                                                  fontWeight: FontWeight.w600)),
+                                          Icon(
+                                            Icons.keyboard_arrow_down_sharp,
+                                            size: 15,
+                                          ),
+                                        ],
+                                      )),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  _.showReport(_.confernceMonthLenght,
+                                      _.confernceSelectedYear.value, 2);
+                                },
+                                child: Text('Show reports',
+                                    style: TextStyle(
+                                        fontSize: 8,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ],
+                          ).marginOnly(top: 30),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Income & Expenses Report',
+                                style: TextStyle(
+                                    fontSize: 10, fontWeight: FontWeight.bold),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  print('weem');
+                                  Get.bottomSheet(Container(
+                                      padding:
+                                          EdgeInsets.only(top: 50, bottom: 50),
+                                      height: 300,
+                                      width: Get.width,
+                                      decoration: BoxDecoration(
+                                          color: const Color.fromARGB(
+                                              255, 213, 213, 213),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: Center(
+                                        child: Container(
+                                          height: 200,
+                                          child: ListView.builder(
+                                              itemCount: _.months.length,
+                                              // physics: ,
+                                              itemBuilder:
+                                                  (BuildContext context, i) {
+                                                return InkWell(
+                                                  onTap: () {
+                                                    _.weeklyMonthLenght = i + 1;
+                                                    _.weeklySelectedMonth
+                                                        .value = _.months[i];
+                                                    Get.back();
+                                                  },
+                                                  child: Container(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: Text(
+                                                        _.months[i],
+                                                        style: TextStyle(
+                                                            fontSize: 20),
+                                                      )).marginOnly(bottom: 7),
+                                                );
+                                              }),
+                                        ),
+                                      )));
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.only(left: 7, right: 3),
+                                  decoration: BoxDecoration(
+                                      color: Color.fromARGB(255, 238, 238, 238),
+                                      border: Border.all(
+                                          width: 1, color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(2)),
+                                  child: Obx(() => Row(
+                                        children: [
+                                          Text(_.weeklySelectedMonth.value,
+                                              style: TextStyle(
+                                                  fontSize: 9,
+                                                  fontWeight: FontWeight.w600)),
+                                          Icon(
+                                            Icons.keyboard_arrow_down_sharp,
+                                            size: 15,
+                                          ),
+                                        ],
+                                      )),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.bottomSheet(Container(
+                                      padding:
+                                          EdgeInsets.only(top: 50, bottom: 50),
+                                      height: 300,
+                                      width: Get.width,
+                                      decoration: BoxDecoration(
+                                          color: const Color.fromARGB(
+                                              255, 213, 213, 213),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: Center(
+                                        child: Container(
+                                          height: 200,
+                                          child: ListView.builder(
+                                              itemCount: _.years.length,
+                                              // physics: ,
+                                              itemBuilder:
+                                                  (BuildContext context, i) {
+                                                return InkWell(
+                                                  onTap: () {
+                                                    _.weeklySelectedYear.value =
+                                                        _.years[i];
+                                                    Get.back();
+                                                  },
+                                                  child: Container(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: Text(
+                                                        _.years[i],
+                                                        style: TextStyle(
+                                                            fontSize: 20),
+                                                      )).marginOnly(bottom: 7),
+                                                );
+                                              }),
+                                        ),
+                                      )));
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.only(left: 7, right: 3),
+                                  decoration: BoxDecoration(
+                                      color: Color.fromARGB(255, 238, 238, 238),
+                                      border: Border.all(
+                                          width: 1, color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(2)),
+                                  child: Obx(() => Row(
+                                        children: [
+                                          Text(_.weeklySelectedYear.value,
+                                              style: TextStyle(
+                                                  fontSize: 9,
+                                                  fontWeight: FontWeight.w600)),
+                                          Icon(
+                                            Icons.keyboard_arrow_down_sharp,
+                                            size: 15,
+                                          ),
+                                        ],
+                                      )),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  _.showReport(_.weeklyMonthLenght,
+                                      _.weeklySelectedYear.value, 3);
+                                },
+                                child: Text('Show reports',
+                                    style: TextStyle(
+                                        fontSize: 8,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ],
+                          ).marginOnly(top: 30),
+                        ],
+                      ).marginSymmetric(horizontal: 13)
+                    ],
+                  ).paddingSymmetric(horizontal: Get.width * 0.03),
+          )),
         ));
   }
 }

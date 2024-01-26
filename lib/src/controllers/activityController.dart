@@ -1,4 +1,4 @@
-// ignore_for_file: depend_on_referenced_packages
+// ignore_for_file: depend_on_referenced_packages, unused_import, invalid_use_of_protected_member
 
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -19,6 +19,7 @@ class ActivityController extends GetxController {
   RxDouble conferenceHeight = 0.0.obs;
   RxBool expandNationalExposure = false.obs;
   RxDouble nationalExposureHeight = 0.0.obs;
+  RxBool specDateCheck=false.obs;
   String? formattedDate;
 
   List<dynamic> checkkk = [];
@@ -54,18 +55,9 @@ class ActivityController extends GetxController {
     pselectedDay = selectedDay;
     pfocusedDay.value = focusedDay;
     dcheck();
-    // getEventsForDay(selectedDay);
+
   }
 
-  // getEventsForDay(DateTime day) {
-  //   DateTime dateTime = DateTime.parse(day.toString());
-
-  //   dateTime = dateTime.toLocal();
-
-  //   String formattedDate =
-  //       "${dateTime.year}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}";
-  //
-  // }
 
   var filteredDataOfD = [];
   var filteredidOfD = [];
@@ -82,6 +74,7 @@ class ActivityController extends GetxController {
     filteredidOfD = [];
     filteredidOfW = [];
     filteredidOfC = [];
+    specDateCheck.value=true;
 
     dailyprintt.value = [];
     natinalprint.value = [];
@@ -91,7 +84,7 @@ class ActivityController extends GetxController {
     expandNationalExposure.value = false;
     expandMeetings.value = false;
     expandConference.value = false;
-    // print(data);
+
     DateTime dateTime = DateTime.parse(pselectedDay.toString());
 
     dateTime = dateTime.toLocal();
@@ -106,9 +99,9 @@ class ActivityController extends GetxController {
       }
     }
 
-    // print(filteredDataOfD);
+
     if (filteredDataOfD.isNotEmpty) {
-      print('object');
+
       for (var i = 0; i < filteredDataOfD.length; i++) {
         var dailyIds = await apiFetcher(
             'Get', '/api/daily-exposure/${filteredDataOfD[i]['id']}');
@@ -116,23 +109,18 @@ class ActivityController extends GetxController {
         var conferIds = await apiFetcher(
             'Get', '/api/conference-call/${filteredDataOfD[i]['id']}');
         filteredidOfC.add(conferIds['data']);
-        // print('ssssssss$dailyIds');
+
         var weeklyIds = await apiFetcher(
             'Get', '/api/weekly-training/${filteredDataOfD[i]['id']}');
         filteredidOfW.add(weeklyIds['data']);
-        print('etttttttttt $weeklyIds');
-        print(filteredDataOfD[i]['id']);
+    
       }
-      // print(filteredidOfD);
+
       if (filteredidOfW.isNotEmpty) {
       weeklyprint.value = filteredidOfW;
         expandMeetings.value=true;
       }
-      // if (filteredidOfC.isNotEmpty) {
-      // conferrencedprint.value=filteredidOfC;
-      //   expandConference.value=true;
-      // }
-
+     
       for (var i = 0; i < filteredidOfD.length; i++) {
         if (filteredidOfD[i]['activitytype'] == 1) {
           dailyprintt.value.add(filteredidOfD[i]);
@@ -164,11 +152,11 @@ class ActivityController extends GetxController {
         expandConference.value = true;
       }
     }
-      print('eeeeee ${conferrencedprint}');
-    // if (dailyprintt != []) {
-    //   print('ddddd');
-    // }
+
+
+      specDateCheck.value=false;
+  
   }
 
-  dailyprint() {}
+
 }

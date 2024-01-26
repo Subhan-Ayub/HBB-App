@@ -13,7 +13,7 @@ class ShowReports extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Divider(),
-          Text('Daily Exposure & National/International Exposure Report for January, ${_.arg['year']}',
+          Text('Daily Exposure & National/International Exposure Report for ${_.arg['month']}, ${_.arg['year']}',
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900))
               .marginSymmetric(horizontal: 10),
           Divider(),
@@ -87,7 +87,7 @@ class ShowReports extends StatelessWidget {
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis)),
                               Container(
-                                  width: 110,
+                                  width:  Get.width/5,
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     '${_.email}',
