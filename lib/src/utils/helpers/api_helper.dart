@@ -107,7 +107,7 @@ apiFetcher(String method, url, [body]) async {
         }
     }
   } catch (e) {
-    Get.offAndToNamed(Routes.error);
+    // Get.offAndToNamed(Routes.error);
     // Get.snackbar('Error', 'Check Your Internet Connection and try again',
     //     snackPosition: SnackPosition.BOTTOM,
     //     backgroundColor: Colors.red,

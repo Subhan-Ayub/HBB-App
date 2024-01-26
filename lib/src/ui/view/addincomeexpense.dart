@@ -112,10 +112,9 @@ class AddIncomeexpense extends StatelessWidget {
               ],
               onChanged: (value) {
                 _.selectedIncomeExpense = value;
+                // print(_.selectedIncomeExpense);
                 if (_.selectedIncomeExpense == 'Expense') {
                   _.isExpense.value = true;
-                  print(_.selectedIncomeExpense);
-                  print(_.isExpense.isTrue);
                 } else {
                   _.isExpense.value = false;
                 }
@@ -161,125 +160,125 @@ class AddIncomeexpense extends StatelessWidget {
                       value: _.selectedReason,
                       items: const [
                         DropdownMenuItem<String>(
-                          value: 'Advertising',
+                          value: '1',
                           child: Text('Advertising'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Air Fare',
+                          value: '2',
                           child: Text('Air Fare'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Bank Charges',
+                          value: '4',
                           child: Text('Bank Charges'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Books, publications',
+                          value: '5',
                           child: Text('Books, publications'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Bus and Taxi fares',
+                          value: '6',
                           child: Text('Bus and Taxi fares'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Business Association',
+                          value: '30',
                           child: Text('Business Association'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Business Opportunity Meeting',
+                          value: '7',
                           child: Text('Business Opportunity Meeting'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Cell Phone',
+                          value: '8',
                           child: Text('Cell Phone'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Computers',
+                          value: '9',
                           child: Text('Computers'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Entertainment',
+                          value: '10',
                           child: Text('Entertainment'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Home Biz Books Free',
+                          value: '35',
                           child: Text('Home Biz Books Free'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Home Office',
+                          value: '11',
                           child: Text('Home Office'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Home Office Maintainence',
+                          value: '12',
                           child: Text('Home Office Maintainence'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Home Office Suppliers',
-                          child: Text('Home Office Suppliers'),
+                          value: '13',
+                          child: Text('Home Office Supplies'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Home Office Utilities',
+                          value: '14',
                           child: Text('Home Office Utilities'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Home Phone',
+                          value: '15',
                           child: Text('Home Phone'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Insurance',
+                          value: '19',
                           child: Text('Insurance'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Internet Access',
+                          value: '20',
                           child: Text('Internet Access'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Laundary Services',
+                          value: '32',
                           child: Text('Laundary Services'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Leagal Fees',
+                          value: '33',
                           child: Text('Leagal Fees'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Lodging',
+                          value: '21',
                           child: Text('Lodging'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Marketing Supplies',
+                          value: '18',
                           child: Text('Marketing Supplies'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Meals',
+                          value: '22',
                           child: Text('Meals'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Membership Fees',
+                          value: '34',
                           child: Text('Membership Fees'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Mileage',
+                          value: '23',
                           child: Text('Mileage'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Parking',
+                          value: '24',
                           child: Text('Parking'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Postage',
+                          value: '25',
                           child: Text('Postage'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Prizes, Awards',
+                          value: '26',
                           child: Text('Prizes, Awards'),
                         ),
                         DropdownMenuItem<String>(
-                          value: 'Tolls',
+                          value: '28',
                           child: Text('Tolls'),
                         ),
-                        DropdownMenuItem<String>(
-                          value: 'Other',
-                          child: Text('Other'),
-                        ),
+                        // DropdownMenuItem<String>(
+                        //   value: 'Other',
+                        //   child: Text('Other'),
+                        // ),
                       ],
                       onChanged: (value) {
                         _.selectedReason = value;
@@ -295,38 +294,62 @@ class AddIncomeexpense extends StatelessWidget {
         ),
 
 // Buttons
-        Row(
-          children: [
-            OutlineButton(
-              ontap: () {
-                Get.back();
-              },
-              border: Border.all(
-                width: 2,
+        Obx(
+          () => Row(
+            children: [
+              OutlineButton(
+                ontap: () {
+                  Get.back();
+                },
+                border: Border.all(
+                  width: 2,
+                  color: Colors.red,
+                ),
+                width: Get.width * 0.2,
                 color: Colors.red,
+                child: Text(
+                  'Cancel',
+                  style:
+                      TextStyle(color: Colors.red, fontSize: Get.width * 0.03),
+                ),
               ),
-              width: Get.width * 0.2,
-              color: Colors.red,
-              child: Text(
-                'Cancel',
-                style: TextStyle(color: Colors.red, fontSize: Get.width * 0.03),
-              ),
-            ),
-            Spacer(),
-            FillButton(
-              ontap: () {
-                _.save();
-              },
-              width: Get.width * 0.2,
-              color: Colors.red,
-              child: Text(
-                'Save',
-                style:
-                    TextStyle(color: Colors.white, fontSize: Get.width * 0.03),
-              ),
-            )
-          ],
-        ).marginSymmetric(horizontal: Get.width * 0.04)
+              Spacer(),
+              _.inExpCont.isUpdate.value
+                  ? Obx(()=> _.updateloader.value ?
+                     FillButton(
+                        ontap: () {
+                          // _.save();
+                          _.upDate();
+                        },
+                        width: Get.width * 0.2,
+                        color: Colors.red,
+                        child: Text(
+                          'Update',
+                          style: TextStyle(
+                              color: Colors.white, fontSize: Get.width * 0.03),
+                        ),
+                      ) : CircularProgressIndicator(),
+                  )
+                  : Obx(
+                      () => _.loader.value
+                          ? FillButton(
+                              ontap: () {
+                                _.save();
+                              },
+                              width: Get.width * 0.2,
+                              color: Colors.red,
+                              child: Text(
+                                'Save',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: Get.width * 0.03),
+                              ),
+                            )
+                          : CircularProgressIndicator(),
+                    )
+            ],
+          ).marginSymmetric(horizontal: Get.width * 0.04),
+        )
       ],
     ));
   }
