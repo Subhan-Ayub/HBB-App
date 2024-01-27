@@ -14,6 +14,9 @@ class ActivityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       backgroundColor: UIDataColors.greyColor,
       body: body(context),
     );
@@ -38,7 +41,8 @@ class ActivityScreen extends StatelessWidget {
 
             Obx(
               () => _.specDateCheck.value
-                  ? Center(child: CircularProgressIndicator()).marginOnly(top: 160)
+                  ? Center(child: CircularProgressIndicator())
+                      .marginOnly(top: 160)
                   : Container(
                       height: Get.height / 1.1,
                       child: SingleChildScrollView(
@@ -123,7 +127,8 @@ class ActivityScreen extends StatelessWidget {
                                                       children: [
                                                         Text('Prospect Name:'),
                                                         Container(
-                                                            width: Get.width/4,
+                                                            width:
+                                                                Get.width / 4,
                                                             alignment: Alignment
                                                                 .center,
                                                             child: Text(
@@ -220,7 +225,7 @@ class ActivityScreen extends StatelessWidget {
                                                             child:
                                                                 Text('Email:')),
                                                         Container(
-                                                          width: Get.width/3,
+                                                          width: Get.width / 3,
                                                           child: Text(
                                                               '${_.dailyprintt[i]['email']}',
                                                               maxLines: 1,
@@ -460,7 +465,8 @@ class ActivityScreen extends StatelessWidget {
                                                         Text(
                                                             'Meeting location:'),
                                                         Container(
-                                                            width: Get.width/4,
+                                                            width:
+                                                                Get.width / 4,
                                                             alignment: Alignment
                                                                 .center,
                                                             child: Text(
@@ -475,7 +481,6 @@ class ActivityScreen extends StatelessWidget {
                                                         ),
                                                         InkWell(
                                                           onTap: () {
-                                                         
                                                             Get.toNamed(
                                                                 Routes
                                                                     .weeklymeeting,
@@ -517,7 +522,7 @@ class ActivityScreen extends StatelessWidget {
                                                             child: Text(
                                                                 'Type of Meetings:')),
                                                         Container(
-                                                          width:  Get.width/4,
+                                                          width: Get.width / 4,
                                                           child: Text(
                                                               '${_.weeklyprint[i]['meetingType']}',
                                                               maxLines: 1,
@@ -542,7 +547,7 @@ class ActivityScreen extends StatelessWidget {
                                                             child: Text(
                                                                 'Parties Present/Notes:')),
                                                         Container(
-                                                          width:  Get.width/4,
+                                                          width: Get.width / 4,
                                                           child: Text(
                                                               '${_.weeklyprint[i]['wmNotes']}',
                                                               maxLines: 1,
@@ -697,11 +702,12 @@ class ActivityScreen extends StatelessWidget {
                                                     child: Row(
                                                       children: [
                                                         Container(
-                                                            width:  Get.width/4,
+                                                            width:
+                                                                Get.width / 4,
                                                             child:
                                                                 Text('Notes:')),
                                                         Container(
-                                                          width:  Get.width/2,
+                                                          width: Get.width / 2,
                                                           child: Text(
                                                               '${_.conferrencedprint[i]['ccallnotes']}',
                                                               maxLines: 1,
@@ -801,7 +807,7 @@ class ActivityScreen extends StatelessWidget {
                                                     children: [
                                                       Text('Prospect Name:'),
                                                       Container(
-                                                          width:  Get.width/4,
+                                                          width: Get.width / 4,
                                                           alignment:
                                                               Alignment.center,
                                                           child: Text(
@@ -895,12 +901,13 @@ class ActivityScreen extends StatelessWidget {
                                                           child:
                                                               Text('Email:')),
                                                       Container(
-                                                        width:  Get.width/4,
+                                                        width: Get.width / 4,
                                                         child: Text(
                                                             '${_.natinalprint[i]['email']}',
                                                             maxLines: 1,
-                                                            overflow: TextOverflow
-                                                                .ellipsis),
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis),
                                                       ),
                                                     ],
                                                   ),
@@ -1159,7 +1166,7 @@ class ActivityScreen extends StatelessWidget {
                                     context,
                                     date,
                                     events,
-                                  // ignore: body_might_complete_normally_nullable
+                                    // ignore: body_might_complete_normally_nullable
                                   ) {
                                     DateTime dateTime =
                                         DateTime.parse(date.toString());

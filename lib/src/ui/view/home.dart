@@ -1,5 +1,4 @@
 // ignore_for_file: unused_field
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/homeController.dart';
@@ -69,27 +68,44 @@ class HomeScreen extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
-                          InkWell(
+                          GestureDetector(
                             onTap: () {
+                              _.isDailyExposureClicked.value = true;
+                              _.isConferenceCallClicked.value = false;
+                              _.isNationalExposireClicked.value = false;
+                              _.isSignUplClicked.value = false;
+                              _.isWeeklyMeetingClicked.value = false;
+                               _.isActivityClicked.value = false;
+                              _.isStatisticsClicked.value = false;
+                              _.isGoalsClicked.value = false;
+                              _.isProfileClicked.value = false;
+                              _.isCoachingClicked.value = false;
+                              _.isIncomeClicked.value = false;
+                              _.isTeamClicked.value = false;
+                              _.isSContactClicked.value = false;
                               Get.toNamed(Routes.reports,
                                   arguments: '/api/daily-report');
                             },
                             child: Column(
                               children: [
-                                Container(
-                                  alignment: Alignment.center,
-                                  width: Get.width * 0.27,
-                                  height: Get.height * 0.12,
-                                  decoration: BoxDecoration(
-                                    color: UIDataColors.greyColor,
-                                    borderRadius: BorderRadius.circular(20),
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                        'assets/images/dailyexposure.png',
+                                Obx(
+                                  () => Container(
+                                    alignment: Alignment.center,
+                                    width: Get.width * 0.27,
+                                    height: Get.height * 0.12,
+                                    decoration: BoxDecoration(
+                                      color: _.isDailyExposureClicked.value
+                                          ? Colors.red.shade100
+                                          : UIDataColors.greyColor,
+                                      borderRadius: BorderRadius.circular(20),
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                          'assets/images/dailyexposure.png',
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ).marginOnly(right: Get.width * .01),
+                                  ).marginOnly(right: Get.width * .01),
+                                ),
                                 Text(
                                   'Daily Exposure',
                                   style: TextStyle(
@@ -100,27 +116,44 @@ class HomeScreen extends StatelessWidget {
                             ).marginOnly(right: Get.width * .015),
                           ),
                           //
-                          InkWell(
+                          GestureDetector(
                             onTap: () {
+                              _.isConferenceCallClicked.value = true;
+                              _.isDailyExposureClicked.value = false;
+                              _.isNationalExposireClicked.value = false;
+                              _.isSignUplClicked.value = false;
+                              _.isWeeklyMeetingClicked.value = false;
+                               _.isActivityClicked.value = false;
+                              _.isStatisticsClicked.value = false;
+                              _.isGoalsClicked.value = false;
+                              _.isProfileClicked.value = false;
+                              _.isCoachingClicked.value = false;
+                              _.isIncomeClicked.value = false;
+                              _.isTeamClicked.value = false;
+                              _.isSContactClicked.value = false;
                               Get.toNamed(Routes.reports,
                                   arguments: '/api/conference-report');
                             },
                             child: Column(
                               children: [
-                                Container(
-                                  alignment: Alignment.center,
-                                  width: Get.width * 0.27,
-                                  height: Get.height * 0.12,
-                                  decoration: BoxDecoration(
-                                    color: UIDataColors.greyColor,
-                                    borderRadius: BorderRadius.circular(15),
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                        'assets/images/conferencecall.png',
+                                Obx(
+                                  () => Container(
+                                    alignment: Alignment.center,
+                                    width: Get.width * 0.27,
+                                    height: Get.height * 0.12,
+                                    decoration: BoxDecoration(
+                                      color: _.isConferenceCallClicked.value
+                                          ? Colors.red.shade100
+                                          : UIDataColors.greyColor,
+                                      borderRadius: BorderRadius.circular(15),
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                          'assets/images/conferencecall.png',
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ).marginOnly(right: Get.width * .01),
+                                  ).marginOnly(right: Get.width * .01),
+                                ),
                                 Text(
                                   'Conference Call',
                                   style: TextStyle(
@@ -131,27 +164,44 @@ class HomeScreen extends StatelessWidget {
                             ).marginOnly(right: Get.width * .015),
                           ),
                           //
-                          InkWell(
+                          GestureDetector(
                             onTap: () {
+                              _.isWeeklyMeetingClicked.value = true;
+                              _.isConferenceCallClicked.value = false;
+                              _.isDailyExposureClicked.value = false;
+                              _.isNationalExposireClicked.value = false;
+                              _.isSignUplClicked.value = false;
+                               _.isActivityClicked.value = false;
+                              _.isStatisticsClicked.value = false;
+                              _.isGoalsClicked.value = false;
+                              _.isProfileClicked.value = false;
+                              _.isCoachingClicked.value = false;
+                              _.isIncomeClicked.value = false;
+                              _.isTeamClicked.value = false;
+                              _.isSContactClicked.value = false;
                               Get.toNamed(Routes.reports,
                                   arguments: '/api/weekly-report');
                             },
                             child: Column(
                               children: [
-                                Container(
-                                  alignment: Alignment.center,
-                                  width: Get.width * 0.27,
-                                  height: Get.height * 0.12,
-                                  decoration: BoxDecoration(
-                                    color: UIDataColors.greyColor,
-                                    borderRadius: BorderRadius.circular(15),
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                        'assets/images/weeklymeeting.png',
+                                Obx(
+                                  () => Container(
+                                    alignment: Alignment.center,
+                                    width: Get.width * 0.27,
+                                    height: Get.height * 0.12,
+                                    decoration: BoxDecoration(
+                                      color: _.isWeeklyMeetingClicked.value
+                                          ? Colors.red.shade100
+                                          : UIDataColors.greyColor,
+                                      borderRadius: BorderRadius.circular(15),
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                          'assets/images/weeklymeeting.png',
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ).marginOnly(right: Get.width * .01),
+                                  ).marginOnly(right: Get.width * .01),
+                                ),
                                 Text(
                                   'Weekly Meeting',
                                   style: TextStyle(
@@ -162,27 +212,45 @@ class HomeScreen extends StatelessWidget {
                             ).marginOnly(right: Get.width * .015),
                           ),
                           //
-                           InkWell(
+                          GestureDetector(
                             onTap: () {
+                              _.isNationalExposireClicked.value = true;
+                              _.isWeeklyMeetingClicked.value = false;
+                              _.isConferenceCallClicked.value = false;
+                              _.isDailyExposureClicked.value = false;
+                              _.isSignUplClicked.value = false;
+                               _.isActivityClicked.value = false;
+                              _.isStatisticsClicked.value = false;
+                              _.isGoalsClicked.value = false;
+                              _.isProfileClicked.value = false;
+                              _.isCoachingClicked.value = false;
+                              _.isIncomeClicked.value = false;
+                              _.isTeamClicked.value = false;
+                              _.isSContactClicked.value = false;
                               Get.toNamed(Routes.reports,
-                                  arguments: '/api/national-international-report');
+                                  arguments:
+                                      '/api/national-international-report');
                             },
                             child: Column(
                               children: [
-                                Container(
-                                  alignment: Alignment.center,
-                                  width: Get.width * 0.27,
-                                  height: Get.height * 0.12,
-                                  decoration: BoxDecoration(
-                                    color: UIDataColors.greyColor,
-                                    borderRadius: BorderRadius.circular(15),
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                        'assets/images/weeklymeeting.png',
+                                Obx(
+                                  () => Container(
+                                    alignment: Alignment.center,
+                                    width: Get.width * 0.27,
+                                    height: Get.height * 0.12,
+                                    decoration: BoxDecoration(
+                                      color: _.isNationalExposireClicked.value
+                                          ? Colors.red.shade100
+                                          : UIDataColors.greyColor,
+                                      borderRadius: BorderRadius.circular(15),
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                          'assets/images/weeklymeeting.png',
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ).marginOnly(right: Get.width * .01),
+                                  ).marginOnly(right: Get.width * .01),
+                                ),
                                 Text(
                                   'National/International ',
                                   style: TextStyle(
@@ -194,27 +262,44 @@ class HomeScreen extends StatelessWidget {
                           ),
                           //
 
-                          InkWell(
+                          GestureDetector(
                             onTap: () {
+                              _.isSignUplClicked.value = true;
+                              _.isNationalExposireClicked.value = false;
+                              _.isWeeklyMeetingClicked.value = false;
+                              _.isConferenceCallClicked.value = false;
+                              _.isDailyExposureClicked.value = false;
+                              _.isActivityClicked.value = false;
+                              _.isStatisticsClicked.value = false;
+                              _.isGoalsClicked.value = false;
+                              _.isProfileClicked.value = false;
+                              _.isCoachingClicked.value = false;
+                              _.isIncomeClicked.value = false;
+                              _.isTeamClicked.value = false;
+                              _.isSContactClicked.value = false;
                               Get.toNamed(Routes.reports,
                                   arguments: '/api/signup-type-report');
                             },
                             child: Column(
                               children: [
-                                Container(
-                                  alignment: Alignment.center,
-                                  width: Get.width * 0.27,
-                                  height: Get.height * 0.12,
-                                  decoration: BoxDecoration(
-                                    color: UIDataColors.greyColor,
-                                    borderRadius: BorderRadius.circular(20),
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                        'assets/images/signups.png',
+                                Obx(
+                                  () => Container(
+                                    alignment: Alignment.center,
+                                    width: Get.width * 0.27,
+                                    height: Get.height * 0.12,
+                                    decoration: BoxDecoration(
+                                      color: _.isSignUplClicked.value
+                                          ? Colors.red.shade100
+                                          : UIDataColors.greyColor,
+                                      borderRadius: BorderRadius.circular(20),
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                          'assets/images/signups.png',
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ).marginOnly(right: Get.width * .01),
+                                  ).marginOnly(right: Get.width * .01),
+                                ),
                                 Text(
                                   'SignUp Reports',
                                   style: TextStyle(
@@ -250,24 +335,39 @@ class HomeScreen extends StatelessWidget {
                         // Activity
                         Column(
                           children: [
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
+                              _.isActivityClicked.value = true;
+                               _.isSignUplClicked.value = false;
+                              _.isNationalExposireClicked.value = false;
+                              _.isWeeklyMeetingClicked.value = false;
+                              _.isConferenceCallClicked.value = false;
+                              _.isDailyExposureClicked.value = false;
+                              _.isStatisticsClicked.value = false;
+                              _.isGoalsClicked.value = false;
+                              _.isProfileClicked.value = false;
+                              _.isCoachingClicked.value = false;
+                              _.isIncomeClicked.value = false;
+                              _.isTeamClicked.value = false;
+                              _.isSContactClicked.value = false;
                                 Get.toNamed(Routes.activity);
                               },
-                              child: Container(
-                                alignment: Alignment.center,
-                                width: Get.width * 0.2,
-                                height: Get.height * 0.09,
-                                decoration: BoxDecoration(
-                                  color: UIDataColors.greyColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Icon(
-                                  Icons.graphic_eq,
-                                  size: Get.width * 0.07,
-                                  color: Colors.red,
-                                ),
-                              ).marginOnly(right: Get.width * .01),
+                              child: Obx(()=>
+                                 Container(
+                                  alignment: Alignment.center,
+                                  width: Get.width * 0.2,
+                                  height: Get.height * 0.09,
+                                  decoration: BoxDecoration(
+                                    color: _.isActivityClicked.value ? Colors.red.shade100: UIDataColors.greyColor,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Icon(
+                                    Icons.graphic_eq,
+                                    size: Get.width * 0.07,
+                                    color: Colors.red,
+                                  ),
+                                ).marginOnly(right: Get.width * .01),
+                              ),
                             ),
                             Text(
                               'Activity ',
@@ -280,24 +380,39 @@ class HomeScreen extends StatelessWidget {
                         // Statistics and Reports
                         Column(
                           children: [
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
+                              _.isStatisticsClicked.value = true;
+                                _.isActivityClicked.value = false;
+                               _.isSignUplClicked.value = false;
+                              _.isNationalExposireClicked.value = false;
+                              _.isWeeklyMeetingClicked.value = false;
+                              _.isConferenceCallClicked.value = false;
+                              _.isDailyExposureClicked.value = false;
+                              _.isGoalsClicked.value = false;
+                              _.isProfileClicked.value = false;
+                              _.isCoachingClicked.value = false;
+                              _.isIncomeClicked.value = false;
+                              _.isTeamClicked.value = false;
+                              _.isSContactClicked.value = false;
                                 Get.toNamed(Routes.reports);
                               },
-                              child: Container(
-                                alignment: Alignment.center,
-                                width: Get.width * 0.2,
-                                height: Get.height * 0.09,
-                                decoration: BoxDecoration(
-                                  color: UIDataColors.greyColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Icon(
-                                  Icons.bar_chart_sharp,
-                                  size: Get.width * 0.07,
-                                  color: Colors.red,
-                                ),
-                              ).marginOnly(right: Get.width * .01),
+                              child: Obx(()=>
+                                 Container(
+                                  alignment: Alignment.center,
+                                  width: Get.width * 0.2,
+                                  height: Get.height * 0.09,
+                                  decoration: BoxDecoration(
+                                    color: _.isStatisticsClicked.value? Colors.red.shade100: UIDataColors.greyColor,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Icon(
+                                    Icons.bar_chart_sharp,
+                                    size: Get.width * 0.07,
+                                    color: Colors.red,
+                                  ),
+                                ).marginOnly(right: Get.width * .01),
+                              ),
                             ),
                             Text(
                               'Statistics',
@@ -311,24 +426,39 @@ class HomeScreen extends StatelessWidget {
                         //My Goals
                         Column(
                           children: [
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
+                              _.isGoalsClicked.value = true;
+                                 _.isStatisticsClicked.value = false;
+                                _.isActivityClicked.value = false;
+                               _.isSignUplClicked.value = false;
+                              _.isNationalExposireClicked.value = false;
+                              _.isWeeklyMeetingClicked.value = false;
+                              _.isConferenceCallClicked.value = false;
+                              _.isDailyExposureClicked.value = false;
+                              _.isProfileClicked.value = false;
+                              _.isCoachingClicked.value = false;
+                              _.isIncomeClicked.value = false;
+                              _.isTeamClicked.value = false;
+                              _.isSContactClicked.value = false;
                                 Get.toNamed(Routes.mygoals);
                               },
-                              child: Container(
-                                alignment: Alignment.center,
-                                width: Get.width * 0.2,
-                                height: Get.height * 0.09,
-                                decoration: BoxDecoration(
-                                  color: UIDataColors.greyColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Icon(
-                                  Icons.golf_course,
-                                  size: Get.width * 0.07,
-                                  color: Colors.red,
-                                ),
-                              ).marginOnly(right: Get.width * .01),
+                              child: Obx(()=>
+                                 Container(
+                                  alignment: Alignment.center,
+                                  width: Get.width * 0.2,
+                                  height: Get.height * 0.09,
+                                  decoration: BoxDecoration(
+                                    color: _.isGoalsClicked.value? Colors.red.shade100: UIDataColors.greyColor,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Icon(
+                                    Icons.golf_course,
+                                    size: Get.width * 0.07,
+                                    color: Colors.red,
+                                  ),
+                                ).marginOnly(right: Get.width * .01),
+                              ),
                             ),
                             Text(
                               'My Goals',
@@ -342,24 +472,39 @@ class HomeScreen extends StatelessWidget {
                         //Profile
                         Column(
                           children: [
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
+                              _.isProfileClicked.value = true;
+                                  _.isGoalsClicked.value = false;
+                                 _.isStatisticsClicked.value = false;
+                                _.isActivityClicked.value = false;
+                               _.isSignUplClicked.value = false;
+                              _.isNationalExposireClicked.value = false;
+                              _.isWeeklyMeetingClicked.value = false;
+                              _.isConferenceCallClicked.value = false;
+                              _.isDailyExposureClicked.value = false;
+                              _.isCoachingClicked.value = false;
+                              _.isIncomeClicked.value = false;
+                              _.isTeamClicked.value = false;
+                              _.isSContactClicked.value = false;
                                 Get.toNamed(Routes.profile);
                               },
-                              child: Container(
-                                alignment: Alignment.center,
-                                width: Get.width * 0.2,
-                                height: Get.height * 0.09,
-                                decoration: BoxDecoration(
-                                  color: UIDataColors.greyColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Icon(
-                                  Icons.account_circle_outlined,
-                                  size: Get.width * 0.07,
-                                  color: Colors.red,
-                                ),
-                              ).marginOnly(right: Get.width * .01),
+                              child: Obx(()=>
+                                 Container(
+                                  alignment: Alignment.center,
+                                  width: Get.width * 0.2,
+                                  height: Get.height * 0.09,
+                                  decoration: BoxDecoration(
+                                    color: _.isProfileClicked.value ? Colors.red.shade100: UIDataColors.greyColor,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Icon(
+                                    Icons.account_circle_outlined,
+                                    size: Get.width * 0.07,
+                                    color: Colors.red,
+                                  ),
+                                ).marginOnly(right: Get.width * .01),
+                              ),
                             ),
                             Text(
                               'Profile',
@@ -382,24 +527,39 @@ class HomeScreen extends StatelessWidget {
                         // Coaching Network
                         Column(
                           children: [
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
+                              _.isCoachingClicked.value = true;
+                                 _.isProfileClicked.value = false;
+                                  _.isGoalsClicked.value = false;
+                                 _.isStatisticsClicked.value = false;
+                                _.isActivityClicked.value = false;
+                               _.isSignUplClicked.value = false;
+                              _.isNationalExposireClicked.value = false;
+                              _.isWeeklyMeetingClicked.value = false;
+                              _.isConferenceCallClicked.value = false;
+                              _.isDailyExposureClicked.value = false;
+                              _.isIncomeClicked.value = false;
+                              _.isTeamClicked.value = false;
+                              _.isSContactClicked.value = false;
                                 Get.toNamed(Routes.coachnetwork);
                               },
-                              child: Container(
-                                alignment: Alignment.center,
-                                width: Get.width * 0.2,
-                                height: Get.height * 0.09,
-                                decoration: BoxDecoration(
-                                  color: UIDataColors.greyColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Icon(
-                                  Icons.category_rounded,
-                                  size: Get.width * 0.07,
-                                  color: Colors.red,
-                                ),
-                              ).marginOnly(right: Get.width * .01),
+                              child: Obx(()=>
+                                 Container(
+                                  alignment: Alignment.center,
+                                  width: Get.width * 0.2,
+                                  height: Get.height * 0.09,
+                                  decoration: BoxDecoration(
+                                    color: _.isCoachingClicked.value? Colors.red.shade100: UIDataColors.greyColor,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Icon(
+                                    Icons.category_rounded,
+                                    size: Get.width * 0.07,
+                                    color: Colors.red,
+                                  ),
+                                ).marginOnly(right: Get.width * .01),
+                              ),
                             ),
                             Text(
                               'My Coaching \nNetwork',
@@ -414,24 +574,39 @@ class HomeScreen extends StatelessWidget {
                         // Income and Expense
                         Column(
                           children: [
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
+                              _.isIncomeClicked.value = true;
+                                 _.isCoachingClicked.value = false;
+                                 _.isProfileClicked.value = false;
+                                  _.isGoalsClicked.value = false;
+                                 _.isStatisticsClicked.value = false;
+                                _.isActivityClicked.value = false;
+                               _.isSignUplClicked.value = false;
+                              _.isNationalExposireClicked.value = false;
+                              _.isWeeklyMeetingClicked.value = false;
+                              _.isConferenceCallClicked.value = false;
+                              _.isDailyExposureClicked.value = false;
+                              _.isTeamClicked.value = false;
+                              _.isSContactClicked.value = false;
                                 Get.toNamed(Routes.incomeexpense);
                               },
-                              child: Container(
-                                alignment: Alignment.center,
-                                width: Get.width * 0.2,
-                                height: Get.height * 0.09,
-                                decoration: BoxDecoration(
-                                  color: UIDataColors.greyColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Icon(
-                                  Icons.wallet_outlined,
-                                  size: Get.width * 0.07,
-                                  color: Colors.red,
-                                ),
-                              ).marginOnly(right: Get.width * .01),
+                              child: Obx(()=>
+                                Container(
+                                  alignment: Alignment.center,
+                                  width: Get.width * 0.2,
+                                  height: Get.height * 0.09,
+                                  decoration: BoxDecoration(
+                                    color:  _.isIncomeClicked.value? Colors.red.shade100: UIDataColors.greyColor,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Icon(
+                                    Icons.wallet_outlined,
+                                    size: Get.width * 0.07,
+                                    color: Colors.red,
+                                  ),
+                                ).marginOnly(right: Get.width * .01),
+                              ),
                             ),
                             Text(
                               'My Income \nAnd Expenses',
@@ -446,24 +621,39 @@ class HomeScreen extends StatelessWidget {
                         // Support Team
                         Column(
                           children: [
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
+                              _.isTeamClicked.value = true;
+                                 _.isIncomeClicked.value = false;
+                                 _.isCoachingClicked.value = false;
+                                 _.isProfileClicked.value = false;
+                                  _.isGoalsClicked.value = false;
+                                 _.isStatisticsClicked.value = false;
+                                _.isActivityClicked.value = false;
+                               _.isSignUplClicked.value = false;
+                              _.isNationalExposireClicked.value = false;
+                              _.isWeeklyMeetingClicked.value = false;
+                              _.isConferenceCallClicked.value = false;
+                              _.isDailyExposureClicked.value = false;
+                              _.isSContactClicked.value = false;
                                 Get.toNamed(Routes.supportteam);
                               },
-                              child: Container(
-                                alignment: Alignment.center,
-                                width: Get.width * 0.2,
-                                height: Get.height * 0.09,
-                                decoration: BoxDecoration(
-                                  color: UIDataColors.greyColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Icon(
-                                  Icons.support_agent,
-                                  size: Get.width * 0.07,
-                                  color: Colors.red,
-                                ),
-                              ).marginOnly(right: Get.width * .01),
+                              child: Obx(()=>
+                                 Container(
+                                  alignment: Alignment.center,
+                                  width: Get.width * 0.2,
+                                  height: Get.height * 0.09,
+                                  decoration: BoxDecoration(
+                                    color:  _.isTeamClicked.value? Colors.red.shade100: UIDataColors.greyColor,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Icon(
+                                    Icons.support_agent,
+                                    size: Get.width * 0.07,
+                                    color: Colors.red,
+                                  ),
+                                ).marginOnly(right: Get.width * .01),
+                              ),
                             ),
                             Text(
                               'My Team \nSupport',
@@ -478,24 +668,39 @@ class HomeScreen extends StatelessWidget {
                         // Contact List
                         Column(
                           children: [
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
+                              _.isSContactClicked.value = true;
+                                    _.isTeamClicked.value = false;
+                                 _.isIncomeClicked.value = false;
+                                 _.isCoachingClicked.value = false;
+                                 _.isProfileClicked.value = false;
+                                  _.isGoalsClicked.value = false;
+                                 _.isStatisticsClicked.value = false;
+                                _.isActivityClicked.value = false;
+                               _.isSignUplClicked.value = false;
+                              _.isNationalExposireClicked.value = false;
+                              _.isWeeklyMeetingClicked.value = false;
+                              _.isConferenceCallClicked.value = false;
+                              _.isDailyExposureClicked.value = false;
                                 Get.toNamed(Routes.contactlist);
                               },
-                              child: Container(
-                                alignment: Alignment.center,
-                                width: Get.width * 0.2,
-                                height: Get.height * 0.09,
-                                decoration: BoxDecoration(
-                                  color: UIDataColors.greyColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Icon(
-                                  Icons.menu_book_sharp,
-                                  size: Get.width * 0.07,
-                                  color: Colors.red,
-                                ),
-                              ).marginOnly(right: Get.width * .01),
+                              child: Obx(()=>
+                                Container(
+                                  alignment: Alignment.center,
+                                  width: Get.width * 0.2,
+                                  height: Get.height * 0.09,
+                                  decoration: BoxDecoration(
+                                    color: _.isSContactClicked.value ? Colors.red.shade100: UIDataColors.greyColor,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Icon(
+                                    Icons.menu_book_sharp,
+                                    size: Get.width * 0.07,
+                                    color: Colors.red,
+                                  ),
+                                ).marginOnly(right: Get.width * .01),
+                              ),
                             ),
                             Text(
                               'My Contact \nList',

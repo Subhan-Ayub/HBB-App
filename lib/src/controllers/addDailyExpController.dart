@@ -65,7 +65,7 @@ class AddDailyExpController extends GetxController {
       "formnotes": notes.text,
       "calltime": timeCall.text,
       "hiddendate": "2023-11-28",
-      // ignore: prefer_interpolation_to_compose_strings
+      // ignore: prefer_interpolation_to_compose_strings, prefer_adjacent_string_concatenation
       "exposuretypestring": "${checkbox1.value ? 'threeway,' : ''}" +
           "${checkbox2.value ? 'bizbrief,' : ''}" +
           "${checkbox3.value ? 'bcard,' : ''}" +

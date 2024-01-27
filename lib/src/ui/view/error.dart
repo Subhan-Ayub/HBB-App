@@ -16,13 +16,18 @@ class ErrorView extends StatelessWidget {
   const ErrorView({super.key});
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Something went wrong',
-        style: TextStyle(
-            fontSize: Get.width * 0.05,
-            color: Colors.red.shade500,
-            decoration: TextDecoration.none),
+    return Scaffold(
+       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
+      body: Center(
+        child: Text(
+          'Something went wrong',
+          style: TextStyle(
+              fontSize: Get.width * 0.05,
+              color: Colors.red.shade500,
+              decoration: TextDecoration.none),
+        ),
       ),
     );
   }

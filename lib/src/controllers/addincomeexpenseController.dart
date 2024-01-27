@@ -14,13 +14,55 @@ class AddIncomeExpenseController extends GetxController {
   RxBool loader = true.obs;
   RxBool updateloader = true.obs;
 
-  // void edit (index){
-  //   amount.text = inExpCont.incomeExpenseData[index]['expenseamount'];
-
-  // }
+  void edit(index) {
+    dateinput.text = inExpCont.incomeExpenseData[index]['expensedate'];
+  }
 
   void upDate() async {
     var id = inExpCont.editId;
+    print(id);
+    if (dateinput.text.isEmpty) {
+      Get.snackbar('Error', 'Select Date',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return;
+    }
+    if (amount.text.isEmpty) {
+      Get.snackbar('Error', 'Enter Amount',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return;
+    }
+    if (selectedIncomeExpense == null) {
+      Get.snackbar('Error', 'Select Type Income or Expense',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+      return;
+    }
+
+    if (selectedIncomeExpense == 'Expense') {
+      if (selectedReason == null) {
+        Get.snackbar('Error', 'Select Expense reason',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white);
+        return;
+      }
+    }
+
+    if (selectedIncomeExpense == 'Income') {
+      if (incomeSource.text.isEmpty) {
+        Get.snackbar('Error', 'Please Tell your source of income',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white);
+        return;
+      }
+    }
+
     var obj = {
       "expenseamount": amount.text,
       "incexp": selectedIncomeExpense == 'Income' ? 1 : 0,
@@ -30,9 +72,17 @@ class AddIncomeExpenseController extends GetxController {
       "expensedate": dateinput.text
     };
     updateloader.value = false;
-    var res = await apiFetcher('Put', '/api/expense/$id', obj);
+     await apiFetcher('Put', '/api/expense/$id', obj);
     updateloader.value = true;
-    inExpCont.getData();
+    Get.snackbar('Success', 'Your Incom Expense has Updated',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green.shade400,
+        colorText: Colors.white);
+    dateinput.text = '';
+    amount.text = '';
+    selectedReason == null;
+    incomeSource.text = '';
+    selectedIncomeExpense == null;
   }
 
   void save() async {
@@ -78,7 +128,7 @@ class AddIncomeExpenseController extends GetxController {
       }
     }
     loader.value = false;
-    print(incomeSource.text.runtimeType);
+    // print(incomeSource.text.runtimeType);
     var obj = {
       "expenseamount": amount.text,
       "incexp": selectedIncomeExpense == 'Income' ? 1 : 0,

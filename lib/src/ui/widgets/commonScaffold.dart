@@ -65,37 +65,37 @@ class CommonScaffold extends StatelessWidget {
       //     child: Row(
       //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       //       children: [
-      //         Obx(
-      //           () => BottomNavContainer(
-      //               height: Get.height * 0.08,
-      //               width: Get.width * 0.18,
-      //               child: InkWell(
-      //                 onTap: () {
-      //                   if (iconController.currentRoute != Routes.home) {
-      //                     Get.offAllNamed(Routes.home);
-      //                   }
-      //                   iconController.setCurrentRoute(Routes.home);
-      //                 },
-      //                 child: Column(
-      //                   mainAxisAlignment: MainAxisAlignment.center,
-      //                   children: [
-      //                     Icon(
-      //                       Icons.home,
-      //                       color: iconController.currentRoute == Routes.home
-      //                           ? UIDataColors.commonColor
-      //                           : Colors.grey,
-      //                       size: Get.width * 0.1,
-      //                     ),
-      //                     Text(
-      //                       'Home',
-      //                       style: iconController.currentRoute == Routes.home
-      //                           ? UIDataTextStyles.BottomNavHoverStyle
-      //                           : UIDataTextStyles.BottomNavStyle,
-      //                     )
-      //                   ],
-      //                 ),
-      //               )).marginOnly(left: 20),
-      //         ),
+              // Obx(
+              //   () => BottomNavContainer(
+              //       height: Get.height * 0.08,
+              //       width: Get.width * 0.18,
+              //       child: InkWell(
+              //         onTap: () {
+              //           if (iconController.currentRoute != Routes.home) {
+              //             Get.offAllNamed(Routes.home);
+              //           }
+              //           iconController.setCurrentRoute(Routes.home);
+              //         },
+              //         child: Column(
+              //           mainAxisAlignment: MainAxisAlignment.center,
+              //           children: [
+              //             Icon(
+              //               Icons.home,
+              //               color: iconController.currentRoute == Routes.home
+              //                   ? UIDataColors.commonColor
+              //                   : Colors.grey,
+              //               size: Get.width * 0.1,
+              //             ),
+              //             Text(
+              //               'Home',
+              //               style: iconController.currentRoute == Routes.home
+              //                   ? UIDataTextStyles.BottomNavHoverStyle
+              //                   : UIDataTextStyles.BottomNavStyle,
+              //             )
+              //           ],
+              //         ),
+              //       )).marginOnly(left: 20),
+              // ),
       //         Obx(
       //           () => BottomNavContainer(
       //               height: Get.height * 0.08,

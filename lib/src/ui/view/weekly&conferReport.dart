@@ -9,6 +9,9 @@ class WeeklyConferencedReport extends StatelessWidget {
   Widget build(BuildContext context) {
     WeeklyConfController _ = Get.find<WeeklyConfController>();
     return Scaffold(
+       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       body: SafeArea(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

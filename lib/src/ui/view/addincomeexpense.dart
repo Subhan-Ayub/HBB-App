@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/addincomeexpenseController.dart';
 import 'package:hbb/src/ui/widgets/commonClasses.dart';
-import 'package:hbb/src/utils/uidata/text_styles.dart';
+// import 'package:hbb/src/utils/uidata/text_styles.dart';
+// ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 
 class AddIncomeexpense extends StatelessWidget {
@@ -12,6 +13,9 @@ class AddIncomeexpense extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
         body: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -299,6 +303,7 @@ class AddIncomeexpense extends StatelessWidget {
             children: [
               OutlineButton(
                 ontap: () {
+                  _.inExpCont.getData();
                   Get.back();
                 },
                 border: Border.all(
@@ -315,21 +320,24 @@ class AddIncomeexpense extends StatelessWidget {
               ),
               Spacer(),
               _.inExpCont.isUpdate.value
-                  ? Obx(()=> _.updateloader.value ?
-                     FillButton(
-                        ontap: () {
-                          // _.save();
-                          _.upDate();
-                        },
-                        width: Get.width * 0.2,
-                        color: Colors.red,
-                        child: Text(
-                          'Update',
-                          style: TextStyle(
-                              color: Colors.white, fontSize: Get.width * 0.03),
-                        ),
-                      ) : CircularProgressIndicator(),
-                  )
+                  ? Obx(
+                      () => _.updateloader.value
+                          ? FillButton(
+                              ontap: () {
+                                // _.save();
+                                _.upDate();
+                              },
+                              width: Get.width * 0.2,
+                              color: Colors.red,
+                              child: Text(
+                                'Update',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: Get.width * 0.03),
+                              ),
+                            )
+                          : CircularProgressIndicator(),
+                    )
                   : Obx(
                       () => _.loader.value
                           ? FillButton(

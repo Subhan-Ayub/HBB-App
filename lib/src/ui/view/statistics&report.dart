@@ -17,12 +17,16 @@ class StatisticsAndReports extends StatelessWidget {
     StatisticsAndReportsController _ =
         Get.find<StatisticsAndReportsController>();
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+        ),
         backgroundColor: Colors.white,
         body: SafeArea(
           child: SingleChildScrollView(
               child: Obx(
             () => _.loder.value
-                ? Center(child: CircularProgressIndicator()).marginOnly(top: Get.height/2.3)
+                ? Center(child: CircularProgressIndicator())
+                    .marginOnly(top: Get.height / 2.3)
                 : Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     // crossAxisAlignment: CrossAxisAlignment.end,

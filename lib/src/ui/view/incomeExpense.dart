@@ -15,6 +15,9 @@ class IncomeExpenseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       body: SafeArea(
         child: Container(
           height: Get.height,
@@ -28,59 +31,59 @@ class IncomeExpenseScreen extends StatelessWidget {
                 textAlign: TextAlign.start,
                 style: TextStyle(
                     fontSize: Get.width * .06, fontWeight: FontWeight.bold),
-              ).marginOnly(top: Get.height * .04),
-              Row(
-                children: [
-                  Stack(
-                    children: [
-                      // Container with content
-                      Container(
-                        width: Get.width / 2.25,
-                        height: Get.height * .03,
-                        decoration: BoxDecoration(
-                            color: UIDataColors.greyColor,
-                            border: Border.all(
-                              width: 1,
-                              color: Colors.grey,
-                            )),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(Icons.arrow_left_outlined),
-                            Text(
-                              'January 2024',
-                              style: TextStyle(
-                                fontSize: Get.width * .025,
-                                color: Colors.black,
-                              ),
-                            ).marginSymmetric(horizontal: Get.width * .05),
-                          ],
-                        ).paddingSymmetric(horizontal: Get.width * .001),
-                      ),
-                      // Inner shadow
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          width: Get.width,
-                          height: Get.height * .002,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12.0),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.grey,
-                                spreadRadius: 10,
-                                blurRadius: 5,
-                                offset: Offset(10, 10),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ).marginSymmetric(vertical: Get.height * .02),
+              ).marginOnly(bottom: Get.height * .03),
+              // Row(
+              //   children: [
+              //     Stack(
+              //       children: [
+              //         // Container with content
+              //         Container(
+              //           width: Get.width / 2.25,
+              //           height: Get.height * .03,
+              //           decoration: BoxDecoration(
+              //               color: UIDataColors.greyColor,
+              //               border: Border.all(
+              //                 width: 1,
+              //                 color: Colors.grey,
+              //               )),
+              //           child: Row(
+              //             crossAxisAlignment: CrossAxisAlignment.center,
+              //             children: [
+              //               Icon(Icons.arrow_left_outlined),
+              //               Text(
+              //                 'January 2024',
+              //                 style: TextStyle(
+              //                   fontSize: Get.width * .025,
+              //                   color: Colors.black,
+              //                 ),
+              //               ).marginSymmetric(horizontal: Get.width * .05),
+              //             ],
+              //           ).paddingSymmetric(horizontal: Get.width * .001),
+              //         ),
+              //         // Inner shadow
+              //         Positioned(
+              //           bottom: 0,
+              //           right: 0,
+              //           child: Container(
+              //             width: Get.width,
+              //             height: Get.height * .002,
+              //             decoration: BoxDecoration(
+              //               borderRadius: BorderRadius.circular(12.0),
+              //               boxShadow: const [
+              //                 BoxShadow(
+              //                   color: Colors.grey,
+              //                   spreadRadius: 10,
+              //                   blurRadius: 5,
+              //                   offset: Offset(10, 10),
+              //                 ),
+              //               ],
+              //             ),
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ],
+              // ).marginSymmetric(vertical: Get.height * .02),
               //
 
               Container(
@@ -214,6 +217,7 @@ class IncomeExpenseScreen extends StatelessWidget {
                                   itemBuilder: ((context, index) {
                                     return Row(
                                       children: [
+// Date
                                         Container(
                                           width: Get.width / 6.342,
                                           height: Get.height * .03,
@@ -231,7 +235,6 @@ class IncomeExpenseScreen extends StatelessWidget {
                                             ),
                                           ),
                                           child: Text(
-                                            // '${_.data[index]['expensedate']}',
                                             '${_.incomeExpenseData[index]['expensedate']}',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
@@ -240,6 +243,7 @@ class IncomeExpenseScreen extends StatelessWidget {
                                             overflow: TextOverflow.ellipsis,
                                           ).paddingSymmetric(horizontal: 10),
                                         ),
+// Expense Reason
                                         Container(
                                           width: Get.width / 4,
                                           height: Get.height * .03,
@@ -257,7 +261,6 @@ class IncomeExpenseScreen extends StatelessWidget {
                                             ),
                                           ),
                                           child: Text(
-                                            // '${_.data[index]['expensereason']}',
                                             '${_.incomeExpenseData[index]['expensereason']}',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
@@ -266,6 +269,7 @@ class IncomeExpenseScreen extends StatelessWidget {
                                             overflow: TextOverflow.ellipsis,
                                           ).paddingSymmetric(horizontal: 10),
                                         ),
+// Income Amount
                                         Container(
                                           width: Get.width / 4,
                                           height: Get.height * .03,
@@ -277,6 +281,31 @@ class IncomeExpenseScreen extends StatelessWidget {
                                                 width: 1.0,
                                               ),
                                               right: BorderSide(
+                                                color: Colors.grey,
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                          ),
+                                          child: Text(
+                                            _.incomeExpenseData[index]
+                                                        ['income'] ==
+                                                    1
+                                                ? '${_.incomeExpenseData[index]['expenseamount']}'
+                                                : '',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: Get.width * .025),
+                                          ),
+                                        ),
+// Expense Amount
+                                        Container(
+                                          width: Get.width / 6.5,
+                                          height: Get.height * .03,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              bottom: BorderSide(
                                                 color: Colors.grey,
                                                 width: 1.0,
                                               ),
@@ -294,47 +323,85 @@ class IncomeExpenseScreen extends StatelessWidget {
                                                 fontSize: Get.width * .025),
                                           ),
                                         ),
-                                        Container(
-                                          width: Get.width / 4.3,
-                                          height: Get.height * .03,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            // color: Colors.green,
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                color: Colors.grey,
-                                                width: 1.0,
-                                              ),
-                                            ),
-                                          ),
-                                          child: Text(
-                                            _.incomeExpenseData[index]
-                                                        ['income'] ==
-                                                    1
-                                                ? '${_.incomeExpenseData[index]['expenseamount']}'
-                                                : '',
-                                            // '${_.incomeExpenseData[index]['expenseamount']}',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: Get.width * .025),
-                                          ),
-                                        ),
+// Edit Button
                                         InkWell(
                                           onTap: () {
                                             // print(_.data[index]['id']);
-                                            _.editId = _.incomeExpenseData[index]['id'];
-                                            Get.toNamed(Routes.addincomeexpense);
+                                            _.editId = _
+                                                .incomeExpenseData[index]['id'];
+                                            Get.toNamed(
+                                                Routes.addincomeexpense);
                                             _.isUpdate.value = true;
-                                            // _addIncomeExpenseController
-                                            //     .edit(index);
+                                            _addIncomeExpenseController
+                                                .edit(index);
                                           },
-                                          child: SizedBox(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              border: Border(
+                                                bottom: BorderSide(
+                                                  color: Colors.grey,
+                                                  width: 1.0,
+                                                ),
+                                              ),
+                                            ),
                                             height: Get.height * .03,
                                             child: Icon(
                                               Icons.edit,
                                               color: Colors.grey,
-                                              size: 15,
+                                              size: 18,
+                                            ).paddingSymmetric(horizontal: 10),
+                                          ),
+                                        ),
+// Delete Button
+
+                                        InkWell(
+                                          onTap: () {
+                                            Get.dialog(AlertDialog(
+                                              title: Text(
+                                                'Are you sure you want to Delete this ?',
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.red.shade500),
+                                              ),
+                                              actions: [
+                                                InkWell(
+                                                  onTap: () {
+                                                    Get.back();
+                                                  },
+                                                  child: Text('Cancel'),
+                                                ),
+                                                InkWell(
+                                                  onTap: () {
+                                                    _.editId =
+                                                        _.incomeExpenseData[
+                                                            index]['id'];
+                                                    _.delete();
+                                                    Get.back();
+                                                  },
+                                                  child: Text(
+                                                    'Delete',
+                                                    style: TextStyle(
+                                                        color: Colors
+                                                            .red.shade500),
+                                                  ),
+                                                ),
+                                              ],
+                                            ));
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              border: Border(
+                                                bottom: BorderSide(
+                                                  color: Colors.grey,
+                                                  width: 1.0,
+                                                ),
+                                              ),
+                                            ),
+                                            height: Get.height * .03,
+                                            child: Icon(
+                                              Icons.delete_forever,
+                                              color: Colors.red.shade500,
+                                              size: 18,
                                             ),
                                           ),
                                         )

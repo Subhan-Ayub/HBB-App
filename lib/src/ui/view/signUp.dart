@@ -58,62 +58,70 @@ class SignUpScreen extends StatelessWidget {
                           children: [
                             // Username TextField
                             CustomTextField(
+                                heading: 'Username',
                                 width: Get.width / 1.5,
                                 controller: _.usernameController,
                                 hintText: 'Enter Username'),
 
                             // FirstName TextField
                             CustomTextField(
+                                    heading: 'First Name',
                                     width: Get.width / 1.5,
                                     controller: _.firstnameController,
-                                    hintText: 'Enter first name')
+                                    hintText: 'Enter First Name')
                                 .paddingSymmetric(vertical: Get.height * 0.04),
 
                             // LastName TextField
                             CustomTextField(
+                                heading: 'Last Name',
                                 width: Get.width / 1.5,
                                 controller: _.lastnameController,
-                                hintText: 'Enter Last name'),
+                                hintText: 'Enter Last Name'),
 
                             // Email TextField
                             CustomTextField(
+                                    heading: 'Email',
                                     width: Get.width / 1.5,
                                     controller: _.emailController,
-                                    hintText: 'Enter email address')
+                                    hintText: 'Enter Email Address')
                                 .paddingSymmetric(vertical: Get.height * 0.04),
 
                             // Compnay Name TextField
                             CustomTextField(
+                                heading: 'Company Name',
                                 width: Get.width / 1.5,
                                 controller: _.companynameController,
-                                hintText: 'Company name'),
+                                hintText: 'Company Name'),
 
                             // ACode TextField
                             CustomTextField(
+                                    heading: 'A-code',
                                     keyboard: [
-                                  FilteringTextInputFormatter.digitsOnly
-                                ],
+                                      FilteringTextInputFormatter.digitsOnly
+                                    ],
                                     width: Get.width / 1.5,
                                     controller: _.acodeController,
-                                    hintText: 'Enter a-code')
+                                    hintText: 'Enter A-code')
                                 .paddingSymmetric(vertical: Get.height * 0.04),
 
                             // First phone mumbe TextField
                             CustomTextField(
+                                heading: 'First Digits',
                                 keyboard: [
                                   FilteringTextInputFormatter.digitsOnly
                                 ],
                                 width: Get.width / 1.5,
                                 controller: _.firstphonenumberController,
-                                hintText: 'First phone number'),
+                                hintText: 'First Phone Number'),
                             // Second phone number TextField
                             CustomTextField(
+                                    heading: 'Last Digits',
                                     keyboard: [
-                                  FilteringTextInputFormatter.digitsOnly
-                                ],
+                                      FilteringTextInputFormatter.digitsOnly
+                                    ],
                                     width: Get.width / 1.5,
                                     controller: _.secondphonenumberController,
-                                    hintText: 'Second phone number')
+                                    hintText: 'Second Phone Number')
                                 .paddingSymmetric(vertical: Get.height * 0.04),
 
                             // Password TextField
@@ -146,7 +154,7 @@ class SignUpScreen extends StatelessWidget {
                                               ? Icons.remove_red_eye_outlined
                                               : Icons.remove_red_eye,
                                         )),
-                                    hintText: 'Enter password',
+                                    hintText: 'Enter Password',
                                     contentPadding: EdgeInsets.symmetric(
                                         vertical: Get.height * 0.015),
                                     fillColor: Colors.white,

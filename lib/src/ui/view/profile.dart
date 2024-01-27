@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hbb/src/controllers/profileController.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
-import 'package:hbb/src/utils/uidata/color.dart';
+// import 'package:hbb/src/utils/uidata/color.dart';
 import 'package:hbb/src/utils/uidata/container_decor.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -14,11 +14,13 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       body: SafeArea(
         child: Container(
           height: Get.height,
           width: Get.width,
-          // color: Colors.amber,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

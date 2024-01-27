@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/coachNetworkController.dart';
-import 'package:hbb/src/utils/routes/routes.dart';
 
 class CoachNetworkScreen extends StatelessWidget {
   final CoachNetworkController _ = Get.put(CoachNetworkController());
@@ -11,6 +10,9 @@ class CoachNetworkScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
+         appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
         body: _.loader.value
             ? SafeArea(
                 child: Container(

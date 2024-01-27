@@ -90,7 +90,7 @@ class AddNewContactController extends GetxController {
       "zip": zip,
     };
 
-    var res = await apiFetcher('Put', '/api/contact/$id', obj);
+     await apiFetcher('Put', '/api/contact/$id', obj);
 
     refValue = null;
     name.text = '';
@@ -164,7 +164,7 @@ class AddNewContactController extends GetxController {
       "state": state,
       "zip": zip,
     };
-    var res = await apiFetcher('Post', '/api/contact', obj);
+    await apiFetcher('Post', '/api/contact', obj);
 
     refValue = null;
     name.text = '';

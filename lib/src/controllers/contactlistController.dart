@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
-
 import '../utils/helpers/api_helper.dart';
-import '../utils/routes/routes.dart';
 
 class ContactListController extends GetxController {
   RxBool loader = false.obs;

@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/myGoalsController.dart';
 import 'package:hbb/src/ui/widgets/commonClasses.dart';
-import 'package:hbb/src/utils/routes/routes.dart';
+// import 'package:hbb/src/utils/routes/routes.dart';
 
 class MyGoalScreen extends StatelessWidget {
   final MyGoalsController _ = Get.put(MyGoalsController());
@@ -13,6 +13,9 @@ class MyGoalScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       body: Obx(() => SafeArea(
               child: _.loader.value
                   ? Container(

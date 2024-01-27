@@ -66,7 +66,7 @@ class LogInScreen extends StatelessWidget {
                           width: Get.width / 1.5,
                           initialValue: _.phoneNumber.value,
                           controller: _.phonenumber,
-                          hintText: 'Enter phone number',
+                          hintText: 'Enter Phone Number',
                           ontap: (PhoneNumber number) {
                             if (_.phonenumber.text.length >= 10) {
                               _.phoneNumber.value = number;

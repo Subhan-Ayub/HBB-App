@@ -8,6 +8,9 @@ class ShowReports extends StatelessWidget {
   Widget build(BuildContext context) {
     ShowReportController _ = Get.find<ShowReportController>();
     return Scaffold(
+       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       body: SafeArea(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

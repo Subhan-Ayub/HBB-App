@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/ui/widgets/commonClasses.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
-
 import '../../controllers/conferenceCallController.dart';
-import '../../controllers/weeklyMeetingController.dart';
 
 class ConferenceAddExpenseScreen extends StatelessWidget {
   final ConferenceCallController _ = Get.put(ConferenceCallController());
@@ -12,6 +10,9 @@ class ConferenceAddExpenseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       body: Container(
           color: Colors.white,
           child: SafeArea(

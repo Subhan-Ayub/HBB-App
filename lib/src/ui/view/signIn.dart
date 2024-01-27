@@ -55,9 +55,11 @@ class SignInScreen extends StatelessWidget {
 
                     // Email/Username TextField
                     CustomTextField(
-                        width: Get.width / 1.5,
-                        controller: _.emailUsername,
-                        hintText: 'EMAIL ID/ USERNAME'),
+                      heading: 'Email/Username',
+                      width: Get.width / 1.5,
+                      controller: _.emailUsername,
+                      hintText: 'Email/Username',
+                    ),
 
                     // PhoneNumber TextField
                     Container(
@@ -88,7 +90,7 @@ class SignInScreen extends StatelessWidget {
                                       ? Icons.remove_red_eye_outlined
                                       : Icons.remove_red_eye,
                                 )),
-                            hintText: 'Enter password',
+                            hintText: 'Enter Password',
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: Get.height * 0.015),
                             fillColor: Colors.white,

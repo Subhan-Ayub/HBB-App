@@ -10,6 +10,9 @@ class IncomeExpenceReport extends StatelessWidget {
   Widget build(BuildContext context) {
     IncomeExpenceRepController _ = Get.find<IncomeExpenceRepController>();
     return Scaffold(
+       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       body: SafeArea(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

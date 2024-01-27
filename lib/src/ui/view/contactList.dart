@@ -14,6 +14,9 @@ class ContactListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
+         appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
         body: _.loader.value
             ? SafeArea(
                 child: Container(

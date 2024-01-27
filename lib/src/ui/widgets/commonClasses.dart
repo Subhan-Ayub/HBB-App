@@ -5,7 +5,7 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
-  // ignore: prefer_typing_uninitialized_variables
+  final heading;
   final width;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
@@ -18,6 +18,7 @@ class CustomTextField extends StatelessWidget {
       this.width,
       this.label,
       this.keyboard,
+     required this.heading,
       required this.controller,
       required this.hintText,
       this.prefixIcon,
@@ -26,40 +27,54 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: width,
-        decoration:
-            BoxDecoration(borderRadius: BorderRadius.circular(50), boxShadow: [
-          BoxShadow(
-            color: const Color.fromARGB(18, 18, 18, 18).withOpacity(0.1),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: const Offset(3, 3),
-          ),
-        ]),
-        child: TextFormField(
-          textAlign: TextAlign.center,
-          controller: controller,
-          inputFormatters: keyboard,
-          decoration: InputDecoration(
-            prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
-            suffixIcon: suffixIcon != null ? Icon(suffixIcon) : null,
-            hintText: hintText,
-            contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.015),
-            fillColor: Colors.white,
-            filled: true,
-            hintStyle:
-                const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50),
-              borderSide: const BorderSide(color: Colors.white, width: 1.0),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50),
-              borderSide: const BorderSide(color: Colors.white, width: 1.0),
-            ),
-          ),
-        ));
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          heading,
+          style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w200),
+        ).paddingOnly(bottom: 5, left: Get.width * 0.05),
+        Container(
+            width: width,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    color:
+                        const Color.fromARGB(18, 18, 18, 18).withOpacity(0.1),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: const Offset(3, 3),
+                  ),
+                ]),
+            child: TextFormField(
+              textAlign: TextAlign.center,
+              controller: controller,
+              inputFormatters: keyboard,
+              decoration: InputDecoration(
+                prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
+                suffixIcon: suffixIcon != null ? Icon(suffixIcon) : null,
+                hintText: hintText,
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: Get.height * 0.015,
+                ),
+                fillColor: Colors.white,
+                filled: true,
+                hintStyle: const TextStyle(
+                    fontSize: 16.0, fontWeight: FontWeight.w400),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50),
+                  borderSide: const BorderSide(color: Colors.white, width: 1.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50),
+                  borderSide: const BorderSide(color: Colors.white, width: 1.0),
+                ),
+              ),
+            )),
+      ],
+    );
   }
 }
 
