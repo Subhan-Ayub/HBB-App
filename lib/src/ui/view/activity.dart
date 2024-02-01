@@ -470,7 +470,7 @@ class ActivityScreen extends StatelessWidget {
                                                             alignment: Alignment
                                                                 .center,
                                                             child: Text(
-                                                                '${_.weeklyprint[i]['meetingLocation']}',
+                                                                '${_.weeklyprint[i]['meetinglocation']}',
                                                                 maxLines: 1,
                                                                 overflow:
                                                                     TextOverflow
@@ -524,7 +524,7 @@ class ActivityScreen extends StatelessWidget {
                                                         Container(
                                                           width: Get.width / 4,
                                                           child: Text(
-                                                              '${_.weeklyprint[i]['meetingType']}',
+                                                              '${_.weeklyprint[i]['meetingtype']}',
                                                               maxLines: 1,
                                                               overflow:
                                                                   TextOverflow
@@ -549,7 +549,7 @@ class ActivityScreen extends StatelessWidget {
                                                         Container(
                                                           width: Get.width / 4,
                                                           child: Text(
-                                                              '${_.weeklyprint[i]['wmNotes']}',
+                                                              '${_.weeklyprint[i]['wmnotes']}',
                                                               maxLines: 1,
                                                               overflow:
                                                                   TextOverflow

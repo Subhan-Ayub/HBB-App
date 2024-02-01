@@ -116,10 +116,10 @@ class ActivityController extends GetxController {
     
       }
 
-      if (filteredidOfW.isNotEmpty) {
-      weeklyprint.value = filteredidOfW;
-        expandMeetings.value=true;
-      }
+      // if (filteredidOfW.isNotEmpty) {
+      // weeklyprint.value = filteredidOfW;
+      //   expandMeetings.value=true;
+      // }
      
       for (var i = 0; i < filteredidOfD.length; i++) {
         if (filteredidOfD[i]['activitytype'] == 1) {
@@ -136,15 +136,15 @@ class ActivityController extends GetxController {
         }
       }
     }
-    //  for (var i = 0; i < filteredidOfW.length; i++) {
-    //   if (filteredidOfD[i]['activitytype'] == 2) {
-    //     // print(filteredidOfD[i]);
-    //     weeklyprint.value.add(filteredidOfD[i]);
-    //     print('ddddn cnd cndcnjdnckjdnckjndkjenckjednjkcnencenrefreeeeeeeeee');
+     for (var i = 0; i < filteredidOfW.length; i++) {
+      if (filteredidOfW[i]['activitytype'] == 2) {
+        weeklyprint.value.add(filteredidOfW[i]);
+        print(weeklyprint);
+        print('ddddn cnd cndcnjdnckjdnckjndkjenckjednjkcnencenrefreeeeeeeeee');
 
-    //     expandMeetings.value = true;
-    //   }
-    // }
+        expandMeetings.value = true;
+      }
+    }
      for (var i = 0; i < filteredidOfC.length; i++) {
       if (filteredidOfD[i]['activitytype'] == 3) {
         conferrencedprint.value.add(filteredidOfC[i]);
