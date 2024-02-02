@@ -99,6 +99,7 @@ class SignUpScreen extends StatelessWidget {
                                     keyboard: [
                                       FilteringTextInputFormatter.digitsOnly
                                     ],
+                                    
                                     width: Get.width / 1.5,
                                     controller: _.acodeController,
                                     hintText: 'Enter A-code')

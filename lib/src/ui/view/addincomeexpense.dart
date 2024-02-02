@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/addincomeexpenseController.dart';
 import 'package:hbb/src/ui/widgets/commonClasses.dart';
+import 'package:hbb/src/utils/uidata/text_styles.dart';
 // import 'package:hbb/src/utils/uidata/text_styles.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
@@ -13,17 +14,30 @@ class AddIncomeexpense extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+        //  appBar: AppBar(
+        //   backgroundColor: Colors.transparent,
+        // ),
         body: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text(
-          'Add Income Expense',
-          style: TextStyle(
-              fontSize: Get.width * 0.065, fontWeight: FontWeight.bold),
-        ),
+        Row(
+          children: [
+            InkWell(
+                onTap: () {
+                  Get.back();
+                },
+                child: Icon(
+                  Icons.arrow_back_outlined,
+                  size: Get.width * 0.05,
+                  color: Colors.black,
+                )),
+            Text(
+              'Add Income Expense',
+              style: UIDataTextStyles.headingtextbold,
+            ).paddingSymmetric(horizontal: Get.width * 0.015),
+          ],
+        ).marginSymmetric(
+            vertical: Get.height * .02, horizontal: Get.width * .04),
         // DateField
         SizedBox(
             width: Get.width / 1.09,

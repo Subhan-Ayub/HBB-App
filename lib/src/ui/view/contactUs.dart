@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/contactUsController.dart';
 import 'package:hbb/src/utils/uidata/container_decor.dart';
+import 'package:hbb/src/utils/uidata/text_styles.dart';
 
 class ContactUsScreen extends StatelessWidget {
   final ContactUsController _ = Get.put(ContactUsController());
@@ -9,9 +10,9 @@ class ContactUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+      //  appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      // ),
       body: Container(
         color: Colors.white,
         child: SafeArea(
@@ -21,11 +22,19 @@ class ContactUsScreen extends StatelessWidget {
             child: Column(children: [
               Row(
                 children: [
+                  InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Icon(
+                        Icons.arrow_back_outlined,
+                        size: Get.width * 0.05,
+                        color: Colors.black,
+                      )),
                   Text(
                     "Contact Us",
-                    style: TextStyle(
-                        fontSize: Get.width * .08, fontWeight: FontWeight.bold),
-                  ),
+                    style: UIDataTextStyles.headingtextbold,
+                  ).paddingSymmetric(horizontal: Get.width * 0.015),
                   Spacer(),
                   Ink(
                     decoration: ShapeDecoration(
@@ -91,7 +100,6 @@ class ContactUsScreen extends StatelessWidget {
                   Text('I would like to recieve the newsletter')
                 ],
               ),
-             
               Container(
                 width: Get.width, // Set your desired width
                 height: Get.height * .06, // Set your desired height

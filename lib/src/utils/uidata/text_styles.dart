@@ -28,6 +28,39 @@ class UIDataTextStyles {
     color: Colors.black,
     fontSize: Get.width * .027,
   );
+  static TextStyle commontextgrey = TextStyle(
+    // fontWeight: FontWeight.w300,
+    fontFamily: 'Roboto',
+    color: Colors.grey,
+    fontSize: Get.width * .025,
+  );
+  static TextStyle commontextheadbold = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Roboto',
+    color: Colors.black,
+    fontSize: Get.width * .035,
+  );
+
+  static TextStyle commontextbold = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Roboto',
+    color: Colors.black,
+    fontSize: Get.width * .027,
+  );
+
+  static TextStyle headingtextbold = TextStyle(
+    fontFamily: 'Roboto',
+    color: Colors.black,
+    fontSize: Get.width * 0.05,
+    fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle subheadingtextbold = TextStyle(
+    fontFamily: 'Roboto',
+    color: Colors.black,
+    fontSize: Get.width * 0.045,
+    fontWeight: FontWeight.bold,
+  );
 
   static const BottomNavHoverStyle = TextStyle(
       color: UIDataColors.commonColor,

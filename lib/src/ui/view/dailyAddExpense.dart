@@ -10,9 +10,9 @@ class DailyAddExpenseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+      //  appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      // ),
       body: Container(
           color: Colors.white,
           child: SafeArea(
@@ -23,12 +23,25 @@ class DailyAddExpenseScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Daily Expense',
-                    style: TextStyle(
-                        color: Colors.grey, fontSize: Get.width * .03),
+                  Row(
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Icon(
+                            Icons.arrow_back_outlined,
+                            size: Get.width * 0.04,
+                            color: Colors.black,
+                          )),
+                      Text(
+                        'Daily Expense',
+                        style: TextStyle(
+                            color: Colors.grey, fontSize: Get.width * .03),
+                      ).paddingSymmetric(horizontal: Get.width * 0.015),
+                    ],
                   ).marginSymmetric(
-                      vertical: Get.height * .02, horizontal: Get.width * 0.04),
+                      vertical: Get.height * .02, horizontal: Get.width * 0.02),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

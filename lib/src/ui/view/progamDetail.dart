@@ -13,9 +13,9 @@ class ProgramDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-         appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+        //    appBar: AppBar(
+        //   backgroundColor: Colors.transparent,
+        // ),
         body: _.loader.value
             ? SafeArea(
                 child: SingleChildScrollView(
@@ -26,13 +26,24 @@ class ProgramDetailScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "Program Details",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                              fontSize: Get.width * .06,
-                              fontWeight: FontWeight.bold),
-                        ).marginOnly(top: Get.height * .04),
+                        Row(
+                          children: [
+                            InkWell(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: Icon(
+                                  Icons.arrow_back_outlined,
+                                  size: Get.width * 0.05,
+                                  color: Colors.black,
+                                )),
+                            Text(
+                              "Program Details",
+                              textAlign: TextAlign.start,
+                              style: UIDataTextStyles.headingtextbold,
+                            ).paddingSymmetric(horizontal: Get.width * 0.015),
+                          ],
+                        ).marginSymmetric(vertical: Get.height * .02),
                         Divider(
                           color: Colors.grey,
                         ).marginSymmetric(vertical: Get.height * .015),

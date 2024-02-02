@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/addNewContactController.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
+import 'package:hbb/src/utils/uidata/text_styles.dart';
 import '../../controllers/contactlistController.dart';
 
 class ContactListScreen extends StatelessWidget {
@@ -14,9 +15,9 @@ class ContactListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-         appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+        //    appBar: AppBar(
+        //   backgroundColor: Colors.transparent,
+        // ),
         body: _.loader.value
             ? SafeArea(
                 child: Container(
@@ -27,16 +28,24 @@ class ContactListScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          InkWell(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: Icon(
+                                Icons.arrow_back_outlined,
+                                size: Get.width * 0.05,
+                                color: Colors.black,
+                              )),
                           Text(
                             "My Contact List",
                             textAlign: TextAlign.start,
-                            style: TextStyle(
-                                fontSize: Get.width * .05,
-                                fontWeight: FontWeight.bold),
-                          ),
+                            style: UIDataTextStyles.headingtextbold,
+                          ).paddingSymmetric(horizontal: Get.width * 0.015),
+                          Spacer(),
                           InkWell(
                             onTap: () {
                               _.isEdit.value = false;
@@ -54,7 +63,7 @@ class ContactListScreen extends StatelessWidget {
                             ),
                           ),
                         ],
-                      ).marginOnly(top: Get.height * .04),
+                      ).marginOnly(top: Get.height * .02),
 
                       Text(
                         "This is a list of your contacts. \nYou can click on a name to edit the details or initiate a Daily Exposure or a National/International Exposure for today, or click on an email address to email them directly. \nSort by Name or Relation Level by clicking on the column headers.",
@@ -446,9 +455,9 @@ class ContactListScreen extends StatelessWidget {
                                                     print(_.updateId);
                                                     _.isEdit.value = true;
                                                     Get.toNamed(
-                                                        Routes.addnewcontact,
-                                                        // arguments: _.updateId
-                                                        );
+                                                      Routes.addnewcontact,
+                                                      // arguments: _.updateId
+                                                    );
                                                     addNewContactController
                                                         .edit(index);
                                                   },

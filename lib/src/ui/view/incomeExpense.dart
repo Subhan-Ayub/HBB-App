@@ -6,6 +6,7 @@ import 'package:hbb/src/controllers/addincomeexpenseController.dart';
 import 'package:hbb/src/controllers/incomeExpenseController.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
+import 'package:hbb/src/utils/uidata/text_styles.dart';
 
 class IncomeExpenseScreen extends StatelessWidget {
   final IncomeExpenseController _ = Get.put(IncomeExpenseController());
@@ -15,9 +16,6 @@ class IncomeExpenseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
       body: SafeArea(
         child: Container(
           height: Get.height,
@@ -26,66 +24,24 @@ class IncomeExpenseScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "My Income And Expense",
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    fontSize: Get.width * .06, fontWeight: FontWeight.bold),
-              ).marginOnly(bottom: Get.height * .03),
-              // Row(
-              //   children: [
-              //     Stack(
-              //       children: [
-              //         // Container with content
-              //         Container(
-              //           width: Get.width / 2.25,
-              //           height: Get.height * .03,
-              //           decoration: BoxDecoration(
-              //               color: UIDataColors.greyColor,
-              //               border: Border.all(
-              //                 width: 1,
-              //                 color: Colors.grey,
-              //               )),
-              //           child: Row(
-              //             crossAxisAlignment: CrossAxisAlignment.center,
-              //             children: [
-              //               Icon(Icons.arrow_left_outlined),
-              //               Text(
-              //                 'January 2024',
-              //                 style: TextStyle(
-              //                   fontSize: Get.width * .025,
-              //                   color: Colors.black,
-              //                 ),
-              //               ).marginSymmetric(horizontal: Get.width * .05),
-              //             ],
-              //           ).paddingSymmetric(horizontal: Get.width * .001),
-              //         ),
-              //         // Inner shadow
-              //         Positioned(
-              //           bottom: 0,
-              //           right: 0,
-              //           child: Container(
-              //             width: Get.width,
-              //             height: Get.height * .002,
-              //             decoration: BoxDecoration(
-              //               borderRadius: BorderRadius.circular(12.0),
-              //               boxShadow: const [
-              //                 BoxShadow(
-              //                   color: Colors.grey,
-              //                   spreadRadius: 10,
-              //                   blurRadius: 5,
-              //                   offset: Offset(10, 10),
-              //                 ),
-              //               ],
-              //             ),
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //   ],
-              // ).marginSymmetric(vertical: Get.height * .02),
-              //
-
+              Row(
+                children: [
+                  InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Icon(
+                        Icons.arrow_back_outlined,
+                        size: Get.width * 0.05,
+                        color: Colors.black,
+                      )),
+                  Text(
+                    "My Income And Expense",
+                    textAlign: TextAlign.start,
+                    style: UIDataTextStyles.headingtextbold,
+                  ).paddingSymmetric(horizontal: Get.width * 0.015),
+                ],
+              ).marginSymmetric(vertical: Get.height * .02),
               Container(
                 width: Get.width,
                 height: Get.height * 0.5,
@@ -424,7 +380,6 @@ class IncomeExpenseScreen extends StatelessWidget {
                   ],
                 ),
               ),
-
               Row(
                 children: [
                   Stack(

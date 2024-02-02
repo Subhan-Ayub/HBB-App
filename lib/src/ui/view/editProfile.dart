@@ -13,7 +13,7 @@ class EditProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
       body: SafeArea(
@@ -24,41 +24,11 @@ class EditProfileScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Container(
-                  height: Get.height * .09,
-                  width: Get.width * .4,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color.fromARGB(18, 18, 18, 18)
-                            .withOpacity(0.1),
-                        spreadRadius: 10,
-                        blurRadius: 10,
-                        offset: const Offset(3, 3),
-                      ),
-                    ],
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 2.0,
-                    ),
-                  ),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/one.jpg'),
-                  ),
-                ).marginOnly(top: Get.height * .05),
                 Text(
                   "${box.read('uname')}",
                   style: TextStyle(
-                      fontSize: Get.width * .04, fontWeight: FontWeight.bold),
+                      fontSize: Get.width * .08, fontWeight: FontWeight.bold),
                 ).marginOnly(top: Get.height * .02),
-                Text(
-                  "${box.read('uEmail')}",
-                  style: TextStyle(
-                    fontSize: Get.width * .035,
-                    color: Colors.grey,
-                  ),
-                ).marginSymmetric(vertical: Get.height * .001),
                 Divider(
                   color: Colors.black,
                 ).marginOnly(top: Get.height * .02),
@@ -70,9 +40,7 @@ class EditProfileScreen extends StatelessWidget {
                       Text(
                         "Personal Details",
                         // textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: Get.width * .05,
-                            fontWeight: FontWeight.bold),
+                        style: UIDataTextStyles.headingtextbold,
                       ).marginSymmetric(vertical: Get.height * .01),
                       Divider(),
                       //

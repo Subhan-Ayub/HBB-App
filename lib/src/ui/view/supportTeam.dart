@@ -13,9 +13,9 @@ class SupportTeamScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+      //  appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      // ),
       body: SafeArea(
         child: Container(
           height: Get.height,
@@ -24,12 +24,24 @@ class SupportTeamScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "My Support Team",
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    fontSize: Get.width * .06, fontWeight: FontWeight.bold),
-              ).marginOnly(top: Get.height * .04),
+              Row(
+                children: [
+                  InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Icon(
+                        Icons.arrow_back_outlined,
+                        size: Get.width * 0.05,
+                        color: Colors.black,
+                      )),
+                  Text(
+                    "My Support Team",
+                    textAlign: TextAlign.start,
+                    style: UIDataTextStyles.headingtextbold,
+                  ).paddingSymmetric(horizontal: Get.width * 0.015),
+                ],
+              ).marginSymmetric(vertical: Get.height * .02),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

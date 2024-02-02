@@ -4,6 +4,7 @@ import 'package:hbb/src/controllers/addNewContactController.dart';
 import 'package:hbb/src/controllers/contactlistController.dart';
 import 'package:hbb/src/ui/widgets/commonClasses.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
+import 'package:hbb/src/utils/uidata/text_styles.dart';
 
 class AddNewContactScreen extends StatelessWidget {
   final AddNewContactController _ = Get.put(AddNewContactController());
@@ -13,9 +14,9 @@ class AddNewContactScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+      //  appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      // ),
       body: Container(
           color: Colors.white,
           child: SafeArea(
@@ -25,21 +26,28 @@ class AddNewContactScreen extends StatelessWidget {
               // color: Colors.red,
               child: SingleChildScrollView(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
+                        InkWell(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Icon(
+                              Icons.arrow_back_outlined,
+                              size: Get.width * 0.05,
+                              color: Colors.black,
+                            )),
                         Text(
                           "Add New Contact",
                           textAlign: TextAlign.start,
-                          style: TextStyle(
-                              fontSize: Get.width * .06,
-                              fontWeight: FontWeight.bold),
-                        ),
+                          style: UIDataTextStyles.headingtextbold,
+                        ).paddingSymmetric(horizontal: Get.width * 0.015),
                       ],
-                    ).marginOnly(
-                        top: Get.height * .04, bottom: Get.height * .02),
+                    ).marginSymmetric(
+                        vertical: Get.height * 0.025,
+                        horizontal: Get.width * .03),
                     //
                     Container(
                       color: UIDataColors.greyColor,
@@ -211,8 +219,6 @@ class AddNewContactScreen extends StatelessWidget {
                                 _.refValue = value;
                               }),
                         ),
-                    
-                    
                       ],
                     ).marginSymmetric(horizontal: Get.width * .025),
 

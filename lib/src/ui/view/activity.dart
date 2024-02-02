@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
+import 'package:hbb/src/utils/uidata/text_styles.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/activityController.dart';
@@ -14,9 +15,6 @@ class ActivityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
       backgroundColor: UIDataColors.greyColor,
       body: body(context),
     );
@@ -1057,77 +1055,80 @@ class ActivityScreen extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  width: Get.width / 1.1,
+                  // width: Get.width / 1.1,
                   alignment: Alignment.centerLeft,
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'My Activity Calendar',
-                        style: TextStyle(
-                          fontSize: Get.width * 0.055,
-                          fontWeight: FontWeight.bold,
+                      InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Icon(
+                          Icons.arrow_back_outlined,
+                          size: Get.width * 0.05,
+                          color: Colors.black,
                         ),
-                        // textAlign: TextAlign.left,
                       ),
-                      Row(
-                        children: [
-                          Obx(
-                            () => Ink(
-                              height: Get.height * 0.04,
-                              width: Get.width * 0.13,
-                              decoration: _.isCalendar.value
-                                  ? const ShapeDecoration(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.horizontal(
-                                              left: Radius.circular(100),
-                                              right: Radius.circular(100))),
-                                      color: UIDataColors.commonColor,
-                                    )
-                                  : null,
-                              child: IconButton(
-                                  onPressed: () {
-                                    _.isCalendar.value = true;
-                                    _.isFormatlist.value = false;
-                                  },
-                                  icon: Icon(
-                                    Icons.date_range_outlined,
-                                    size: Get.width * 0.055,
-                                    color: _.isCalendar.value
-                                        ? Colors.white
-                                        : Colors.grey,
-                                  )),
-                            ),
-                          ),
-                          Obx(
-                            () => Ink(
-                              height: Get.height * 0.04,
-                              width: Get.width * 0.13,
-                              decoration: _.isFormatlist.value
-                                  ? const ShapeDecoration(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.horizontal(
-                                              left: Radius.circular(100),
-                                              right: Radius.circular(100))),
-                                      color: UIDataColors.commonColor,
-                                    )
-                                  : null,
-                              child: IconButton(
-                                  onPressed: () {
-                                    _.isFormatlist.value = true;
-                                    _.isCalendar.value = false;
-                                  },
-                                  icon: Icon(
-                                    Icons.format_list_bulleted,
-                                    size: Get.width * 0.055,
-                                    color: _.isFormatlist.value
-                                        ? Colors.white
-                                        : Colors.grey,
-                                  )),
-                            ),
-                          )
-                        ],
+                      Text('My Activity Calendar',
+                              style: UIDataTextStyles.headingtextbold
+                              // textAlign: TextAlign.left,
+                              )
+                          .paddingSymmetric(horizontal: Get.width * 0.015),
+                      Spacer(),
+                      Obx(
+                        () => Ink(
+                          height: Get.height * 0.04,
+                          width: Get.width * 0.13,
+                          decoration: _.isCalendar.value
+                              ? const ShapeDecoration(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.horizontal(
+                                          left: Radius.circular(100),
+                                          right: Radius.circular(100))),
+                                  color: UIDataColors.commonColor,
+                                )
+                              : null,
+                          child: IconButton(
+                              onPressed: () {
+                                _.isCalendar.value = true;
+                                _.isFormatlist.value = false;
+                              },
+                              icon: Icon(
+                                Icons.date_range_outlined,
+                                size: Get.width * 0.055,
+                                color: _.isCalendar.value
+                                    ? Colors.white
+                                    : Colors.grey,
+                              )),
+                        ),
+                      ),
+                      Obx(
+                        () => Ink(
+                          height: Get.height * 0.04,
+                          width: Get.width * 0.13,
+                          decoration: _.isFormatlist.value
+                              ? const ShapeDecoration(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.horizontal(
+                                          left: Radius.circular(100),
+                                          right: Radius.circular(100))),
+                                  color: UIDataColors.commonColor,
+                                )
+                              : null,
+                          child: IconButton(
+                              onPressed: () {
+                                _.isFormatlist.value = true;
+                                _.isCalendar.value = false;
+                              },
+                              icon: Icon(
+                                Icons.format_list_bulleted,
+                                size: Get.width * 0.055,
+                                color: _.isFormatlist.value
+                                    ? Colors.white
+                                    : Colors.grey,
+                              )),
+                        ),
                       ),
                     ],
                   ),
@@ -1196,7 +1197,7 @@ class ActivityScreen extends StatelessWidget {
                   ),
                 ).paddingOnly(top: Get.height * 0.02)
               ],
-            )),
+            )).paddingSymmetric(horizontal: Get.width * 0.025),
       ),
     );
   }

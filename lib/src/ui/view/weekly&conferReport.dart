@@ -4,23 +4,44 @@ import 'package:get/get.dart';
 import 'package:hbb/src/controllers/weekly&confController.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
 
+import '../../utils/uidata/text_styles.dart';
+
 class WeeklyConferencedReport extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WeeklyConfController _ = Get.find<WeeklyConfController>();
     return Scaffold(
-       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      // ),
       body: SafeArea(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              InkWell(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Icon(
+                    Icons.arrow_back_outlined,
+                    size: Get.width * 0.05,
+                    color: Colors.black,
+                  )),
+              Text(
+                'Weekly Meetings & Conference Calls Report \nfor ${_.arg['month']}, ${_.arg['year']}',
+                textAlign: TextAlign.center,
+                style: UIDataTextStyles.commontextheadbold,
+              ).paddingSymmetric(horizontal: Get.width * 0.015),
+            ],
+          ).marginSymmetric(
+              vertical: Get.height * 0.015, horizontal: Get.width * .03),
+
           // Divider(),
-          Text('Weekly Meetings & Conference Calls Report for ${_.arg['month']}, ${_.arg['year']}',
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900))
-              .marginSymmetric(horizontal: 10),
-              SizedBox(height: 10,),
+
           // Divider(),
           // Text(
           //   'Note E = Daily Exposure K = National/International Exposure',
@@ -78,7 +99,8 @@ class WeeklyConferencedReport extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('${i + 1}/${_.arg['month']}/${_.arg['year']}'),
+                              Text(
+                                  '${i + 1}/${_.arg['month']}/${_.arg['year']}'),
                               Container(
                                   width: 130,
                                   alignment: Alignment.center,
@@ -113,16 +135,27 @@ class WeeklyConferencedReport extends StatelessWidget {
                       },
                       child: Container(
                         color: Colors.grey,
-                        child: Text('Other Reports', style: TextStyle(color: Colors.white, fontSize: Get.width*0.035),).marginSymmetric(horizontal: Get.width*0.03, vertical: Get.height*0.015),
+                        child: Text(
+                          'Other Reports',
+                          style: TextStyle(
+                              color: Colors.white, fontSize: Get.width * 0.035),
+                        ).marginSymmetric(
+                            horizontal: Get.width * 0.03,
+                            vertical: Get.height * 0.015),
                       ),
                     ),
                     Container(
                       color: UIDataColors.commonColor,
-                      child: Text('Print', style: TextStyle(color: Colors.white, fontSize: Get.width*0.035),).marginSymmetric(horizontal: Get.width*0.03, vertical: Get.height*0.015),
+                      child: Text(
+                        'Print',
+                        style: TextStyle(
+                            color: Colors.white, fontSize: Get.width * 0.035),
+                      ).marginSymmetric(
+                          horizontal: Get.width * 0.03,
+                          vertical: Get.height * 0.015),
                     ).paddingSymmetric(horizontal: 10),
                   ],
                 )
-              
               ],
             ),
           )

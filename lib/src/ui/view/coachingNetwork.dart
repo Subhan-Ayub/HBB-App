@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/coachNetworkController.dart';
+import 'package:hbb/src/utils/uidata/text_styles.dart';
 
 class CoachNetworkScreen extends StatelessWidget {
   final CoachNetworkController _ = Get.put(CoachNetworkController());
@@ -10,9 +11,9 @@ class CoachNetworkScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-         appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+        // appBar: AppBar(
+        //   backgroundColor: Colors.transparent,
+        // ),
         body: _.loader.value
             ? SafeArea(
                 child: Container(
@@ -21,13 +22,24 @@ class CoachNetworkScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Coaching Network",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: Get.width * .06,
-                            fontWeight: FontWeight.bold),
-                      ).marginOnly(top: Get.height * .04),
+                      Row(
+                        children: [
+                          InkWell(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: Icon(
+                                Icons.arrow_back_outlined,
+                                size: Get.width * 0.05,
+                                color: Colors.black,
+                              )),
+                          Text(
+                            "Coaching Network",
+                            textAlign: TextAlign.start,
+                            style: UIDataTextStyles.headingtextbold,
+                          ).paddingSymmetric(horizontal: Get.width * 0.015),
+                        ],
+                      ).marginOnly(top: Get.height * .02),
                       Text(
                         "This is a list of all the people in your Coaching Network. As their Coach you have access to view their calendar page, for the purpose of seeing any areas they may need help and guidance with. You can access it directly by clicking the calendar icon against their name on this page.",
                         textAlign: TextAlign.start,

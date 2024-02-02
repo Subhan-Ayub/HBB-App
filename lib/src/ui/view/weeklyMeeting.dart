@@ -12,9 +12,9 @@ class WeeklyMeetingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+      //  appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      // ),
       body: Container(
           color: Colors.white,
           child: SafeArea(
@@ -28,13 +28,23 @@ class WeeklyMeetingScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        InkWell(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Icon(
+                              Icons.arrow_back_outlined,
+                              size: Get.width * 0.04,
+                              color: Colors.black,
+                            )),
                         Text(
                           'Weekly Meeting. ${_.formattedDate}',
                           style: TextStyle(
                               color: Colors.grey, fontSize: Get.width * .03),
-                        ),
+                        ).paddingSymmetric(horizontal: Get.width * 0.015),
+                        Spacer(),
                         InkWell(
                           onTap: () {
                             Get.back();
@@ -49,7 +59,7 @@ class WeeklyMeetingScreen extends StatelessWidget {
                       ],
                     ).marginSymmetric(
                         vertical: Get.height * .02,
-                        horizontal: Get.width * 0.04),
+                        horizontal: Get.width * 0.02),
 
                     GoalsTextField(
                       width: Get.width / 1.09,
@@ -335,7 +345,6 @@ class WeeklyMeetingScreen extends StatelessWidget {
                         SizedBox(
                           height: Get.height * .04,
                         ),
-                        
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -373,7 +382,6 @@ class WeeklyMeetingScreen extends StatelessWidget {
                             ),
                           ],
                         )
-                     
                       ],
                     ).paddingSymmetric(horizontal: Get.width * .02),
                   ],

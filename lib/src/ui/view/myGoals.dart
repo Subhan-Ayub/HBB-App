@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/myGoalsController.dart';
 import 'package:hbb/src/ui/widgets/commonClasses.dart';
+import 'package:hbb/src/utils/uidata/text_styles.dart';
 // import 'package:hbb/src/utils/routes/routes.dart';
 
 class MyGoalScreen extends StatelessWidget {
@@ -13,9 +14,9 @@ class MyGoalScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      // ),
       body: Obx(() => SafeArea(
               child: _.loader.value
                   ? Container(
@@ -27,12 +28,24 @@ class MyGoalScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "My Goals",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                  fontSize: Get.width * .06,
-                                  fontWeight: FontWeight.bold),
+                            Row(
+                              children: [
+                                InkWell(
+                                    onTap: () {
+                                      Get.back();
+                                    },
+                                    child: Icon(
+                                      Icons.arrow_back_outlined,
+                                      size: Get.width * 0.05,
+                                      color: Colors.black,
+                                    )),
+                                Text(
+                                  "My Goals",
+                                  textAlign: TextAlign.start,
+                                  style: UIDataTextStyles.headingtextbold,
+                                ).paddingSymmetric(
+                                    horizontal: Get.width * 0.015),
+                              ],
                             ),
                             Text(
                               "Use this area to view the goals you set for yourself with your business. You may update these any time by clicking 'edit'. These goals are unique to you .This infromation is not send to anyone else and it is not possible for your coach or any of your Accountability Partners to view them. Entering yous goals here provides you with a easy way to measure how well you're doing, as they work with the rest of your HBB system to create reports that help to track the actual impact of your business activities verses the goals you have set",
@@ -46,13 +59,7 @@ class MyGoalScreen extends StatelessWidget {
                                   fontSize: Get.width * .033,
                                   fontWeight: FontWeight.bold),
                             ).marginSymmetric(vertical: Get.height * .002),
-                            // Text(
-                            //   'Click Here to See Graph of your Perfomance',
-                            //   style: TextStyle(
-                            //       fontSize: Get.width * .033,
-                            //       color: Colors.red,
-                            //       fontWeight: FontWeight.bold),
-                            // ).marginSymmetric(vertical: Get.height * .002),
+                            
                             SizedBox(
                               height: Get.height * 0.01,
                             ),

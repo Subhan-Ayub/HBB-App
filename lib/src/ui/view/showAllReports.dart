@@ -2,25 +2,48 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/showReportController.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
+import 'package:hbb/src/utils/uidata/text_styles.dart';
 
 class ShowReports extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ShowReportController _ = Get.find<ShowReportController>();
     return Scaffold(
-       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      // ),
       body: SafeArea(
           child: SingleChildScrollView(
-            child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-            Divider(),
-            Text('Daily Exposure & National/International Exposure Report for ${_.arg['month']}, ${_.arg['year']}',
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900))
-                .marginSymmetric(horizontal: 10),
-            Divider(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              children: [
+                Divider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Icon(
+                          Icons.arrow_back_outlined,
+                          size: Get.width * 0.05,
+                          color: Colors.black,
+                        )),
+                    Text(
+                      'Daily Exposure & National/International \nExposure Report for ${_.arg['month']}, ${_.arg['year']}',
+                      textAlign: TextAlign.center,
+                      style: UIDataTextStyles.commontextheadbold,
+                    ).paddingSymmetric(horizontal: Get.width * 0.015),
+                  ],
+                ),
+                Divider(),
+              ],
+            ).marginSymmetric(
+                vertical: Get.height * 0.02, horizontal: Get.width * .03),
             Text(
               'Note E = Daily Exposure K = National/International Exposure',
               style: TextStyle(color: Colors.red, fontSize: 12),
@@ -43,19 +66,23 @@ class ShowReports extends StatelessWidget {
                   children: [
                     Text(
                       'Data',
-                      style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
                     ).marginOnly(left: 10),
                     Text(
                       'E/K',
-                      style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
                     ).marginOnly(left: 30),
                     Text(
                       'Name',
-                      style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
                     ).marginOnly(right: 20),
                     Text(
                       'Email',
-                      style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
                     ).marginOnly(right: Get.width * .2),
                   ]),
             ).marginOnly(top: 9),
@@ -77,7 +104,8 @@ class ShowReports extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text('${i + 1}/${_.arg['month']}/${_.arg['year']}'),
+                                Text(
+                                    '${i + 1}/${_.arg['month']}/${_.arg['year']}'),
                                 Container(
                                     width: 110,
                                     alignment: Alignment.center,
@@ -91,7 +119,7 @@ class ShowReports extends StatelessWidget {
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis)),
                                 Container(
-                                    width:  Get.width/5,
+                                    width: Get.width / 5,
                                     alignment: Alignment.centerLeft,
                                     child: Text(
                                       '${_.email}',
@@ -112,22 +140,34 @@ class ShowReports extends StatelessWidget {
                         },
                         child: Container(
                           color: Colors.grey,
-                          child: Text('Other Reports', style: TextStyle(color: Colors.white, fontSize: Get.width*0.035),).marginSymmetric(horizontal: Get.width*0.03, vertical: Get.height*0.015),
+                          child: Text(
+                            'Other Reports',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: Get.width * 0.035),
+                          ).marginSymmetric(
+                              horizontal: Get.width * 0.03,
+                              vertical: Get.height * 0.015),
                         ),
                       ),
                       Container(
                         color: UIDataColors.commonColor,
-                        child: Text('Print', style: TextStyle(color: Colors.white, fontSize: Get.width*0.035),).marginSymmetric(horizontal: Get.width*0.03, vertical: Get.height*0.015),
+                        child: Text(
+                          'Print',
+                          style: TextStyle(
+                              color: Colors.white, fontSize: Get.width * 0.035),
+                        ).marginSymmetric(
+                            horizontal: Get.width * 0.03,
+                            vertical: Get.height * 0.015),
                       ).paddingSymmetric(horizontal: 10),
                     ],
                   )
-                
                 ],
               ),
             )
-                    ],
-                  ),
-          )),
+          ],
+        ),
+      )),
     );
   }
 }

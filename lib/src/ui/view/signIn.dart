@@ -182,7 +182,7 @@ class SignInScreen extends StatelessWidget {
                             'assets/images/gmail.png',
                             fit: BoxFit.contain,
                           ),
-                        )
+                        ) 
                       ],
                     ).paddingOnly(bottom: 30)
                   ],

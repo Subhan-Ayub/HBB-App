@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hbb/src/controllers/statistics&reportsController.dart';
 // import 'package:hbb/src/ui/widgets/commonScaffold.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
+import 'package:hbb/src/utils/uidata/text_styles.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 // ignore: must_be_immutable
@@ -17,9 +18,9 @@ class StatisticsAndReports extends StatelessWidget {
     StatisticsAndReportsController _ =
         Get.find<StatisticsAndReportsController>();
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: Colors.transparent,
+        // ),
         backgroundColor: Colors.white,
         body: SafeArea(
           child: SingleChildScrollView(
@@ -38,13 +39,21 @@ class StatisticsAndReports extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'Statistics and Reports',
-                              style: TextStyle(
-                                fontSize: Get.width * 0.06,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              // textAlign: TextAlign.left,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                IconButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    icon: Icon(
+                                      Icons.arrow_back_outlined,
+                                      size: Get.width * 0.06,
+                                      color: Colors.black,
+                                    )),
+                                Text('Statistics and Reports',
+                                    style: UIDataTextStyles.headingtextbold),
+                              ],
                             ),
                             Row(
                               children: [
@@ -573,11 +582,10 @@ class StatisticsAndReports extends StatelessWidget {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             'All Reports',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                            style: UIDataTextStyles.subheadingtextbold,
                           ),
                           Spacer(),
                           Text('Months'),
