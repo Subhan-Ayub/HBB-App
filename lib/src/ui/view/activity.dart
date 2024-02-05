@@ -106,6 +106,22 @@ class ActivityScreen extends StatelessWidget {
                                           itemCount: _.dailyprintt.length,
                                           itemBuilder:
                                               (BuildContext context, i) {
+                                            var expcheck = false;
+                                            var expencex;
+
+                                            if (_.dailyExpense.isNotEmpty) {
+                                              for (var j = 0;
+                                                  j < _.dailyExpense.length;
+                                                  j++) {
+                                                if (_.dailyprintt[i]['id'] ==
+                                                    _.dailyExpense[j]
+                                                        ['activityId']) {
+                                                  expencex = _.dailyExpense[j];
+                                                  expcheck = true;
+                                                }
+                                              }
+                                            }
+
                                             return Container(
                                               // height: 410,
                                               // color: Colors.amberAccent,
@@ -135,9 +151,38 @@ class ActivityScreen extends StatelessWidget {
                                                                 overflow:
                                                                     TextOverflow
                                                                         .ellipsis)),
-                                                        Icon(
-                                                          Icons.monetization_on,
-                                                          size: 18,
+                                                        InkWell(
+                                                          onTap: () {
+                                                            DateTime dateTime =
+                                                                DateTime.parse(_
+                                                                    .pselectedDay
+                                                                    .toString());
+
+                                                            dateTime = dateTime
+                                                                .toLocal();
+
+                                                            var formattedDate =
+                                                                "${dateTime.year}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}";
+
+                                                            Get.toNamed(
+                                                                Routes
+                                                                    .dailyaddexpense,
+                                                                arguments: {
+                                                                  'name':
+                                                                      'Daily Exposure',
+                                                                  'actId':
+                                                                      _.dailyprintt[
+                                                                              i]
+                                                                          [
+                                                                          'id'],
+                                                                  'date':formattedDate
+                                                                });
+                                                          },
+                                                          child: Icon(
+                                                            Icons
+                                                                .monetization_on,
+                                                            size: 18,
+                                                          ),
                                                         ),
                                                         InkWell(
                                                             onTap: () {
@@ -313,7 +358,8 @@ class ActivityScreen extends StatelessWidget {
                                                             width: 200,
                                                             child: Text(
                                                                 'Follow Up:')),
-                                                        Text('{_.ek}',
+                                                        Text(
+                                                            '${_.dailyprintt[i]['hiddendate']}',
                                                             maxLines: 1,
                                                             overflow:
                                                                 TextOverflow
@@ -368,6 +414,37 @@ class ActivityScreen extends StatelessWidget {
                                                       ],
                                                     ),
                                                   ),
+                                                  expcheck
+                                                      ? Container(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      10,
+                                                                  vertical: 10),
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              241,
+                                                              241,
+                                                              241),
+                                                          child: Row(
+                                                            children: [
+                                                              Container(
+                                                                  width: 200,
+                                                                  child: Text(
+                                                                      'Expence:')),
+                                                              Container(
+                                                                width: 100,
+                                                                child: Text(
+                                                                    '${expencex['expenseamount']} for ${expencex['expensereason']}',
+                                                                    maxLines: 1,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        )
+                                                      : SizedBox(),
                                                   Container(
                                                       padding:
                                                           EdgeInsets.symmetric(
@@ -443,6 +520,22 @@ class ActivityScreen extends StatelessWidget {
                                           itemCount: _.weeklyprint.length,
                                           itemBuilder:
                                               (BuildContext context, i) {
+                                            var expcheck = false;
+                                            var expencex;
+
+                                            if (_.weeklyExpense.isNotEmpty) {
+                                              for (var j = 0;
+                                                  j < _.weeklyExpense.length;
+                                                  j++) {
+                                                if (_.weeklyprint[i]['id'] ==
+                                                    _.weeklyExpense[j]
+                                                        ['activityId']) {
+                                                  expencex = _.weeklyExpense[j];
+                                                  expcheck = true;
+                                                }
+                                              }
+                                            }
+
                                             return Container(
                                               // height: 410,
                                               // color: Colors.amberAccent,
@@ -556,6 +649,37 @@ class ActivityScreen extends StatelessWidget {
                                                       ],
                                                     ),
                                                   ),
+                                                  expcheck
+                                                      ? Container(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      10,
+                                                                  vertical: 10),
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              241,
+                                                              241,
+                                                              241),
+                                                          child: Row(
+                                                            children: [
+                                                              Container(
+                                                                  width: 200,
+                                                                  child: Text(
+                                                                      'Expence:')),
+                                                              Container(
+                                                                width: 100,
+                                                                child: Text(
+                                                                    '${expencex['expenseamount']} for ${expencex['expensereason']}',
+                                                                    maxLines: 1,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        )
+                                                      : SizedBox(),
                                                   Container(
                                                       padding:
                                                           EdgeInsets.symmetric(
@@ -629,6 +753,27 @@ class ActivityScreen extends StatelessWidget {
                                           itemCount: _.conferrencedprint.length,
                                           itemBuilder:
                                               (BuildContext context, i) {
+                                            var expcheck = false;
+                                            var expencex;
+
+                                            if (_.conferrenceExpense
+                                                .isNotEmpty) {
+                                              for (var j = 0;
+                                                  j <
+                                                      _.conferrenceExpense
+                                                          .length;
+                                                  j++) {
+                                                if (_.conferrencedprint[i]
+                                                        ['id'] ==
+                                                    _.conferrenceExpense[j]
+                                                        ['activityId']) {
+                                                  expencex =
+                                                      _.conferrenceExpense[j];
+                                                  expcheck = true;
+                                                }
+                                              }
+                                            }
+
                                             return Container(
                                               // height: 410,
                                               // color: Colors.amberAccent,
@@ -716,6 +861,37 @@ class ActivityScreen extends StatelessWidget {
                                                       ],
                                                     ),
                                                   ),
+                                                  expcheck
+                                                      ? Container(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      10,
+                                                                  vertical: 10),
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              241,
+                                                              241,
+                                                              241),
+                                                          child: Row(
+                                                            children: [
+                                                              Container(
+                                                                  width: 200,
+                                                                  child: Text(
+                                                                      'Expence:')),
+                                                              Container(
+                                                                width: 100,
+                                                                child: Text(
+                                                                    '${expencex['expenseamount']} for ${expencex['expensereason']}',
+                                                                    maxLines: 1,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        )
+                                                      : SizedBox(),
                                                   Container(
                                                       padding:
                                                           EdgeInsets.symmetric(
@@ -787,6 +963,21 @@ class ActivityScreen extends StatelessWidget {
                                         shrinkWrap: true,
                                         itemCount: _.natinalprint.length,
                                         itemBuilder: (BuildContext context, i) {
+                                          var expcheck = false;
+                                          var expencex;
+
+                                          if (_.nationalExpense.isNotEmpty) {
+                                            for (var j = 0;
+                                                j < _.nationalExpense.length;
+                                                j++) {
+                                              if (_.natinalprint[i]['id'] ==
+                                                  _.nationalExpense[j]
+                                                      ['activityId']) {
+                                                expencex = _.nationalExpense[j];
+                                                expcheck = true;
+                                              }
+                                            }
+                                          }
                                           return Container(
                                             // height: 410,
                                             // color: Colors.amberAccent,
@@ -982,7 +1173,8 @@ class ActivityScreen extends StatelessWidget {
                                                           width: 200,
                                                           child: Text(
                                                               'Follow Up:')),
-                                                      Text('{_.ek}',
+                                                      Text(
+                                                          '${_.natinalprint[i]['hiddendate']}',
                                                           maxLines: 1,
                                                           overflow: TextOverflow
                                                               .ellipsis),
@@ -1029,6 +1221,33 @@ class ActivityScreen extends StatelessWidget {
                                                     ],
                                                   ),
                                                 ),
+                                                expcheck
+                                                    ? Container(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal: 10,
+                                                                vertical: 10),
+                                                        color: Color.fromARGB(
+                                                            255, 241, 241, 241),
+                                                        child: Row(
+                                                          children: [
+                                                            Container(
+                                                                width: 200,
+                                                                child: Text(
+                                                                    'Expence:')),
+                                                            Container(
+                                                              width: 100,
+                                                              child: Text(
+                                                                  '${expencex['expenseamount']} for ${expencex['expensereason']}',
+                                                                  maxLines: 1,
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      )
+                                                    : SizedBox(),
                                                 Container(
                                                     padding:
                                                         EdgeInsets.symmetric(
@@ -1142,6 +1361,18 @@ class ActivityScreen extends StatelessWidget {
                         () => _.loder.value
                             ? Center(child: CircularProgressIndicator())
                             : TableCalendar(
+                                onPageChanged: (focusedDay) {
+                                  DateTime dateTime =
+                                      DateTime.parse(focusedDay.toString());
+
+                                  dateTime = dateTime.toLocal();
+
+                                  var formattedDate =
+                                      "${dateTime.year}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}";
+                                  _.changeMonth = formattedDate.substring(
+                                      0, formattedDate.length - 2);
+                                  _.monthlyData(); // print(formattedDate.substring(0,formattedDate.length-2));
+                                },
                                 headerStyle:
                                     HeaderStyle(formatButtonVisible: false),
                                 calendarStyle: CalendarStyle(

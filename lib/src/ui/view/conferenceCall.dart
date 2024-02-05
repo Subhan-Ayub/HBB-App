@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:hbb/src/controllers/conferenceCallController.dart';
 import 'package:hbb/src/ui/widgets/commonClasses.dart';
 
-import '../../utils/routes/routes.dart';
 import '../../utils/uidata/color.dart';
 
 class ConferenceCallScreen extends StatelessWidget {
@@ -117,7 +116,9 @@ class ConferenceCallScreen extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                            Get.toNamed(Routes.conferenceaddexpense);
+  _.expCheck=true;
+                        
+                          _.submit();
                           },
                           child: Container(
                             color: Colors.grey,

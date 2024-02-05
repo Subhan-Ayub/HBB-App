@@ -91,13 +91,12 @@ class StatisticsAndReportsController extends GetxController {
     print(arg);
     fetchData = await apiFetcher('Get', arg);
     if (arg == '/api/signup-type-report') {
-      disSignUp = [DistributerSignUpData('90', fetchData[0]['exposure'])];
-      disExposure = [DistributerExposureData('90', fetchData[0]['signups'])];
-      cusSignUp = [CustomerSignUpData('90', fetchData[1]['exposure'])];
-      cusExposure = [CustomerExposureData('90', fetchData[1]['signups'])];
+      disSignUp = [DistributerSignUpData('90', fetchData[0]['exposure']=="N/A"?0:fetchData[0]['exposure'])];
+      disExposure = [DistributerExposureData('90', fetchData[0]['signups']=="N/A"?0:fetchData[0]['signups'])];
+      cusSignUp = [CustomerSignUpData('90', fetchData[1]['exposure']=="N/A"?0:fetchData[1]['exposure'])];
+      cusExposure = [CustomerExposureData('90', fetchData[1]['signups']=="N/A"?0:fetchData[1]['signups'])];
       loder.value = false;
     } else {
-      print(fetchData['1']);
       data = [
         ChartData('Jan', fetchData['01']),
         ChartData('Feb', fetchData['02']),

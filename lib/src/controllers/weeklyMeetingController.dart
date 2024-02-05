@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/activityController.dart';
 import 'package:hbb/src/utils/helpers/api_helper.dart';
+import 'package:hbb/src/utils/routes/routes.dart';
 
 class WeeklyMeetingController extends GetxController {
   ActivityController ac = Get.find<ActivityController>();
@@ -12,6 +15,8 @@ class WeeklyMeetingController extends GetxController {
   TextEditingController notes = TextEditingController();
   var formattedDate;
   var arg = Get.arguments;
+  var expCheck=false;
+
   @override
   void onInit() async {
     check = arg['check'] ?? 'Save';
@@ -44,16 +49,22 @@ class WeeklyMeetingController extends GetxController {
         : {
             "meetinglocation": meetingLocation.text,
             "wmnotes": notes.text,
-            "meetingtype":selectedOption.value
+            "meetingtype": selectedOption.value
           };
+    var res;
     if (check == 'Save') {
-      await apiFetcher('Post', '/api/weekly-training', obj);
+     res= await apiFetcher('Post', '/api/weekly-training', obj);
     }
-    print(obj);
     if (check == 'update') {
-      await apiFetcher('Put', '/api/weekly-training/${arg['id']}', obj);
+    res=  await apiFetcher('Put', '/api/weekly-training/${arg['id']}', obj);
     }
+     if (expCheck) {
+      var decode=jsonDecode(res.body);
+      Get.offAndToNamed(Routes.dailyaddexpense,
+          arguments: {'name': 'Weekly Meetings', 'actId': decode['data']['id'],'date':formattedDate});
+    } else {
+      ac.getData();
       Get.back();
-    ac.getData();
+    }
   }
 }

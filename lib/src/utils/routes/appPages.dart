@@ -3,6 +3,7 @@ import 'package:hbb/src/bindings/addDailyExpBinding.dart';
 import 'package:hbb/src/bindings/IncomeExpenseBinding.dart';
 import 'package:hbb/src/bindings/SupportTeamBinding.dart';
 import 'package:hbb/src/bindings/activityBinding.dart';
+import 'package:hbb/src/bindings/addExpBindings.dart';
 import 'package:hbb/src/bindings/addNewContactBinding.dart';
 import 'package:hbb/src/bindings/addincomeexpenseBinding.dart';
 import 'package:hbb/src/bindings/coachNetworkBinding.dart';
@@ -169,9 +170,11 @@ class AppPages {
         binding: WeeklyMeetingBinding(),
         page: () => WeeklyExpenseScreen(),
         transition: Transition.noTransition),
+
+        // add Expence
     GetPage(
         name: Routes.dailyaddexpense,
-        binding: AddDailyExpBinding(),
+        binding: AddExpBindings(),
         page: () => DailyAddExpenseScreen(),
         transition: Transition.noTransition),
     GetPage(

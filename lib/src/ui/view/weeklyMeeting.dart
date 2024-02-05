@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/ui/widgets/commonClasses.dart';
-import 'package:hbb/src/utils/routes/routes.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
 
 import '../../controllers/weeklyMeetingController.dart';
@@ -350,7 +349,9 @@ class WeeklyMeetingScreen extends StatelessWidget {
                           children: [
                             InkWell(
                               onTap: () {
-                                Get.toNamed(Routes.weeklyaddexpense);
+                                _.expCheck = true;
+                           
+                                _.submit();
                               },
                               child: Container(
                                 color: Colors.grey,

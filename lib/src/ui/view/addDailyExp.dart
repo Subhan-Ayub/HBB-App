@@ -1,12 +1,15 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/addDailyExpController.dart';
 import 'package:hbb/src/ui/widgets/commonClasses.dart';
-import 'package:hbb/src/utils/routes/routes.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
+import 'package:intl/intl.dart';
+
 
 class AddDailyExpScreen extends StatelessWidget {
-  final AddDailyExpController _ = Get.put(AddDailyExpController());
+  final AddDailyExpController _ = Get.find<AddDailyExpController>();
 
   @override
   Widget build(BuildContext context) {
@@ -186,8 +189,23 @@ class AddDailyExpScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                         ),
                         InkWell(
-                          onTap: () {
-                            print(_.cellPhone);
+                          onTap: () async {
+                            DateTime currentDate = DateTime.now();
+                             DateTime next15Days = currentDate.add(Duration(days: 15));
+                            DateTime? pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                // firstDate: DateTime(2000),
+                                firstDate: DateTime.now(),
+                                lastDate: next15Days);
+
+                            if (pickedDate != null) {
+                              String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+
+                              _.followUP = formattedDate;
+                            } else {
+                              print("Date is not selected");
+                            }
                           },
                           child: Text(
                             "Click Here To Set",
@@ -650,7 +668,9 @@ class AddDailyExpScreen extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                            Get.toNamed(Routes.dailyaddexpense);
+                          _.expCheck=true;
+                       
+                          _.submit();
                           },
                           child: Container(
                             color: Colors.grey,

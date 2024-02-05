@@ -19,19 +19,26 @@ class ActivityController extends GetxController {
   RxDouble conferenceHeight = 0.0.obs;
   RxBool expandNationalExposure = false.obs;
   RxDouble nationalExposureHeight = 0.0.obs;
-  RxBool specDateCheck=false.obs;
+  RxBool specDateCheck = false.obs;
   String? formattedDate;
+  var dailyExpense = [];
+  var weeklyExpense = [];
+  var conferrenceExpense = [];
+  var nationalExpense = [];
 
   List<dynamic> checkkk = [];
+  List<dynamic> checkExpense = [];
 
   RxBool loder = true.obs;
 
   var data;
+  var expenseAll;
 
   CalendarFormat calendarFormat = CalendarFormat.month;
   final pfocusedDay = DateTime.now().obs;
   DateTime? pselectedDay;
   TextEditingController eventController = TextEditingController();
+  var changeMonth = '2024-02-';
 
   @override
   void onInit() {
@@ -43,11 +50,21 @@ class ActivityController extends GetxController {
     loder.value = true;
 
     data = await apiFetcher('Get', '/api/activity');
+
     checkkk = data['data'];
     data = checkkk;
-
     pselectedDay = pfocusedDay.value;
+
     loder.value = false;
+    monthlyData();
+  }
+
+  monthlyData() async {
+    expenseAll = await apiFetcher('Get',
+        '/api/expense?startDate=${changeMonth}01&endDate=${changeMonth}29');
+
+    checkExpense = expenseAll['data'];
+    expenseAll = checkExpense;
     dcheck();
   }
 
@@ -55,9 +72,7 @@ class ActivityController extends GetxController {
     pselectedDay = selectedDay;
     pfocusedDay.value = focusedDay;
     dcheck();
-
   }
-
 
   var filteredDataOfD = [];
   var filteredidOfD = [];
@@ -74,9 +89,14 @@ class ActivityController extends GetxController {
     filteredidOfD = [];
     filteredidOfW = [];
     filteredidOfC = [];
-    specDateCheck.value=true;
+    specDateCheck.value = true;
+    dailyExpense = [];
+    weeklyExpense = [];
+    conferrenceExpense = [];
+    nationalExpense = [];
 
     dailyprintt.value = [];
+    // expenseAll=[];
     natinalprint.value = [];
     weeklyprint.value = [];
     conferrencedprint.value = [];
@@ -99,9 +119,7 @@ class ActivityController extends GetxController {
       }
     }
 
-
     if (filteredDataOfD.isNotEmpty) {
-
       for (var i = 0; i < filteredDataOfD.length; i++) {
         var dailyIds = await apiFetcher(
             'Get', '/api/daily-exposure/${filteredDataOfD[i]['id']}');
@@ -113,50 +131,66 @@ class ActivityController extends GetxController {
         var weeklyIds = await apiFetcher(
             'Get', '/api/weekly-training/${filteredDataOfD[i]['id']}');
         filteredidOfW.add(weeklyIds['data']);
-    
       }
 
-      // if (filteredidOfW.isNotEmpty) {
-      // weeklyprint.value = filteredidOfW;
-      //   expandMeetings.value=true;
-      // }
-     
       for (var i = 0; i < filteredidOfD.length; i++) {
         if (filteredidOfD[i]['activitytype'] == 1) {
+          for (var j = 0; j < expenseAll.length; j++) {
+            if (expenseAll[j]['activityId'] == filteredidOfD[i]['id']) {
+              dailyExpense.add(expenseAll[j]);
+
+              break;
+            }
+          }
           dailyprintt.value.add(filteredidOfD[i]);
 
           expandDailyExposure.value = true;
         }
       }
+
       for (var i = 0; i < filteredidOfD.length; i++) {
         if (filteredidOfD[i]['activitytype'] == 4) {
+          for (var j = 0; j < expenseAll.length; j++) {
+            if (expenseAll[j]['activityId'] == filteredidOfD[i]['id']) {
+              nationalExpense.add(expenseAll[j]);
+
+              break;
+            }
+          }
           natinalprint.value.add(filteredidOfD[i]);
 
           expandNationalExposure.value = true;
         }
       }
-    }
-     for (var i = 0; i < filteredidOfW.length; i++) {
-      if (filteredidOfW[i]['activitytype'] == 2) {
-        weeklyprint.value.add(filteredidOfW[i]);
-        print(weeklyprint);
-        print('ddddn cnd cndcnjdnckjdnckjndkjenckjednjkcnencenrefreeeeeeeeee');
 
-        expandMeetings.value = true;
+      for (var i = 0; i < filteredidOfW.length; i++) {
+        if (filteredidOfW[i]['activitytype'] == 2) {
+          for (var j = 0; j < expenseAll.length; j++) {
+            if (expenseAll[j]['activityId'] == filteredidOfW[i]['id']) {
+              weeklyExpense.add(expenseAll[j]);
+              break;
+            }
+          }
+          weeklyprint.value.add(filteredidOfW[i]);
+
+          expandMeetings.value = true;
+        }
+      }
+      for (var i = 0; i < filteredidOfC.length; i++) {
+        if (filteredidOfD[i]['activitytype'] == 3) {
+          for (var j = 0; j < expenseAll.length; j++) {
+            if (expenseAll[j]['activityId'] == filteredidOfC[i]['id']) {
+              conferrenceExpense.add(expenseAll[j]);
+              break;
+            }
+          }
+          conferrencedprint.value.add(filteredidOfC[i]);
+
+          expandConference.value = true;
+        }
       }
     }
-     for (var i = 0; i < filteredidOfC.length; i++) {
-      if (filteredidOfD[i]['activitytype'] == 3) {
-        conferrencedprint.value.add(filteredidOfC[i]);
 
-        expandConference.value = true;
-      }
-    }
-
-
-      specDateCheck.value=false;
-  
+    specDateCheck.value = false;
   }
-
-
 }

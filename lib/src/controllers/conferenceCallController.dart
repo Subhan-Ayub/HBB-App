@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:hbb/src/controllers/activityController.dart';
 import 'package:hbb/src/utils/helpers/api_helper.dart';
+import 'package:hbb/src/utils/routes/routes.dart';
 
 class ConferenceCallController extends GetxController {
   dynamic refValue;
@@ -12,6 +15,8 @@ class ConferenceCallController extends GetxController {
   ActivityController ac = Get.find<ActivityController>();
   var arg = Get.arguments;
   var formattedDate;
+  var expCheck=false;
+
 
   @override
   void onInit() async {
@@ -35,15 +40,21 @@ class ConferenceCallController extends GetxController {
             "ccallnotes": notes.text
           }
         : {"timeofcall": timeofcall.text, "ccallnotes": notes.text};
-
+var res;
     if (check == 'Save') {
-      await apiFetcher('Post', '/api/conference-call', obj);
+     res= await apiFetcher('Post', '/api/conference-call', obj);
     }
     if (check=='update') {
-      await apiFetcher('Put', '/api/conference-call/${arg['id']}', obj);
+     res= await apiFetcher('Put', '/api/conference-call/${arg['id']}', obj);
       
     }
-    Get.back();
-    ac.getData();
+    if (expCheck) {
+      var decode=jsonDecode(res.body);
+      Get.offAndToNamed(Routes.dailyaddexpense,
+          arguments: {'name': 'Conferrence Call', 'actId': decode['data']['id'],'date':formattedDate});
+    } else {
+      ac.getData();
+      Get.back();
+    }
   }
 }

@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:hbb/src/controllers/activityController.dart';
 import 'package:hbb/src/utils/helpers/api_helper.dart';
+import 'package:hbb/src/utils/routes/routes.dart';
 
 class AddDailyExpController extends GetxController {
   ActivityController ac = Get.find<ActivityController>();
@@ -22,7 +25,7 @@ class AddDailyExpController extends GetxController {
   var checkbox11 = false.obs;
   var checkbox12 = false.obs;
   var checkbox13 = false.obs;
-  dynamic refValue;
+
   TextEditingController amount = TextEditingController();
   TextEditingController prospectsName = TextEditingController();
   TextEditingController phoneNo = TextEditingController();
@@ -34,11 +37,13 @@ class AddDailyExpController extends GetxController {
   TextEditingController zip = TextEditingController();
   TextEditingController notes = TextEditingController();
   TextEditingController timeCall = TextEditingController();
+  dynamic followUP;
   var formattedDate;
+  var expCheck=false;
 
   @override
   void onInit() async {
-    check=arg['check']??'Save';
+    check = arg['check'] ?? 'Save';
     super.onInit();
     DateTime dateTime = DateTime.parse(arg['date'].toString());
 
@@ -49,8 +54,6 @@ class AddDailyExpController extends GetxController {
   }
 
   submit() async {
-    print(arg['date'].runtimeType);
-
     var dat = {
       "prospectname": prospectsName.text,
       "activitytype": arg['type'],
@@ -64,7 +67,7 @@ class AddDailyExpController extends GetxController {
       "zip": zip.text,
       "formnotes": notes.text,
       "calltime": timeCall.text,
-      "hiddendate": "2023-11-28",
+      "hiddendate": followUP,
       // ignore: prefer_interpolation_to_compose_strings, prefer_adjacent_string_concatenation
       "exposuretypestring": "${checkbox1.value ? 'threeway,' : ''}" +
           "${checkbox2.value ? 'bizbrief,' : ''}" +
@@ -80,23 +83,26 @@ class AddDailyExpController extends GetxController {
           "${checkbox12.value ? 'website,' : ''}" +
           "${checkbox13.value ? 'Other,' : ''}"
     };
-    if (check=='Save'&& arg['type']==1) {
-    await apiFetcher('Post', '/api/daily-exposure', dat);
-      
+    var res;
+    if (check == 'Save' && arg['type'] == 1) {
+      res = await apiFetcher('Post', '/api/daily-exposure', dat);
     }
-    if (check=='update'&& arg['type']==1) {
-    await apiFetcher('Put', '/api/daily-exposure/${arg['id']}', dat);
-      
+    if (check == 'update' && arg['type'] == 1) {
+      res = await apiFetcher('Put', '/api/daily-exposure/${arg['id']}', dat);
     }
-     if (check=='Save'&& arg['type']==4) {
-    await apiFetcher('Post', '/api/natint-exposure', dat);
-      
+    if (check == 'Save' && arg['type'] == 4) {
+      res = await apiFetcher('Post', '/api/natint-exposure', dat);
     }
-    if (check=='update'&& arg['type']==4) {
-    await apiFetcher('Put', '/api/natint-exposure/${arg['id']}', dat);
-      
+    if (check == 'update' && arg['type'] == 4) {
+      res = await apiFetcher('Put', '/api/natint-exposure/${arg['id']}', dat);
     }
-    Get.back();
-    ac.getData();
+    if (expCheck) {
+      var decode=jsonDecode(res.body);
+      Get.offAndToNamed(Routes.dailyaddexpense,
+          arguments: {'name': 'Daily Exposure', 'actId': decode['data']['id'],'date':formattedDate});
+    } else {
+      ac.getData();
+      Get.back();
+    }
   }
 }
