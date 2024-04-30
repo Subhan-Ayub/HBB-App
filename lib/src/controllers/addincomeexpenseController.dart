@@ -16,6 +16,11 @@ class AddIncomeExpenseController extends GetxController {
 
   void edit(index) {
     dateinput.text = inExpCont.incomeExpenseData[index]['expensedate'];
+    amount.text =
+        inExpCont.incomeExpenseData[index]['expenseamount'].toString();
+    if (inExpCont.incomeExpenseData[index]['income'] == 1) {
+      incomeSource.text = inExpCont.incomeExpenseData[index]['expensereason'];
+    }
   }
 
   void upDate() async {
@@ -72,7 +77,7 @@ class AddIncomeExpenseController extends GetxController {
       "expensedate": dateinput.text
     };
     updateloader.value = false;
-     await apiFetcher('Put', '/api/expense/$id', obj);
+    await apiFetcher('Put', '/api/expense/$id', obj);
     updateloader.value = true;
     Get.snackbar('Success', 'Your Incom Expense has Updated',
         snackPosition: SnackPosition.BOTTOM,

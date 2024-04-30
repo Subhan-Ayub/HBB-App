@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_is_not_empty
+
 import 'dart:convert';
 
 import 'package:get/get.dart';

@@ -28,7 +28,8 @@ class IncomeExpenseScreen extends StatelessWidget {
                 children: [
                   InkWell(
                       onTap: () {
-                        Get.back();
+                        Get.offAndToNamed(Routes.home);
+                        print('object');
                       },
                       child: Icon(
                         Icons.arrow_back_outlined,
@@ -56,7 +57,7 @@ class IncomeExpenseScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          width: Get.width / 6.342,
+                          width: Get.width / 5,
                           height: Get.height * .03,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -83,7 +84,7 @@ class IncomeExpenseScreen extends StatelessWidget {
                         ),
                         //
                         Container(
-                          width: Get.width / 4,
+                          width: Get.width / 3.5,
                           height: Get.height * .03,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -110,7 +111,7 @@ class IncomeExpenseScreen extends StatelessWidget {
                         ),
                         //
                         Container(
-                          width: Get.width / 4,
+                          width: Get.width / 4 / 1.7,
                           height: Get.height * .03,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -175,7 +176,7 @@ class IncomeExpenseScreen extends StatelessWidget {
                                       children: [
 // Date
                                         Container(
-                                          width: Get.width / 6.342,
+                                          width: Get.width / 5,
                                           height: Get.height * .03,
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
@@ -196,12 +197,12 @@ class IncomeExpenseScreen extends StatelessWidget {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: Get.width * .025),
-                                            overflow: TextOverflow.ellipsis,
+                                            overflow: TextOverflow.clip,
                                           ).paddingSymmetric(horizontal: 10),
                                         ),
 // Expense Reason
                                         Container(
-                                          width: Get.width / 4,
+                                          width: Get.width / 3.5,
                                           height: Get.height * .03,
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
@@ -227,7 +228,7 @@ class IncomeExpenseScreen extends StatelessWidget {
                                         ),
 // Income Amount
                                         Container(
-                                          width: Get.width / 4,
+                                          width: Get.width / 4 / 1.7,
                                           height: Get.height * .03,
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
@@ -246,7 +247,8 @@ class IncomeExpenseScreen extends StatelessWidget {
                                             _.incomeExpenseData[index]
                                                         ['income'] ==
                                                     1
-                                                ? '${_.incomeExpenseData[index]['expenseamount']}'
+                                                ? " \$${_.incomeExpenseData[index]['expenseamount']}" +
+                                                    '${_.incomeExpenseData[index]['expenseamount'].toString().contains('.') ? '' : '.00'}'
                                                 : '',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
@@ -271,7 +273,8 @@ class IncomeExpenseScreen extends StatelessWidget {
                                             _.incomeExpenseData[index]
                                                         ['income'] ==
                                                     0
-                                                ? '${_.incomeExpenseData[index]['expenseamount']}'
+                                                ? '\$${_.incomeExpenseData[index]['expenseamount']}' +
+                                                    '${_.incomeExpenseData[index]['expenseamount'].toString().contains('.') ? '' : '.00'}'
                                                 : '',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(

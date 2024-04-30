@@ -11,6 +11,9 @@ class IncomeExpenseController extends GetxController {
   @override
   void onInit() {
     getData();
+
+    var a = 'lllj';
+    if(a.contains('j')){}
     super.onInit();
   }
 
