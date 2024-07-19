@@ -25,6 +25,8 @@ class AddIncomeExpenseController extends GetxController {
 
   void upDate() async {
     var id = inExpCont.editId;
+        inExpCont.expenseForTotal = [];
+      inExpCont.incomeForTotal = [];
     print(id);
     if (dateinput.text.isEmpty) {
       Get.snackbar('Error', 'Select Date',
@@ -91,6 +93,8 @@ class AddIncomeExpenseController extends GetxController {
   }
 
   void save() async {
+        inExpCont.expenseForTotal = [];
+      inExpCont.incomeForTotal = [];
     if (dateinput.text.isEmpty) {
       Get.snackbar('Error', 'Select Date',
           snackPosition: SnackPosition.BOTTOM,

@@ -9,7 +9,9 @@ import 'package:hbb/src/utils/helpers/api_helper.dart';
 import 'package:hbb/src/utils/routes/routes.dart';
 
 class AddDailyExpController extends GetxController {
-  ActivityController ac = Get.find<ActivityController>();
+  // ActivityController ac = Get.find<ActivityController>();
+  ActivityController ac = Get.put(ActivityController());
+
 
   var arg = Get.arguments;
 

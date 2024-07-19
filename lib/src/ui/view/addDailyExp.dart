@@ -7,7 +7,6 @@ import 'package:hbb/src/ui/widgets/commonClasses.dart';
 import 'package:hbb/src/utils/uidata/color.dart';
 import 'package:intl/intl.dart';
 
-
 class AddDailyExpScreen extends StatelessWidget {
   final AddDailyExpController _ = Get.find<AddDailyExpController>();
 
@@ -34,6 +33,7 @@ class AddDailyExpScreen extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
+                            _.ac.isDailyorNational.value = false;
                             Get.back();
                           },
                           child: Icon(
@@ -42,14 +42,33 @@ class AddDailyExpScreen extends StatelessWidget {
                             color: Colors.black,
                           ),
                         ),
-                        Text(
-                          'Daily Exposures. ${_.formattedDate}',
-                          style: TextStyle(
-                              color: Colors.grey, fontSize: Get.width * .03),
-                        ).paddingSymmetric(horizontal: Get.width * 0.015),
+                        Obx(
+                          () => Column(
+                            children: [
+                              _.ac.isDailyorNational.value
+                                  ? Text(
+                                      'National/International. ${_.formattedDate}',
+                                      style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: Get.width * .03),
+                                    ).paddingSymmetric(
+                                      horizontal: Get.width * 0.015)
+                                  : Text(
+                                      // 'Daily Exposures. ${_.formattedDate}',
+                                      'Daily Exposures',
+
+                                      style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: Get.width * .03),
+                                    ).paddingSymmetric(
+                                      horizontal: Get.width * 0.015),
+                            ],
+                          ),
+                        ),
                         Spacer(),
                         InkWell(
                           onTap: () {
+                            _.ac.isDailyorNational.value = false;
                             Get.back();
                           },
                           child: Text(
@@ -191,7 +210,8 @@ class AddDailyExpScreen extends StatelessWidget {
                         InkWell(
                           onTap: () async {
                             DateTime currentDate = DateTime.now();
-                             DateTime next15Days = currentDate.add(Duration(days: 15));
+                            DateTime next15Days =
+                                currentDate.add(Duration(days: 15));
                             DateTime? pickedDate = await showDatePicker(
                                 context: context,
                                 initialDate: DateTime.now(),
@@ -200,7 +220,8 @@ class AddDailyExpScreen extends StatelessWidget {
                                 lastDate: next15Days);
 
                             if (pickedDate != null) {
-                              String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+                              String formattedDate =
+                                  DateFormat('yyyy-MM-dd').format(pickedDate);
 
                               _.followUP = formattedDate;
                             } else {
@@ -668,9 +689,9 @@ class AddDailyExpScreen extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                          _.expCheck=true;
-                       
-                          _.submit();
+                            _.expCheck = true;
+
+                            _.submit();
                           },
                           child: Container(
                             color: Colors.grey,

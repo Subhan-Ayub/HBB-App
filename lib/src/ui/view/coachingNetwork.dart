@@ -192,18 +192,37 @@ class CoachNetworkScreen extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
-                                            child: Text(
-                                                    '${_.data[index]['acode']}',
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize:
-                                                            Get.width * .02),
-                                                    overflow:
-                                                        TextOverflow.ellipsis)
-                                                .paddingSymmetric(
-                                                    horizontal:
-                                                        Get.width * .01),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  '${_.data[index]['acode']}-',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize:
+                                                          Get.width * .02),
+                                                ),
+                                                Text(
+                                                  '${_.data[index]['phone1']}-',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize:
+                                                          Get.width * .02),
+                                                ),
+                                                Text(
+                                                  '${_.data[index]['phone2']}',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize:
+                                                          Get.width * .02),
+                                                )
+                                              ],
+                                            ).paddingSymmetric(
+                                                horizontal: Get.width * .01),
                                           ),
                                           //
                                           Container(

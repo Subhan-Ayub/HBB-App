@@ -109,22 +109,27 @@ class ShowReports extends StatelessWidget {
                                 Container(
                                     width: 110,
                                     alignment: Alignment.center,
-                                    child: Text('${_.ek}',
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis)),
+                                    child: Text(
+                                      '${_.ek}',
+                                      // maxLines: 1,
+                                      // overflow: TextOverflow.ellipsis
+                                    )),
                                 Container(
                                     width: 110,
                                     alignment: Alignment.centerLeft,
-                                    child: Text('${_.name}',
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis)),
+                                    child: Text(
+                                      '${_.name}',
+                                      // maxLines: 2,
+                                      // overflow: TextOverflow.ellipsis
+                                    )),
                                 Container(
                                     width: Get.width / 5,
+                                    // color: Colors.red,
                                     alignment: Alignment.centerLeft,
                                     child: Text(
                                       '${_.email}',
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
+                                      // maxLines: 2,
+                                      // overflow: TextOverflow.ellipsis,
                                     ).marginOnly(right: 20)),
                               ],
                             ),

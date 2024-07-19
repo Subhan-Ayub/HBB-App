@@ -15,7 +15,7 @@ class WeeklyMeetingController extends GetxController {
   TextEditingController notes = TextEditingController();
   var formattedDate;
   var arg = Get.arguments;
-  var expCheck=false;
+  var expCheck = false;
 
   @override
   void onInit() async {
@@ -51,17 +51,21 @@ class WeeklyMeetingController extends GetxController {
             "wmnotes": notes.text,
             "meetingtype": selectedOption.value
           };
+    print(obj);
     var res;
     if (check == 'Save') {
-     res= await apiFetcher('Post', '/api/weekly-training', obj);
+      res = await apiFetcher('Post', '/api/weekly-training', obj);
     }
     if (check == 'update') {
-    res=  await apiFetcher('Put', '/api/weekly-training/${arg['id']}', obj);
+      res = await apiFetcher('Put', '/api/weekly-training/${arg['id']}', obj);
     }
-     if (expCheck) {
-      var decode=jsonDecode(res.body);
-      Get.offAndToNamed(Routes.dailyaddexpense,
-          arguments: {'name': 'Weekly Meetings', 'actId': decode['data']['id'],'date':formattedDate});
+    if (expCheck) {
+      var decode = jsonDecode(res.body);
+      Get.offAndToNamed(Routes.dailyaddexpense, arguments: {
+        'name': 'Weekly Meetings',
+        'actId': decode['data']['id'],
+        'date': formattedDate
+      });
     } else {
       ac.getData();
       Get.back();

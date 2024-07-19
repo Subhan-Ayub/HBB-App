@@ -9,6 +9,7 @@ import 'package:table_calendar/table_calendar.dart';
 import '../ui/view/activity.dart';
 
 class ActivityController extends GetxController {
+  RxBool isDailyorNational = false.obs;
   RxBool isFormatlist = false.obs;
   RxBool isCalendar = true.obs;
   RxBool expandDailyExposure = false.obs;

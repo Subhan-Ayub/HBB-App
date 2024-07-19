@@ -329,7 +329,7 @@ class MyDrawer extends StatelessWidget {
                           TextButton(
                             onPressed: () async {
                               await box.remove('success');
-                              Get.offAllNamed(Routes.login);
+                              Get.offAllNamed(Routes.signin);
                             },
                             child: Text('Log out'),
                           ),

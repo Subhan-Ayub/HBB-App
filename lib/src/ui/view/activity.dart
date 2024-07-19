@@ -175,7 +175,8 @@ class ActivityScreen extends StatelessWidget {
                                                                               i]
                                                                           [
                                                                           'id'],
-                                                                  'date':formattedDate
+                                                                  'date':
+                                                                      formattedDate
                                                                 });
                                                           },
                                                           child: Icon(
@@ -941,6 +942,7 @@ class ActivityScreen extends StatelessWidget {
                                   Spacer(),
                                   IconButton(
                                       onPressed: () {
+                                        _.isDailyorNational.value = true;
                                         Get.toNamed(Routes.adddailyexp,
                                             arguments: {
                                               'type': 4,

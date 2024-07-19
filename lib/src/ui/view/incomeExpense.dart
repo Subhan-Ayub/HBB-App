@@ -50,304 +50,219 @@ class IncomeExpenseScreen extends StatelessWidget {
                   // color: Colors.black,
                   border: Border.all(width: 1, color: Colors.grey),
                 ),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: Get.width / 5,
-                          height: Get.height * .03,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            // color: Colors.amber,
-                            // color: Colors.black,
-                            border: Border(
-                              bottom: BorderSide(
-                                color: Colors.grey,
-                                width: 1.0,
-                              ),
-                              right: BorderSide(
-                                color: Colors.grey,
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Text(
-                            'Date',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: Get.width * .025),
-                          ),
-                        ),
-                        //
-                        Container(
-                          width: Get.width / 3.5,
-                          height: Get.height * .03,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            // color: Colors.amber,
-                            // color: Colors.black,
-                            border: Border(
-                              bottom: BorderSide(
-                                color: Colors.grey,
-                                width: 1.0,
-                              ),
-                              right: BorderSide(
-                                color: Colors.grey,
-                                width: 1.0,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: Get.width / 5,
+                            height: Get.height * .03,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              // color: Colors.amber,
+                              // color: Colors.black,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1.0,
+                                ),
+                                right: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1.0,
+                                ),
                               ),
                             ),
-                          ),
-                          child: Text(
-                            'Purpose',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: Get.width * .025),
-                          ),
-                        ),
-                        //
-                        Container(
-                          width: Get.width / 4 / 1.7,
-                          height: Get.height * .03,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            // color: Colors.amber,
-                            // color: Colors.black,
-                            border: Border(
-                              bottom: BorderSide(
-                                color: Colors.grey,
-                                width: 1.0,
-                              ),
-                              right: BorderSide(
-                                color: Colors.grey,
-                                width: 1.0,
-                              ),
+                            child: Text(
+                              'Date',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Get.width * .025),
                             ),
                           ),
-                          child: Text(
-                            'Income',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: Get.width * .025),
+                          //
+                          Container(
+                            width: Get.width / 3.5,
+                            height: Get.height * .03,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              // color: Colors.amber,
+                              // color: Colors.black,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1.0,
+                                ),
+                                right: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1.0,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Purpose',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Get.width * .025),
+                            ),
                           ),
-                        ),
+                          //
+                          Container(
+                            width: Get.width / 4 / 1.7,
+                            height: Get.height * .03,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              // color: Colors.amber,
+                              // color: Colors.black,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1.0,
+                                ),
+                                right: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1.0,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Income',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Get.width * .025),
+                            ),
+                          ),
 
-                        //
+                          //
 
-                        Container(
-                          width: Get.width / 4,
-                          height: Get.height * .03,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            // color: Colors.amber,
-                            // color: Colors.black,
-                            border: Border(
-                              bottom: BorderSide(
-                                color: Colors.grey,
-                                width: 1.0,
+                          Container(
+                            width: Get.width / 4,
+                            height: Get.height * .03,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              // color: Colors.amber,
+                              // color: Colors.black,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1.0,
+                                ),
                               ),
                             ),
+                            child: Text(
+                              'Expense',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Get.width * .025),
+                            ),
                           ),
-                          child: Text(
-                            'Expense',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: Get.width * .025),
-                          ),
-                        ),
-                      ],
-                    ),
-                    //
-                    Obx(
-                      () => _.loader.value
-                          ? Container(
-                              height: Get.height * 0.45,
-                              alignment: Alignment.center,
-                              child: ListView.builder(
-                                  itemCount: _.incomeExpenseData.length,
-                                  itemBuilder: ((context, index) {
-                                    return Row(
-                                      children: [
-// Date
-                                        Container(
-                                          width: Get.width / 5,
-                                          height: Get.height * .03,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                color: Colors.grey,
-                                                width: 1.0,
-                                              ),
-                                              right: BorderSide(
-                                                color: Colors.grey,
-                                                width: 1.0,
-                                              ),
-                                            ),
-                                          ),
-                                          child: Text(
-                                            '${_.incomeExpenseData[index]['expensedate']}',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: Get.width * .025),
-                                            overflow: TextOverflow.clip,
-                                          ).paddingSymmetric(horizontal: 10),
-                                        ),
-// Expense Reason
-                                        Container(
-                                          width: Get.width / 3.5,
-                                          height: Get.height * .03,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                color: Colors.grey,
-                                                width: 1.0,
-                                              ),
-                                              right: BorderSide(
-                                                color: Colors.grey,
-                                                width: 1.0,
-                                              ),
-                                            ),
-                                          ),
-                                          child: Text(
-                                            '${_.incomeExpenseData[index]['expensereason']}',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: Get.width * .025),
-                                            overflow: TextOverflow.ellipsis,
-                                          ).paddingSymmetric(horizontal: 10),
-                                        ),
-// Income Amount
-                                        Container(
-                                          width: Get.width / 4 / 1.7,
-                                          height: Get.height * .03,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                color: Colors.grey,
-                                                width: 1.0,
-                                              ),
-                                              right: BorderSide(
-                                                color: Colors.grey,
-                                                width: 1.0,
-                                              ),
-                                            ),
-                                          ),
-                                          child: Text(
-                                            _.incomeExpenseData[index]
-                                                        ['income'] ==
-                                                    1
-                                                ? " \$${_.incomeExpenseData[index]['expenseamount']}" +
-                                                    '${_.incomeExpenseData[index]['expenseamount'].toString().contains('.') ? '' : '.00'}'
-                                                : '',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: Get.width * .025),
-                                          ),
-                                        ),
-// Expense Amount
-                                        Container(
-                                          width: Get.width / 6.5,
-                                          height: Get.height * .03,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                color: Colors.grey,
-                                                width: 1.0,
-                                              ),
-                                            ),
-                                          ),
-                                          child: Text(
-                                            _.incomeExpenseData[index]
-                                                        ['income'] ==
-                                                    0
-                                                ? '\$${_.incomeExpenseData[index]['expenseamount']}' +
-                                                    '${_.incomeExpenseData[index]['expenseamount'].toString().contains('.') ? '' : '.00'}'
-                                                : '',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: Get.width * .025),
-                                          ),
-                                        ),
-// Edit Button
-                                        InkWell(
-                                          onTap: () {
-                                            // print(_.data[index]['id']);
-                                            _.editId = _
-                                                .incomeExpenseData[index]['id'];
-                                            Get.toNamed(
-                                                Routes.addincomeexpense);
-                                            _.isUpdate.value = true;
-                                            _addIncomeExpenseController
-                                                .edit(index);
-                                          },
-                                          child: Container(
+                        ],
+                      ),
+
+                      //
+                      Obx(
+                        () => _.loader.value
+                            ? Container(
+                                height: Get.height * 0.437,
+                                alignment: Alignment.center,
+                                child: ListView.builder(
+                                    itemCount: _.incomeExpenseData.length,
+                                    itemBuilder: ((context, index) {
+                                      return Row(
+                                        children: [
+                                          // Date
+                                          Container(
+                                            width: Get.width / 5,
+                                            height: Get.height * .03,
+                                            alignment: Alignment.center,
                                             decoration: BoxDecoration(
                                               border: Border(
                                                 bottom: BorderSide(
                                                   color: Colors.grey,
                                                   width: 1.0,
                                                 ),
+                                                right: BorderSide(
+                                                  color: Colors.grey,
+                                                  width: 1.0,
+                                                ),
                                               ),
                                             ),
-                                            height: Get.height * .03,
-                                            child: Icon(
-                                              Icons.edit,
-                                              color: Colors.grey,
-                                              size: 18,
+                                            child: Text(
+                                              '${_.incomeExpenseData[index]['expensedate']}',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: Get.width * .025),
+                                              overflow: TextOverflow.clip,
                                             ).paddingSymmetric(horizontal: 10),
                                           ),
-                                        ),
-// Delete Button
-
-                                        InkWell(
-                                          onTap: () {
-                                            Get.dialog(AlertDialog(
-                                              title: Text(
-                                                'Are you sure you want to Delete this ?',
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.red.shade500),
+                                          // Expense Reason
+                                          Container(
+                                            width: Get.width / 3.5,
+                                            height: Get.height * .03,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                              border: Border(
+                                                bottom: BorderSide(
+                                                  color: Colors.grey,
+                                                  width: 1.0,
+                                                ),
+                                                right: BorderSide(
+                                                  color: Colors.grey,
+                                                  width: 1.0,
+                                                ),
                                               ),
-                                              actions: [
-                                                InkWell(
-                                                  onTap: () {
-                                                    Get.back();
-                                                  },
-                                                  child: Text('Cancel'),
+                                            ),
+                                            child: Text(
+                                              '${_.incomeExpenseData[index]['expensereason']}',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: Get.width * .025),
+                                              overflow: TextOverflow.ellipsis,
+                                            ).paddingSymmetric(horizontal: 10),
+                                          ),
+                                          // Income Amount
+                                          Container(
+                                            width: Get.width / 4 / 1.7,
+                                            height: Get.height * .03,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                              border: Border(
+                                                bottom: BorderSide(
+                                                  color: Colors.grey,
+                                                  width: 1.0,
                                                 ),
-                                                InkWell(
-                                                  onTap: () {
-                                                    _.editId =
-                                                        _.incomeExpenseData[
-                                                            index]['id'];
-                                                    _.delete();
-                                                    Get.back();
-                                                  },
-                                                  child: Text(
-                                                    'Delete',
-                                                    style: TextStyle(
-                                                        color: Colors
-                                                            .red.shade500),
-                                                  ),
+                                                right: BorderSide(
+                                                  color: Colors.grey,
+                                                  width: 1.0,
                                                 ),
-                                              ],
-                                            ));
-                                          },
-                                          child: Container(
+                                              ),
+                                            ),
+                                            child: Text(
+                                              _.incomeExpenseData[index]
+                                                          ['income'] ==
+                                                      1
+                                                  // ignore: prefer_adjacent_string_concatenation
+                                                  ? " \$${_.incomeExpenseData[index]['expenseamount']}" + '${_.incomeExpenseData[index]['expenseamount'].toString().contains('.') ? '' : '.00'}'
+                                                  : '',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: Get.width * .025),
+                                            ),
+                                          ),
+                                          // Expense Amount
+                                          Container(
+                                            width: Get.width / 6.5,
+                                            height: Get.height * .03,
+                                            alignment: Alignment.center,
                                             decoration: BoxDecoration(
                                               border: Border(
                                                 bottom: BorderSide(
@@ -356,31 +271,205 @@ class IncomeExpenseScreen extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
-                                            height: Get.height * .03,
-                                            child: Icon(
-                                              Icons.delete_forever,
-                                              color: Colors.red.shade500,
-                                              size: 18,
+                                            child: Text(
+                                              _.incomeExpenseData[index]
+                                                          ['income'] ==
+                                                      0
+                                                  // ignore: prefer_adjacent_string_concatenation
+                                                  ? '\$${_.incomeExpenseData[index]['expenseamount']}' +
+                                                      '${_.incomeExpenseData[index]['expenseamount'].toString().contains('.') ? '' : '.00'}'
+                                                  : '',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: Get.width * .025),
                                             ),
                                           ),
-                                        )
-                                      ],
-                                    );
-                                  })))
-                          : Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                    )
+                                          // Edit Button
+                                          InkWell(
+                                            onTap: () {
+                                              // print(_.data[index]['id']);
+                                              _.editId =
+                                                  _.incomeExpenseData[index]
+                                                      ['id'];
+                                              Get.toNamed(
+                                                  Routes.addincomeexpense);
+                                              _.isUpdate.value = true;
+                                              _addIncomeExpenseController
+                                                  .edit(index);
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 1.0,
+                                                  ),
+                                                ),
+                                              ),
+                                              height: Get.height * .03,
+                                              child: Icon(
+                                                Icons.edit,
+                                                color: Colors.grey,
+                                                size: 18,
+                                              ).paddingSymmetric(
+                                                  horizontal: 10),
+                                            ),
+                                          ),
+                                          // Delete Button
 
-                    // .marginSymmetric(vertical: Get.height * .03)
-                    // Text(
-                    //     'You currently have no income or expense items for January 2024,(Remember you can only display income and expenses back to January 1st of the year you joined this program) ',
-                    //     style: TextStyle(
-                    //       fontSize: Get.width * .025,
-                    //     ),
-                    //     textAlign: TextAlign.center,
-                    //   ),
-                  ],
+                                          InkWell(
+                                            onTap: () {
+                                              Get.dialog(AlertDialog(
+                                                title: Text(
+                                                  'Are you sure you want to Delete this ?',
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      color:
+                                                          Colors.red.shade500),
+                                                ),
+                                                actions: [
+                                                  InkWell(
+                                                    onTap: () {
+                                                      Get.back();
+                                                    },
+                                                    child: Text('Cancel'),
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      _.editId =
+                                                          _.incomeExpenseData[
+                                                              index]['id'];
+                                                      _.delete();
+                                                      Get.back();
+                                                    },
+                                                    child: Text(
+                                                      'Delete',
+                                                      style: TextStyle(
+                                                          color: Colors
+                                                              .red.shade500),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ));
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 1.0,
+                                                  ),
+                                                ),
+                                              ),
+                                              height: Get.height * .03,
+                                              child: Icon(
+                                                Icons.delete_forever,
+                                                color: Colors.red.shade500,
+                                                size: 18,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      );
+                                    })))
+                            : Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Total
+                          Container(
+                            width: Get.width / 2.06,
+                            height: Get.height * .03,
+                            alignment: Alignment.centerRight,
+                            decoration: BoxDecoration(
+                              border: Border(
+                                top: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1.0,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Totals: ',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: Get.width * .025),
+                            ),
+                          ),
+                          // Income
+                          Container(
+                            width: Get.width / 6.8,
+                            // height: Get.height * .03,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              border: Border(
+                                top: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1.0,
+                                ),
+                                left: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1.0,
+                                ),
+                                right: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1.0,
+                                ),
+                              ),
+                            ),
+                            child: Obx(
+                              () => Text(
+                                '\$${_.totalIncome.value}',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: Get.width * .025),
+                              ).paddingSymmetric(horizontal: 10, vertical: 5),
+                            ),
+                          ),
+                          // Expense
+                          Container(
+                            width: Get.width / 3.47,
+                            // height: Get.height * .03,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              border: Border(
+                                top: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1.0,
+                                ),
+                              ),
+                            ),
+                            child: Obx(
+                              () => Text(
+                                "\$${_.totalExpense.value}",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: Get.width * .025),
+                              ).paddingSymmetric(horizontal: 10, vertical: 5),
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      // .marginSymmetric(vertical: Get.height * .03)
+                      // Text(
+                      //     'You currently have no income or expense items for January 2024,(Remember you can only display income and expenses back to January 1st of the year you joined this program) ',
+                      //     style: TextStyle(
+                      //       fontSize: Get.width * .025,
+                      //     ),
+                      //     textAlign: TextAlign.center,
+                      //   ),
+                    ],
+                  ),
                 ),
               ),
               Row(

@@ -178,29 +178,35 @@ class ProfileScreen extends StatelessWidget {
                             height: Get.height * .015,
                           ),
                           //
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Follow Up Tasks',
-                                    style: UIDataTextStyles.commontextheadbold,
-                                  ),
-                                  Text(
-                                    'You have follow up task due \nclick here to go your calender',
-                                    style: UIDataTextStyles.commontextgrey,
-                                  )
-                                ],
-                              ),
-                              Spacer(),
-                              Icon(
-                                Icons.arrow_forward_ios_rounded,
-                                size: Get.width * .045,
-                              ),
-                            ],
-                          ).paddingSymmetric(horizontal: Get.width * .05),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.activity);
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Follow Up Tasks',
+                                      style:
+                                          UIDataTextStyles.commontextheadbold,
+                                    ),
+                                    Text(
+                                      'You have follow up task due \nclick here to go your calender',
+                                      style: UIDataTextStyles.commontextgrey,
+                                    )
+                                  ],
+                                ),
+                                Spacer(),
+                                Icon(
+                                  Icons.arrow_forward_ios_rounded,
+                                  size: Get.width * .045,
+                                ),
+                              ],
+                            ).paddingSymmetric(horizontal: Get.width * .05),
+                          ),
                           SizedBox(
                             height: Get.height * .015,
                           ),
